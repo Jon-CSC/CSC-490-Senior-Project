@@ -1,7 +1,37 @@
 /*
- * Empty Stylesheet file.
+ * CSS File for buttons.
  */
+.button
+{
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+    -fx-background-color: #9400d3;
+    -fx-background-radius: 22;
+    -fx-background-size: 16;
+    -fx-text-fill: white;
+}
 
-.mainFxmlClass {
+.button:hover
+{
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-background-radius: 22;
+    -fx-background-size: 16;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-radius: 20;
+    -fx-border-width: 3;
+}
 
+.button:pressed
+{
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-background-radius: 22;
+    -fx-background-size: 16;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-radius: 20;
+    -fx-border-width: 3;
+    -fx-rotate: 10;
 }
