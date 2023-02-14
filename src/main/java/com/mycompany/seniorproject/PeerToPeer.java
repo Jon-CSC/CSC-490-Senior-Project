@@ -6,13 +6,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ *
  * @author Jonathan Espinal
  */
 public class PeerToPeer {
 
     private ServerSocket hostSocket;
-    private Socket clientSocket; 
+    private Socket clientSocket;
     private BufferedReader inputStream;
     private PrintWriter outputStream;
 
@@ -48,23 +48,25 @@ public class PeerToPeer {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * Read incoming data.
-     * @return 
+     *
+     * @return
      */
     public String readPacket() {
+        String data;
+        String packet = "";
         try {
-            String data;
             // process will block here waiting for input
             while ((data = inputStream.readLine()) != null) {
-                // TODO: Handle incoming messages.
+                packet += data;
             }
-            return data;
+            return packet;
         } catch (IOException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return packet;
     }
 
     /**
