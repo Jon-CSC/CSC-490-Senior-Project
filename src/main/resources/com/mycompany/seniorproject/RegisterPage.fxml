@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller=".RegisterPageController">
+    <stylesheets>
+        <URL value="@registerpage.css" />
+    </stylesheets>
+   <children>
+      <TextField layoutX="193.0" layoutY="81.0" prefHeight="43.0" prefWidth="201.0" promptText="Full Name" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
+      <TextField layoutX="193.0" layoutY="146.0" prefHeight="43.0" prefWidth="201.0" promptText="Username" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
+      <TextField layoutX="193.0" layoutY="210.0" prefHeight="43.0" prefWidth="201.0" promptText="Password" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
+      <Label layoutX="212.0" layoutY="33.0" text="Please Register" textFill="RED">
+         <font>
+            <Font name="Tahoma Bold" size="21.0" />
+         </font>
+      </Label>
+      <Button layoutX="247.0" layoutY="277.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: ff1f1f;" text="Register" textFill="WHITE" />
+      <Hyperlink layoutX="189.0" layoutY="341.0" text="Already have an account? Login" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Hyperlink>
+   </children>
+</AnchorPane>
