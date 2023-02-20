@@ -1,3 +1,5 @@
+package com.mycompany.seniorproject;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
@@ -12,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author chriscanenguez
  */
-public class RegisterPageController implements Initializable {
+public class ForgotPasswordPageController implements Initializable {
 
     /**
      * Initializes the controller class.

@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="828.0" style="-fx-background-color: black;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="com.mycompany.seniorproject.LoginPageController">
+<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="828.0" style="-fx-background-color: black;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.LoginPageController">
     <stylesheets>
         <URL value="@loginpage.css" />
     </stylesheets>
@@ -25,8 +25,8 @@
             <Font name="Tahoma" size="26.0" />
          </font>
       </Label>
-      <Button layoutX="151.0" layoutY="244.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: ff1f1f;" text="Register" textFill="WHITE" />
-      <Button layoutX="563.0" layoutY="299.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="83.0" style="-fx-background-color: black;" text="Sign In" />
+      <Button layoutX="151.0" layoutY="244.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: ff1f1f;" stylesheets="@../../../styles/loginpage.css" text="Register" textFill="WHITE" />
+      <Button layoutX="563.0" layoutY="299.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="83.0" style="-fx-background-color: black;" stylesheets="@../../../styles/loginpage.css" text="Sign In" />
       <TextField layoutX="503.0" layoutY="160.0" prefHeight="43.0" prefWidth="201.0" promptText="Username" style="-fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
       <Hyperlink layoutX="541.0" layoutY="359.0" text="Forgot Password?" textFill="WHITE">
          <font>
