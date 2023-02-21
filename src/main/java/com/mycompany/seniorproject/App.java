@@ -24,8 +24,8 @@ public class App extends Application {
         currentStage = stage;
         scene = new Scene(loadFXML("LoginPage"), 640, 480);
         stage.setScene(scene);
-        stage.setMinWidth(1280);
-        stage.setMinHeight(720);
+        stage.setMinWidth(640);
+        stage.setMinHeight(480);
         stage.setTitle("MiniGame App");
         
         // Icon code below, for whenever we get an icon for the app
