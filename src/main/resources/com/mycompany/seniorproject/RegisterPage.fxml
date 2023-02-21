@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller=".RegisterPageController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.RegisterPageController">
     <stylesheets>
         <URL value="@registerpage.css" />
     </stylesheets>
@@ -22,7 +22,7 @@
          </font>
       </Label>
       <Button layoutX="247.0" layoutY="277.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: ff1f1f;" stylesheets="@../../../styles/registerpage.css" text="Register" textFill="WHITE" />
-      <Hyperlink layoutX="189.0" layoutY="341.0" text="Already have an account? Login" textFill="WHITE">
+      <Hyperlink layoutX="189.0" layoutY="341.0" onAction="#goToLoginPage" text="Already have an account? Login" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>

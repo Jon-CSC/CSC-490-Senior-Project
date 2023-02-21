@@ -4,8 +4,10 @@
  */
 package com.mycompany.seniorproject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -21,6 +23,24 @@ public class LoginPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    
+    @FXML
+    public void goToRegisterPage() throws IOException {
+        // Retrieves Loader for Register page.
+        App.setRoot("RegisterPage");
+    } // End goToRegisterPage.
+    
+    @FXML
+    public void goToForgotPasswordPage() throws IOException {
+        // Retrieves Loader for ForgotPassword page.
+        App.setRoot("ForgotPasswordPage");
+    } // End goToForgotPasswordPage.
+    
+    @FXML
+    public void goToMainPage() throws IOException {
+        // Retrieves Loader for Main page.
+        App.setRoot("primary");
+    } // End goToMainPage.
     
 }

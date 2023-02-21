@@ -9,30 +9,30 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="828.0" style="-fx-background-color: black;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.LoginPageController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.LoginPageController">
     <stylesheets>
         <URL value="@loginpage.css" />
     </stylesheets>
    <children>
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#ff1f1f" height="410.0" layoutX="405.0" layoutY="53.0" stroke="BLACK" strokeType="INSIDE" width="366.0" />
-      <Label alignment="CENTER" layoutX="5.0" layoutY="142.0" prefHeight="66.0" prefWidth="396.0" text="Welcome To Our Application!" textAlignment="CENTER" textFill="WHITE">
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#ff1f1f" height="382.0" layoutX="280.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" width="337.0" />
+      <Label alignment="CENTER" layoutX="74.0" layoutY="137.0" prefHeight="66.0" prefWidth="180.0" text="Welcome!" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Tahoma Bold" size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="496.0" layoutY="102.0" prefHeight="33.0" prefWidth="201.0" text="Please Log In" textFill="WHITE">
+      <Label alignment="CENTER" layoutX="348.0" layoutY="104.0" prefHeight="33.0" prefWidth="201.0" text="Please Log In" textFill="WHITE">
          <font>
             <Font name="Tahoma" size="26.0" />
          </font>
       </Label>
-      <Button layoutX="151.0" layoutY="244.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: ff1f1f;" stylesheets="@../../../styles/loginpage.css" text="Register" textFill="WHITE" />
-      <Button layoutX="563.0" layoutY="299.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="83.0" style="-fx-background-color: black;" stylesheets="@../../../styles/loginpage.css" text="Sign In" />
-      <TextField layoutX="503.0" layoutY="160.0" prefHeight="43.0" prefWidth="201.0" promptText="Username" style="-fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
-      <Hyperlink layoutX="541.0" layoutY="359.0" text="Forgot Password?" textFill="WHITE">
+      <Button layoutX="117.0" layoutY="240.0" mnemonicParsing="false" onAction="#goToRegisterPage" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: ff1f1f;" stylesheets="@../../../styles/loginpage.css" text="Register" textFill="WHITE" />
+      <Button layoutX="407.0" layoutY="302.0" mnemonicParsing="false" onAction="#goToMainPage" prefHeight="43.0" prefWidth="83.0" style="-fx-background-color: black;" stylesheets="@../../../styles/loginpage.css" text="Sign In" />
+      <TextField layoutX="348.0" layoutY="160.0" prefHeight="43.0" prefWidth="201.0" promptText="Username" style="-fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
+      <Hyperlink layoutX="387.0" layoutY="360.0" onAction="#goToForgotPasswordPage" text="Forgot Password?" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Hyperlink>
-      <TextField layoutX="502.0" layoutY="229.0" prefHeight="43.0" prefWidth="201.0" promptText="Password" style="-fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
+      <TextField layoutX="348.0" layoutY="230.0" prefHeight="43.0" prefWidth="201.0" promptText="Password" style="-fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
    </children>
 </AnchorPane>
