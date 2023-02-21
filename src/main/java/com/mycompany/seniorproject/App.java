@@ -21,8 +21,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // Change below back to 'primary' FXML
-        scene = new Scene(loadFXML("gameLibrary"), 1280, 720); 
         currentStage = stage;
+        scene = new Scene(loadFXML("LoginPage"), 640, 480);
         stage.setScene(scene);
         stage.setMinWidth(1280);
         stage.setMinHeight(720);
