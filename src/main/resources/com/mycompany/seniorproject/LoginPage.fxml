@@ -26,8 +26,8 @@
          </font>
       </Label>
       <Button layoutX="117.0" layoutY="240.0" mnemonicParsing="false" onAction="#goToRegisterPage" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: ff1f1f;" stylesheets="@../../../styles/loginpage.css" text="Register" textFill="WHITE" />
-      <Button layoutX="407.0" layoutY="302.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="83.0" style="-fx-background-color: black;" stylesheets="@../../../styles/loginpage.css" text="Sign In" />
-      <TextField fx:id="usernameField" layoutX="348.0" layoutY="160.0" prefHeight="43.0" prefWidth="201.0" promptText="Username" style="-fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
+      <Button layoutX="407.0" layoutY="302.0" mnemonicParsing="false" onAction="#logIn" prefHeight="43.0" prefWidth="83.0" style="-fx-background-color: black;" stylesheets="@../../../styles/loginpage.css" text="Sign In" />
+      <TextField fx:id="usernameField" layoutX="348.0" layoutY="160.0" onAction="#logIn" prefHeight="43.0" prefWidth="201.0" promptText="Username" style="-fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
       <Hyperlink layoutX="387.0" layoutY="360.0" onAction="#goToForgotPasswordPage" text="Forgot Password?" textFill="WHITE">
          <font>
             <Font size="15.0" />
