@@ -20,7 +20,7 @@
             <Font name="Tahoma Bold" size="21.0" />
          </font>
       </Label>
-      <Button layoutX="247.0" layoutY="277.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: ff1f1f;" stylesheets="@../../../styles/registerpage.css" text="Register" textFill="WHITE" />
+      <Button layoutX="247.0" layoutY="277.0" mnemonicParsing="false" onAction="#register" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: ff1f1f;" stylesheets="@../../../styles/registerpage.css" text="Register" textFill="WHITE" />
       <Hyperlink layoutX="189.0" layoutY="341.0" onAction="#goToLoginPage" text="Already have an account? Login" textFill="WHITE">
          <font>
             <Font size="15.0" />
