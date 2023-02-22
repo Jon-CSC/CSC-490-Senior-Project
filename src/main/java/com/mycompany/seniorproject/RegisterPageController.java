@@ -1,5 +1,8 @@
 package com.mycompany.seniorproject;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
@@ -8,6 +11,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -40,6 +44,11 @@ public class RegisterPageController implements Initializable {
     
     @FXML
     public void register() throws IOException {
+        createUser();
+        createUserDocument();
+    }
+    
+    public void createUser() throws IOException {
         try {
             // Make a new user record create request
             UserRecord.CreateRequest request = new UserRecord.CreateRequest()
@@ -56,8 +65,13 @@ public class RegisterPageController implements Initializable {
         } catch (IllegalArgumentException iae) {
             System.out.println("IllegalArgumentException");
         }
-             
-        
     }
+    
+    public void createUserDocument() {
+        DocumentReference docRef = App.fstore.collection("Users").document(usernameField.getText());
+        Map<String, Object> data = new HashMap<>();
+        data.put("Password", passwordField.getText());
+        ApiFuture<WriteResult> result = docRef.set(data);
+    }    
     
 }
