@@ -51,7 +51,7 @@ public class RegisterPageController implements Initializable {
             UserRecord.CreateRequest request = new UserRecord.CreateRequest()
                     .setUid(usernameField.getText().trim())
                     .setPassword(passwordField.getText().trim());
-            //Make a new userRecord instance and use the data from the create request
+            //Make a new UserRecord instance and use the data from the create request
             UserRecord newUser = FirebaseAuth.getInstance().createUser(request);
             //Use custom claims to set the new user's permissions to user and not admin
             Map<String, Object> claims = new HashMap<>();
@@ -62,11 +62,11 @@ public class RegisterPageController implements Initializable {
         } catch (FirebaseAuthException ex) {
             //Will eventually put in things like "username/email already in use" etc.
             //These things will display on screen when the UI is more finished
-            System.out.println("FirebaseAuthException");
+            System.out.println("FirebaseAuthException - Username may already be in use");
         } catch (IllegalArgumentException iae) {
             //Will eventually put in things like "all fields must be filled, password must be 6 characters" etc.
             //These things will display on screen when the UI is more finished
-            System.out.println("IllegalArgumentException");
+            System.out.println("IllegalArgumentException - Password may be <6 characters, some fields may be empty");
         }
     }
     

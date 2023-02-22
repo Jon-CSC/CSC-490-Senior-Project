@@ -67,11 +67,11 @@ public class LoginPageController implements Initializable {
         } catch (FirebaseAuthException ex) {
             //Will eventually put in things like "username does not exist" etc.
             //These things will display on screen when the UI is more finished
-            System.out.println("FirebaseAuthException");
+            System.out.println("FirebaseAuthException - Username may not exist");
         } catch (IllegalArgumentException iae) {
             //Will eventually put in things like "empty username/password" etc.
             //These things will display on screen when the UI is more finished
-            System.out.println("IllegalArgumentException");
+            System.out.println("IllegalArgumentException - Fields may be empty");
         }
     }
 
