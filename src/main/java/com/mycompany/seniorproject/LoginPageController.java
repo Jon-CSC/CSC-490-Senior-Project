@@ -37,10 +37,4 @@ public class LoginPageController implements Initializable {
         App.setRoot("ForgotPasswordPage");
     } // End goToForgotPasswordPage.
     
-    @FXML
-    public void goToMainPage() throws IOException {
-        // Retrieves Loader for Main page.
-        App.setRoot("primary");
-    } // End goToMainPage.
-    
 }
