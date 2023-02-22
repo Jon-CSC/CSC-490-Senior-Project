@@ -1,15 +1,11 @@
 package com.mycompany.seniorproject;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -18,6 +14,9 @@ import javafx.fxml.Initializable;
  */
 public class RegisterPageController implements Initializable {
 
+    @FXML
+    private TextField usernameField, passwordField;
+    
     /**
      * Initializes the controller class.
      */
@@ -31,5 +30,7 @@ public class RegisterPageController implements Initializable {
         // Retrieves Loader for Login page.
         App.setRoot("LoginPage");
     } // End goToLoginPage.
+    
+    
     
 }

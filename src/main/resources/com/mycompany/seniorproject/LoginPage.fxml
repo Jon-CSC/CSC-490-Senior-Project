@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.LoginPageController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.LoginPageController">
     <stylesheets>
         <URL value="@loginpage.css" />
     </stylesheets>
@@ -26,13 +26,13 @@
          </font>
       </Label>
       <Button layoutX="117.0" layoutY="240.0" mnemonicParsing="false" onAction="#goToRegisterPage" prefHeight="43.0" prefWidth="94.0" style="-fx-background-color: ff1f1f;" stylesheets="@../../../styles/loginpage.css" text="Register" textFill="WHITE" />
-      <Button layoutX="407.0" layoutY="302.0" mnemonicParsing="false" onAction="#goToMainPage" prefHeight="43.0" prefWidth="83.0" style="-fx-background-color: black;" stylesheets="@../../../styles/loginpage.css" text="Sign In" />
-      <TextField layoutX="348.0" layoutY="160.0" prefHeight="43.0" prefWidth="201.0" promptText="Username" style="-fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
+      <Button layoutX="407.0" layoutY="302.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="83.0" style="-fx-background-color: black;" stylesheets="@../../../styles/loginpage.css" text="Sign In" />
+      <TextField fx:id="usernameField" layoutX="348.0" layoutY="160.0" prefHeight="43.0" prefWidth="201.0" promptText="Username" style="-fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
       <Hyperlink layoutX="387.0" layoutY="360.0" onAction="#goToForgotPasswordPage" text="Forgot Password?" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Hyperlink>
-      <TextField layoutX="348.0" layoutY="230.0" prefHeight="43.0" prefWidth="201.0" promptText="Password" style="-fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
+      <TextField fx:id="passwordField" layoutX="348.0" layoutY="230.0" prefHeight="43.0" prefWidth="201.0" promptText="Password" style="-fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
    </children>
 </AnchorPane>

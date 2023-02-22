@@ -8,14 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.RegisterPageController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.RegisterPageController">
     <stylesheets>
         <URL value="@registerpage.css" />
     </stylesheets>
    <children>
-      <TextField layoutX="193.0" layoutY="81.0" prefHeight="43.0" prefWidth="201.0" promptText="Full Name" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
-      <TextField layoutX="193.0" layoutY="146.0" prefHeight="43.0" prefWidth="201.0" promptText="Username" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
-      <TextField layoutX="193.0" layoutY="210.0" prefHeight="43.0" prefWidth="201.0" promptText="Password" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
+      <TextField fx:id="usernameField" layoutX="194.0" layoutY="76.0" prefHeight="43.0" prefWidth="201.0" promptText="Username" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
+      <TextField fx:id="passwordField" layoutX="193.0" layoutY="157.0" prefHeight="43.0" prefWidth="201.0" promptText="Password" style="-fx-border-color: red; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-radius: 20;" />
       <Label layoutX="212.0" layoutY="33.0" text="Please Register" textFill="RED">
          <font>
             <Font name="Tahoma Bold" size="21.0" />
