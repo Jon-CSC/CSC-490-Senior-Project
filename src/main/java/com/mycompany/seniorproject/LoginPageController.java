@@ -55,16 +55,22 @@ public class LoginPageController implements Initializable {
     @FXML
     public void logIn() throws InterruptedException, ExecutionException {
         try {
-            String username = usernameField.getText();
-            UserRecord user = FirebaseAuth.getInstance().getUser(username);
-            if (verifyPassword(username)) {
+            //Attempt to log in a user using what's typed in the usernameField
+            UserRecord user = FirebaseAuth.getInstance().getUser(usernameField.getText());
+            //If no exception has been caught, the password is then checked
+            if (verifyPassword(usernameField.getText())) {
+                //We would put code here to switch to whatever fxml file is considered the main page/library
                 System.out.println("Password is correct. We would switch to the main page now.");
             } else {
                 System.out.println("User exists, but the password is incorrect or empty.");
             }
         } catch (FirebaseAuthException ex) {
+            //Will eventually put in things like "username does not exist" etc.
+            //These things will display on screen when the UI is more finished
             System.out.println("FirebaseAuthException");
         } catch (IllegalArgumentException iae) {
+            //Will eventually put in things like "empty username/password" etc.
+            //These things will display on screen when the UI is more finished
             System.out.println("IllegalArgumentException");
         }
     }
@@ -73,6 +79,7 @@ public class LoginPageController implements Initializable {
         DocumentReference userDoc = App.fstore.collection("Users").document(username);
         ApiFuture<DocumentSnapshot> future = userDoc.get();
         DocumentSnapshot document = future.get();
+        //We compare what's in the password field in the user's Firestore document vs. what's typed in the passwordField
         if (document.getData().get("Password").toString().equals(passwordField.getText())) {
             return true;
         }
