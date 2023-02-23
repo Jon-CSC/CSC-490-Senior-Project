@@ -25,6 +25,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         fstore = firestore();
         scene = new Scene(loadFXML("LoginPage"), 750, 500);
+        stage.setTitle("Senior Project");
         stage.setScene(scene);
         stage.show();
     }

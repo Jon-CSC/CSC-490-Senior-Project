@@ -21,7 +21,7 @@
                   <Button mnemonicParsing="false" onAction="#goToLoginPage" text="Log In" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="500.0" prefWidth="500.0" spacing="10.0">
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="500.0" prefWidth="500.0" spacing="15.0">
                <children>
                   <Circle radius="25.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: dodgerblue;" />
                   <Label focusTraversable="false" styleClass="title-label" stylesheets="@../../../styles/loginpage.css" text="Register" textFill="#327bdb" />
@@ -32,6 +32,7 @@
                         <Button focusTraversable="false" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="180.0" text="Register" />
                      </children>
                   </VBox>
+                  <Label fx:id="errorLabel" text="Error Messages Appear Down Here" textFill="#ff4242" />
                </children>
             </VBox>
          </children>
