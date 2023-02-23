@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -30,7 +31,11 @@ import javafx.stage.Stage;
 public class LoginPageController implements Initializable {
 
     @FXML
-    private TextField usernameField, passwordField;
+    private TextField usernameField;
+            
+    @FXML
+    private PasswordField passwordField;
+    
 
     /**
      * Initializes the controller class.

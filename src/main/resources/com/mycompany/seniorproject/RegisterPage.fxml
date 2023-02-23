@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -26,9 +27,9 @@
                   <Label focusTraversable="false" styleClass="title-label" stylesheets="@../../../styles/loginpage.css" text="Register" textFill="#327bdb" />
                   <VBox alignment="CENTER" fillWidth="false" prefHeight="170.0" prefWidth="210.0" spacing="20.0" styleClass="small-vbox">
                      <children>
-                        <TextField focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
-                        <TextField focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="text-field" />
-                        <Button focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" text="Register" />
+                        <TextField fx:id="usernameField" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
+                        <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="text-field" />
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="180.0" text="Register" />
                      </children>
                   </VBox>
                </children>
