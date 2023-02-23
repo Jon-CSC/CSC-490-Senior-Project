@@ -40,9 +40,6 @@ public class LoginPageController implements Initializable {
     @FXML
     private Label errorLabel;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         errorLabel.setVisible(false);

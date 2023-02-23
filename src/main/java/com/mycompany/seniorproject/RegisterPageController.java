@@ -26,33 +26,33 @@ public class RegisterPageController implements Initializable {
 
     @FXML
     private TextField usernameField;
-    
+
     @FXML
     private PasswordField passwordField;
-    
+
     @FXML
     private Label errorLabel;
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         errorLabel.setVisible(false);
-    }    
-    
+    }
+
     @FXML
     public void goToLoginPage() throws IOException {
         // Retrieves Loader for Login page.
         App.setRoot("LoginPage");
     } // End goToLoginPage.
-    
+
     @FXML
     public void register() throws IOException {
         createUser();
         createUserDocument();
     }
-    
+
     public void createUser() throws IOException {
         try {
             //Make a new user record create request
@@ -68,16 +68,19 @@ public class RegisterPageController implements Initializable {
             //If registration is successful return to the log in page
             App.setRoot("LoginPage");
         } catch (FirebaseAuthException ex) {
-            //Will eventually put in things like "username/email already in use" etc.
-            //These things will display on screen when the UI is more finished
-            System.out.println("FirebaseAuthException - Username may already be in use");
+            errorLabel.setText("Username is already in use");
+            errorLabel.setVisible(true);
         } catch (IllegalArgumentException iae) {
-            //Will eventually put in things like "all fields must be filled, password must be 6 characters" etc.
-            //These things will display on screen when the UI is more finished
-            System.out.println("IllegalArgumentException - Password may be <6 characters, some fields may be empty");
+            if (usernameField.getText().equals("") || passwordField.getText().equals("")) {
+                errorLabel.setText("All fields must be filled out");
+                errorLabel.setVisible(true);
+            } else {
+                errorLabel.setText("Password must be at least 6 characters long");
+                errorLabel.setVisible(true);
+            }
         }
     }
-    
+
     public void createUserDocument() {
         //Create a new document using the username typed in the usernameField
         DocumentReference docRef = App.fstore.collection("Users").document(usernameField.getText());
@@ -85,6 +88,6 @@ public class RegisterPageController implements Initializable {
         //Store the password in the new document to check later when logging in
         data.put("Password", passwordField.getText());
         ApiFuture<WriteResult> result = docRef.set(data);
-    }    
-    
+    }
+
 }
