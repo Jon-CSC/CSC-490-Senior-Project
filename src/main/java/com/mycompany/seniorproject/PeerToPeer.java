@@ -26,7 +26,7 @@ public class PeerToPeer {
             hostSocket = new ServerSocket(port);
             clientSocket = hostSocket.accept(); // process will block here waiting for client request
             inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            outputStream = new PrintWriter(clientSocket.getOutputStream());
+            outputStream = new PrintWriter(clientSocket.getOutputStream(),true);
         } catch (IOException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -43,7 +43,7 @@ public class PeerToPeer {
         try {
             clientSocket = new Socket(ip, port);
             inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            outputStream = new PrintWriter(clientSocket.getOutputStream());
+            outputStream = new PrintWriter(clientSocket.getOutputStream(),true);
         } catch (IOException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -75,7 +75,7 @@ public class PeerToPeer {
      * @param message The message to send.
      */
     public void sendPacket(String message) {
-        outputStream.write(message + "\n");
+        outputStream.println(message);
     }
 
     /**
