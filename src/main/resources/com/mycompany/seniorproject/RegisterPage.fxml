@@ -10,18 +10,18 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.RegisterPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.RegisterPageController">
    <children>
-      <HBox alignment="CENTER_LEFT" fillHeight="false" layoutX="215.0" layoutY="230.0" prefHeight="540.0" prefWidth="750.0" stylesheets="@../../../styles/loginpage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER_LEFT" layoutX="215.0" layoutY="230.0" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../styles/loginpage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="500.0" prefWidth="250.0" spacing="20.0" style="-fx-background-radius: 0;" styleClass="small-vbox">
+            <VBox alignment="CENTER" prefHeight="480.0" prefWidth="220.0" spacing="20.0" style="-fx-background-radius: 0;" styleClass="small-vbox">
                <children>
                   <Label focusTraversable="false" styleClass="title-label" stylesheets="@../../../styles/loginpage.css" text="Already have an account?" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: dodgerblue;" width="200.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="165.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: dodgerblue;" width="165.0" />
                   <Button mnemonicParsing="false" onAction="#goToLoginPage" text="Log In" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="500.0" prefWidth="500.0" spacing="15.0">
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="480.0" prefWidth="420.0" spacing="15.0">
                <children>
                   <Circle radius="25.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: dodgerblue;" />
                   <Label focusTraversable="false" styleClass="title-label" stylesheets="@../../../styles/loginpage.css" text="Register" textFill="#327bdb" />
@@ -32,7 +32,7 @@
                         <Button focusTraversable="false" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="180.0" text="Register" />
                      </children>
                   </VBox>
-                  <Label fx:id="errorLabel" text="Error Messages Appear Down Here" textFill="#ff4242" />
+                  <Label fx:id="errorLabel" text="Error Messages Appear Down Here" textFill="#ff4242" wrapText="true" />
                </children>
             </VBox>
          </children>
