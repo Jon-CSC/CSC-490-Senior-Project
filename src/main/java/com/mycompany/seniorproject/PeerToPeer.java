@@ -6,13 +6,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
+ *
  * @author Jonathan Espinal
  */
 public class PeerToPeer {
 
     private ServerSocket hostSocket;
-    private Socket clientSocket; 
+    private Socket clientSocket;
     private BufferedReader inputStream;
     private PrintWriter outputStream;
 
@@ -26,7 +26,7 @@ public class PeerToPeer {
             hostSocket = new ServerSocket(port);
             clientSocket = hostSocket.accept(); // process will block here waiting for client request
             inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            outputStream = new PrintWriter(clientSocket.getOutputStream());
+            outputStream = new PrintWriter(clientSocket.getOutputStream(),true);
         } catch (IOException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -43,28 +43,30 @@ public class PeerToPeer {
         try {
             clientSocket = new Socket(ip, port);
             inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            outputStream = new PrintWriter(clientSocket.getOutputStream());
+            outputStream = new PrintWriter(clientSocket.getOutputStream(),true);
         } catch (IOException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * Read incoming data.
-     * @return 
+     *
+     * @return
      */
     public String readPacket() {
+        String data;
+        String packet = "";
         try {
-            String data;
             // process will block here waiting for input
             while ((data = inputStream.readLine()) != null) {
-                // TODO: Handle incoming messages.
+                packet += data;
             }
-            return data;
+            return packet;
         } catch (IOException ex) {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return packet;
     }
 
     /**
@@ -73,7 +75,7 @@ public class PeerToPeer {
      * @param message The message to send.
      */
     public void sendPacket(String message) {
-        outputStream.write(message + "\n");
+        outputStream.println(message);
     }
 
     /**

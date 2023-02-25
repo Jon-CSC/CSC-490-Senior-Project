@@ -1,5 +1,10 @@
 package com.mycompany.seniorproject;
 
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.Firestore;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.cloud.FirestoreClient;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,12 +21,12 @@ import javafx.scene.image.Image;
 public class App extends Application {
 
     private static Scene scene;
-    private static Stage currentStage;
-
+    public static Firestore fstore;
+    
     @Override
     public void start(Stage stage) throws IOException {
-        currentStage = stage;
-        scene = new Scene(loadFXML("gameLibrary"), 640, 480);
+        fstore = firestore();
+        scene = new Scene(loadFXML("LoginPage"), 640, 480);
         stage.setScene(scene);
         stage.setMinWidth(640);
         stage.setMinHeight(480);
@@ -61,6 +66,18 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+    
+    public Firestore firestore() {
+        try {
+            FirebaseOptions options = new FirebaseOptions.Builder()
+                    .setCredentials(GoogleCredentials.fromStream(getClass().getResourceAsStream("key.json")))
+                    .build();
+            FirebaseApp.initializeApp(options);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return FirestoreClient.getFirestore();
     }
 
 }
