@@ -22,18 +22,20 @@ public class App extends Application {
 
     private static Scene scene;
     public static Firestore fstore;
+    private static Stage currentStage;
     
     @Override
     public void start(Stage stage) throws IOException {
+        currentStage = stage;
         fstore = firestore();
-        scene = new Scene(loadFXML("LoginPage"), 640, 480);
+        scene = new Scene(loadFXML("LoginPage"), 900, 640);
         stage.setScene(scene);
         stage.setMinWidth(640);
         stage.setMinHeight(480);
         stage.setTitle("MiniGame App");
         
         // Icon code below, for whenever we get an icon for the app
-        // Image icon = new Image(getClass().getResourceAsStream("javastroids_icon.png"));
+        // Image icon = new Image(getClass().getResourceAsStream("some_icon_thing.png"));
         // stage.getIcons().add(icon);
 
         stage.show();
