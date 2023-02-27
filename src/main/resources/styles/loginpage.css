@@ -1,11 +1,12 @@
 /*
  * CSS File for buttons.
  */
+
 .button
 {
     -fx-font-weight: bold;
     -fx-font-size: 16;
-    -fx-background-color: #9400d3;
+    -fx-background-color: #0093ff;
     -fx-background-radius: 22;
     -fx-background-size: 16;
     -fx-text-fill: white;
@@ -35,3 +36,9 @@
     -fx-border-width: 3;
     -fx-rotate: 10;
 }
+
+#HBoxParent
+{
+    -fx-background-color: #282828
+}
+

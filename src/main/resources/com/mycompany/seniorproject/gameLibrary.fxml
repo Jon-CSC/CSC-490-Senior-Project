@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="BorderPaneParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" prefHeight="640.0" prefWidth="900.0" stylesheets="@../../../styles/gamelibrary.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.GameLibraryController">
+<BorderPane id="BorderPaneParent" fx:id="BorderPaneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" onKeyPressed="#keyboardCommand" prefHeight="640.0" prefWidth="900.0" stylesheets="@../../../styles/gamelibrary.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.GameLibraryController">
    <center>
       <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
         <columnConstraints>

@@ -19,13 +19,13 @@
 .button:pressed
 {
     -fx-font-weight: bold;
-    -fx-background-color: white;
+    -fx-background-color: #004f8b;
     -fx-background-radius: 22;
     -fx-background-size: 16;
     -fx-text-fill: white;
-    -fx-border-color: white;
+    /* -fx-border-color: white;
     -fx-border-radius: 20;
-    -fx-border-width: 3;
+    -fx-border-width: 3; */
 }
 
 #BorderPaneParent

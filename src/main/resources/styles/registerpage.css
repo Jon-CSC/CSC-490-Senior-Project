@@ -1,11 +1,18 @@
 /*
  * CSS File for buttons.
  */
+
+
+.label
+{
+    -fx-text-fill: #0093ff;
+}
+
 .button
 {
     -fx-font-weight: bold;
     -fx-font-size: 16;
-    -fx-background-color: #ff1f1f;
+    -fx-background-color: #0093ff;
     -fx-background-radius: 22;
     -fx-background-size: 16;
     -fx-text-fill: white;
