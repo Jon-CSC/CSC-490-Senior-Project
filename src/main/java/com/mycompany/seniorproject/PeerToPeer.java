@@ -59,7 +59,7 @@ public class PeerToPeer {
         String packet = "";
         try {
             // process will block here waiting for input
-            while ((data = inputStream.readLine()) != null) {
+            while (!packet.contains("END MESSAGE") && (data = inputStream.readLine()) != null) {
                 packet += data;
             }
             return packet;
@@ -70,12 +70,14 @@ public class PeerToPeer {
     }
 
     /**
-     * Send a message across the connection
+     * Send a message across the connection. Message MUST contain "END MESSAGE"
+     * to signal the end of the string for the read function.
      *
      * @param message The message to send.
      */
     public void sendPacket(String message) {
         outputStream.println(message);
+        outputStream.flush();
     }
 
     /**
