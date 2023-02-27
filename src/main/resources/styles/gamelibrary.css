@@ -5,3 +5,30 @@
 .mainFxmlClass {
 
 }
+
+.button
+{
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+    -fx-background-color: #0093ff;
+    -fx-background-radius: 22;
+    -fx-background-size: 16;
+    -fx-text-fill: white;
+}
+
+.button:pressed
+{
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-background-radius: 22;
+    -fx-background-size: 16;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-radius: 20;
+    -fx-border-width: 3;
+}
+
+#BorderPaneParent
+{
+    -fx-background-color: #282828
+}

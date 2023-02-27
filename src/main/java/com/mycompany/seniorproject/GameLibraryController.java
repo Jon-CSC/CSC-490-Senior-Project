@@ -6,7 +6,10 @@ package com.mycompany.seniorproject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 
 /**
  * FXML Controller class
@@ -15,12 +18,18 @@ import javafx.fxml.Initializable;
  */
 public class GameLibraryController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private Rectangle gameCard01;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    @FXML
+    void clickedGameCard01(MouseEvent event) {
+        System.out.println("Game card 1 has been clicked!!!");
+        // Add animation for card to increase in size and center over other elements
+    }
     
 }
