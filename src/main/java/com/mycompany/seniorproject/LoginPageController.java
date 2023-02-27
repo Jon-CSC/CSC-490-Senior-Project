@@ -53,7 +53,13 @@ public class LoginPageController implements Initializable {
     } // End goToForgotPasswordPage.
 
     @FXML
-    public void logIn() throws InterruptedException, ExecutionException {
+    public void goToGameLibraryPage() throws IOException {
+        // Retrieves Loader for ForgotPassword page.
+        App.setRoot("gameLibrary");
+    } // End goToForgotPasswordPage.
+    
+    @FXML
+    public void logIn() throws InterruptedException, ExecutionException, IOException {
         try {
             //Attempt to log in a user using what's typed in the usernameField
             UserRecord user = FirebaseAuth.getInstance().getUser(usernameField.getText());
@@ -61,6 +67,7 @@ public class LoginPageController implements Initializable {
             if (verifyPassword(usernameField.getText())) {
                 //We would put code here to switch to whatever fxml file is considered the main page/library
                 System.out.println("Password is correct. We would switch to the main page now.");
+                goToGameLibraryPage();
             } else {
                 System.out.println("User exists, but the password is incorrect or empty.");
             }

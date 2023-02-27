@@ -20,16 +20,54 @@ public class GameLibraryController implements Initializable {
 
     @FXML
     private Rectangle gameCard01;
-    
+
+    @FXML
+    private Rectangle gameCard02;
+
+    @FXML
+    private Rectangle gameCard03;
+
+    @FXML
+    private Rectangle gameCard04;
+
+    @FXML
+    private Rectangle gameCard05;
+
+    @FXML
+    private Rectangle gameCard06;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    } 
+        
     @FXML
     void clickedGameCard01(MouseEvent event) {
-        System.out.println("Game card 1 has been clicked!!!");
-        // Add animation for card to increase in size and center over other elements
+
     }
-    
+
+    @FXML
+    void clickedGameCard02(MouseEvent event) {
+
+    }
+
+    @FXML
+    void clickedGameCard03(MouseEvent event) {
+
+    }
+
+    @FXML
+    void clickedGameCard04(MouseEvent event) {
+
+    }
+
+    @FXML
+    void clickedGameCard05(MouseEvent event) {
+
+    }
+
+    @FXML
+    void clickedGameCard06(MouseEvent event) {
+
+    }
 }
