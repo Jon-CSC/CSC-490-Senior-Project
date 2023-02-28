@@ -1,44 +1,34 @@
-/*
- * CSS File for buttons.
- */
-
-.button
+.label
 {
-    -fx-font-weight: bold;
-    -fx-font-size: 16;
-    -fx-background-color: #0093ff;
-    -fx-background-radius: 22;
-    -fx-background-size: 16;
+    -fx-font: 14px "Helvetica";
+}
+
+.title-label
+{
+    -fx-font: 24px "Helvetica";
+    -fx-text-fill: dodgerblue;
+}
+
+.text-field
+{
+    -fx-background-color: black;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
     -fx-text-fill: white;
+    -fx-font: 14px "Helvetica";
 }
 
-.button:hover
-{
-    -fx-font-weight: bold;
-    -fx-background-color: white;
-    -fx-background-radius: 22;
-    -fx-background-size: 16;
+.small-vbox {
+    -fx-background-color:#1c1c1c;
+    -fx-background-radius: 20px;
+}
+
+.button {
+    -fx-background-radius: 20px;
+    -fx-background-color: black;
+    -fx-border-color: dodgerblue;
+    -fx-border-radius: 20px;
     -fx-text-fill: white;
-    -fx-border-color: white;
-    -fx-border-radius: 20;
-    -fx-border-width: 3;
+    -fx-cursor: hand;
+    -fx-font: 14px "Helvetica";
 }
-
-.button:pressed
-{
-    -fx-font-weight: bold;
-    -fx-background-color: white;
-    -fx-background-radius: 22;
-    -fx-background-size: 16;
-    -fx-text-fill: white;
-    -fx-border-color: white;
-    -fx-border-radius: 20;
-    -fx-border-width: 3;
-    -fx-rotate: 10;
-}
-
-#HBoxParent
-{
-    -fx-background-color: #282828
-}
-
