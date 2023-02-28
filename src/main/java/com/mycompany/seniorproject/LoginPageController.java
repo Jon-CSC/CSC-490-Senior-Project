@@ -74,17 +74,6 @@ public class LoginPageController implements Initializable {
                 errorLabel.setText("Password is incorrect");
                 errorLabel.setVisible(true);
             }
-            /*
-            Stage oldStage = (Stage) usernameField.getScene().getWindow();
-            oldStage.close();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ThisIsTheFxmlFile.fxml"));
-            Parent parent = loader.load();
-            Stage newStage = new Stage();
-            Scene scene = new Scene(parent, 960, 540);
-            newStage.setTitle("This is the title");
-            newStage.setScene(scene);
-            newStage.show();
-            */
         } catch (FirebaseAuthException ex) {
             if (passwordField.getText().equals("")) {
                 errorLabel.setText("All fields must be filled out");
