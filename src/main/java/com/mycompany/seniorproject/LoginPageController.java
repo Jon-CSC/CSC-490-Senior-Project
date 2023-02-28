@@ -19,6 +19,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -30,14 +32,17 @@ import javafx.stage.Stage;
 public class LoginPageController implements Initializable {
 
     @FXML
-    private TextField usernameField, passwordField;
+    private TextField usernameField;
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private PasswordField passwordField;
+
+    @FXML
+    private Label errorLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        errorLabel.setVisible(false);
     }
 
     @FXML
@@ -53,25 +58,33 @@ public class LoginPageController implements Initializable {
     } // End goToForgotPasswordPage.
 
     @FXML
-    public void logIn() throws InterruptedException, ExecutionException {
+    public void logIn() throws InterruptedException, ExecutionException, IOException {
         try {
             //Attempt to log in a user using what's typed in the usernameField
             UserRecord user = FirebaseAuth.getInstance().getUser(usernameField.getText());
             //If no exception has been caught, the password is then checked
             if (verifyPassword(usernameField.getText())) {
                 //We would put code here to switch to whatever fxml file is considered the main page/library
-                System.out.println("Password is correct. We would switch to the main page now.");
+                errorLabel.setText("Username and password match. We would switch to the main page now.");
+                errorLabel.setVisible(true);
+            } else if (passwordField.getText().equals("")) {
+                errorLabel.setText("All fields must be filled out");
+                errorLabel.setVisible(true);
             } else {
-                System.out.println("User exists, but the password is incorrect or empty.");
+                errorLabel.setText("Password is incorrect");
+                errorLabel.setVisible(true);
             }
         } catch (FirebaseAuthException ex) {
-            //Will eventually put in things like "username does not exist" etc.
-            //These things will display on screen when the UI is more finished
-            System.out.println("FirebaseAuthException - Username may not exist");
+            if (passwordField.getText().equals("")) {
+                errorLabel.setText("All fields must be filled out");
+                errorLabel.setVisible(true);
+            } else {
+                errorLabel.setText("User does not exist");
+                errorLabel.setVisible(true);
+            }
         } catch (IllegalArgumentException iae) {
-            //Will eventually put in things like "empty username/password" etc.
-            //These things will display on screen when the UI is more finished
-            System.out.println("IllegalArgumentException - Fields may be empty");
+            errorLabel.setText("All fields must be filled out");
+            errorLabel.setVisible(true);
         }
     }
 

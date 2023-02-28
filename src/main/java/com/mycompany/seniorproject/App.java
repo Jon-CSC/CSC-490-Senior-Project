@@ -28,7 +28,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         currentStage = stage;
         fstore = firestore();
-        scene = new Scene(loadFXML("LoginPage"), 900, 640);
+        scene = new Scene(loadFXML("LoginPage"), 640, 480);
         stage.setScene(scene);
         stage.setMinWidth(640);
         stage.setMinHeight(480);
