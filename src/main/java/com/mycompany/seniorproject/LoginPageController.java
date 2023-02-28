@@ -43,6 +43,8 @@ public class LoginPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         errorLabel.setVisible(false);
+        App.getStage().setWidth(640);
+        App.getStage().setHeight(480);
     }
 
     @FXML
@@ -58,6 +60,12 @@ public class LoginPageController implements Initializable {
     } // End goToForgotPasswordPage.
 
     @FXML
+    public void goToGameLibraryPage() throws IOException {
+        // Retrieves Loader for ForgotPassword page.
+        App.setRoot("gameLibrary");
+    } // End goToForgotPasswordPage.
+    
+    @FXML
     public void logIn() throws InterruptedException, ExecutionException, IOException {
         try {
             //Attempt to log in a user using what's typed in the usernameField
@@ -67,6 +75,8 @@ public class LoginPageController implements Initializable {
                 //We would put code here to switch to whatever fxml file is considered the main page/library
                 errorLabel.setText("Username and password match. We would switch to the main page now.");
                 errorLabel.setVisible(true);
+                App.setCurrentUser(usernameField.getText());
+                goToGameLibraryPage();
             } else if (passwordField.getText().equals("")) {
                 errorLabel.setText("All fields must be filled out");
                 errorLabel.setVisible(true);

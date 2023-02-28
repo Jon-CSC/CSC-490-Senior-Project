@@ -1,0 +1,35 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.button
+{
+    -fx-background-radius: 20px;
+    -fx-background-color: black;
+    -fx-border-color: dodgerblue;
+    -fx-border-radius: 20px;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-font: 14px "Helvetica";
+}
+
+.button:pressed
+{
+    /* -fx-font-weight: bold; */
+    -fx-background-color: #004f8b;
+    -fx-background-radius: 22;
+    -fx-background-size: 16;
+    -fx-text-fill: white;
+    /* -fx-border-color: white;
+    -fx-border-radius: 20;
+    -fx-border-width: 3; */
+}
+
+#BorderPaneParent
+{
+    -fx-background-color: #1c1c1c;
+}
