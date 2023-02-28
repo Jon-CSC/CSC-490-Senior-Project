@@ -43,6 +43,8 @@ public class LoginPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         errorLabel.setVisible(false);
+        App.getStage().setWidth(640);
+        App.getStage().setHeight(480);
     }
 
     @FXML
@@ -73,6 +75,8 @@ public class LoginPageController implements Initializable {
                 //We would put code here to switch to whatever fxml file is considered the main page/library
                 errorLabel.setText("Username and password match. We would switch to the main page now.");
                 errorLabel.setVisible(true);
+                App.setCurrentUser(usernameField.getText());
+                goToGameLibraryPage();
             } else if (passwordField.getText().equals("")) {
                 errorLabel.setText("All fields must be filled out");
                 errorLabel.setVisible(true);

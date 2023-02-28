@@ -1,0 +1,30 @@
+Rectangle {
+    -fx-fill: #7CF2FF;
+    -fx-stroke: #1682CC;
+    -fx-stroke-width: 5;
+    -fx-arc-height: 15;
+    -fx-arc-width: 15;
+}
+
+Circle {
+    -fx-fill: #FEB0D7;
+    -fx-stroke: #A24770;
+    -fx-stroke-width: 5;
+}
+
+Pane {
+    -fx-border-width: 7;
+    -fx-border-color: #697489;
+    
+}
+
+BorderPane {
+    -fx-background-color: #21252B;
+}
+
+Label {
+    -fx-font-style: "Montserrat";
+    -fx-font-size: 18;
+    -fx-font-weight: 700;
+        
+}

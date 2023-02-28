@@ -8,17 +8,18 @@
 
 .button
 {
-    -fx-font-weight: bold;
-    -fx-font-size: 16;
-    -fx-background-color: #0093ff;
-    -fx-background-radius: 22;
-    -fx-background-size: 16;
+    -fx-background-radius: 20px;
+    -fx-background-color: black;
+    -fx-border-color: dodgerblue;
+    -fx-border-radius: 20px;
     -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-font: 14px "Helvetica";
 }
 
 .button:pressed
 {
-    -fx-font-weight: bold;
+    /* -fx-font-weight: bold; */
     -fx-background-color: #004f8b;
     -fx-background-radius: 22;
     -fx-background-size: 16;
@@ -30,5 +31,5 @@
 
 #BorderPaneParent
 {
-    -fx-background-color: #282828
+    -fx-background-color: #1c1c1c;
 }

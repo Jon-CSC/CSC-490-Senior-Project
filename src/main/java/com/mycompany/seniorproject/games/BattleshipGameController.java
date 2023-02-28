@@ -4,10 +4,13 @@
  */
 package com.mycompany.seniorproject.games;
 
+import com.mycompany.seniorproject.App;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -26,7 +29,8 @@ public class BattleshipGameController implements Initializable {
     }
     
     @FXML
-    void testClick(MouseEvent event) {
+    void testClick(MouseEvent event) throws IOException {
         System.out.println("BattleshipController works!");
+        App.setRoot("gameLibrary");
     }
 }

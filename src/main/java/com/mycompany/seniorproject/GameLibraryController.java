@@ -12,6 +12,7 @@ import javafx.animation.PathTransition;
 import javafx.animation.ScaleTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -33,6 +34,9 @@ public class GameLibraryController implements Initializable {
 
     @FXML
     private BorderPane BorderPaneRoot;
+    
+    @FXML
+    private Button buttonProfile;
     
     @FXML
     private Rectangle gameCard01;
@@ -57,15 +61,26 @@ public class GameLibraryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadCardImages();
+        App.getStage().setWidth(800);
+        App.getStage().setHeight(600);
+        buttonProfile.setText(App.getCurrentUser());
     } 
     private void loadCardImages() {
         // Loads images from \Image\ directory in the default package for use as thumbnails
         // Spits out error if it couldn't find them
         try {
-            gc01 = new Image(getClass().getResourceAsStream("\\Images\\snake_thumbnail.png"));
-            gc02 = new Image(getClass().getResourceAsStream("\\Images\\battleship_thumbnail.png"));
+            gc01 = new Image(getClass().getResourceAsStream("\\Images\\snake.png"));
+            gc02 = new Image(getClass().getResourceAsStream("\\Images\\battleship.png"));
+            gc03 = new Image(getClass().getResourceAsStream("\\Images\\checkers.png"));
+            gc04 = new Image(getClass().getResourceAsStream("\\Images\\chess.png"));
+            gc05 = new Image(getClass().getResourceAsStream("\\Images\\tictactoe.png"));
+            gc06 = new Image(getClass().getResourceAsStream("\\Images\\comingsoon.png"));
             gameCard01.setFill(new ImagePattern(gc01));
             gameCard02.setFill(new ImagePattern(gc02));
+            gameCard03.setFill(new ImagePattern(gc03));
+            gameCard04.setFill(new ImagePattern(gc04));
+            gameCard05.setFill(new ImagePattern(gc05));
+            gameCard06.setFill(new ImagePattern(gc06));
         } catch(Exception e) {
             System.out.println("Thumbnail images were not loaded correctly. "
                     + "Check that paths are correct and images exist.");
@@ -117,13 +132,13 @@ public class GameLibraryController implements Initializable {
     }
 
     @FXML
-    void clickedGameCard05(MouseEvent event) {
-
+    void clickedGameCard05(MouseEvent event) throws IOException {
+        playTicTacToe();
     }
 
     @FXML
     void clickedGameCard06(MouseEvent event) {
-
+        playNetworkTest();
     }
     
     @FXML
@@ -132,6 +147,7 @@ public class GameLibraryController implements Initializable {
         // Currently only supports [Esc] to logout
         if (event.getCode().toString().equalsIgnoreCase("ESCAPE")) {
             App.setRoot("LoginPage");
+            App.setCurrentUser(null);
         }
     }
     
@@ -150,10 +166,14 @@ public class GameLibraryController implements Initializable {
     }
     
     public void playTicTacToe() throws IOException {
-//        App.setRoot("");
+        App.setRoot("TicTacToeGame");
     }
     
     public void playChess() throws IOException {
 //        App.setRoot("");
+    }
+    
+    public void playNetworkTest() {
+//        App.setRoot("NetworkTest");
     }
 }

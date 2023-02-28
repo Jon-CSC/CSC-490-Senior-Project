@@ -112,7 +112,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" text="UserMan007" underline="true">
+                  <Button fx:id="buttonProfile" mnemonicParsing="false" text="UserMan007" underline="true">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
