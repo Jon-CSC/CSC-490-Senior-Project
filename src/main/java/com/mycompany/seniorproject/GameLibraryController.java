@@ -74,10 +74,10 @@ public class GameLibraryController implements Initializable {
         
     @FXML
     void clickedGameCard01(MouseEvent event) throws IOException {
-//        playSnake();
+        playSnake();
         
         // Below is some test animations for scaling thumbnail cards
-        ParallelTransition plt = new ParallelTransition();
+//        ParallelTransition plt = new ParallelTransition();
         
 //        ScaleTransition scaleX01 = new ScaleTransition(Duration.seconds(0.4), gameCard01);
 //        scaleX01.setToX(0);
@@ -85,18 +85,17 @@ public class GameLibraryController implements Initializable {
 //        scaleX01.setCycleCount(1);
 //        plt.getChildren().add(scaleX01);
         
-        Path path01 = new Path();
-        path01.getElements().add(new MoveTo(gameCard01.getX(), gameCard01.getY()));
-//        path01.getElements().add(new CubicCurveTo(180, 60, 250, 340, 420, 240));
-        path01.getElements().add(new LineTo(600, 200));
-        BorderPaneRoot.getChildren().addAll(path01);
-        
-        PathTransition pt01 = new PathTransition();
-        pt01.setDuration(Duration.seconds(2));
-        pt01.setPath(path01);
-        pt01.setNode(gameCard01);
-        pt01.setCycleCount(2);
-        pt01.play();
+//        Path path01 = new Path();
+//        path01.getElements().add(new MoveTo(gameCard01.getX(), gameCard01.getY()));
+//        path01.getElements().add(new LineTo(600, 200));
+//        BorderPaneRoot.getChildren().addAll(path01);
+//        
+//        PathTransition pt01 = new PathTransition();
+//        pt01.setDuration(Duration.seconds(2));
+//        pt01.setPath(path01);
+//        pt01.setNode(gameCard01);
+//        pt01.setCycleCount(2);
+//        pt01.play();
         
         
 //        plt.play();
