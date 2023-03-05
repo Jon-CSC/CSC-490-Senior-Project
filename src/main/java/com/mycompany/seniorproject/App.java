@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 /**
@@ -27,8 +26,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         currentStage = stage;
         fstore = firestore();
-        scene = new Scene(loadFXML("LoginPage"), 640, 480);
-        stage.setResizable(false);
+        scene = new Scene(loadFXML("LoginPage"));
+//        stage.setResizable(false);
         stage.setTitle("Senior Project");
         stage.setScene(scene);
         stage.show();
@@ -55,14 +54,23 @@ public class App extends Application {
         currentUser = user;
     }
     
+    /**
+     * Search for JSON key in resources and establishes connection to Firebase.
+     * 
+     * @return Instance of FireStore connection.
+     */
     public Firestore firestore() {
         try {
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(getClass().getResourceAsStream("key.json")))
                     .build();
             FirebaseApp.initializeApp(options);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (Exception ex) {
+            // Uncomment line below for more detail. Good luck with Java exception tracing lol
+            // ex.printStackTrace();
+            System.out.println(">>> WARNING WARNING! Firebase key is incorrect or does not exist. "
+                    + "Please check resource directory! <<<");
+            return null;
         }
         return FirestoreClient.getFirestore();
     }
