@@ -42,7 +42,12 @@ public class LoginPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        errorLabel.setVisible(false);
+        if (App.fstore == null) {
+            errorLabel.setVisible(true);
+            errorLabel.setText("Connection failed. Check JSON key or network connection.");
+        } else {
+            errorLabel.setVisible(false);
+        }
         App.getStage().setWidth(640);
         App.getStage().setHeight(480);
     }
