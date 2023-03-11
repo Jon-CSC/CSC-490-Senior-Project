@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -37,66 +38,35 @@ public class TicTacToeMainMenuController implements Initializable {
     }
 
     @FXML
-    public void onLocalMatchMouseEnter() {
-        labelLocalMatch.setStyle("-fx-font-weight: bold");
-
+    public void onMenuSelectionMouseEnter(MouseEvent m) {
+        Label label = (Label) m.getSource();
+        label.setStyle("-fx-font-weight: bold");   
     }
 
     @FXML
-    public void onLocalMatchMouseExit() {
-        labelLocalMatch.setStyle("-fx-font-weight: regular");
-
+    public void onMenuSelectionMouseExit(MouseEvent m) {
+        Label label = (Label) m.getSource();
+        label.setStyle("-fx-font-weight: regular");
     }
-    
+
     @FXML
     public void onLocalMatchMouseClick() throws IOException {
         App.setRoot("TicTacToeGame");
 
     }
-    @FXML
-    public void onNetworkMatchMouseEnter() {
-        labelNetworkMatch.setStyle("-fx-font-weight: bold");
-
-    }
 
     @FXML
-    public void onNetworkMatchMouseExit() {
-        labelNetworkMatch.setStyle("-fx-font-weight: regular");
-
-    }
-        @FXML
     public void onNetworkMatchMouseClick() throws IOException {
         App.setRoot("TicTacToeNetworkMatchSetup");
 
     }
-    @FXML
-    public void onOptionsMouseEnter() {
-        labelOptions.setStyle("-fx-font-weight: bold");
-
-    }
 
     @FXML
-    public void onOptionsMouseExit() {
-        labelOptions.setStyle("-fx-font-weight: regular");
-
-    }
-     @FXML
     public void onOptionsMouseClick() throws IOException {
         App.setRoot("TicTacToeOptions");
     }
-    @FXML
-    public void onQuitMouseEnter() {
-        labelQuit.setStyle("-fx-font-weight: bold");
-
-    }
 
     @FXML
-    public void onQuitMouseExit() {
-        labelQuit.setStyle("-fx-font-weight: regular");
-
-    }
-    
-     @FXML
     public void onQuitMouseClick() throws IOException {
         App.setRoot("gameLibrary");
 

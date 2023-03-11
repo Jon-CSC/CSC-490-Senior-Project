@@ -30,7 +30,7 @@
                   <Insets bottom="50.0" />
                </padding>
             </Label>
-            <Label fx:id="labelLocalMatch" onMouseClicked="#onLocalMatchMouseClick" onMouseEntered="#onLocalMatchMouseEnter" onMouseExited="#onLocalMatchMouseExit" text="Local Match">
+            <Label fx:id="labelLocalMatch" onMouseClicked="#onLocalMatchMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Local Match">
                <padding>
                   <Insets bottom="25.0" />
                </padding>
@@ -38,7 +38,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="labelNetworkMatch" onMouseClicked="#onNetworkMatchMouseClick" onMouseEntered="#onNetworkMatchMouseEnter" onMouseExited="#onNetworkMatchMouseExit" text="Network Match">
+            <Label fx:id="labelNetworkMatch" onMouseClicked="#onNetworkMatchMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Network Match">
                <padding>
                   <Insets bottom="25.0" />
                </padding>
@@ -46,7 +46,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="labelOptions" onMouseClicked="#onOptionsMouseClick" onMouseEntered="#onOptionsMouseEnter" onMouseExited="#onOptionsMouseExit" text="Options">
+            <Label fx:id="labelOptions" onMouseClicked="#onOptionsMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Options">
                <padding>
                   <Insets bottom="25.0" />
                </padding>
@@ -54,7 +54,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="labelQuit" onMouseClicked="#onQuitMouseClick" onMouseEntered="#onQuitMouseEnter" onMouseExited="#onQuitMouseExit" text="Quit">
+            <Label fx:id="labelQuit" onMouseClicked="#onQuitMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Quit">
                <padding>
                   <Insets bottom="25.0" />
                </padding>
