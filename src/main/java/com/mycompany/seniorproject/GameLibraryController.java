@@ -166,7 +166,7 @@ public class GameLibraryController implements Initializable {
     }
     
     public void playTicTacToe() throws IOException {
-        App.setRoot("TicTacToeGame");
+        App.setRoot("TicTacToeMainMenu");
     }
     
     public void playChess() throws IOException {

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="400.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.TicTacToeMainMenuController">
+    <stylesheets>
+        <URL value="@/styles/tictactoemainmenu.css" />
+    </stylesheets>
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="106.0" layoutY="99.0" prefHeight="400.0" prefWidth="188.0">
+         <children>
+            <Label text="Tic-Tac-Toe">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="25.0" top="50.0" />
+               </padding>
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label text="Main Menu">
+               <padding>
+                  <Insets bottom="50.0" />
+               </padding>
+            </Label>
+            <Label fx:id="labelLocalMatch" onMouseClicked="#onLocalMatchMouseClick" onMouseEntered="#onLocalMatchMouseEnter" onMouseExited="#onLocalMatchMouseExit" text="Local Match">
+               <padding>
+                  <Insets bottom="25.0" />
+               </padding>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelNetworkMatch" onMouseClicked="#onNetworkMatchMouseClick" onMouseEntered="#onNetworkMatchMouseEnter" onMouseExited="#onNetworkMatchMouseExit" text="Network Match">
+               <padding>
+                  <Insets bottom="25.0" />
+               </padding>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelOptions" onMouseClicked="#onOptionsMouseClick" onMouseEntered="#onOptionsMouseEnter" onMouseExited="#onOptionsMouseExit" text="Options">
+               <padding>
+                  <Insets bottom="25.0" />
+               </padding>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelQuit" onMouseClicked="#onQuitMouseClick" onMouseEntered="#onQuitMouseEnter" onMouseExited="#onQuitMouseExit" text="Quit">
+               <padding>
+                  <Insets bottom="25.0" />
+               </padding>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
