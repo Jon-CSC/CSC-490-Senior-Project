@@ -1,14 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.TicTacToeNetworkMatchSetUpController">
-    <stylesheets>
-        <URL value="@/styles/tictactoenetworkmatchsetup.css" />
-    </stylesheets>
+<HBox id="HBoxParent" alignment="TOP_CENTER" minHeight="480.0" minWidth="640.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../styles/tictactoenetworkmatchsetup.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.TicTacToeNetworkMatchSetUpController">
    <children>
-      <Label layoutX="200.0" layoutY="192.0" text="[Networked Match Set Up Goes Here]" />
+      <BorderPane>
+         <left>
+            <VBox prefHeight="200.0" prefWidth="147.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Host a match">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="100.0" left="25.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Join a match">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="25.0" top="50.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <FlowPane>
+                     <children>
+                        <Label text="Your IP:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelHostIP" text="Label">
+                           <FlowPane.margin>
+                              <Insets left="45.0" />
+                           </FlowPane.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </FlowPane>
+                  <FlowPane>
+                     <children>
+                        <Label text="Port Number: ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField text="7777" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </FlowPane>
+                  <Button fx:id="buttonHost" mnemonicParsing="false" text="Host">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <FlowPane>
+                     <children>
+                        <Label text="Host IP: ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <FlowPane.margin>
+                              <Insets left="36.0" />
+                           </FlowPane.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="100.0" />
+                     </VBox.margin>
+                  </FlowPane>
+                  <FlowPane>
+                     <children>
+                        <Label text="Port Number: ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </FlowPane>
+                  <Button fx:id="buttonConnect" mnemonicParsing="false" text="Connect">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </center>
+         <top>
+            <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Network Match">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <bottom>
+            <HBox alignment="BOTTOM_RIGHT" fillHeight="false" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="buttonBack" mnemonicParsing="false" onMouseClicked="#onBackButtonClick" text="Back">
+                     <HBox.margin>
+                        <Insets bottom="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </HBox>
+         </bottom>
+         <right>
+            <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
    </children>
-</AnchorPane>
+</HBox>
