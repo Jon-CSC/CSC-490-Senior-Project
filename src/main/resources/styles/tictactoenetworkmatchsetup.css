@@ -5,3 +5,28 @@
 .mainFxmlClass {
 
 }
+#HBoxParent
+{
+    -fx-background-color: #1c1c1c;
+}
+.text-field
+{
+    -fx-background-color: black;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-text-fill: white;
+    -fx-font: 12px "Helvetica";
+}
+.button {
+    -fx-background-radius: 20px;
+    -fx-background-color: black;
+    -fx-border-color: dodgerblue;
+    -fx-border-radius: 20px;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-font: 14px "Helvetica";
+}
+.label
+{
+    -fx-text-fill: dodgerblue;
+}
