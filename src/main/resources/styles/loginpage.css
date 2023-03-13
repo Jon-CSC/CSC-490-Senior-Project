@@ -32,3 +32,8 @@
     -fx-cursor: hand;
     -fx-font: 14px "Helvetica";
 }
+
+.hyperlink{
+    -fx-font: 13px "Helvetica";
+    -fx-text-fill: dodgerblue;
+}

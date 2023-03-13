@@ -66,9 +66,9 @@ public class LoginPageController implements Initializable {
 
     @FXML
     public void goToGameLibraryPage() throws IOException {
-        // Retrieves Loader for ForgotPassword page.
+        // Retrieves Loader for gameLibrary page.
         App.setRoot("gameLibrary");
-    } // End goToForgotPasswordPage.
+    } // End goToGameLibraryPage.
     
     @FXML
     public void logIn() throws InterruptedException, ExecutionException, IOException {
