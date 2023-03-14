@@ -34,7 +34,7 @@
                      </children>
                   </VBox>
                   <Label fx:id="errorLabel" text="Error Messages Appear Down Here" textFill="#ff4242" wrapText="true" />
-                  <Hyperlink text="Forgot Password? Click Here" />
+                  <Hyperlink onAction="#goToForgotPasswordPage" text="Forgot Password? Click Here" />
                </children>
             </VBox>
          </children>
