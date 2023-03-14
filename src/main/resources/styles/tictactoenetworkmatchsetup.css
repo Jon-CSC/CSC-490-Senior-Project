@@ -30,3 +30,13 @@
 {
     -fx-text-fill: dodgerblue;
 }
+
+#hostPortErrorMessage{
+    -fx-text-fill: red;
+}
+#joinPortErrorMessage{
+    -fx-text-fill: red;
+}
+#joinHostErrorMessage{
+    -fx-text-fill: red;
+}

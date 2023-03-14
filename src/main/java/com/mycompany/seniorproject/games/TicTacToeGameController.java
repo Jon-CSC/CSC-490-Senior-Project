@@ -6,6 +6,7 @@ package com.mycompany.seniorproject.games;
 
 
 import com.mycompany.seniorproject.App;
+import com.mycompany.seniorproject.PeerToPeer;
 import java.io.IOException;
 import javafx.util.Duration;
 import javafx.animation.FadeTransition;
@@ -78,6 +79,7 @@ public class TicTacToeGameController {
     @FXML
     private Label labelP2;
     
+    private PeerToPeer connection;
     /**
      * Method to fire when the JavaFX stage initializes on screen.
      */
@@ -86,8 +88,19 @@ public class TicTacToeGameController {
         changeActivePlayerIndicator();
         App.getStage().setWidth(420);
         App.getStage().setHeight(600);
+        connection = new PeerToPeer();
     }
     
+    public void initData(int port) {
+        System.out.println("Starting host with port: " + port);
+        Thread t = new Thread() {
+            public void run() {
+                connection.startHost(port);
+            }
+        };
+        t.start();
+        
+    }
     /**
      * Method is called when the top left pane within the 3x3 grid is clicked. 
      * This will check the player turn and win status of the board.
