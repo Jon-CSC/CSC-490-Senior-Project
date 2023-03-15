@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -33,6 +34,9 @@ public class ForgotPasswordPageController implements Initializable {
     
     @FXML
     private PasswordField confirmPasswordField;
+    
+    @FXML
+    private Label errorLabel;
 
     /**
      * Initializes the controller class.
