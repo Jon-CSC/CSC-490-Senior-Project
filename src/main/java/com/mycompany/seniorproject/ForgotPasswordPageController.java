@@ -44,6 +44,7 @@ public class ForgotPasswordPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        errorLabel.setVisible(false);
     }
 
     @FXML
@@ -61,15 +62,29 @@ public class ForgotPasswordPageController implements Initializable {
             if (user != null){
                 System.out.println("The following user was found: ");
                 System.out.println(user);
+                errorLabel.setVisible(false);
             }
             
         } catch (FirebaseAuthException ex) {
             // User doesn't exist in firebase.
             System.out.println("User doesnt exist in the database.");
+            clearFields();
+            errorLabel.setText("The user entered does not exist.");
+            errorLabel.setVisible(true);
+            
         } catch (IllegalArgumentException iae) {
             // User field was empty.
             System.out.println("User field cannot be empty.");
+            clearFields();
+            errorLabel.setText("The user field cannot be empty.");
+            errorLabel.setVisible(true);
         }
+    }
+    
+    private void clearFields() {
+        usernameField.clear();
+        newPasswordField.clear();
+        confirmPasswordField.clear();
     }
 
 }
