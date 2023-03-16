@@ -70,12 +70,13 @@ public class PeerToPeer {
     }
 
     /**
-     * Send a message across the connection
-     *
+     * Send a message across the connection. Message MUST contain "END MESSAGE"
+     * to signal the end of the string for the read function.
      * @param message The message to send.
      */
     public void sendPacket(String message) {
         outputStream.println(message);
+        outputStream.flush();
     }
 
     /**
