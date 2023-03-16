@@ -63,7 +63,9 @@ public class GameLibraryController implements Initializable {
         loadCardImages();
         App.getStage().setWidth(800);
         App.getStage().setHeight(600);
-        buttonProfile.setText(App.getCurrentUser());
+        UserAccount activeUser = LocalUserAccount.getInstance().getActiveUser();
+        String profileText = (activeUser != null)? activeUser.getUserID() : "NULL";
+        buttonProfile.setText(profileText);
     } 
     private void loadCardImages() {
         // Loads images from \Image\ directory in the default package for use as thumbnails
@@ -147,7 +149,7 @@ public class GameLibraryController implements Initializable {
         // Currently only supports [Esc] to logout
         if (event.getCode().toString().equalsIgnoreCase("ESCAPE")) {
             App.setRoot("LoginPage");
-            App.setCurrentUser(null);
+            LocalUserAccount.getInstance().logout();
         }
     }
     

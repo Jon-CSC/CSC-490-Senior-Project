@@ -80,7 +80,7 @@ public class LoginPageController implements Initializable {
                 //We would put code here to switch to whatever fxml file is considered the main page/library
                 errorLabel.setText("Username and password match. We would switch to the main page now.");
                 errorLabel.setVisible(true);
-                App.setCurrentUser(usernameField.getText());
+                LocalUserAccount.getInstance().login(account);
                 goToGameLibraryPage();
             } else if (passwordField.getText().equals("")) {
                 errorLabel.setText("All fields must be filled out");
@@ -113,5 +113,5 @@ public class LoginPageController implements Initializable {
         }
         return false;
     }
-
+    
 }
