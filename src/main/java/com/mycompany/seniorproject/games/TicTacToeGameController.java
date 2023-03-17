@@ -91,15 +91,9 @@ public class TicTacToeGameController {
         connection = new PeerToPeer();
     }
     
-    public void initData(int port) {
-        System.out.println("Starting host with port: " + port);
-        Thread t = new Thread() {
-            public void run() {
-                connection.startHost(port);
-            }
-        };
-        t.start();
-        
+    // Use data received from network setup controller
+    public void initConnection(PeerToPeer connection) {
+        this.connection = connection;
     }
     /**
      * Method is called when the top left pane within the 3x3 grid is clicked. 
