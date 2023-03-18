@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -66,6 +67,8 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
     @FXML
     private TextField textFieldPortNumHost;
 
+    @FXML
+    private ProgressIndicator progressIndicatorConnecting;
     private PeerToPeer connection;
 
     /**
@@ -78,6 +81,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
             hostPortErrorMessage.setVisible(false);
             joinHostErrorMessage.setVisible(false);
             joinPortErrorMessage.setVisible(false);
+            progressIndicatorConnecting.setVisible(false);
         } catch (UnknownHostException ex) {
             Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
             labelHostIP.setText("Error getting IP address");
@@ -122,11 +126,11 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
      * Gets user inputted data to set up the host.
      *
      * @param port Host port specified by user.
-     * @return
      * @throws IOException
      * @throws java.lang.InterruptedException
      */
-    public Stage startHost(int port) throws IOException, InterruptedException {
+    public void startHost(int port) throws IOException, InterruptedException {
+        progressIndicatorConnecting.setVisible(true);
         Task task = new Task<Void>() {
             @Override
             public Void call() {
@@ -154,7 +158,6 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
         };
         task.setOnSucceeded(taskFinishEvent -> System.out.println("Connected: \n" + connection.toString()));
         new Thread(task).start();
-        return null;
     }
 
     @FXML
@@ -193,7 +196,8 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
         }
     }
 
-    public Stage startConnection(String ip, int port) throws IOException, InterruptedException {
+    public void startConnection(String ip, int port) throws IOException, InterruptedException {
+        progressIndicatorConnecting.setVisible(true);
         Task task = new Task<Void>() {
             @Override
             public Void call() {
@@ -221,7 +225,6 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
         };
         task.setOnSucceeded(taskFinishEvent -> System.out.println("Connected: " + connection.toString()));
         new Thread(task).start();
-        return null;
     }
 
     /**
