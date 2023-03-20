@@ -27,7 +27,7 @@ public class App extends Application {
         currentStage = stage;
         fstore = firestore();
         scene = new Scene(loadFXML("gameLibrary"));
-//        stage.setResizable(false);
+        stage.setResizable(false);
         stage.setTitle("Senior Project");
         stage.setScene(scene);
         stage.show();
