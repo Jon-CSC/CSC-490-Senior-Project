@@ -62,7 +62,8 @@ public class RegisterPageController implements Initializable {
             UserRecord.CreateRequest request = new UserRecord.CreateRequest()
                     .setUid(usernameField.getText().trim())
                     .setEmail(emailField.getText().trim())
-                    .setPassword(passwordField.getText().trim());
+                    .setPassword(passwordField.getText().trim())
+                    .setDisplayName(usernameField.getText().trim());
             //Make a new UserRecord instance and use the data from the create request
             UserRecord newUser = FirebaseAuth.getInstance().createUser(request);
             //Use custom claims to set the new user's permissions to user and not admin
