@@ -63,9 +63,7 @@ public class GameLibraryController implements Initializable {
         loadCardImages();
         App.getStage().setWidth(800);
         App.getStage().setHeight(600);
-        UserAccount activeUser = LocalUserAccount.getInstance().getActiveUser();
-        String profileText = (activeUser != null)? activeUser.getUserID() : "NULL";
-        buttonProfile.setText(profileText);
+        buttonProfile.setText(App.getCurrentUser());
     } 
     private void loadCardImages() {
         // Loads images from \Image\ directory in the default package for use as thumbnails
@@ -149,7 +147,7 @@ public class GameLibraryController implements Initializable {
         // Currently only supports [Esc] to logout
         if (event.getCode().toString().equalsIgnoreCase("ESCAPE")) {
             App.setRoot("LoginPage");
-            LocalUserAccount.getInstance().logout();
+            App.setCurrentUser(null);
         }
     }
     
@@ -168,7 +166,7 @@ public class GameLibraryController implements Initializable {
     }
     
     public void playTicTacToe() throws IOException {
-        App.setRoot("TicTacToeGame");
+        App.setRoot("TicTacToeMainMenu");
     }
     
     public void playChess() throws IOException {

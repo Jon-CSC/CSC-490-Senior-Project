@@ -33,4 +33,5 @@ public class BattleshipGameController implements Initializable {
         System.out.println("BattleshipController works!");
         App.setRoot("gameLibrary");
     }
+    
 }

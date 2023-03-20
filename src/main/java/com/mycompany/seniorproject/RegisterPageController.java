@@ -26,6 +26,9 @@ public class RegisterPageController implements Initializable {
 
     @FXML
     private TextField usernameField;
+    
+    @FXML
+    private TextField emailField;
 
     @FXML
     private PasswordField passwordField;
@@ -58,7 +61,9 @@ public class RegisterPageController implements Initializable {
             //Make a new user record create request
             UserRecord.CreateRequest request = new UserRecord.CreateRequest()
                     .setUid(usernameField.getText().trim())
-                    .setPassword(passwordField.getText().trim());
+                    .setEmail(emailField.getText().trim())
+                    .setPassword(passwordField.getText().trim())
+                    .setDisplayName(usernameField.getText().trim());
             //Make a new UserRecord instance and use the data from the create request
             UserRecord newUser = FirebaseAuth.getInstance().createUser(request);
             //Use custom claims to set the new user's permissions to user and not admin
@@ -71,7 +76,7 @@ public class RegisterPageController implements Initializable {
             errorLabel.setText("Username is already in use");
             errorLabel.setVisible(true);
         } catch (IllegalArgumentException iae) {
-            if (usernameField.getText().equals("") || passwordField.getText().equals("")) {
+            if (usernameField.getText().equals("") || passwordField.getText().equals("") || emailField.getText().equals("")) {
                 errorLabel.setText("All fields must be filled out");
                 errorLabel.setVisible(true);
             } else {
