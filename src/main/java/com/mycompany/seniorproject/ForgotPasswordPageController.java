@@ -7,6 +7,7 @@ package com.mycompany.seniorproject;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
+import com.google.firebase.auth.UserRecord.UpdateRequest;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -74,8 +75,17 @@ public class ForgotPasswordPageController implements Initializable {
             }
 
             // Check if both the newPasswordField and confirmPasswordField contents match.
-            if (newPasswordField.getText().trim().equals(confirmPasswordField.getText().trim())) {
+            if (newPasswordField.getText().toString().trim().equals(confirmPasswordField.getText().toString().trim())) {
                 System.out.println("Passwords Match!");
+
+                UserRecord.UpdateRequest request = new UserRecord.UpdateRequest(usernameField.getText()).setPassword(newPasswordField.getText());
+                user = FirebaseAuth.getInstance().updateUser(request);
+                
+                
+                clearFields();
+                errorLabel.setVisible(true);
+                errorLabel.setText("Password Changed.");
+
             } else {
                 System.out.println("Passwords dont match!");
                 errorLabel.setText("Passwords don't match, please enter correctly.");
@@ -96,6 +106,8 @@ public class ForgotPasswordPageController implements Initializable {
         }
     }
 
+    
+    
     private void clearFields() {
         usernameField.clear();
         newPasswordField.clear();
