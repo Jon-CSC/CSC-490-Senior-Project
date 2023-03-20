@@ -66,15 +66,17 @@ public class LoginPageController implements Initializable {
 
     @FXML
     public void goToGameLibraryPage() throws IOException {
-        // Retrieves Loader for ForgotPassword page.
+        // Retrieves Loader for gameLibrary page.
         App.setRoot("gameLibrary");
-    } // End goToForgotPasswordPage.
+    } // End goToGameLibraryPage.
     
     @FXML
     public void logIn() throws InterruptedException, ExecutionException, IOException {
         try {
             //Attempt to log in a user using what's typed in the usernameField
             UserRecord user = FirebaseAuth.getInstance().getUser(usernameField.getText());
+            //UserRecord userRecord = FirebaseAuth.getInstance().getUserByEmail(usernameField.getText());
+            
             //If no exception has been caught, the password is then checked
             if (verifyPassword(usernameField.getText())) {
                 //We would put code here to switch to whatever fxml file is considered the main page/library
