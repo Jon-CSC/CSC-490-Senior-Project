@@ -92,6 +92,10 @@ public class RegisterPageController implements Initializable {
         Map<String, Object> data = new HashMap<>();
         //Store the password in the new document to check later when logging in
         data.put("Password", passwordField.getText());
+        data.put(UserAccount.USERID_FIELD, usernameField.getText());
+        data.put(UserAccount.BIOGRAPHY_FIELD, "Hello, world!");
+        data.put(UserAccount.AVATAR_FIELD, "https://i.imgur.com/n96r5OU.png");
+        data.put(UserAccount.GAMEDATA_FIELD, new HashMap<String, Object>());
         ApiFuture<WriteResult> result = docRef.set(data);
     }
 

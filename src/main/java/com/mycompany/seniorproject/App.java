@@ -21,7 +21,7 @@ public class App extends Application {
     public static Firestore fstore;
     private static Stage currentStage;
     private static String currentUser;
-    
+
     @Override
     public void start(Stage stage) throws IOException {
         currentStage = stage;
@@ -45,18 +45,10 @@ public class App extends Application {
     public static Stage getStage() {
         return currentStage;
     }
-    
-    public static String getCurrentUser() {
-        return currentUser;
-    }
-    
-    public static void setCurrentUser(String user) {
-        currentUser = user;
-    }
-    
+
     /**
      * Search for JSON key in resources and establishes connection to Firebase.
-     * 
+     *
      * @return Instance of FireStore connection.
      */
     public Firestore firestore() {
@@ -74,7 +66,7 @@ public class App extends Application {
         }
         return FirestoreClient.getFirestore();
     }
-    
+
     public static void main(String[] args) {
         launch();
     }
