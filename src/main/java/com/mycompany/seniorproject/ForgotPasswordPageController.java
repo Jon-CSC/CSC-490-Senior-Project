@@ -4,6 +4,7 @@ package com.mycompany.seniorproject;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
@@ -80,8 +81,7 @@ public class ForgotPasswordPageController implements Initializable {
 
                 UserRecord.UpdateRequest request = new UserRecord.UpdateRequest(usernameField.getText()).setPassword(newPasswordField.getText());
                 user = FirebaseAuth.getInstance().updateUser(request);
-                
-                
+
                 clearFields();
                 errorLabel.setVisible(true);
                 errorLabel.setText("Password Changed.");
@@ -106,8 +106,32 @@ public class ForgotPasswordPageController implements Initializable {
         }
     }
 
-    
-    
+    @FXML
+    public void sendPasswordResetEmail() {
+//        ActionCodeSettings actionCodeSettings = ActionCodeSettings.builder()
+//                .setUrl("https://www.example.com/checkout?cartId=1234")
+//                .setHandleCodeInApp(true)
+//                .setIosBundleId("com.example.ios")
+//                .setAndroidPackageName("com.example.android")
+//                .setAndroidInstallApp(true)
+//                .setAndroidMinimumVersion("12")
+//                .setDynamicLinkDomain("coolapp.page.link")
+//                .build();
+//
+//        String email = "cchris034@gmail.com";
+//        
+//        
+//        try {
+//            String link = FirebaseAuth.getInstance().generatePasswordResetLink(
+//                    email, actionCodeSettings);
+//            // Construct email verification template, embed the link and send
+//            // using custom SMTP server.
+//            sendCustomEmail(email, displayName, link);
+//        } catch (FirebaseAuthException e) {
+//            System.out.println("Error generating email link: " + e.getMessage());
+//        }
+    }
+
     private void clearFields() {
         usernameField.clear();
         newPasswordField.clear();

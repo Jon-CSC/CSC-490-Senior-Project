@@ -75,6 +75,8 @@ public class LoginPageController implements Initializable {
         try {
             //Attempt to log in a user using what's typed in the usernameField
             UserRecord user = FirebaseAuth.getInstance().getUser(usernameField.getText());
+            //UserRecord userRecord = FirebaseAuth.getInstance().getUserByEmail(usernameField.getText());
+            
             //If no exception has been caught, the password is then checked
             if (verifyPassword(usernameField.getText())) {
                 //We would put code here to switch to whatever fxml file is considered the main page/library

@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.RegisterPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.RegisterPageController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="215.0" layoutY="230.0" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../styles/loginpage.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -25,9 +25,10 @@
                <children>
                   <Circle radius="25.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: dodgerblue;" />
                   <Label focusTraversable="false" styleClass="title-label" stylesheets="@../../../styles/loginpage.css" text="Register" textFill="#327bdb" />
-                  <VBox alignment="CENTER" fillWidth="false" prefHeight="170.0" prefWidth="210.0" spacing="20.0" styleClass="small-vbox">
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="204.0" prefWidth="210.0" spacing="20.0" styleClass="small-vbox">
                      <children>
                         <TextField fx:id="usernameField" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
+                        <TextField fx:id="emailField" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Email" styleClass="text-field" />
                         <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="text-field" />
                         <Button focusTraversable="false" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="180.0" text="Register" />
                      </children>
