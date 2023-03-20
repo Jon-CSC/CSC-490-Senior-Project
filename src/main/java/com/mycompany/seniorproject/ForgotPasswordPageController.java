@@ -102,7 +102,7 @@ public class ForgotPasswordPageController implements Initializable {
 
     @FXML
     public void sendPasswordResetEmail() {
-
+        clearFields();
     }
 
     private void clearFields() {
