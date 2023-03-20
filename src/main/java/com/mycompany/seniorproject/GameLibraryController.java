@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.ScaleTransition;
+import javafx.animation.SequentialTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -95,29 +96,48 @@ public class GameLibraryController implements Initializable {
     void clickedGameCard01(MouseEvent event) throws IOException {
 //        playSnake();
         
-        // Below is some test animations for scaling thumbnail cards
-//        ParallelTransition plt = new ParallelTransition();
+        // ANIMATION FOR THUMBNAIL CARDS
+        ParallelTransition parentTransition = new ParallelTransition();
         
-//        ScaleTransition scaleX01 = new ScaleTransition(Duration.seconds(0.4), gameCard01);
-//        scaleX01.setToX(0);
-//        scaleX01.setToY(2.0);
-//        scaleX01.setCycleCount(1);
-//        plt.getChildren().add(scaleX01);
+        SequentialTransition scaleCardTransition = new SequentialTransition();
         
-//        Path path01 = new Path();
-//        path01.getElements().add(new MoveTo(gameCard01.getX(), gameCard01.getY()));
-//        path01.getElements().add(new LineTo(600, 200));
-//        BorderPaneRoot.getChildren().addAll(path01);
-//        
-//        PathTransition pt01 = new PathTransition();
-//        pt01.setDuration(Duration.seconds(2));
-//        pt01.setPath(path01);
-//        pt01.setNode(gameCard01);
-//        pt01.setCycleCount(2);
-//        pt01.play();
+        // Card flip animation using two scaling animations stretching and shrinking card
+        ScaleTransition scaleX01 = new ScaleTransition(Duration.seconds(1.0), gameCard01);
+        scaleX01.setToX(0);
+        scaleX01.setToY(1.5);
+        scaleX01.setCycleCount(1);
+        scaleCardTransition.getChildren().add(scaleX01);
+        
+        ScaleTransition scaleX02 = new ScaleTransition(Duration.seconds(1.0), gameCard01);
+        scaleX02.setToX(2.0);
+        scaleX02.setToY(2.0);
+        scaleX02.setCycleCount(1);
+        scaleCardTransition.getChildren().add(scaleX02);
+        
+//        parentTransition.getChildren().add(scaleCardTransition);
         
         
-//        plt.play();
+        // Movement animation to position card in center of scene
+        double xPos = App.getStage().getWidth() / 2.0;
+        double yPos = App.getStage().getHeight() / 2.0;
+        
+        Path path01 = new Path();
+        path01.getElements().add(new MoveTo(gameCard01.getX(), gameCard01.getY()));
+        path01.getElements().add(new LineTo(xPos, yPos));
+        BorderPaneRoot.getChildren().addAll(path01);
+        
+        
+        PathTransition pt01 = new PathTransition();
+        pt01.setDuration(Duration.seconds(2));
+        pt01.setPath(path01);
+        pt01.setNode(gameCard01);
+        pt01.setCycleCount(1);
+        parentTransition.getChildren().add(pt01);
+        
+//        parentTransition.play();
+        
+        gameCard01.setX(xPos);
+        gameCard01.setY(yPos);
     }
 
     @FXML
