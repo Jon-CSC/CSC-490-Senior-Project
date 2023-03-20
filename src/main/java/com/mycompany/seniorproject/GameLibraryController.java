@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -55,6 +56,9 @@ public class GameLibraryController implements Initializable {
 
     @FXML
     private Rectangle gameCard06;
+    
+    @FXML
+    private ImageView profileImgViewer;
 
     private Image gc01, gc02, gc03, gc04, gc05, gc06;
     
@@ -89,7 +93,7 @@ public class GameLibraryController implements Initializable {
         
     @FXML
     void clickedGameCard01(MouseEvent event) throws IOException {
-        playSnake();
+//        playSnake();
         
         // Below is some test animations for scaling thumbnail cards
 //        ParallelTransition plt = new ParallelTransition();

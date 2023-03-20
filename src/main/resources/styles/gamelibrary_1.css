@@ -1,0 +1,51 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.button
+{
+    -fx-font: 14px "Helvetica";
+    -fx-font-weight: bold; 
+    -fx-text-fill: white;
+    
+    -fx-background-radius: 8px;
+    -fx-background-color: #3a3a3a;
+    
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.button:hover
+{ 
+    -fx-background-color: #606060;
+    
+    -fx-border-color: #4095d2;
+    -fx-border-width: 2;
+    -fx-border-radius: 7px;
+    
+    -fx-effect: dropshadow(three-pass-box, rgba(64,149,210,0.8), 10, 0, 0, 0);
+}
+
+.button:pressed
+{
+    -fx-background-color: #353535;
+}
+
+.rectangle
+{
+    -fx-arc-height: 15px;
+    -fx-arc-width: 15px;
+}
+
+#BorderPaneParent
+{
+    -fx-background-color: #12293a;
+/*    -fx-background-image: url("..\com\mycompany\seniorproject\Images\background_blue_abstract.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1600 800;
+    -fx-background-position: center center;*/
+}

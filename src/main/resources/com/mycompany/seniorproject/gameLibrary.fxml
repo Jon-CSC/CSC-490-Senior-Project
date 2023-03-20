@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="BorderPaneParent" fx:id="BorderPaneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" onKeyPressed="#keyboardCommand" prefHeight="640.0" prefWidth="900.0" stylesheets="@../../../styles/gamelibrary.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.GameLibraryController">
+<BorderPane id="BorderPaneParent" fx:id="BorderPaneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" onKeyPressed="#keyboardCommand" prefHeight="640.0" prefWidth="900.0" stylesheets="@../../../styles/gamelibrary_1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.GameLibraryController">
    <center>
       <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -29,7 +29,7 @@
          <children>
             <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0">
                <children>
-                  <Rectangle fx:id="gameCard01" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard01" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="150.0">
+                  <Rectangle fx:id="gameCard01" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard01" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Rectangle>
@@ -37,7 +37,7 @@
             </VBox>
             <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.rowIndex="1">
                <children>
-                  <Rectangle fx:id="gameCard04" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard04" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="150.0">
+                  <Rectangle fx:id="gameCard04" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard04" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Rectangle>
@@ -45,7 +45,7 @@
             </VBox>
             <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <Rectangle fx:id="gameCard06" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard06" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="150.0">
+                  <Rectangle fx:id="gameCard06" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard06" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Rectangle>
@@ -53,7 +53,7 @@
             </VBox>
             <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="1">
                <children>
-                  <Rectangle fx:id="gameCard02" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard02" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="150.0">
+                  <Rectangle fx:id="gameCard02" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard02" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Rectangle>
@@ -61,7 +61,7 @@
             </VBox>
             <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Rectangle fx:id="gameCard05" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard05" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="150.0">
+                  <Rectangle fx:id="gameCard05" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard05" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Rectangle>
@@ -69,7 +69,7 @@
             </VBox>
             <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="2">
                <children>
-                  <Rectangle fx:id="gameCard03" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard03" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="150.0">
+                  <Rectangle fx:id="gameCard03" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard03" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="150.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Rectangle>
@@ -90,12 +90,12 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                <children>
-                  <Button mnemonicParsing="false" text="Leaderboards">
+                  <Button minHeight="40.0" minWidth="130.0" mnemonicParsing="false" text="Leaderboards">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" text="Play History">
+                  <Button minHeight="40.0" minWidth="130.0" mnemonicParsing="false" text="Play History">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -107,17 +107,17 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="1">
                <children>
-                  <Button mnemonicParsing="false" text="Friends List">
+                  <Button minHeight="40.0" minWidth="130.0" mnemonicParsing="false" text="Friends List">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="buttonProfile" mnemonicParsing="false" text="UserMan007" underline="true">
+                  <Button fx:id="buttonProfile" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" text="UserMan007" underline="true">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profileImgViewer" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/penguin01.jpg" />
                      </image>
@@ -168,7 +168,7 @@
    <left>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="←">
+            <Button minHeight="40.0" minWidth="40.0" mnemonicParsing="false" text="←">
                <font>
                   <Font size="18.0" />
                </font>
@@ -185,7 +185,7 @@
    <right>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="→">
+            <Button minHeight="40.0" minWidth="40.0" mnemonicParsing="false" text="→">
                <font>
                   <Font size="18.0" />
                </font>
