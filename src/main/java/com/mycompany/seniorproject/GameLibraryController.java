@@ -18,6 +18,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,6 +38,15 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+
+enum GameType {
+    NOGAME,
+    SNAKE,
+    BATTLESHIP,
+    CHESS,
+    CHECKERS,
+    TICTACTOE;
+}
 
 /**
  * FXML Controller class
@@ -99,6 +110,8 @@ public class GameLibraryController implements Initializable {
     
     private boolean cardExpanded = false;
     
+    private GameType selectedGame;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadCardImages();
@@ -115,36 +128,45 @@ public class GameLibraryController implements Initializable {
     
     @FXML
     void clickedGameCard01(MouseEvent event) throws IOException {
+        selectedGame = GameType.SNAKE;
         cardAnimation(gameCard01);
-//        playSnake();
+        populateCardDetails();
     }
 
     @FXML
     void clickedGameCard02(MouseEvent event) throws IOException {
+        selectedGame = GameType.BATTLESHIP;
         cardAnimation(gameCard02);
-//        playBattleship();
+        populateCardDetails();
     }
 
     @FXML
     void clickedGameCard03(MouseEvent event) {
+        selectedGame = GameType.CHECKERS;
         cardAnimation(gameCard03);
+        populateCardDetails();
     }
 
     @FXML
     void clickedGameCard04(MouseEvent event) {
+        selectedGame = GameType.CHESS;
         cardAnimation(gameCard04);
+        populateCardDetails();
     }
 
     @FXML
     void clickedGameCard05(MouseEvent event) throws IOException {
+        selectedGame = GameType.TICTACTOE;
         cardAnimation(gameCard05);
-//        playTicTacToe();
+        populateCardDetails();
     }
 
     @FXML
     void clickedGameCard06(MouseEvent event) {
+        // To be filled...
+        selectedGame = GameType.NOGAME;
         cardAnimation(gameCard06);
-//        playNetworkTest();
+        populateCardDetails();
     }
     
     @FXML
@@ -157,28 +179,122 @@ public class GameLibraryController implements Initializable {
         }
     }
     
-    public void playSnake() throws IOException {
+    @FXML
+    void launchSelectedGame(ActionEvent event) throws IOException {
+        switch (selectedGame) {
+            default:
+                displayNoGameDialogBoxError();
+                break;
+            case NOGAME:
+                displayNoGameDialogBoxError();
+                break;
+            case SNAKE:
+                playSnake();
+                break;
+            case BATTLESHIP:
+                playBattleship();
+                break;
+            case CHECKERS:
+                playCheckers();
+                break;
+            case CHESS:
+                playChess();
+                break;
+            case TICTACTOE:
+                playTicTacToe();
+                break;
+        }
+    }
+    
+    private void populateCardDetails() {
+        String gameTitle, gameDesc;
+        switch (selectedGame) {
+            default:
+                gameTitle = "No Title";
+                gameDesc = "No description available.";
+                break;
+            case NOGAME:
+                gameTitle = "No Title";
+                gameDesc = "No description available.";
+                break;
+            case SNAKE:
+                gameTitle = "Snake";
+                gameDesc = "•1 Player"
+                        + "\n•Local Play"
+                        + "\n\nControl a snake with an unrelenting apetite."
+                        + " Gather as much food as you can by controlling"
+                        + " the snake's direction. The snake grows as he eats, so watch out to"
+                        + " not collide with himself or the walls around him.";
+                break;
+            case BATTLESHIP:
+                gameTitle = "Battleship";
+                gameDesc = "•2 Players"
+                        + "\n•Online Play"
+                        + "\n\nReady your ships, captain! In this game, each player will"
+                        + " take aim and fire somewhere on the grid-map in hopes of hitting"
+                        + " the other player's ship. Each ship will be oriented and sized"
+                        + " differently, so think before you aim!";
+                break;
+            case CHECKERS:
+                gameTitle = "Checkers";
+                gameDesc = "•2 Players"
+                        + "\n•Local & Online Play"
+                        + "\n\nThe classic board game we all know and love. Try to beat"
+                        + " your opponent by eliminating as many of their checkers as possible.";
+                break;
+            case CHESS:
+                gameTitle = "Chess";
+                gameDesc = "•2 Players"
+                        + "\n•Local & Online Play"
+                        + "\n\nThe most well-known tactical board game in the world."
+                        + " Try to outwit your opponent based on the rules of the game."
+                        + " Each game piece has a unique moveset. Your goal is to"
+                        + " checkmate the opponent and defeat their king.";
+                break;
+            case TICTACTOE:
+                gameTitle = "Tic-Tac-Toe";
+                gameDesc = "•2 Players"
+                        + "\n•Local & Online Play"
+                        + "\n\nTest your skills in a 3x3 grid. Attempt to connect"
+                        + " three of your shapes in a row before your opponent can"
+                        + " block you to win the game.";
+                break;
+        }
+        textGameTitle.setText(gameTitle);
+        textGameDesc.setText(gameDesc);
+    } 
+    
+    private void playSnake() throws IOException {
         App.setRoot("SnakeGame");
     }
     
-    public void playBattleship() throws IOException {
+    private void playBattleship() throws IOException {
         App.setRoot("BattleshipGame");
     }
     
-    public void playCheckers() throws IOException {
-//        App.setRoot("");
+    private void playCheckers() throws IOException {
+        //App.setRoot("");
+        displayNoGameDialogBoxError();
     }
     
-    public void playTicTacToe() throws IOException {
+    private void playTicTacToe() throws IOException {
         App.setRoot("TicTacToeGame");
     }
     
-    public void playChess() throws IOException {
-//        App.setRoot("");
+    private void playChess() throws IOException {
+        //App.setRoot("");
+        displayNoGameDialogBoxError();
     }
     
-    public void playNetworkTest() {
-//        App.setRoot("NetworkTest");
+    private void playNetworkTest() {
+        //App.setRoot("NetworkTest");
+        displayNoGameDialogBoxError();
+    }
+    
+    private void displayNoGameDialogBoxError() {
+        Alert noGameAlert = new Alert(AlertType.ERROR);
+        noGameAlert.setContentText("No game here yet, sorry!");
+        noGameAlert.show();
     }
     
     private void loadCardImages() {
