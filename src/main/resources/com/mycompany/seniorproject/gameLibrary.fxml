@@ -16,11 +16,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane id="BorderPaneParent" fx:id="BorderPaneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" onKeyPressed="#keyboardCommand" prefHeight="640.0" prefWidth="900.0" stylesheets="@../../../styles/gamelibrary_1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.GameLibraryController">
+<BorderPane id="BorderPaneParent" fx:id="BorderPaneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" onKeyPressed="#keyboardCommand" prefHeight="625.0" prefWidth="1000.0" stylesheets="@../../../styles/gamelibrary_1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.GameLibraryController">
    <center>
-      <StackPane BorderPane.alignment="CENTER">
+      <StackPane fx:id="centerStackPane" BorderPane.alignment="CENTER">
          <children>
-            <GridPane alignment="CENTER">
+            <GridPane fx:id="gridContainerGameCards" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="780.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -87,19 +87,46 @@
                   </VBox>
                </children>
             </GridPane>
-            <VBox fx:id="vBoxCardText" prefHeight="200.0" prefWidth="100.0">
+            <VBox fx:id="vBoxCardText" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" StackPane.alignment="CENTER">
                <children>
-                  <Text id="GameTitle" fx:id="textGameTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Snake: The Game" wrappingWidth="220.0">
+                  <VBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Button fx:id="buttonCloseExpandedCard" alignment="CENTER" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" text="X" />
+                     </children>
                      <VBox.margin>
-                        <Insets left="390.0" top="60.0" />
+                        <Insets />
+                     </VBox.margin>
+                  </VBox>
+                  <Text id="GameTitle" fx:id="textGameTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Snake: The Game" wrappingWidth="250.0">
+                     <VBox.margin>
+                        <Insets />
                      </VBox.margin>
                   </Text>
-                  <Text id="GameDescription" fx:id="textGameDesc" fill="#b92727" strokeType="OUTSIDE" strokeWidth="0.0" text="In this singleplayer game, you play as a snake that grows as he eats. Try not to collide with the walls or yourself as you slither about, or be faced with your ultimate demise." wrappingWidth="220.0">
+                  <Text id="GameDescription" fx:id="textGameDesc" fill="#b92727" strokeType="OUTSIDE" strokeWidth="0.0" text="In this singleplayer game, you play as a snake that grows as he eats. Try not to collide with the walls or yourself as you slither about, or be faced with your ultimate demise." wrappingWidth="250.0">
                      <VBox.margin>
-                        <Insets left="390.0" top="20.0" />
+                        <Insets top="20.0" />
                      </VBox.margin>
                   </Text>
+                  <VBox alignment="BOTTOM_CENTER" minHeight="-Infinity" prefHeight="250.0" prefWidth="100.0" spacing="20.0">
+                     <children>
+                        <Rectangle fx:id="ratingCard" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="250.0" />
+                        <Button fx:id="buttonPlayGame" minHeight="40.0" minWidth="110.0" mnemonicParsing="false" text="PLAY GAME">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
+                  </VBox>
                </children>
+               <StackPane.margin>
+                  <Insets bottom="30.0" left="410.0" right="50.0" top="10.0" />
+               </StackPane.margin>
             </VBox>
          </children>
       </StackPane>

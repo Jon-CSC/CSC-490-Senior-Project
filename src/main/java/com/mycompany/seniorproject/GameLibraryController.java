@@ -7,7 +7,7 @@ package com.mycompany.seniorproject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.animation.FillTransition;
+import javafx.animation.Animation.Status;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.ScaleTransition;
@@ -16,19 +16,20 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import static javafx.scene.paint.Color.rgb;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -50,6 +51,15 @@ public class GameLibraryController implements Initializable {
     private Button buttonProfile;
     
     @FXML
+    private Button buttonPlayGame;
+    
+    @FXML
+    private Button buttonCloseExpandedCard;
+    
+    @FXML
+    private StackPane centerStackPane;
+    
+    @FXML
     private Rectangle gameCard01;
 
     @FXML
@@ -68,6 +78,9 @@ public class GameLibraryController implements Initializable {
     private Rectangle gameCard06;
     
     @FXML
+    private Rectangle ratingCard;
+    
+    @FXML
     private ImageView profileImgViewer;
     
     @FXML
@@ -78,18 +91,26 @@ public class GameLibraryController implements Initializable {
     
     @FXML
     private VBox vBoxCardText;
+    
+    @FXML
+    private GridPane gridContainerGameCards;
 
     private Image gc01, gc02, gc03, gc04, gc05, gc06;
+    
+    private boolean cardExpanded = false;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadCardImages();
-        App.getStage().setWidth(800);
-        App.getStage().setHeight(600);
+        App.getStage().setWidth(1000);
+        App.getStage().setHeight(625);
         buttonProfile.setText(App.getCurrentUser());
         vBoxCardText.toBack();
         textGameTitle.setVisible(false);
         textGameDesc.setVisible(false);
+        ratingCard.setVisible(false);
+        buttonPlayGame.setVisible(false);
+        buttonCloseExpandedCard.setVisible(false);
     } 
     
     @FXML
@@ -136,8 +157,6 @@ public class GameLibraryController implements Initializable {
         }
     }
     
-    // Below are functions to switch to the respective game scene.
-    // These are placeholders for now, and may only switch to a blank scene.
     public void playSnake() throws IOException {
         App.setRoot("SnakeGame");
     }
@@ -164,7 +183,7 @@ public class GameLibraryController implements Initializable {
     
     private void loadCardImages() {
         // Loads images from \Image\ directory in the default package for use as thumbnails
-        // Spits out error if it couldn't find them
+        // Spits out error if it cannot find them
         try {
             gc01 = new Image(getClass().getResourceAsStream("\\Images\\snake.png"));
             gc02 = new Image(getClass().getResourceAsStream("\\Images\\battleship.png"));
@@ -172,108 +191,140 @@ public class GameLibraryController implements Initializable {
             gc04 = new Image(getClass().getResourceAsStream("\\Images\\chess.png"));
             gc05 = new Image(getClass().getResourceAsStream("\\Images\\tictactoe.png"));
             gc06 = new Image(getClass().getResourceAsStream("\\Images\\comingsoon.png"));
-            gameCard01.setFill(new ImagePattern(gc01));
-            gameCard02.setFill(new ImagePattern(gc02));
-            gameCard03.setFill(new ImagePattern(gc03));
-            gameCard04.setFill(new ImagePattern(gc04));
-            gameCard05.setFill(new ImagePattern(gc05));
-            gameCard06.setFill(new ImagePattern(gc06));
+            populateCardImages();
         } catch(Exception e) {
             System.out.println("Thumbnail images were not loaded correctly. "
                     + "Check that paths are correct and images exist.");
         }
     }
+    
+    private void populateCardImages() {
+        gameCard01.setFill(new ImagePattern(gc01));
+        gameCard02.setFill(new ImagePattern(gc02));
+        gameCard03.setFill(new ImagePattern(gc03));
+        gameCard04.setFill(new ImagePattern(gc04));
+        gameCard05.setFill(new ImagePattern(gc05));
+        gameCard06.setFill(new ImagePattern(gc06));
+    }
         
     private void cardAnimation(Rectangle card) {
-        // Draws card on top of other elements
+        
+        // Get position relative to current scene
+        
+        Bounds cardBoundsInScene = card.localToScene(card.getBoundsInLocal());
+        double cardPosX = cardBoundsInScene.getMinX() + (card.getWidth()/2);
+        double cardPosY = cardBoundsInScene.getMinY() + (card.getHeight()/2);
+        
+        
+        // Draws card on top of other elements, then instantiate animations
+        
         card.getParent().toFront();
         
         ParallelTransition parentTransition = new ParallelTransition();
-        
         SequentialTransition scaleCardTransition = new SequentialTransition();
         
-        // Card flip animation using two scaling animations stretching and shrinking card
+        
+        // Card flip animation using two scaling animations shrinking and stretching card
+        
         ScaleTransition scale01 = new ScaleTransition(Duration.seconds(0.25), card);
         scale01.setToX(0);
         scale01.setToY(2.0);
         scale01.setCycleCount(1);
         scaleCardTransition.getChildren().add(scale01);
-        scale01.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent t) {
-                card.setFill(rgb(58,58,58));
+        scale01.setOnFinished(e -> {
+            card.setFill(rgb(58,58,58));
+            card.setArcWidth(10);
+            card.setArcHeight(15);
+        });
+        ScaleTransition scale02 = new ScaleTransition(Duration.seconds(0.5), card);
+        scale02.setToX(4.7);
+        scale02.setToY(3.0);
+        scale02.setCycleCount(1);
+        scale02.setOnFinished(e -> {
+            if (cardExpanded) {
+                populateCardImages();
+                card.setArcWidth(15);
+                card.setArcHeight(15);
             }
         });
-        
-        ScaleTransition scale02 = new ScaleTransition(Duration.seconds(0.5), card);
-        scale02.setToX(4.1);
-        scale02.setToY(2.8);
-        scale02.setCycleCount(1);
         scaleCardTransition.getChildren().add(scale02);
         
         parentTransition.getChildren().add(scaleCardTransition);
 
+        
         // Movement animation to position card in center of scene
+        
         SequentialTransition moveCardTransition = new SequentialTransition();
         
-        double xPosMid = (App.getStage().getWidth() / 4.0) - 50;
-        double yPosMid = (App.getStage().getHeight() / 4.0) - 50;
-        double xPosFinal = (App.getStage().getWidth() / 2.0) - 142;
-        double yPosFinal = (App.getStage().getHeight() / 2.0) - 142;
+        double xPosFinal = (App.getStage().getScene().getWidth() / 2.0) - cardPosX + 45;
+        double yPosFinal = (App.getStage().getScene().getHeight() / 2.0) - cardPosY + 65;
         
         Path path01 = new Path();
         path01.getElements().add(new MoveToAbs(card));
-        path01.getElements().add(new LineToAbs(card, xPosMid, yPosMid));
-        Path path02 = new Path();
-        path02.getElements().add(new MoveToAbs(card, xPosMid, yPosMid));
-        path02.getElements().add(new LineToAbs(card, xPosFinal, yPosFinal));
-//        BorderPaneRoot.getChildren().addAll(path01);
-//        BorderPaneRoot.getChildren().addAll(path02);
+        path01.getElements().add(new LineToAbs(card, xPosFinal, yPosFinal));
+        PathTransition pathTrace01 = new PathTransition();
+        pathTrace01.setNode(card);
+        pathTrace01.setDuration(Duration.seconds(0.75));
+        pathTrace01.setPath(path01);
+        pathTrace01.setCycleCount(1);
+        pathTrace01.setOnFinished(e -> {
+            parentTransition.pause();
+            vBoxCardText.toFront();
+            textGameTitle.setVisible(true);
+            textGameDesc.setVisible(true);
+            ratingCard.setVisible(true);
+            buttonPlayGame.setVisible(true);
+            buttonCloseExpandedCard.setVisible(true);
+        });
         
-        
-        PathTransition pt01 = new PathTransition();
-        pt01.setNode(card);
-        pt01.setDuration(Duration.seconds(0.25));
-        pt01.setPath(path01);
-        pt01.setCycleCount(1);
-        moveCardTransition.getChildren().add(pt01);
-        
-        PathTransition pt02 = new PathTransition();
-        pt02.setNode(card);
-        pt02.setDuration(Duration.seconds(0.5));
-        pt02.setPath(path02);
-        pt02.setCycleCount(1);
-        moveCardTransition.getChildren().add(pt02);
+        moveCardTransition.getChildren().add(pathTrace01);
         
         parentTransition.getChildren().add(moveCardTransition);
+        parentTransition.setAutoReverse(true);
+        parentTransition.setCycleCount(2);
         parentTransition.setRate(1.5);
-        parentTransition.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent t) {
-                vBoxCardText.toFront();
-                textGameTitle.setVisible(true);
-                textGameDesc.setVisible(true);
+        parentTransition.setOnFinished(e -> {
+            cardExpanded = false;
+            // Manually setting scale back to 1, fixes bug with animation 
+            // scaling not returning game card rectangles to original size.
+            card.setScaleX(1.0);
+            card.setScaleY(1.0);
+            System.out.println("FINISHED");
+        });
+        parentTransition.playFromStart();
+        
+        buttonCloseExpandedCard.setOnMouseClicked(e -> {
+            if(parentTransition.getStatus().equals(Status.PAUSED)) {
+                cardExpanded = true;
+                parentTransition.play();
+                vBoxCardText.toBack();
+                textGameTitle.setVisible(false);
+                textGameDesc.setVisible(false);
+                ratingCard.setVisible(false);
+                buttonPlayGame.setVisible(false);
+                buttonCloseExpandedCard.setVisible(false);
             }
-        }
-        );
-        parentTransition.play();
+        });
     }
     
     public static class MoveToAbs extends MoveTo {
 
         public MoveToAbs(Node node) {
-            super(node.getLayoutBounds().getWidth() / 2, node.getLayoutBounds().getHeight() / 2);
+            super(node.getLayoutBounds().getWidth() / 2, 
+                    node.getLayoutBounds().getHeight() / 2);
         }
 
         public MoveToAbs(Node node, double x, double y) {
-            super(x - node.getLayoutX() + node.getLayoutBounds().getWidth() / 2, y - node.getLayoutY() + node.getLayoutBounds().getHeight() / 2);
+            super(x - node.getLayoutX() + node.getLayoutBounds().getWidth() / 2, 
+                    y - node.getLayoutY() + node.getLayoutBounds().getHeight() / 2);
         }
     }
 
     public static class LineToAbs extends LineTo {
 
         public LineToAbs(Node node, double x, double y) {
-            super(x - node.getLayoutX() + node.getLayoutBounds().getWidth() / 2, y - node.getLayoutY() + node.getLayoutBounds().getHeight() / 2);
+            super(x - node.getLayoutX() + node.getLayoutBounds().getWidth() / 2, 
+                    y - node.getLayoutY() + node.getLayoutBounds().getHeight() / 2);
         }
     }
 }
