@@ -1,5 +1,12 @@
 package com.mycompany.seniorproject;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.WriteResult;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  * A singleton class which manages the currently logged in user account.
@@ -77,12 +84,23 @@ public final class LocalUserAccount {
      * @param biography the user's new bio
      * @return true if successful, false if not
      */
-    public boolean updateBiography(String biography) {
+    public boolean updateBiography(String newBio) {
         if(!isLoggedIn()) {
             return false;
         }
-        // STUB; implement this
-        return false;
+        // update the remote data
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future = userDoc.update("biography", newBio);
+  
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            return false;
+        }
+        // update the local data, if that worked
+        UserAccount updatedUserAcc = new UserAccount(activeUser.getUserID(), newBio, activeUser.getAvatarURL(), activeUser.getGameData());
+        this.activeUser = updatedUserAcc;
+        return true;
     }
     
     /**
@@ -90,11 +108,21 @@ public final class LocalUserAccount {
      * @param avatarURL a link to the user's new avatar
      * @return true if successful, false if not
      */
-    public boolean updateAvatar(String avatarURL) {
+    public boolean updateAvatar(String newAvatarURL) {
         if(!isLoggedIn()) {
             return false;
         }
-        // STUB; implement this
-        return false;
+        // update the remote data
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future = userDoc.update("avatarURL", newAvatarURL);
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            return false;
+        }
+        // update the local data, if that worked
+        UserAccount updatedUserAcc = new UserAccount(activeUser.getUserID(), activeUser.getBiography(), newAvatarURL, activeUser.getGameData());
+        this.activeUser = updatedUserAcc;
+        return true;
     }
 }

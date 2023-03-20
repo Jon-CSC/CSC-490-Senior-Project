@@ -11,11 +11,20 @@ import java.util.HashMap;
  */
 @IgnoreExtraProperties
 public class UserAccount {
-
+    
+    public static final String USER_DB_NAME = "Users";
+    
     private String userID;
+    public static final String USERID_FIELD = "userID";
+    
     private String biography;
+    public static final String BIOGRAPHY_FIELD = "biography";
+    
     private String avatarURL;
+    public static final String AVATAR_FIELD = "avatarURL";
+    
     private HashMap<String, Object> gameData;
+    public static final String GAMEDATA_FIELD = "gameData";
     
     // requisite default constructor for deserializing from Firestore
     public UserAccount() {}
@@ -52,6 +61,10 @@ public class UserAccount {
         return avatarURL;
     }
     
+    /**
+     * Retrieve this user's game data.
+     * @return a HashMap with key-value pairs of game data.
+     */
     public HashMap<String, Object> getGameData() {
         return gameData;
     }
