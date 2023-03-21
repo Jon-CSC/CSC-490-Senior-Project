@@ -115,8 +115,8 @@ public class GameLibraryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadCardImages();
-        App.getStage().setWidth(1000);
-        App.getStage().setHeight(625);
+        App.getStage().setWidth(900);
+        App.getStage().setHeight(640);
         buttonProfile.setText(App.getCurrentUser());
         vBoxCardText.toBack();
         textGameTitle.setVisible(false);
