@@ -32,6 +32,9 @@ public class RegisterPageController implements Initializable {
 
     @FXML
     private PasswordField passwordField;
+    
+    @FXML
+    private PasswordField passwordField2;
 
     @FXML
     private Label errorLabel;
@@ -57,6 +60,11 @@ public class RegisterPageController implements Initializable {
     }
 
     public void createUser() throws IOException {
+        if (!passwordField.getText().equals(passwordField2.getText())) {
+            errorLabel.setText("Password fields must match");
+            errorLabel.setVisible(true);
+            return;
+        }
         try {
             //Make a new user record create request
             UserRecord.CreateRequest request = new UserRecord.CreateRequest()

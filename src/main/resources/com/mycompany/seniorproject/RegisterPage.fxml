@@ -25,11 +25,12 @@
                <children>
                   <Circle radius="25.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: dodgerblue; -fx-stroke-width: 2;" />
                   <Label focusTraversable="false" styleClass="title-label" stylesheets="@../../../styles/loginpage.css" text="Register" textFill="#327bdb" />
-                  <VBox alignment="CENTER" fillWidth="false" prefHeight="204.0" prefWidth="210.0" spacing="20.0" styleClass="small-vbox">
+                  <VBox alignment="CENTER" fillWidth="false" prefHeight="270.0" prefWidth="210.0" spacing="20.0" styleClass="small-vbox">
                      <children>
                         <TextField fx:id="usernameField" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
                         <TextField fx:id="emailField" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Email" styleClass="text-field" />
                         <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="text-field" />
+                        <PasswordField fx:id="passwordField2" prefHeight="30.0" prefWidth="180.0" promptText="Re-type Password" />
                         <Button focusTraversable="false" mnemonicParsing="false" onAction="#register" prefHeight="35.0" prefWidth="180.0" text="Register" />
                      </children>
                   </VBox>
