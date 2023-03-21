@@ -66,21 +66,24 @@ public class LoginPageController implements Initializable {
 
     @FXML
     public void goToGameLibraryPage() throws IOException {
-        // Retrieves Loader for ForgotPassword page.
-        App.setRoot("gameLibrary");
-    } // End goToForgotPasswordPage.
+        // Retrieves Loader for gameLibrary page.
+        App.setRoot("GameLibrary");
+    } // End goToGameLibraryPage.
     
     @FXML
     public void logIn() throws InterruptedException, ExecutionException, IOException {
         try {
             //Attempt to log in a user using what's typed in the usernameField
             UserRecord user = FirebaseAuth.getInstance().getUser(usernameField.getText());
+            DocumentSnapshot userDoc = pullUserDocument(usernameField.getText());
+            //UserRecord userRecord = FirebaseAuth.getInstance().getUserByEmail(usernameField.getText());
+
             //If no exception has been caught, the password is then checked
-            if (verifyPassword(usernameField.getText())) {
+            if (verifyPassword(userDoc)) {
                 //We would put code here to switch to whatever fxml file is considered the main page/library
                 errorLabel.setText("Username and password match. We would switch to the main page now.");
                 errorLabel.setVisible(true);
-                App.setCurrentUser(usernameField.getText());
+                LocalUserAccount.getInstance().login(userDoc.toObject(UserAccount.class));
                 goToGameLibraryPage();
             } else if (passwordField.getText().equals("")) {
                 errorLabel.setText("All fields must be filled out");
@@ -103,15 +106,19 @@ public class LoginPageController implements Initializable {
         }
     }
 
-    public boolean verifyPassword(String username) throws InterruptedException, ExecutionException {
-        DocumentReference userDoc = App.fstore.collection("Users").document(username);
-        ApiFuture<DocumentSnapshot> future = userDoc.get();
-        DocumentSnapshot document = future.get();
+    public boolean verifyPassword(DocumentSnapshot userDoc) {
         //We compare what's in the password field in the user's Firestore document vs. what's typed in the passwordField
-        if (document.getData().get("Password").toString().equals(passwordField.getText())) {
+        if (userDoc.getData().get("Password").toString().equals(passwordField.getText())) {
             return true;
         }
         return false;
     }
-
+    
+    private DocumentSnapshot pullUserDocument(String userID) throws InterruptedException, ExecutionException {
+        DocumentReference userDoc = App.fstore.collection("Users").document(userID);
+        ApiFuture<DocumentSnapshot> future = userDoc.get();
+        DocumentSnapshot document = future.get();
+        return document;
+    }
+    
 }

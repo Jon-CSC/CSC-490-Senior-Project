@@ -26,9 +26,15 @@ public class RegisterPageController implements Initializable {
 
     @FXML
     private TextField usernameField;
+    
+    @FXML
+    private TextField emailField;
 
     @FXML
     private PasswordField passwordField;
+    
+    @FXML
+    private PasswordField passwordField2;
 
     @FXML
     private Label errorLabel;
@@ -54,11 +60,18 @@ public class RegisterPageController implements Initializable {
     }
 
     public void createUser() throws IOException {
+        if (!passwordField.getText().equals(passwordField2.getText())) {
+            errorLabel.setText("Password fields must match");
+            errorLabel.setVisible(true);
+            return;
+        }
         try {
             //Make a new user record create request
             UserRecord.CreateRequest request = new UserRecord.CreateRequest()
                     .setUid(usernameField.getText().trim())
-                    .setPassword(passwordField.getText().trim());
+                    .setEmail(emailField.getText().trim())
+                    .setPassword(passwordField.getText().trim())
+                    .setDisplayName(usernameField.getText().trim());
             //Make a new UserRecord instance and use the data from the create request
             UserRecord newUser = FirebaseAuth.getInstance().createUser(request);
             //Use custom claims to set the new user's permissions to user and not admin
@@ -71,7 +84,7 @@ public class RegisterPageController implements Initializable {
             errorLabel.setText("Username is already in use");
             errorLabel.setVisible(true);
         } catch (IllegalArgumentException iae) {
-            if (usernameField.getText().equals("") || passwordField.getText().equals("")) {
+            if (usernameField.getText().equals("") || passwordField.getText().equals("") || emailField.getText().equals("")) {
                 errorLabel.setText("All fields must be filled out");
                 errorLabel.setVisible(true);
             } else {
@@ -87,6 +100,10 @@ public class RegisterPageController implements Initializable {
         Map<String, Object> data = new HashMap<>();
         //Store the password in the new document to check later when logging in
         data.put("Password", passwordField.getText());
+        data.put(UserAccount.USERID_FIELD, usernameField.getText());
+        data.put(UserAccount.BIOGRAPHY_FIELD, "Hello, world!");
+        data.put(UserAccount.AVATAR_FIELD, "https://i.imgur.com/n96r5OU.png");
+        data.put(UserAccount.GAMEDATA_FIELD, new HashMap<String, Object>());
         ApiFuture<WriteResult> result = docRef.set(data);
     }
 

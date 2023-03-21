@@ -10,73 +10,141 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane id="BorderPaneParent" fx:id="BorderPaneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" onKeyPressed="#keyboardCommand" prefHeight="640.0" prefWidth="900.0" stylesheets="@../../../styles/gamelibrary.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.GameLibraryController">
+<BorderPane id="BorderPaneParent" fx:id="BorderPaneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" onKeyPressed="#keyboardCommand" prefHeight="625.0" prefWidth="1000.0" stylesheets="@../../../styles/gamelibrary_alt.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.GameLibraryController">
    <center>
-      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <StackPane fx:id="centerStackPane" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0">
+            <GridPane fx:id="gridContainerGameCards" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="780.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Rectangle fx:id="gameCard01" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard01" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="150.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Rectangle>
+                  <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <Rectangle fx:id="gameCard01" arcHeight="5.0" arcWidth="5.0" fill="#838383" height="150.0" onMouseClicked="#clickedGameCard01" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="150.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Rectangle>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.rowIndex="1">
+                     <children>
+                        <Rectangle fx:id="gameCard04" arcHeight="5.0" arcWidth="5.0" fill="#838383" height="150.0" onMouseClicked="#clickedGameCard04" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="150.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Rectangle>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                        <Rectangle fx:id="gameCard06" arcHeight="5.0" arcWidth="5.0" fill="#838383" height="150.0" onMouseClicked="#clickedGameCard06" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="150.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Rectangle>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="1">
+                     <children>
+                        <Rectangle fx:id="gameCard02" arcHeight="5.0" arcWidth="5.0" fill="#838383" height="150.0" onMouseClicked="#clickedGameCard02" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="150.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Rectangle>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Rectangle fx:id="gameCard05" arcHeight="5.0" arcWidth="5.0" fill="#838383" height="150.0" onMouseClicked="#clickedGameCard05" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="150.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Rectangle>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="2">
+                     <children>
+                        <Rectangle fx:id="gameCard03" arcHeight="5.0" arcWidth="5.0" fill="#838383" height="150.0" onMouseClicked="#clickedGameCard03" stroke="BLACK" strokeType="INSIDE" styleClass="rectangle" width="150.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Rectangle>
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-            <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.rowIndex="1">
+            </GridPane>
+            <GridPane fx:id="gridPaneCardText" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="430.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Rectangle fx:id="gameCard04" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard04" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="150.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Rectangle>
+                  <VBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" GridPane.halignment="RIGHT">
+                     <children>
+                        <Button fx:id="buttonCloseExpandedCard" alignment="CENTER" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" text="X">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Button>
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefWidth="100.0" spacing="20.0" GridPane.rowIndex="2">
+                     <children>
+                        <Rectangle fx:id="ratingCard" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="250.0" />
+                        <Button fx:id="buttonPlayGame" minHeight="40.0" minWidth="110.0" mnemonicParsing="false" onAction="#launchSelectedGame" text="PLAY GAME">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <children>
+                        <Text id="GameTitle" fx:id="textGameTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Title" wrappingWidth="250.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <Text id="GameDescription" fx:id="textGameDesc" fill="#b92727" strokeType="OUTSIDE" strokeWidth="0.0" text="•2 Players\n•Local &amp; Online Play\n\nThe most well-known tactical board game in the world. Try to outwit your opponent based on the rules of the game. Each game piece has a unique moveset. Your goal is to checkmate the opponent and defeat their king." wrappingWidth="250.0">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                     </children>
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
+                  </VBox>
                </children>
-            </VBox>
-            <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <children>
-                  <Rectangle fx:id="gameCard06" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard06" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="150.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Rectangle>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="1">
-               <children>
-                  <Rectangle fx:id="gameCard02" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard02" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="150.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Rectangle>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Rectangle fx:id="gameCard05" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard05" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="150.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Rectangle>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" minHeight="0.0" minWidth="0.0" GridPane.columnIndex="2">
-               <children>
-                  <Rectangle fx:id="gameCard03" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" onMouseClicked="#clickedGameCard03" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="150.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Rectangle>
-               </children>
-            </VBox>
+               <StackPane.margin>
+                  <Insets left="310.0" />
+               </StackPane.margin>
+            </GridPane>
          </children>
-      </GridPane>
+      </StackPane>
    </center>
    <top>
       <GridPane prefHeight="50.0" BorderPane.alignment="CENTER">
@@ -90,12 +158,12 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                <children>
-                  <Button mnemonicParsing="false" text="Leaderboards">
+                  <Button minHeight="40.0" minWidth="130.0" mnemonicParsing="false" text="Leaderboards">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" text="Play History">
+                  <Button minHeight="40.0" minWidth="130.0" mnemonicParsing="false" text="Play History">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -107,17 +175,17 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="1">
                <children>
-                  <Button mnemonicParsing="false" text="Friends List">
+                  <Button minHeight="40.0" minWidth="130.0" mnemonicParsing="false" text="Friends List">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="buttonProfile" mnemonicParsing="false" text="UserMan007" underline="true">
+                  <Button fx:id="buttonProfile" minHeight="40.0" minWidth="130.0" mnemonicParsing="false" text="UserMan007" underline="true">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="ProfileIcon" fx:id="profileImgViewer" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/penguin01.jpg" />
                      </image>
@@ -168,7 +236,7 @@
    <left>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="←">
+            <Button minHeight="40.0" minWidth="40.0" mnemonicParsing="false" text="&lt;">
                <font>
                   <Font size="18.0" />
                </font>
@@ -185,7 +253,7 @@
    <right>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="→">
+            <Button minHeight="40.0" minWidth="40.0" mnemonicParsing="false" text="&gt;">
                <font>
                   <Font size="18.0" />
                </font>

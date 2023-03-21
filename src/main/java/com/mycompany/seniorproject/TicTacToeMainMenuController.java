@@ -71,7 +71,7 @@ public class TicTacToeMainMenuController implements Initializable {
 
     @FXML
     public void onQuitMouseClick() throws IOException {
-        App.setRoot("gameLibrary");
+        App.setRoot("GameLibrary");
 
     }
 }
