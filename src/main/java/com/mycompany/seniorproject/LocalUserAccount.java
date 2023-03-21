@@ -130,7 +130,7 @@ public final class LocalUserAccount {
      * Updates the user's game stats both locally and on the Firestore.
      * @param dataFieldName the name of the field being updated; e.g., snakeTime, tictactoeWins, etc
      * @param data the value to update the stat to. NOTE: this should be a type that Firebase likes (ints, Strings, things of that nature)
-     * @return 
+     * @return true if successful, false if not
      */
     public boolean updateGameData(String dataFieldName, Object data) {
         if(!isLoggedIn()) {
