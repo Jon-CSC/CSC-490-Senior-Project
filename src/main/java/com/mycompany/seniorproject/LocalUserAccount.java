@@ -3,6 +3,7 @@ package com.mycompany.seniorproject;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.WriteResult;
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -90,8 +91,7 @@ public final class LocalUserAccount {
         }
         // update the remote data
         DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
-        ApiFuture<WriteResult> future = userDoc.update("biography", newBio);
-  
+        ApiFuture<WriteResult> future = userDoc.update(UserAccount.BIOGRAPHY_FIELD, newBio);
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {
@@ -114,7 +114,7 @@ public final class LocalUserAccount {
         }
         // update the remote data
         DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
-        ApiFuture<WriteResult> future = userDoc.update("avatarURL", newAvatarURL);
+        ApiFuture<WriteResult> future = userDoc.update(UserAccount.AVATAR_FIELD, newAvatarURL);
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {
@@ -123,6 +123,30 @@ public final class LocalUserAccount {
         // update the local data, if that worked
         UserAccount updatedUserAcc = new UserAccount(activeUser.getUserID(), activeUser.getBiography(), newAvatarURL, activeUser.getGameData());
         this.activeUser = updatedUserAcc;
+        return true;
+    }
+    
+    /**
+     * Updates the user's game stats both locally and on the Firestore.
+     * @param dataFieldName the name of the field being updated; e.g., snakeTime, tictactoeWins, etc
+     * @param data the value to update the stat to. NOTE: this should be a type that Firebase likes (ints, Strings, things of that nature)
+     * @return 
+     */
+    public boolean updateGameData(String dataFieldName, Object data) {
+        if(!isLoggedIn()) {
+            return false;
+        }
+        // update the remote data
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future = userDoc.update(UserAccount.GAMEDATA_FIELD + "." + dataFieldName, data);
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            return false;
+        }
+        // update the local data, if that worked
+        HashMap<String, Object> gameData = activeUser.getGameData();
+        gameData.put(dataFieldName, data);
         return true;
     }
 }
