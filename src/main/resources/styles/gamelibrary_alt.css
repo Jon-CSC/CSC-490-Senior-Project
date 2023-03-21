@@ -18,9 +18,10 @@
 
 .button:hover
 { 
+    /* alternative blue color: #4095d2 */
     -fx-background-color: #606060;
     
-    -fx-border-color: #4095d2;
+    -fx-border-color: dodgerblue;
     -fx-border-width: 2;
     -fx-border-radius: 7px;
     
@@ -72,6 +73,8 @@
 #BorderPaneParent
 {
     -fx-background-color: #102637;
+    /*-fx-background-color: black;*/
+    
     /*
     -fx-background-image: url("..\com\mycompany\seniorproject\Images\background_blue_abstract.jpg");
     -fx-background-repeat: stretch;

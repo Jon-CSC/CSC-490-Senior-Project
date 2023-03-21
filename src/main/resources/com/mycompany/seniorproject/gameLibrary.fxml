@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane id="BorderPaneParent" fx:id="BorderPaneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" onKeyPressed="#keyboardCommand" prefHeight="625.0" prefWidth="1000.0" stylesheets="@../../../styles/gamelibrary_1.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.GameLibraryController">
+<BorderPane id="BorderPaneParent" fx:id="BorderPaneRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="640.0" onKeyPressed="#keyboardCommand" prefHeight="625.0" prefWidth="1000.0" stylesheets="@../../../styles/gamelibrary_alt.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.GameLibraryController">
    <center>
       <StackPane fx:id="centerStackPane" BorderPane.alignment="CENTER">
          <children>
@@ -87,27 +87,28 @@
                   </VBox>
                </children>
             </GridPane>
-            <VBox fx:id="vBoxCardText" alignment="CENTER" maxHeight="500.0" maxWidth="420.0" minHeight="500.0" minWidth="420.0" prefHeight="500.0" prefWidth="420.0" StackPane.alignment="CENTER">
+            <GridPane fx:id="gridPaneCardText" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="430.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <VBox alignment="CENTER_RIGHT" maxHeight="40.0" maxWidth="300.0" minHeight="40.0" prefHeight="40.0">
+                  <VBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" GridPane.halignment="RIGHT">
                      <children>
-                        <Button fx:id="buttonCloseExpandedCard" alignment="CENTER" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" text="X" />
+                        <Button fx:id="buttonCloseExpandedCard" alignment="CENTER" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" text="X">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Button>
                      </children>
-                     <VBox.margin>
-                        <Insets left="150.0" />
-                     </VBox.margin>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" />
+                     </GridPane.margin>
                   </VBox>
-                  <Text id="GameTitle" fx:id="textGameTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Title" wrappingWidth="250.0">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Text>
-                  <Text id="GameDescription" fx:id="textGameDesc" fill="#b92727" strokeType="OUTSIDE" strokeWidth="0.0" text="•2 Players\n•Local &amp; Online Play\n\nThe most well-known tactical board game in the world. Try to outwit your opponent based on the rules of the game. Each game piece has a unique moveset. Your goal is to checkmate the opponent and defeat their king." wrappingWidth="250.0">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Text>
-                  <VBox alignment="BOTTOM_CENTER" prefWidth="100.0" spacing="20.0">
+                  <VBox alignment="BOTTOM_CENTER" prefWidth="100.0" spacing="20.0" GridPane.rowIndex="2">
                      <children>
                         <Rectangle fx:id="ratingCard" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="250.0" />
                         <Button fx:id="buttonPlayGame" minHeight="40.0" minWidth="110.0" mnemonicParsing="false" onAction="#launchSelectedGame" text="PLAY GAME">
@@ -116,18 +117,32 @@
                            </cursor>
                         </Button>
                      </children>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
                      <padding>
                         <Insets bottom="20.0" />
                      </padding>
                   </VBox>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <children>
+                        <Text id="GameTitle" fx:id="textGameTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Title" wrappingWidth="250.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
+                        <Text id="GameDescription" fx:id="textGameDesc" fill="#b92727" strokeType="OUTSIDE" strokeWidth="0.0" text="•2 Players\n•Local &amp; Online Play\n\nThe most well-known tactical board game in the world. Try to outwit your opponent based on the rules of the game. Each game piece has a unique moveset. Your goal is to checkmate the opponent and defeat their king." wrappingWidth="250.0">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Text>
+                     </children>
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
+                  </VBox>
                </children>
                <StackPane.margin>
-                  <Insets bottom="30.0" left="410.0" right="50.0" top="10.0" />
+                  <Insets left="310.0" />
                </StackPane.margin>
-            </VBox>
+            </GridPane>
          </children>
       </StackPane>
    </center>

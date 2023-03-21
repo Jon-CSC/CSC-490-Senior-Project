@@ -7,6 +7,8 @@ package com.mycompany.seniorproject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.Animation.Status;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
@@ -101,10 +103,10 @@ public class GameLibraryController implements Initializable {
     private Text textGameTitle;
     
     @FXML
-    private VBox vBoxCardText;
+    private GridPane gridContainerGameCards;
     
     @FXML
-    private GridPane gridContainerGameCards;
+    private GridPane gridPaneCardText;
 
     private Image gc01, gc02, gc03, gc04, gc05, gc06;
     
@@ -117,14 +119,21 @@ public class GameLibraryController implements Initializable {
         loadCardImages();
         App.getStage().setWidth(900);
         App.getStage().setHeight(640);
-        buttonProfile.setText(App.getCurrentUser());
-        vBoxCardText.toBack();
+        buttonProfile.setText(LocalUserAccount.getInstance().getActiveUser().getUserID());
+        gridPaneCardText.toBack();
         textGameTitle.setVisible(false);
         textGameDesc.setVisible(false);
         ratingCard.setVisible(false);
         buttonPlayGame.setVisible(false);
         buttonCloseExpandedCard.setVisible(false);
-        buttonProfile.setText(LocalUserAccount.getInstance().getActiveUser().getUserID());
+        
+        buttonProfile.setOnMouseClicked(e -> {
+            try {
+                goToProfilePage();
+            } catch (IOException ex) {
+                Logger.getLogger(GameLibraryController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     } 
     
     @FXML
@@ -287,6 +296,10 @@ public class GameLibraryController implements Initializable {
         displayNoGameDialogBoxError();
     }
     
+    private void goToProfilePage() throws IOException {
+        App.setRoot("ProfilePage");
+    }
+    
     private void playNetworkTest() {
         //App.setRoot("NetworkTest");
         displayNoGameDialogBoxError();
@@ -350,6 +363,7 @@ public class GameLibraryController implements Initializable {
         scaleCardTransition.getChildren().add(scale01);
         scale01.setOnFinished(e -> {
             card.setFill(rgb(58,58,58));
+//            card.setFill(rgb(16,38,58));
             card.setArcWidth(10);
             card.setArcHeight(15);
         });
@@ -386,7 +400,7 @@ public class GameLibraryController implements Initializable {
         pathTrace01.setCycleCount(1);
         pathTrace01.setOnFinished(e -> {
             parentTransition.pause();
-            vBoxCardText.toFront();
+            gridPaneCardText.toFront();
             textGameTitle.setVisible(true);
             textGameDesc.setVisible(true);
             ratingCard.setVisible(true);
@@ -414,7 +428,7 @@ public class GameLibraryController implements Initializable {
             if(parentTransition.getStatus().equals(Status.PAUSED)) {
                 cardExpanded = true;
                 parentTransition.play();
-                vBoxCardText.toBack();
+                gridPaneCardText.toBack();
                 textGameTitle.setVisible(false);
                 textGameDesc.setVisible(false);
                 ratingCard.setVisible(false);
