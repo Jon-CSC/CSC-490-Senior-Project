@@ -76,7 +76,7 @@ public class LoginPageController implements Initializable {
             //Attempt to log in a user using what's typed in the usernameField
             UserRecord user = FirebaseAuth.getInstance().getUser(usernameField.getText());
             DocumentSnapshot userDoc = pullUserDocument(usernameField.getText());
-            UserRecord userRecord = FirebaseAuth.getInstance().getUserByEmail(usernameField.getText());
+            //UserRecord userRecord = FirebaseAuth.getInstance().getUserByEmail(usernameField.getText());
 
             //If no exception has been caught, the password is then checked
             if (verifyPassword(userDoc)) {
@@ -85,8 +85,6 @@ public class LoginPageController implements Initializable {
                 errorLabel.setVisible(true);
                 LocalUserAccount.getInstance().login(userDoc.toObject(UserAccount.class));
                 goToGameLibraryPage();
-                System.out.println("local user is " + LocalUserAccount.getInstance().getActiveUser().getUserID());
-                System.out.println(LocalUserAccount.getInstance().updateBiography("testbio!!!!!"));
             } else if (passwordField.getText().equals("")) {
                 errorLabel.setText("All fields must be filled out");
                 errorLabel.setVisible(true);
