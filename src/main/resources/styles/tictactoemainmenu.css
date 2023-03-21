@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+#HBoxParent
+{
+    -fx-background-color: #1c1c1c;
+}
+.label
+{
+    -fx-text-fill: dodgerblue;
+    -fx-font-weight: normal;
+}

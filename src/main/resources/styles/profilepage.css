@@ -1,0 +1,40 @@
+.background
+{
+    -fx-background-color: #1f1f1f;
+}
+
+.foreground
+{
+    -fx-background-color: #282828;
+}
+
+.brighter-foreground
+{
+    -fx-background-color: #383838;
+    -fx-background-radius: 20px;
+}
+
+.game-vbox
+{
+    -fx-border-color: #eeeeee;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+.username-label
+{
+    -fx-font: 20px "Helvetica";
+    -fx-text-fill: #eeeeee;
+}
+
+.title-label
+{
+    -fx-font: 16px "Helvetica";
+    -fx-text-fill: #eeeeee;
+}
+
+.smaller-label
+{
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: #eeeeee;
+}

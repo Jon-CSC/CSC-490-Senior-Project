@@ -124,6 +124,7 @@ public class GameLibraryController implements Initializable {
         ratingCard.setVisible(false);
         buttonPlayGame.setVisible(false);
         buttonCloseExpandedCard.setVisible(false);
+        buttonProfile.setText(LocalUserAccount.getInstance().getActiveUser().getUserID());
     } 
     
     @FXML
@@ -175,7 +176,7 @@ public class GameLibraryController implements Initializable {
         // Currently only supports [Esc] to logout
         if (event.getCode().toString().equalsIgnoreCase("ESCAPE")) {
             App.setRoot("LoginPage");
-            App.setCurrentUser(null);
+            LocalUserAccount.getInstance().logout();
         }
     }
     
@@ -278,7 +279,7 @@ public class GameLibraryController implements Initializable {
     }
     
     private void playTicTacToe() throws IOException {
-        App.setRoot("TicTacToeGame");
+        App.setRoot("TicTacToeMainMenu");
     }
     
     private void playChess() throws IOException {
