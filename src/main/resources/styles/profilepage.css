@@ -1,0 +1,70 @@
+.background
+{
+    -fx-background-color: #1f1f1f;
+}
+
+.foreground
+{
+    -fx-background-color: #282828;
+}
+
+.brighter-foreground
+{
+    -fx-background-color: #383838;
+    -fx-background-radius: 20px;
+}
+
+.game-vbox
+{
+    -fx-border-color: #eeeeee;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+
+.username-label
+{
+    -fx-font: 20px "Helvetica";
+    -fx-text-fill: #eeeeee;
+}
+
+.title-label
+{
+    -fx-font: 16px "Helvetica";
+    -fx-text-fill: #eeeeee;
+}
+
+.smaller-label
+{
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: #eeeeee;
+}
+
+.text-field
+{
+    -fx-background-color: black;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-text-fill: white;
+    -fx-font: 14px "Helvetica";
+}
+
+.small-vbox {
+    -fx-background-color:#1c1c1c;
+    -fx-background-radius: 20px;
+}
+
+.button {
+    -fx-background-radius: 20px;
+    -fx-background-color: black;
+    -fx-border-color: dodgerblue;
+    -fx-border-radius: 20px;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-font: 14px "Helvetica";
+}
+
+.hyperlink{
+    -fx-font: 13px "Helvetica";
+    -fx-text-fill: dodgerblue;
+}
