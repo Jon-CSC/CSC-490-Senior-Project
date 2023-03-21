@@ -1,5 +1,6 @@
 package com.mycompany.seniorproject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -28,6 +29,20 @@ public class ProfilePageController implements Initializable {
         gameThumbnail2.setImage(profilePic);
         gameThumbnail3.setImage(profilePic);
         gameThumbnail4.setImage(profilePic);
+        updateData();
+    }
+    
+    private void updateData() {
+        UserAccount currentUser = LocalUserAccount.getInstance().getActiveUser();
+        username.setText(currentUser.getUserID());
+        bio.setText(currentUser.getBiography());
+        try {
+            URL avatarURL = new URL(currentUser.getAvatarURL());
+            profilePic = new Image(avatarURL.toString());
+        } catch (IOException ex) {
+            profilePic = new Image(getClass().getResourceAsStream("ExampleProfilePicture.png"));
+        }
+        profilePicture.setImage(profilePic);
     }
     
 }
