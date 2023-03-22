@@ -11,6 +11,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -38,7 +41,7 @@ public class RegisterPageController implements Initializable {
 
     @FXML
     private Label errorLabel;
-
+    
     /**
      * Initializes the controller class.
      */
@@ -101,10 +104,11 @@ public class RegisterPageController implements Initializable {
         DocumentReference docRef = App.fstore.collection("Users").document(username);
         // make a default user account & add the password to their document
         UserAccount newUser = new UserAccount(username);
-        Map<String, Object> pwd = new HashMap<>();
-        pwd.put("Password", password);
         docRef.set(newUser);
-        docRef.set(pwd);
+        try {
+            Thread.sleep(1000); // we can only update the same document once a second
+        } catch (InterruptedException ex) {}
+        docRef.update("Password", password);
     }
 
 }

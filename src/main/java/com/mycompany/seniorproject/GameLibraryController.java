@@ -31,7 +31,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import static javafx.scene.paint.Color.rgb;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.LineTo;

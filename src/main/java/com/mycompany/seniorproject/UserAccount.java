@@ -17,19 +17,28 @@ import java.util.concurrent.ExecutionException;
 @IgnoreExtraProperties
 public class UserAccount {
     
+    // these static strings are all for the firestore-side fields
     public static final String USER_DB_NAME = "Users";
     
     private String userID;
-    public static final String USERID_FIELD = "userID";
+    public static final String USERID = "userID";
     
     private String biography;
-    public static final String BIOGRAPHY_FIELD = "biography";
+    public static final String BIOGRAPHY = "biography";
     
     private String avatarURL;
-    public static final String AVATAR_FIELD = "avatarURL";
+    public static final String AVATAR = "avatarURL";
     
     private HashMap<String, Object> gameData;
-    public static final String GAMEDATA_FIELD = "gameData";
+    public static final String GAMEDATA = "gameData";
+    public static final String SNAKE_TIME = "snake_time_mins";
+    public static final String SNAKE_HISCORE = "snake_hiscore";
+    public static final String BATTLESHIP_TIME = "battleship_time_mins";
+    public static final String BATTLESHIP_WINS = "battleship_wins";
+    public static final String CHECKERS_TIME = "checkers_time_mins";
+    public static final String CHECKERS_WINS = "checkers_wins";
+    public static final String TICTACTOE_TIME = "tictactoe_time_mins";
+    public static final String TICTACTOE_WINS = "tictactoe_wins";
     
     // requisite default constructor for deserializing from Firestore
     public UserAccount() {}
@@ -85,20 +94,20 @@ public class UserAccount {
     
     private void initGameData() {
         // snake
-        gameData.put("snake_time_mins", 0);
-        gameData.put("snake_hiscore", 0);
+        gameData.put(UserAccount.SNAKE_TIME, 0);
+        gameData.put(UserAccount.SNAKE_HISCORE, 0);
         
         // battleship
-        gameData.put("battleship_time_mins", 0);
-        gameData.put("battleship_wins", 0);
+        gameData.put(UserAccount.BATTLESHIP_TIME, 0);
+        gameData.put(UserAccount.BATTLESHIP_WINS, 0);
         
         // checkers
-        gameData.put("checkers_time_mins", 0);
-        gameData.put("checkers_wins", 0);
+        gameData.put(UserAccount.CHECKERS_TIME, 0);
+        gameData.put(UserAccount.CHECKERS_WINS, 0);
         
         // tic tac toe
-        gameData.put("tictactoe_time_mins", 0);
-        gameData.put("tictactoe_wins", 0);
+        gameData.put(UserAccount.TICTACTOE_TIME, 0);
+        gameData.put(UserAccount.TICTACTOE_WINS, 0);
     }
     
     /**

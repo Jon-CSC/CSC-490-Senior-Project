@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="900.0" styleClass="background" stylesheets="@../../../styles/profilepage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.ProfilePageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="900.0" styleClass="background" stylesheets="@../../../styles/profilepage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.ProfilePageController">
    <children>
       <ScrollPane hbarPolicy="NEVER" hmax="0.0" prefHeight="900.0" prefWidth="900.0" styleClass="background" vbarPolicy="NEVER" vmax="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
@@ -24,7 +24,7 @@
                            <children>
                               <ImageView fx:id="profilePicture" fitHeight="136.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../Pictures/Untitled.png" />
+                                    <Image url="@Images/penguin01.jpg" />
                                  </image>
                               </ImageView>
                               <VBox prefHeight="168.0" prefWidth="301.0" spacing="10.0">
@@ -50,12 +50,12 @@
                                        <children>
                                           <ImageView fx:id="gameThumbnail1" fitHeight="57.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../../../../../Pictures/Untitled.png" />
+                                                <Image url="@Images/snake.png" />
                                              </image>
                                           </ImageView>
                                           <VBox prefHeight="13.0" prefWidth="301.0" spacing="10.0">
                                              <children>
-                                                <Label fx:id="bio1" styleClass="smaller-label" text="Game 1" />
+                                                <Label fx:id="bio1" styleClass="smaller-label" text="Snake" />
                                              </children>
                                              <padding>
                                                 <Insets left="5.0" />
@@ -68,19 +68,13 @@
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
                                                 <Label styleClass="smaller-label" text="Play Time" />
-                                                <Label styleClass="smaller-label" text="0" />
+                                                <Label fx:id="snakePlaytime" styleClass="smaller-label" text="0" />
                                              </children>
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
                                                 <Label styleClass="smaller-label" text="High Score" />
-                                                <Label styleClass="smaller-label" text="0" />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="Wins" />
-                                                <Label styleClass="smaller-label" text="0" />
+                                                <Label fx:id="snakeHiscore" styleClass="smaller-label" text="0" />
                                              </children>
                                           </VBox>
                                        </children>
@@ -99,12 +93,12 @@
                                        <children>
                                           <ImageView fx:id="gameThumbnail2" fitHeight="57.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../../../../../Pictures/Untitled.png" />
+                                                <Image url="@Images/battleship.png" />
                                              </image>
                                           </ImageView>
                                           <VBox prefHeight="13.0" prefWidth="301.0" spacing="10.0">
                                              <children>
-                                                <Label fx:id="bio11" styleClass="smaller-label" text="Game 2" />
+                                                <Label fx:id="bio11" styleClass="smaller-label" text="Battleship" />
                                              </children>
                                              <padding>
                                                 <Insets left="5.0" />
@@ -117,21 +111,16 @@
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
                                                 <Label styleClass="smaller-label" text="Play Time" />
-                                                <Label styleClass="smaller-label" text="0" />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="High Score" />
-                                                <Label styleClass="smaller-label" text="0" />
+                                                <Label fx:id="battleshipPlaytime" styleClass="smaller-label" text="0" />
                                              </children>
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
                                                 <Label styleClass="smaller-label" text="Wins" />
-                                                <Label styleClass="smaller-label" text="0" />
+                                                <Label fx:id="battleshipWins" styleClass="smaller-label" text="0" />
                                              </children>
                                           </VBox>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" />
                                        </children>
                                        <padding>
                                           <Insets left="15.0" right="15.0" />
@@ -148,12 +137,12 @@
                                        <children>
                                           <ImageView fx:id="gameThumbnail3" fitHeight="57.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../../../../../Pictures/Untitled.png" />
+                                                <Image url="@Images/checkers.png" />
                                              </image>
                                           </ImageView>
                                           <VBox prefHeight="13.0" prefWidth="301.0" spacing="10.0">
                                              <children>
-                                                <Label fx:id="bio111" styleClass="smaller-label" text="Game 3" />
+                                                <Label fx:id="bio111" styleClass="smaller-label" text="Checkers" />
                                              </children>
                                              <padding>
                                                 <Insets left="5.0" />
@@ -166,21 +155,16 @@
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
                                                 <Label styleClass="smaller-label" text="Play Time" />
-                                                <Label styleClass="smaller-label" text="0" />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="High Score" />
-                                                <Label styleClass="smaller-label" text="0" />
+                                                <Label fx:id="checkersPlaytime" styleClass="smaller-label" text="0" />
                                              </children>
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
                                                 <Label styleClass="smaller-label" text="Wins" />
-                                                <Label styleClass="smaller-label" text="0" />
+                                                <Label fx:id="checkersWins" styleClass="smaller-label" text="0" />
                                              </children>
                                           </VBox>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" />
                                        </children>
                                        <padding>
                                           <Insets left="15.0" right="15.0" />
@@ -197,12 +181,12 @@
                                        <children>
                                           <ImageView fx:id="gameThumbnail4" fitHeight="57.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../../../../../Pictures/Untitled.png" />
+                                                <Image url="@Images/tictactoe.png" />
                                              </image>
                                           </ImageView>
                                           <VBox prefHeight="13.0" prefWidth="301.0" spacing="10.0">
                                              <children>
-                                                <Label fx:id="bio1111" styleClass="smaller-label" text="Game 4" />
+                                                <Label fx:id="bio1111" styleClass="smaller-label" text="Tic-Tac-Toe" />
                                              </children>
                                              <padding>
                                                 <Insets left="5.0" />
@@ -215,21 +199,16 @@
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
                                                 <Label styleClass="smaller-label" text="Play Time" />
-                                                <Label styleClass="smaller-label" text="0" />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="High Score" />
-                                                <Label styleClass="smaller-label" text="0" />
+                                                <Label fx:id="tictactoePlaytime" styleClass="smaller-label" text="0" />
                                              </children>
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
                                                 <Label styleClass="smaller-label" text="Wins" />
-                                                <Label styleClass="smaller-label" text="0" />
+                                                <Label fx:id="tictactoeWins" styleClass="smaller-label" text="0" />
                                              </children>
                                           </VBox>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" />
                                        </children>
                                        <padding>
                                           <Insets left="15.0" right="15.0" />

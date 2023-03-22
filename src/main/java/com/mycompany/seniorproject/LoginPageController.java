@@ -104,10 +104,7 @@ public class LoginPageController implements Initializable {
 
     public boolean verifyPassword(DocumentSnapshot userDoc) {
         //We compare what's in the password field in the user's Firestore document vs. what's typed in the passwordField
-        if (userDoc.getData().get("Password").toString().equals(passwordField.getText())) {
-            return true;
-        }
-        return false;
+        return userDoc.getData().get("Password").toString().equals(passwordField.getText());
     }
     
     private DocumentSnapshot pullUserDocument(String userID) throws InterruptedException, ExecutionException {
