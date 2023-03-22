@@ -119,14 +119,23 @@ public class GameLibraryController implements Initializable {
         loadCardImages();
         App.getStage().setWidth(900);
         App.getStage().setHeight(640);
-        buttonProfile.setText(LocalUserAccount.getInstance().getActiveUser().getUserID());
+        UserAccount currentUser = LocalUserAccount.getInstance().getActiveUser();
+        buttonProfile.setText(currentUser.getUserID());
+        Image profilePic;
+        try {
+            URL avatarURL = new URL(currentUser.getAvatarURL());
+            profilePic = new Image(avatarURL.toString());
+        } catch (IOException ex) {
+            // trusty penguin fallback
+            profilePic = new Image(getClass().getResourceAsStream("Images\\penguin01.jpg"));
+        }
+        profileImgViewer.setImage(profilePic);
         gridPaneCardText.toBack();
         textGameTitle.setVisible(false);
         textGameDesc.setVisible(false);
         ratingCard.setVisible(false);
         buttonPlayGame.setVisible(false);
         buttonCloseExpandedCard.setVisible(false);
-        
         buttonProfile.setOnMouseClicked(e -> {
             try {
                 goToProfilePage();

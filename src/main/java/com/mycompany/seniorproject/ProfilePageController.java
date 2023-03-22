@@ -29,11 +29,19 @@ public class ProfilePageController implements Initializable {
         gameThumbnail2.setImage(profilePic);
         gameThumbnail3.setImage(profilePic);
         gameThumbnail4.setImage(profilePic);
-        updateData();
+        fillInProfileData(LocalUserAccount.getInstance().getActiveUser().getUserID());
     }
     
-    private void updateData() {
-        UserAccount currentUser = LocalUserAccount.getInstance().getActiveUser();
+    private void fillInProfileData(String userID) {
+        UserAccount currentUser;
+        if(LocalUserAccount.getInstance().getActiveUser().getUserID().equals(userID)) {
+            currentUser = LocalUserAccount.getInstance().getActiveUser();
+        } else {
+            currentUser = UserAccount.downloadUser(userID, App.fstore);
+        }
+        if(null == currentUser) {
+            return; // maybe show the user an error here?
+        }
         username.setText(currentUser.getUserID());
         bio.setText(currentUser.getBiography());
         try {

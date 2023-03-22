@@ -96,15 +96,15 @@ public class RegisterPageController implements Initializable {
 
     public void createUserDocument() {
         //Create a new document using the username typed in the usernameField
-        DocumentReference docRef = App.fstore.collection("Users").document(usernameField.getText());
-        Map<String, Object> data = new HashMap<>();
-        //Store the password in the new document to check later when logging in
-        data.put("Password", passwordField.getText());
-        data.put(UserAccount.USERID_FIELD, usernameField.getText());
-        data.put(UserAccount.BIOGRAPHY_FIELD, "Hello, world!");
-        data.put(UserAccount.AVATAR_FIELD, "https://i.imgur.com/n96r5OU.png");
-        data.put(UserAccount.GAMEDATA_FIELD, new HashMap<String, Object>());
-        ApiFuture<WriteResult> result = docRef.set(data);
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        DocumentReference docRef = App.fstore.collection("Users").document(username);
+        // make a default user account & add the password to their document
+        UserAccount newUser = new UserAccount(username);
+        Map<String, Object> pwd = new HashMap<>();
+        pwd.put("Password", password);
+        docRef.set(newUser);
+        docRef.set(pwd);
     }
 
 }

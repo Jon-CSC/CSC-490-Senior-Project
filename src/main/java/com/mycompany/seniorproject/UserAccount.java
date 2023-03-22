@@ -1,8 +1,13 @@
 
 package com.mycompany.seniorproject;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.annotation.IgnoreExtraProperties;
 import java.util.HashMap;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Stores user account data. Designed to work with Firestore.
@@ -28,6 +33,15 @@ public class UserAccount {
     
     // requisite default constructor for deserializing from Firestore
     public UserAccount() {}
+    
+    // make a default user account
+    public UserAccount(String userID) {
+        this.userID = userID;
+        this.biography = "Hello, world!";
+        this.avatarURL = "https://i.imgur.com/n96r5OU.png";
+        this.gameData = new HashMap<>();
+        initGameData();
+    }
 
     // similarly requisite all-fields constructor
     public UserAccount(String userID, String biography, String avatarURL, HashMap<String, Object> gameData) {
@@ -67,5 +81,40 @@ public class UserAccount {
      */
     public HashMap<String, Object> getGameData() {
         return gameData;
+    }
+    
+    private void initGameData() {
+        // snake
+        gameData.put("snake_time_mins", 0);
+        gameData.put("snake_hiscore", 0);
+        
+        // battleship
+        gameData.put("battleship_time_mins", 0);
+        gameData.put("battleship_wins", 0);
+        
+        // checkers
+        gameData.put("checkers_time_mins", 0);
+        gameData.put("checkers_wins", 0);
+        
+        // tic tac toe
+        gameData.put("tictactoe_time_mins", 0);
+        gameData.put("tictactoe_wins", 0);
+    }
+    
+    /**
+     * Download a user account 
+     * @param userID the userID of the data to download
+     * @param fs a valid firestore instance
+     * @return the stored UserAccount, or null if an error occurred
+     */
+    public static UserAccount downloadUser(String userID, Firestore fs) {
+        try {
+            DocumentReference userDocRef = App.fstore.collection("Users").document(userID);
+            ApiFuture<DocumentSnapshot> future = userDocRef.get();
+            DocumentSnapshot userDoc = future.get();
+            return userDoc.toObject(UserAccount.class);
+        } catch (InterruptedException | ExecutionException ex) {
+            return null;
+        }
     }
 }
