@@ -15,14 +15,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -108,10 +104,7 @@ public class LoginPageController implements Initializable {
 
     public boolean verifyPassword(DocumentSnapshot userDoc) {
         //We compare what's in the password field in the user's Firestore document vs. what's typed in the passwordField
-        if (userDoc.getData().get("Password").toString().equals(passwordField.getText())) {
-            return true;
-        }
-        return false;
+        return userDoc.getData().get("Password").toString().equals(passwordField.getText());
     }
     
     private DocumentSnapshot pullUserDocument(String userID) throws InterruptedException, ExecutionException {
