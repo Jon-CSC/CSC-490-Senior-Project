@@ -117,6 +117,9 @@ public class UserAccount {
      * @return the stored UserAccount, or null if an error occurred
      */
     public static UserAccount downloadUser(String userID, Firestore fs) {
+        if(null == userID || null == fs) {
+            return null;
+        }
         try {
             DocumentReference userDocRef = fs.collection(UserAccount.USER_DB_NAME).document(userID);
             ApiFuture<DocumentSnapshot> future = userDocRef.get();

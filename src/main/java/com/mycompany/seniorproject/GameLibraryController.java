@@ -119,7 +119,7 @@ public class GameLibraryController implements Initializable {
         loadCardImages();
         App.getStage().setWidth(900);
         App.getStage().setHeight(640);
-        UserAccount currentUser = LocalUserAccount.getInstance().getActiveUser();
+        UserAccount currentUser = LocalUserAccount.getInstance().getUser();
         buttonProfile.setText(currentUser.getUserID());
         Image profilePic;
         try {
@@ -306,7 +306,7 @@ public class GameLibraryController implements Initializable {
     }
     
     private void goToProfilePage() throws IOException {
-        ProfilePageController.initUserProfile(LocalUserAccount.getInstance().getActiveUser().getUserID());
+        ProfilePageController.configureUserProfile(LocalUserAccount.getInstance().getUser().getUserID());
         App.setRoot("ProfilePage");
     }
     

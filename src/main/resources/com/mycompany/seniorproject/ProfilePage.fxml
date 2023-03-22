@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="900.0" styleClass="background" stylesheets="@../../../styles/profilepage.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.ProfilePageController">
@@ -22,15 +24,34 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="119.0" prefWidth="477.0" spacing="10.0" styleClass="brighter-foreground">
                            <children>
-                              <ImageView fx:id="profilePicture" fitHeight="136.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/penguin01.jpg" />
-                                 </image>
-                              </ImageView>
+                              <StackPane prefHeight="137.0" prefWidth="135.0">
+                                 <children>
+                                    <ImageView fx:id="profilePicture" fitHeight="136.0" fitWidth="136.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Images/penguin01.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Hyperlink fx:id="avatarEditLink" text="🖉" visible="false" StackPane.alignment="BOTTOM_RIGHT">
+                                       <StackPane.margin>
+                                          <Insets />
+                                       </StackPane.margin>
+                                    </Hyperlink>
+                                 </children>
+                              </StackPane>
                               <VBox prefHeight="168.0" prefWidth="301.0" spacing="10.0">
                                  <children>
-                                    <Label fx:id="username" styleClass="username-label" text="Username" />
-                                    <Label fx:id="bio" styleClass="smaller-label" text="This is a sample bio." />
+                                    <HBox prefHeight="34.0" prefWidth="302.0">
+                                       <children>
+                                          <Label fx:id="username" styleClass="username-label" text="Username" />
+                                          <Hyperlink fx:id="usernameEditLink" text="🖉" underline="true" visible="false" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label fx:id="bio" styleClass="smaller-label" text="This is a sample bio." />
+                                          <Hyperlink fx:id="bioEditLink" text="🖉" underline="true" visible="false" />
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>

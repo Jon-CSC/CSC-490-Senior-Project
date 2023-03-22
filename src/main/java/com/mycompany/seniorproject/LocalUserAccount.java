@@ -76,7 +76,7 @@ public final class LocalUserAccount {
      * Grabs a reference to the active user account.
      * @return a reference to the activeUserAccount, or null. Check with isLoggedIn() first if you don't want nulls!
      */
-    public UserAccount getActiveUser() {
+    public UserAccount getUser() {
         return activeUser;
     }
     
