@@ -16,6 +16,8 @@ import javafx.scene.image.ImageView;
  */
 public class ProfilePageController implements Initializable {
     
+    static String userID;
+    
     @FXML
     private ImageView profilePicture;
 
@@ -27,10 +29,15 @@ public class ProfilePageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // in future, it'd be a good idea to check OS and dynamically update game images instead
         // for now, i just set them in the FXML
-        fillInProfileData(LocalUserAccount.getInstance().getActiveUser().getUserID());
+        fillInProfileData();
     }
     
-    private void fillInProfileData(String userID) {
+    // pass the controller the user whose profile you want to see
+    static void initUserProfile(String userID) {
+        ProfilePageController.userID = userID;
+    }
+    
+    private void fillInProfileData() {
         // find the right account
         UserAccount profileUser = UserAccount.downloadUser(userID, App.fstore);
         if(null == profileUser) {

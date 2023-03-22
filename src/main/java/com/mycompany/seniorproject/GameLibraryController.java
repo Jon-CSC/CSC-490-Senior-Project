@@ -17,6 +17,7 @@ import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
@@ -305,6 +306,7 @@ public class GameLibraryController implements Initializable {
     }
     
     private void goToProfilePage() throws IOException {
+        ProfilePageController.initUserProfile(LocalUserAccount.getInstance().getActiveUser().getUserID());
         App.setRoot("ProfilePage");
     }
     
