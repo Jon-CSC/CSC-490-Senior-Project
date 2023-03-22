@@ -1,8 +1,6 @@
 package com.mycompany.seniorproject;
 
-import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
@@ -11,9 +9,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -101,7 +96,7 @@ public class RegisterPageController implements Initializable {
         //Create a new document using the username typed in the usernameField
         String username = usernameField.getText();
         String password = passwordField.getText();
-        DocumentReference docRef = App.fstore.collection("Users").document(username);
+        DocumentReference docRef = App.fstore.collection(UserAccount.USER_DB_NAME).document(username);
         // make a default user account & add the password to their document
         UserAccount newUser = new UserAccount(username);
         docRef.set(newUser);

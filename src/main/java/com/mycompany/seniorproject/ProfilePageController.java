@@ -36,6 +36,7 @@ public class ProfilePageController implements Initializable {
         if(null == profileUser) {
             return; // maybe show the user an error here?
         }
+        
         // fill in their personal info
         username.setText(profileUser.getUserID());
         bio.setText(profileUser.getBiography());
@@ -47,6 +48,7 @@ public class ProfilePageController implements Initializable {
             profilePic = new Image(getClass().getResourceAsStream("Images\\penguin01.jpg"));
         }
         profilePicture.setImage(profilePic);
+        
         // fill in their stats
         HashMap<String, Object> gameData = profileUser.getGameData();
         snakePlaytime.setText(gameData.getOrDefault(UserAccount.SNAKE_TIME, 0).toString());
@@ -57,6 +59,8 @@ public class ProfilePageController implements Initializable {
         checkersWins.setText(gameData.getOrDefault(UserAccount.CHECKERS_WINS, 0).toString());
         tictactoePlaytime.setText(gameData.getOrDefault(UserAccount.TICTACTOE_TIME, 0).toString());
         tictactoeWins.setText(gameData.getOrDefault(UserAccount.TICTACTOE_WINS, 0).toString());
+        
+       // 
     }
     
 }

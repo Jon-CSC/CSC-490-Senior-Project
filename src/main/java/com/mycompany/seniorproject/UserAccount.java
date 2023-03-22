@@ -118,7 +118,7 @@ public class UserAccount {
      */
     public static UserAccount downloadUser(String userID, Firestore fs) {
         try {
-            DocumentReference userDocRef = App.fstore.collection("Users").document(userID);
+            DocumentReference userDocRef = App.fstore.collection(UserAccount.USER_DB_NAME).document(userID);
             ApiFuture<DocumentSnapshot> future = userDocRef.get();
             DocumentSnapshot userDoc = future.get();
             return userDoc.toObject(UserAccount.class);
