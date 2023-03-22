@@ -7,37 +7,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.RegisterPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" styleClass="background" stylesheets="@../../../styles/loginpage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.RegisterPageController">
    <children>
-      <HBox alignment="CENTER_LEFT" layoutX="215.0" layoutY="230.0" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../styles/loginpage_1.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="500.0" prefWidth="500.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="480.0" prefWidth="220.0" spacing="20.0" style="-fx-background-radius: 0;" styleClass="small-vbox">
+            <Label focusTraversable="false" styleClass="label-title" text="Register" textFill="#327bdb" />
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="275.0" prefWidth="210.0" spacing="20.0" styleClass="small-vbox">
                <children>
-                  <Label focusTraversable="false" styleClass="title-label" stylesheets="@../../../styles/loginpage.css" text="Already have an account?" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="165.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: dodgerblue; -fx-stroke-width: 2; -fx-arc-height: 15; -fx-arc-width: 15;" width="165.0" />
-                  <Button mnemonicParsing="false" onAction="#goToLoginPage" prefHeight="35.0" text="Log In" />
+                  <TextField fx:id="usernameField" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
+                  <TextField fx:id="usernameField1" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Email Address" styleClass="text-field" />
+                  <PasswordField fx:id="passwordField" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="text-field" />
+                  <PasswordField fx:id="passwordField1" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Confirm Pasword" styleClass="text-field" />
+                  <Button focusTraversable="false" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="180.0" text="Register" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="480.0" prefWidth="420.0" spacing="15.0">
+            <HBox prefHeight="3.0" prefWidth="200.0">
                <children>
-                  <Circle radius="25.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: dodgerblue; -fx-stroke-width: 2;" />
-                  <Label focusTraversable="false" styleClass="title-label" stylesheets="@../../../styles/loginpage.css" text="Register" textFill="#327bdb" />
-                  <VBox alignment="CENTER" fillWidth="false" prefHeight="270.0" prefWidth="210.0" spacing="20.0" styleClass="small-vbox">
-                     <children>
-                        <TextField fx:id="usernameField" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
-                        <TextField fx:id="emailField" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Email" styleClass="text-field" />
-                        <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="text-field" />
-                        <PasswordField fx:id="passwordField2" prefHeight="30.0" prefWidth="180.0" promptText="Re-type Password" />
-                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#register" prefHeight="35.0" prefWidth="180.0" text="Register" />
-                     </children>
-                  </VBox>
-                  <Label fx:id="errorLabel" text="Error Messages Appear Down Here" textFill="#ff4242" wrapText="true" />
+                  <Label text="Already have an account?" />
+                  <Label onMouseClicked="#goToLoginPage" styleClass="label-link" text=" Log in" />
                </children>
-            </VBox>
+            </HBox>
+            <Label fx:id="errorLabel" styleClass="label-error" text="Error Messages Appear Down Here" textFill="#ff4242" wrapText="true" />
          </children>
-      </HBox>
+      </VBox>
    </children>
 </AnchorPane>

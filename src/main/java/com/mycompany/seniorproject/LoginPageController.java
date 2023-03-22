@@ -48,8 +48,9 @@ public class LoginPageController implements Initializable {
         } else {
             errorLabel.setVisible(false);
         }
-        App.getStage().setWidth(640);
-        App.getStage().setHeight(480);
+        App.getStage().setWidth(500);
+        App.getStage().setHeight(500);
+        errorLabel.requestFocus();
     }
 
     @FXML
