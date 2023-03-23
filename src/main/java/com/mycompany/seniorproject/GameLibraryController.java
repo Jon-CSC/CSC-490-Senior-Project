@@ -387,8 +387,8 @@ public class GameLibraryController implements Initializable {
         
         SequentialTransition moveCardTransition = new SequentialTransition();
         
-        double xPosFinal = (App.getStage().getScene().getWidth() / 2.0) - cardPosX + 45;
-        double yPosFinal = (App.getStage().getScene().getHeight() / 2.0) - cardPosY + 65;
+        double xPosFinal = (App.getStage().getScene().getWidth() / 2.0) - cardPosX + 55;
+        double yPosFinal = (App.getStage().getScene().getHeight() / 2.0) - cardPosY + 75;
         
         Path path01 = new Path();
         path01.getElements().add(new MoveToAbs(card));
