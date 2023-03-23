@@ -16,9 +16,9 @@
             <VBox alignment="CENTER" fillWidth="false" focusTraversable="true" prefHeight="275.0" prefWidth="210.0" spacing="20.0" styleClass="small-vbox">
                <children>
                   <TextField fx:id="usernameField" prefHeight="30.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
-                  <TextField fx:id="usernameField1" prefHeight="30.0" prefWidth="180.0" promptText="Email Address" styleClass="text-field" />
+                  <TextField fx:id="emailField" prefHeight="30.0" prefWidth="180.0" promptText="Email Address" styleClass="text-field" />
                   <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="text-field" />
-                  <PasswordField fx:id="passwordField1" prefHeight="30.0" prefWidth="180.0" promptText="Confirm Pasword" styleClass="text-field" />
+                  <PasswordField fx:id="passwordField2" prefHeight="30.0" prefWidth="180.0" promptText="Confirm Pasword" styleClass="text-field" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="180.0" text="Register" />
                </children>
             </VBox>

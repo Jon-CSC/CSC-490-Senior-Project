@@ -26,16 +26,10 @@ import javafx.scene.input.KeyEvent;
 public class RegisterPageController implements Initializable {
 
     @FXML
-    private TextField usernameField;
-    
-    @FXML
-    private TextField emailField;
+    private TextField usernameField, emailField;
 
     @FXML
-    private PasswordField passwordField;
-    
-    @FXML
-    private PasswordField passwordField2;
+    private PasswordField passwordField, passwordField2;
 
     @FXML
     private Label errorLabel;
@@ -99,8 +93,11 @@ public class RegisterPageController implements Initializable {
             if (usernameField.getText().equals("") || passwordField.getText().equals("") || passwordField2.getText().equals("") || emailField.getText().equals("")) {
                 errorLabel.setText("All fields must be filled out");
                 errorLabel.setVisible(true);
-            } else {
+            } else if (passwordField.getText().length() < 6) {
                 errorLabel.setText("Password must be at least 6 characters long");
+                errorLabel.setVisible(true);
+            } else {
+                errorLabel.setText("Email format must be name@example.com");
                 errorLabel.setVisible(true);
             }
         }
