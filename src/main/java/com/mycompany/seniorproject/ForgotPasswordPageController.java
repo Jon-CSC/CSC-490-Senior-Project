@@ -51,7 +51,8 @@ public class ForgotPasswordPageController implements Initializable {
     @FXML
     void onEnter(KeyEvent event) throws IOException, ExecutionException, InterruptedException {
         if (event.getCode().toString().equalsIgnoreCase("ENTER")) {
-            // THE METHOD TO SEND THE EMAIL SHOULD GO HERE (IT WILL SEND WHEN YOU PRESS ENTER)
+            System.out.println("enter key pressed");
+            // THE CODE OR METHOD TO SEND THE EMAIL SHOULD GO HERE (IT WILL SEND WHEN YOU PRESS ENTER)
         }
     }
 
