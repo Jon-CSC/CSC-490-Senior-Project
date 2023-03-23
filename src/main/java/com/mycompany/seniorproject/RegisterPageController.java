@@ -1,8 +1,6 @@
 package com.mycompany.seniorproject;
 
-import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
@@ -38,7 +36,7 @@ public class RegisterPageController implements Initializable {
 
     @FXML
     private Label errorLabel;
-
+    
     /**
      * Initializes the controller class.
      */
@@ -96,15 +94,16 @@ public class RegisterPageController implements Initializable {
 
     public void createUserDocument() {
         //Create a new document using the username typed in the usernameField
-        DocumentReference docRef = App.fstore.collection("Users").document(usernameField.getText());
-        Map<String, Object> data = new HashMap<>();
-        //Store the password in the new document to check later when logging in
-        data.put("Password", passwordField.getText());
-        data.put(UserAccount.USERID_FIELD, usernameField.getText());
-        data.put(UserAccount.BIOGRAPHY_FIELD, "Hello, world!");
-        data.put(UserAccount.AVATAR_FIELD, "https://i.imgur.com/n96r5OU.png");
-        data.put(UserAccount.GAMEDATA_FIELD, new HashMap<String, Object>());
-        ApiFuture<WriteResult> result = docRef.set(data);
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        DocumentReference docRef = App.fstore.collection(UserAccount.USER_DB_NAME).document(username);
+        // make a default user account & add the password to their document
+        UserAccount newUser = new UserAccount(username);
+        docRef.set(newUser);
+        try {
+            Thread.sleep(1000); // we can only update the same document once a second
+        } catch (InterruptedException ex) {}
+        docRef.update("Password", password);
     }
 
 }
