@@ -9,11 +9,14 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
@@ -43,6 +46,17 @@ public class RegisterPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         errorLabel.setVisible(false);
+        App.getStage().setWidth(500);
+        App.getStage().setHeight(500);
+        App.getStage().setMinWidth(500);
+        App.getStage().setMinHeight(500);
+    }
+
+    @FXML
+    void onEnter(KeyEvent event) throws IOException, ExecutionException, InterruptedException {
+        if (event.getCode().toString().equalsIgnoreCase("ENTER")) {
+            register();
+        }
     }
 
     @FXML
@@ -79,10 +93,10 @@ public class RegisterPageController implements Initializable {
             //If registration is successful return to the log in page
             App.setRoot("LoginPage");
         } catch (FirebaseAuthException ex) {
-            errorLabel.setText("Username is already in use");
+            errorLabel.setText("Username/Email is already in use");
             errorLabel.setVisible(true);
         } catch (IllegalArgumentException iae) {
-            if (usernameField.getText().equals("") || passwordField.getText().equals("") || emailField.getText().equals("")) {
+            if (usernameField.getText().equals("") || passwordField.getText().equals("") || passwordField2.getText().equals("") || emailField.getText().equals("")) {
                 errorLabel.setText("All fields must be filled out");
                 errorLabel.setVisible(true);
             } else {

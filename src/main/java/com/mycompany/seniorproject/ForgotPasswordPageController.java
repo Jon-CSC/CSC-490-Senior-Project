@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
@@ -41,6 +42,17 @@ public class ForgotPasswordPageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         errorLabel.setVisible(false);
+        App.getStage().setWidth(500);
+        App.getStage().setHeight(500);
+        App.getStage().setMinWidth(500);
+        App.getStage().setMinHeight(500);
+    }
+
+    @FXML
+    void onEnter(KeyEvent event) throws IOException, ExecutionException, InterruptedException {
+        if (event.getCode().toString().equalsIgnoreCase("ENTER")) {
+            // THE METHOD TO SEND THE EMAIL SHOULD GO HERE (IT WILL SEND WHEN YOU PRESS ENTER)
+        }
     }
 
     @FXML

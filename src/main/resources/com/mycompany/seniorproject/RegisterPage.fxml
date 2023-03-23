@@ -10,25 +10,25 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" styleClass="background" stylesheets="@../../../styles/loginpage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.RegisterPageController">
    <children>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="500.0" prefWidth="500.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" fillWidth="false" onKeyPressed="#onEnter" prefHeight="500.0" prefWidth="500.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label focusTraversable="false" styleClass="label-title" text="Register" textFill="#327bdb" />
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="275.0" prefWidth="210.0" spacing="20.0" styleClass="small-vbox">
+            <VBox alignment="CENTER" fillWidth="false" focusTraversable="true" prefHeight="275.0" prefWidth="210.0" spacing="20.0" styleClass="small-vbox">
                <children>
-                  <TextField fx:id="usernameField" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
-                  <TextField fx:id="usernameField1" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Email Address" styleClass="text-field" />
-                  <PasswordField fx:id="passwordField" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="text-field" />
-                  <PasswordField fx:id="passwordField1" focusTraversable="false" prefHeight="30.0" prefWidth="180.0" promptText="Confirm Pasword" styleClass="text-field" />
+                  <TextField fx:id="usernameField" prefHeight="30.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
+                  <TextField fx:id="usernameField1" prefHeight="30.0" prefWidth="180.0" promptText="Email Address" styleClass="text-field" />
+                  <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="text-field" />
+                  <PasswordField fx:id="passwordField1" prefHeight="30.0" prefWidth="180.0" promptText="Confirm Pasword" styleClass="text-field" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="180.0" text="Register" />
                </children>
             </VBox>
             <HBox prefHeight="3.0" prefWidth="200.0">
                <children>
-                  <Label text="Already have an account?" />
+                  <Label focusTraversable="false" text="Already have an account?" />
                   <Label onMouseClicked="#goToLoginPage" styleClass="label-link" text=" Log in" />
                </children>
             </HBox>
-            <Label fx:id="errorLabel" styleClass="label-error" text="Error Messages Appear Down Here" textFill="#ff4242" wrapText="true" />
+            <Label fx:id="errorLabel" focusTraversable="false" styleClass="label-error" text="Error Messages Appear Down Here" textFill="#ff4242" wrapText="true" />
          </children>
       </VBox>
    </children>
