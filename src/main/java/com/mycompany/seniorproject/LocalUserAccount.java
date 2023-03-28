@@ -76,7 +76,7 @@ public final class LocalUserAccount {
      * Grabs a reference to the active user account.
      * @return a reference to the activeUserAccount, or null. Check with isLoggedIn() first if you don't want nulls!
      */
-    public UserAccount getActiveUser() {
+    public UserAccount getUser() {
         return activeUser;
     }
     
@@ -91,7 +91,7 @@ public final class LocalUserAccount {
         }
         // update the remote data
         DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
-        ApiFuture<WriteResult> future = userDoc.update(UserAccount.BIOGRAPHY_FIELD, newBio);
+        ApiFuture<WriteResult> future = userDoc.update(UserAccount.BIOGRAPHY, newBio);
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {
@@ -114,7 +114,7 @@ public final class LocalUserAccount {
         }
         // update the remote data
         DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
-        ApiFuture<WriteResult> future = userDoc.update(UserAccount.AVATAR_FIELD, newAvatarURL);
+        ApiFuture<WriteResult> future = userDoc.update(UserAccount.AVATAR, newAvatarURL);
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {
@@ -138,7 +138,7 @@ public final class LocalUserAccount {
         }
         // update the remote data
         DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
-        ApiFuture<WriteResult> future = userDoc.update(UserAccount.GAMEDATA_FIELD + "." + dataFieldName, data);
+        ApiFuture<WriteResult> future = userDoc.update(UserAccount.GAMEDATA + "." + dataFieldName, data);
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {

@@ -1,39 +1,55 @@
+.background
+{
+    -fx-background-color: #161616;
+}
+
+.small-vbox
+{
+    -fx-background-color: #202020;
+    -fx-background-radius: 20px;
+}
+
+.button
+{
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-background-color: #0866CC;
+    -fx-border-color: #0866CC;
+    -fx-border-radius: 20px;
+    -fx-cursor: hand;
+}
+
 .label
 {
     -fx-font: 14px "Helvetica";
+    -fx-text-fill: white;
 }
 
-.title-label
+.label-error
+{
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: #ff4242;
+}
+
+.label-link
+{
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: #0866CC;
+    -fx-cursor: hand;
+}
+
+.label-title
 {
     -fx-font: 24px "Helvetica";
-    -fx-text-fill: dodgerblue;
+    -fx-text-fill: white;
 }
 
 .text-field
 {
-    -fx-background-color: black;
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: white;
+    -fx-background-color: #161616;
     -fx-background-radius: 20px;
     -fx-border-radius: 20px;
-    -fx-text-fill: white;
-    -fx-font: 14px "Helvetica";
-}
-
-.small-vbox {
-    -fx-background-color:#1c1c1c;
-    -fx-background-radius: 20px;
-}
-
-.button {
-    -fx-background-radius: 20px;
-    -fx-background-color: black;
-    -fx-border-color: dodgerblue;
-    -fx-border-radius: 20px;
-    -fx-text-fill: white;
-    -fx-cursor: hand;
-    -fx-font: 14px "Helvetica";
-}
-
-.hyperlink{
-    -fx-font: 13px "Helvetica";
-    -fx-text-fill: dodgerblue;
 }
