@@ -48,61 +48,11 @@ public class ForgotPasswordPageController implements Initializable {
         // Retrieves Loader for Login page.
         App.setRoot("LoginPage");
     } // End goToLoginPage.
-
+    
     @FXML
-    public void updatePassword() {
-//        errorLabel.setVisible(false);
-//        try {
-//            // Retrieves instance of the uid that was entered.
-//            UserRecord user = FirebaseAuth.getInstance().getUser(usernameField.getText());
-//
-//            // Console print to show that user search was successful.
-//            if (user != null) {
-//                System.out.println("The following user was found: ");
-//                System.out.println(user);
-//            }
-//
-//            // If user field is populated, checks if other fields are empty.
-//            if (newPasswordField.getText().trim().equals("") || confirmPasswordField.getText().trim().equals("")) {
-//                errorLabel.setText("All fields must be filled out.");
-//                errorLabel.setVisible(true);
-//                return;
-//            }
-//
-//            // Check if both the newPasswordField and confirmPasswordField contents match.
-//            if (newPasswordField.getText().toString().trim().equals(confirmPasswordField.getText().toString().trim())) {
-//                System.out.println("Passwords Match!");
-//
-//                UserRecord.UpdateRequest request = new UserRecord.UpdateRequest(usernameField.getText()).setPassword(newPasswordField.getText());
-//                user = FirebaseAuth.getInstance().updateUser(request);
-//
-//                clearFields();
-//                errorLabel.setVisible(true);
-//                errorLabel.setText("Password Changed.");
-//
-//            } else {
-//                System.out.println("Passwords dont match!");
-//                errorLabel.setText("Passwords don't match, please enter correctly.");
-//                errorLabel.setVisible(true);
-//            }
-//
-//        } catch (FirebaseAuthException ex) {
-//            // User doesn't exist in firebase.
-//            clearFields();
-//            errorLabel.setText("The user entered does not exist.");
-//            errorLabel.setVisible(true);
-//
-//        } catch (IllegalArgumentException iae) {
-//            // User field was empty.
-//            clearFields();
-//            errorLabel.setText("All fields must be filled out.");
-//            errorLabel.setVisible(true);
-//        }
-    }
-
-    @FXML
-    public void sendPasswordResetEmail() {
-        clearFields();
+    public void sendPasswordRestEmail()
+    {
+        
     }
 
     private void clearFields() {
