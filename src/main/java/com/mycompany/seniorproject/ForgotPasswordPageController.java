@@ -48,11 +48,23 @@ public class ForgotPasswordPageController implements Initializable {
         // Retrieves Loader for Login page.
         App.setRoot("LoginPage");
     } // End goToLoginPage.
-    
+
     @FXML
-    public void sendPasswordRestEmail()
-    {
-        
+    public void sendPasswordRestEmail() {
+        try {
+            UserRecord userRecord = FirebaseAuth.getInstance().getUserByEmail(emailField.getText());
+            
+
+        } catch (IllegalArgumentException iae) {
+            errorLabel.setVisible(true);
+            errorLabel.setText("Fields cannot be empty");
+            return;
+        } catch (FirebaseAuthException ex) {
+            errorLabel.setVisible(true);
+            errorLabel.setText("Email doesn't exist within system");
+            clearFields();
+        }
+
     }
 
     private void clearFields() {
