@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -28,11 +29,15 @@ import javafx.scene.control.TextField;
  */
 public class ForgotPasswordPageController implements Initializable {
 
+    // JavaFX items.
     @FXML
     private TextField emailField;
 
     @FXML
     private Label errorLabel;
+
+    @FXML
+    private Label successLabel;
 
     /**
      * Initializes the controller class.
@@ -40,20 +45,30 @@ public class ForgotPasswordPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        errorLabel.setVisible(false);
+        setLabelsNotVisible();
     }
 
+    /**
+     * Set page to LoginPage.
+     * @throws IOException 
+     */
     @FXML
     public void goToLoginPage() throws IOException {
         // Retrieves Loader for Login page.
         App.setRoot("LoginPage");
     } // End goToLoginPage.
 
+    /**
+     * Method that will send an 'email' to admin in order to reset the user's password.
+     * @throws IOException - if field is empty.
+     */
     @FXML
-    public void sendPasswordRestEmail() {
+    public void sendPasswordRestEmail() throws IOException{
+        setLabelsNotVisible();
         try {
             UserRecord userRecord = FirebaseAuth.getInstance().getUserByEmail(emailField.getText());
-            
+            successLabel.setVisible(true);
+            clearFields();
 
         } catch (IllegalArgumentException iae) {
             errorLabel.setVisible(true);
@@ -67,8 +82,19 @@ public class ForgotPasswordPageController implements Initializable {
 
     }
 
+    /**
+     * Clear all the text fields.
+     */
     private void clearFields() {
         emailField.clear();
+    }
+
+    /**
+     * Turns all the fields to not visible.
+     */
+    private void setLabelsNotVisible() {
+        errorLabel.setVisible(false);
+        successLabel.setVisible(false);
     }
 
 }
