@@ -149,7 +149,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                     }
                     System.out.println("Loading controller");
                     TicTacToeGameController controller = loader.getController();
-                    controller.initConnection(connection);
+ //                   controller.initConnection(connection,true);
                     System.out.println("Showing stage");
                     stage.show();
                 });
@@ -216,7 +216,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                     }
                     System.out.println("Loading controller");
                     TicTacToeGameController controller = loader.getController();
-                    controller.initConnection(connection);
+  //                  controller.initConnection(connection,false);
                     System.out.println("Showing stage");
                     stage.show();
                 });
@@ -235,11 +235,11 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
      * @return true if valid IP, false if not
      */
     public boolean isValidIPAddress(String ip) {
-        String ipNumRegex
-                = "(([2][5][0-5]|[2][0-4][0-9]|[1][0-9]{0,2}|[1-9]{0,2}|[0])\\."
-                + "([2][5][0-5]|[2][0-4][0-9]|[1][0-9]{0,2}|[1-9]{0,2}|[0])\\."
-                + "([2][5][0-5]|[2][0-4][0-9]|[1][0-9]{0,2}|[1-9]{0,2}|[0])\\."
-                + "([2][5][0-5]|[2][0-4][0-9]|[1][0-9]{0,2}|[1-9][0]{1,2}|[0]))";
+        String ipNumRegex = 
+         "^(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1}\\.{1})"
+        + "(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1}\\.{1})"
+        + "(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1}\\.{1})"
+        + "(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1})$";
 
         Pattern p = Pattern.compile(ipNumRegex);
         if (ip == null) {

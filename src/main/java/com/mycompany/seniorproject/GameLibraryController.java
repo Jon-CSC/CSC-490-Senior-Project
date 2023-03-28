@@ -17,6 +17,7 @@ import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
@@ -31,7 +32,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import static javafx.scene.paint.Color.rgb;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.LineTo;
@@ -119,14 +119,23 @@ public class GameLibraryController implements Initializable {
         loadCardImages();
         App.getStage().setWidth(900);
         App.getStage().setHeight(640);
-        buttonProfile.setText(LocalUserAccount.getInstance().getActiveUser().getUserID());
+        UserAccount currentUser = LocalUserAccount.getInstance().getUser();
+        buttonProfile.setText(currentUser.getUserID());
+        Image profilePic;
+        try {
+            URL avatarURL = new URL(currentUser.getAvatarURL());
+            profilePic = new Image(avatarURL.toString());
+        } catch (IOException ex) {
+            // trusty penguin fallback
+            profilePic = new Image(getClass().getResourceAsStream("Images\\penguin01.jpg"));
+        }
+        profileImgViewer.setImage(profilePic);
         gridPaneCardText.toBack();
         textGameTitle.setVisible(false);
         textGameDesc.setVisible(false);
         ratingCard.setVisible(false);
         buttonPlayGame.setVisible(false);
         buttonCloseExpandedCard.setVisible(false);
-        
         buttonProfile.setOnMouseClicked(e -> {
             try {
                 goToProfilePage();
@@ -297,6 +306,7 @@ public class GameLibraryController implements Initializable {
     }
     
     private void goToProfilePage() throws IOException {
+        ProfilePageController.configureUserProfile(LocalUserAccount.getInstance().getUser().getUserID());
         App.setRoot("ProfilePage");
     }
     
