@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -29,11 +30,15 @@ import javafx.scene.input.KeyEvent;
  */
 public class ForgotPasswordPageController implements Initializable {
 
+    // JavaFX items.
     @FXML
     private TextField emailField;
 
     @FXML
     private Label errorLabel;
+
+    @FXML
+    private Label successLabel;
 
     /**
      * Initializes the controller class.
@@ -41,7 +46,7 @@ public class ForgotPasswordPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        errorLabel.setVisible(false);
+        setLabelsNotVisible();
         App.getStage().setWidth(500);
         App.getStage().setHeight(500);
         App.getStage().setMinWidth(500);
@@ -52,74 +57,58 @@ public class ForgotPasswordPageController implements Initializable {
     void onEnter(KeyEvent event) throws IOException, ExecutionException, InterruptedException {
         if (event.getCode().toString().equalsIgnoreCase("ENTER")) {
             System.out.println("enter key pressed");
-            // THE CODE OR METHOD TO SEND THE EMAIL SHOULD GO HERE (IT WILL SEND WHEN YOU PRESS ENTER)
+            // THE CODE OR METHOD TO SEND THE EMAIL SHOULD GO HERE (IT WILL SEND WHEN YOU PRESS ENTER
+            sendPasswordRestEmail();
         }
     }
 
+    /**
+     * Set page to LoginPage.
+     * @throws IOException 
+     */
     @FXML
     public void goToLoginPage() throws IOException {
         // Retrieves Loader for Login page.
         App.setRoot("LoginPage");
     } // End goToLoginPage.
 
+    /**
+     * Method that will send an 'email' to admin in order to reset the user's password.
+     * @throws IOException - if field is empty.
+     */
     @FXML
-    public void updatePassword() {
-//        errorLabel.setVisible(false);
-//        try {
-//            // Retrieves instance of the uid that was entered.
-//            UserRecord user = FirebaseAuth.getInstance().getUser(usernameField.getText());
-//
-//            // Console print to show that user search was successful.
-//            if (user != null) {
-//                System.out.println("The following user was found: ");
-//                System.out.println(user);
-//            }
-//
-//            // If user field is populated, checks if other fields are empty.
-//            if (newPasswordField.getText().trim().equals("") || confirmPasswordField.getText().trim().equals("")) {
-//                errorLabel.setText("All fields must be filled out.");
-//                errorLabel.setVisible(true);
-//                return;
-//            }
-//
-//            // Check if both the newPasswordField and confirmPasswordField contents match.
-//            if (newPasswordField.getText().toString().trim().equals(confirmPasswordField.getText().toString().trim())) {
-//                System.out.println("Passwords Match!");
-//
-//                UserRecord.UpdateRequest request = new UserRecord.UpdateRequest(usernameField.getText()).setPassword(newPasswordField.getText());
-//                user = FirebaseAuth.getInstance().updateUser(request);
-//
-//                clearFields();
-//                errorLabel.setVisible(true);
-//                errorLabel.setText("Password Changed.");
-//
-//            } else {
-//                System.out.println("Passwords dont match!");
-//                errorLabel.setText("Passwords don't match, please enter correctly.");
-//                errorLabel.setVisible(true);
-//            }
-//
-//        } catch (FirebaseAuthException ex) {
-//            // User doesn't exist in firebase.
-//            clearFields();
-//            errorLabel.setText("The user entered does not exist.");
-//            errorLabel.setVisible(true);
-//
-//        } catch (IllegalArgumentException iae) {
-//            // User field was empty.
-//            clearFields();
-//            errorLabel.setText("All fields must be filled out.");
-//            errorLabel.setVisible(true);
-//        }
+    public void sendPasswordRestEmail() throws IOException{
+        setLabelsNotVisible();
+        try {
+            UserRecord userRecord = FirebaseAuth.getInstance().getUserByEmail(emailField.getText());
+            successLabel.setVisible(true);
+            clearFields();
+
+        } catch (IllegalArgumentException iae) {
+            errorLabel.setVisible(true);
+            errorLabel.setText("Fields cannot be empty");
+            return;
+        } catch (FirebaseAuthException ex) {
+            errorLabel.setVisible(true);
+            errorLabel.setText("Email doesn't exist within system");
+            clearFields();
+        }
+
     }
 
-    @FXML
-    public void sendPasswordResetEmail() {
-        clearFields();
-    }
-
+    /**
+     * Clear all the text fields.
+     */
     private void clearFields() {
         emailField.clear();
+    }
+
+    /**
+     * Turns all the fields to not visible.
+     */
+    private void setLabelsNotVisible() {
+        errorLabel.setVisible(false);
+        successLabel.setVisible(false);
     }
 
 }

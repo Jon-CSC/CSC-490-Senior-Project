@@ -22,10 +22,10 @@
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="180.0" text="Register" />
                </children>
             </VBox>
-            <HBox prefHeight="3.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="16.0" prefWidth="541.0">
                <children>
-                  <Label focusTraversable="false" text="Already have an account?" />
-                  <Label onMouseClicked="#goToLoginPage" styleClass="label-link" text=" Log in" />
+                  <Label focusTraversable="false" prefHeight="16.0" prefWidth="162.0" text="Already have an account?" />
+                  <Label onMouseClicked="#goToLoginPage" prefHeight="16.0" prefWidth="43.0" styleClass="label-link" text=" Log in" />
                </children>
             </HBox>
             <Label fx:id="errorLabel" focusTraversable="false" styleClass="label-error" text="Error Messages Appear Down Here" textFill="#ff4242" wrapText="true" />
