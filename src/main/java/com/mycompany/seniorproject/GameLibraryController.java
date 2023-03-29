@@ -325,12 +325,12 @@ public class GameLibraryController implements Initializable {
         // Loads images from \Image\ directory in the default package for use as thumbnails
         // Spits out error if it cannot find them
         try {
-            gc01 = new Image(getClass().getResourceAsStream("\\Images\\snake.png"));
-            gc02 = new Image(getClass().getResourceAsStream("\\Images\\battleship.png"));
-            gc03 = new Image(getClass().getResourceAsStream("\\Images\\checkers.png"));
-            gc04 = new Image(getClass().getResourceAsStream("\\Images\\chess.png"));
-            gc05 = new Image(getClass().getResourceAsStream("\\Images\\tictactoe.png"));
-            gc06 = new Image(getClass().getResourceAsStream("\\Images\\comingsoon.png"));
+            gc01 = new Image(getClass().getResourceAsStream("Images/snake.png"));
+            gc02 = new Image(getClass().getResourceAsStream("Images/battleship.png"));
+            gc03 = new Image(getClass().getResourceAsStream("Images/checkers.png"));
+            gc04 = new Image(getClass().getResourceAsStream("Images/chess.png"));
+            gc05 = new Image(getClass().getResourceAsStream("Images/tictactoe.png"));
+            gc06 = new Image(getClass().getResourceAsStream("Images/comingsoon.png"));
             populateCardImages();
         } catch(Exception e) {
             System.out.println("Thumbnail images were not loaded correctly. "
