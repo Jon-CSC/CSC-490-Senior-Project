@@ -37,8 +37,8 @@
 {
     -fx-arc-height: 15px;
     -fx-arc-width: 15px;
-    
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-stroke-width: 0px;
+    /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);*/
 }
 /*.rectangle:hover
 {
@@ -64,7 +64,7 @@
 #GameDescription
 {
     -fx-font: 15px "Helvetica";
-    -fx-font-weight: bold; 
+    /*-fx-font-weight: bold;*/ 
     -fx-fill: white;
     
     -fx-background-color: #3a3a3a;
