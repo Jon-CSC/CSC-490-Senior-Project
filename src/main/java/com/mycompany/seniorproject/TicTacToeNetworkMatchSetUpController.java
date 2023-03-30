@@ -149,7 +149,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                     }
                     System.out.println("Loading controller");
                     TicTacToeGameController controller = loader.getController();
- //                   controller.initConnection(connection,true);
+                    controller.initConnection(connection,true);
                     System.out.println("Showing stage");
                     stage.show();
                 });
@@ -216,7 +216,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                     }
                     System.out.println("Loading controller");
                     TicTacToeGameController controller = loader.getController();
-  //                  controller.initConnection(connection,false);
+                    controller.initConnection(connection,false);
                     System.out.println("Showing stage");
                     stage.show();
                 });
