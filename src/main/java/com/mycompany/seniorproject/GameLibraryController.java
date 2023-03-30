@@ -47,7 +47,8 @@ enum GameType {
     BATTLESHIP,
     CHESS,
     CHECKERS,
-    TICTACTOE;
+    TICTACTOE,
+    JAVASTROIDS;
 }
 
 /**
@@ -183,7 +184,7 @@ public class GameLibraryController implements Initializable {
     @FXML
     void clickedGameCard06(MouseEvent event) {
         // To be filled...
-        selectedGame = GameType.NOGAME;
+        selectedGame = GameType.JAVASTROIDS;
         cardAnimation(gameCard06);
         populateCardDetails();
     }
@@ -221,6 +222,9 @@ public class GameLibraryController implements Initializable {
                 break;
             case TICTACTOE:
                 playTicTacToe();
+                break;
+            case JAVASTROIDS:
+                playJavaStroids();
                 break;
         }
     }
@@ -305,13 +309,16 @@ public class GameLibraryController implements Initializable {
         displayNoGameDialogBoxError();
     }
     
+    private void playJavaStroids() throws IOException {
+        App.setRoot("");
+    }
+    
     private void goToProfilePage() throws IOException {
         ProfilePageController.configureUserProfile(LocalUserAccount.getInstance().getUser().getUserID());
         App.setRoot("ProfilePage");
     }
     
-    private void playNetworkTest() {
-        //App.setRoot("NetworkTest");
+    private void playNoGame() {
         displayNoGameDialogBoxError();
     }
     
@@ -447,6 +454,8 @@ public class GameLibraryController implements Initializable {
             }
         });
     }
+
+    
     
     public static class MoveToAbs extends MoveTo {
 

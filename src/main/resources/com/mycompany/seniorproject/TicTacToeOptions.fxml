@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="com.mycompany.seniorproject.TicTacToeOptionsController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.tictactoe.TicTacToeOptionsController">
     <stylesheets>
         <URL value="@/styles/tictactoeoptions.css" />
     </stylesheets>
