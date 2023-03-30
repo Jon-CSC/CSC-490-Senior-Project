@@ -101,7 +101,6 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
         int port = -1;
         if (portString.compareTo("") != 0) {
             port = Integer.valueOf(portString);
-            System.out.println(port);
             if (port < 0 || port > 65535) {
                 hostPortErrorMessage.setVisible(true);
                 validEntries = false;
@@ -136,10 +135,8 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
             public Void call() {
                 connection = new PeerToPeer();
                 connection.startHost(port);
-                Platform.runLater(() -> {
-                    System.out.println("Connected: " + connection.toString());
+                Platform.runLater(() -> {              
                     FXMLLoader loader = new FXMLLoader(TicTacToeNetworkMatchSetUpController.this.getClass().getResource("TicTacToeGame.fxml"));
-                    System.out.println("Setting stage");
                     // Get current window
                     Stage stage = (Stage) buttonHost.getScene().getWindow();
                     try {
@@ -147,10 +144,8 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                     } catch (IOException ex) {
                         Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    System.out.println("Loading controller");
                     TicTacToeGameController controller = loader.getController();
- //                   controller.initConnection(connection,true);
-                    System.out.println("Showing stage");
+                    controller.initConnection(connection,true);
                     stage.show();
                 });
                 return null;
@@ -176,7 +171,6 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
 
         if (portString.compareTo("") != 0) {
             port = Integer.valueOf(portString);
-            System.out.println(port);
             if (port < 0 || port > 65535) {
                 joinPortErrorMessage.setVisible(true);
                 validEntries = false;
@@ -204,9 +198,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                 connection = new PeerToPeer();
                 connection.connectToHost(ip, port);
                 Platform.runLater(() -> {
-                    System.out.println("Connected: " + connection.toString());
                     FXMLLoader loader = new FXMLLoader(TicTacToeNetworkMatchSetUpController.this.getClass().getResource("TicTacToeGame.fxml"));
-                    System.out.println("Setting stage");
                     // Get current window
                     Stage stage = (Stage) buttonConnect.getScene().getWindow();
                     try {
@@ -214,10 +206,8 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                     } catch (IOException ex) {
                         Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    System.out.println("Loading controller");
                     TicTacToeGameController controller = loader.getController();
-  //                  controller.initConnection(connection,false);
-                    System.out.println("Showing stage");
+                    controller.initConnection(connection,false);
                     stage.show();
                 });
                 return null;
