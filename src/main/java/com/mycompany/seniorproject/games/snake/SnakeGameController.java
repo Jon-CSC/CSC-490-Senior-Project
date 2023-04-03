@@ -21,6 +21,11 @@ public class SnakeGameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         SnakeGame gameInstance = new SnakeGame(gameCanvas);
+        int windowSize = gameInstance.getWindowSquareSize();
+        App.getStage().setWidth(windowSize+20);
+        App.getStage().setHeight(windowSize+40);
+        gameCanvas.setWidth(windowSize);
+        gameCanvas.setHeight(windowSize);
     }    
     
     @FXML

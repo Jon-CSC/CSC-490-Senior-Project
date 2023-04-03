@@ -47,9 +47,16 @@ public class SnakeGame {
     private static final int ROWS = 20;
     private static final int COLUMNS = ROWS;
     private static final int SQUARE_SIZE = WIDTH / ROWS;
-    private static final String[] FOOD_IMAGE = new String[]{"img/ic_orange.png", "img/ic_watermelon.png",
-   "img/ic_apple.png" , "img/ic_berry.png", "img/ic_cherry.png", "img/ic_coconut.png", "img/ic_peach.png",
-    "img/ic_pomegranate.png", "img/ic_tomato.png"}; // String array to store the food images
+    private static final String[] FOOD_IMAGE = new String[]{
+        "ic_orange.png", 
+        "ic_watermelon.png",
+        "ic_apple.png" , 
+        "ic_berry.png", 
+        "ic_cherry.png", 
+        "ic_coconut.png", 
+        "ic_peach.png",
+        "ic_pomegranate.png", 
+        "ic_tomato.png"}; // String array to store the food images
 
     private static final int RIGHT = 0;
     private static final int LEFT = 1;
@@ -112,6 +119,10 @@ public class SnakeGame {
     
     private void setGraphicsContext(Canvas c) {
         gc = c.getGraphicsContext2D();
+    }
+    
+    public int getWindowSquareSize() {
+        return WIDTH;
     }
 
     private void run(GraphicsContext gc) {
@@ -185,7 +196,11 @@ public class SnakeGame {
 
                 }
             }
-            foodImage = new Image(getClass().getResourceAsStream(FOOD_IMAGE[(int) (Math.random() * FOOD_IMAGE.length)]));
+            try {
+                foodImage = new Image(getClass().getResourceAsStream(FOOD_IMAGE[(int) (Math.random() * (FOOD_IMAGE.length - 1))]));
+            } catch(Exception e) {
+                System.out.println("Food images are not loading properly.");
+            }
             break;
         }
 
