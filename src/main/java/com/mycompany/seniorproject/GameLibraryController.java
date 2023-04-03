@@ -288,11 +288,11 @@ public class GameLibraryController implements Initializable {
     } 
     
     private void playSnake() throws IOException {
-        App.setRoot("SnakeGame");
+        App.setRoot("games/snake/SnakeGame");
     }
     
     private void playBattleship() throws IOException {
-        App.setRoot("BattleshipGame");
+        App.setRoot("games/battleship/BattleshipGame");
     }
     
     private void playCheckers() throws IOException {
@@ -301,7 +301,7 @@ public class GameLibraryController implements Initializable {
     }
     
     private void playTicTacToe() throws IOException {
-        App.setRoot("TicTacToeMainMenu");
+        App.setRoot("games/tictactoe/TicTacToeMainMenu");
     }
     
     private void playChess() throws IOException {
@@ -310,7 +310,7 @@ public class GameLibraryController implements Initializable {
     }
     
     private void playJavaStroids() throws IOException {
-        App.setRoot("");
+        App.setRoot("games/javastroids/mainMenu");
     }
     
     private void goToProfilePage() throws IOException {

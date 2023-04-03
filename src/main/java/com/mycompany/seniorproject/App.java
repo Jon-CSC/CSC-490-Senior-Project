@@ -31,20 +31,49 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
+    
+    /**
+     * Method for getting the current-active scene of the Application.
+     * 
+     * @return Scene object of current stage.
+     */
+    public static Scene getScene() {
+        return scene;
+    }
 
+    /**
+     * Method for setting what the current scene should be for the stage.
+     * 
+     * @param scene The desired current-active scene for the program's GUI.
+     */
+    public static void setScene(Scene scene) {
+        App.scene = scene;
+    }
+
+    /**
+     * Method to return current instance of UI stage.
+     * 
+     * @return Stage object of program GUI.
+     */
+    public static Stage getStage() {
+        return currentStage;
+    }
+    
+    /**
+     * Method for setting the current FXML-based scene setup.
+     * 
+     * @param fxml The string name of the FXML file to be used, excluding filetype.
+     * @throws IOException 
+     */
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
-
+    
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-
-    public static Stage getStage() {
-        return currentStage;
-    }
-
+    
     /**
      * Search for JSON key in resources and establishes connection to Firebase.
      *
@@ -66,6 +95,11 @@ public class App extends Application {
         return FirestoreClient.getFirestore();
     }
 
+    /**
+     * Main method to initiate the program.
+     * 
+     * @param args 
+     */
     public static void main(String[] args) {
         launch();
     }

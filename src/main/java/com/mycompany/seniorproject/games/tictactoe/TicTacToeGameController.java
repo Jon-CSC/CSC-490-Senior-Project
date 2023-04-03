@@ -277,7 +277,7 @@ public class TicTacToeGameController {
     @FXML
     void exitGame() throws IOException {
 //        System.exit(0);
-        App.setRoot("TicTacToeMainMenu");
+        App.setRoot("games/tictactoe/TicTacToeMainMenu");
     }
 
     /**

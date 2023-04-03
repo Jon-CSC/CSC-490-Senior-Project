@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="480.0" prefWidth="522.0" stylesheets="@../../../styles/tictactoenetworkmatchsetup.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.tictactoe.TicTacToeNetworkMatchSetUpController">
+<StackPane prefHeight="480.0" prefWidth="522.0" stylesheets="@../../../../../styles/games/tictactoemenus.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.tictactoe.TicTacToeNetworkMatchSetUpController">
    <children>
-      <HBox id="HBoxParent" fx:id="hboxParent" alignment="CENTER" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../styles/tictactoenetworkmatchsetup.css" />
+      <HBox id="HBoxParent" fx:id="hboxParent" alignment="CENTER" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../../styles/games/tictactoemenus.css" />
       <BorderPane>
          <center>
             <HBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">

@@ -56,19 +56,19 @@ public class TicTacToeMainMenuController implements Initializable {
 
     @FXML
     public void onLocalMatchMouseClick() throws IOException {
-        App.setRoot("TicTacToeGame");
+        App.setRoot("games/tictactoe/TicTacToeGame");
 
     }
 
     @FXML
     public void onNetworkMatchMouseClick() throws IOException {
-        App.setRoot("TicTacToeNetworkMatchSetup");
+        App.setRoot("games/tictactoe/TicTacToeNetworkMatchSetup");
 
     }
 
     @FXML
     public void onOptionsMouseClick() throws IOException {
-        App.setRoot("TicTacToeOptions");
+        App.setRoot("games/tictactoe/TicTacToeOptions");
     }
 
     @FXML

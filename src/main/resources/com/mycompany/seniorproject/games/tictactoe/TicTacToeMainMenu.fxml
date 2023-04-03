@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="HBoxParent" alignment="CENTER" prefHeight="600.0" prefWidth="400.0" stylesheets="@../../../styles/tictactoemainmenu.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.tictactoe.TicTacToeMainMenuController">
+<HBox id="HBoxParent" alignment="CENTER" prefHeight="600.0" prefWidth="400.0" stylesheets="@../../../../../styles/games/tictactoemenus.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.tictactoe.TicTacToeMainMenuController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="188.0">
          <children>
@@ -25,7 +25,7 @@
             </Label>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Images/tictactoe.png" />
+                  <Image url="@../../Images/tictactoe.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" text="Main Menu">

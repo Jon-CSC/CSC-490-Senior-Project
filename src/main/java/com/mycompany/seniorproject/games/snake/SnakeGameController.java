@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.mycompany.seniorproject.games;
+package com.mycompany.seniorproject.games.snake;
 
 import com.mycompany.seniorproject.App;
 import java.io.IOException;
@@ -18,7 +18,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author justi
  */
-public class BattleshipGameController implements Initializable {
+public class SnakeGameController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -26,12 +26,11 @@ public class BattleshipGameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }
+    }    
     
     @FXML
     void testClick(MouseEvent event) throws IOException {
-        System.out.println("BattleshipController works!");
+        System.out.println("SnakeController works!");
         App.setRoot("gameLibrary");
     }
-    
 }

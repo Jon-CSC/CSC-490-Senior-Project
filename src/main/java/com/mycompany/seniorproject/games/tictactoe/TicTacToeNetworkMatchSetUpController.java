@@ -89,7 +89,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
 
     @FXML
     public void onBackButtonClick() throws IOException {
-        App.setRoot("TicTacToeMainMenu");
+        App.setRoot("games/tictactoe/TicTacToeMainMenu");
     }
 
     @FXML
