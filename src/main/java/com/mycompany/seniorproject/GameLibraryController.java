@@ -24,6 +24,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -34,10 +35,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import static javafx.scene.paint.Color.rgb;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -60,48 +58,36 @@ public class GameLibraryController implements Initializable {
 
     @FXML
     private BorderPane BorderPaneRoot;
-    
-    @FXML
-    private Button buttonProfile;
-    
+
     @FXML
     private Button buttonPlayGame;
-    
-    @FXML
-    private Button buttonCloseExpandedCard;
     
     @FXML
     private StackPane centerStackPane;
     
     @FXML
-    private Rectangle gameCard01;
-
-    @FXML
-    private Rectangle gameCard02;
-
-    @FXML
-    private Rectangle gameCard03;
-
-    @FXML
-    private Rectangle gameCard04;
-
-    @FXML
-    private Rectangle gameCard05;
-
-    @FXML
-    private Rectangle gameCard06;
+    private Rectangle gameCard01, gameCard02, gameCard03, gameCard04, gameCard05, gameCard06;
     
     @FXML
     private Rectangle ratingCard;
-    
+
     @FXML
-    private ImageView profileImgViewer;
+    private Circle profilePicCircle;
+
+    @FXML
+    private Button username;
+
+    @FXML
+    private VBox dropDownMenu;
     
     @FXML
     private Text textGameDesc;
     
     @FXML
     private Text textGameTitle;
+
+    @FXML
+    private Label buttonCloseExpandedCard;
     
     @FXML
     private GridPane gridContainerGameCards;
@@ -120,30 +106,26 @@ public class GameLibraryController implements Initializable {
         loadCardImages();
         App.getStage().setWidth(900);
         App.getStage().setHeight(640);
+        App.getStage().centerOnScreen();
         UserAccount currentUser = LocalUserAccount.getInstance().getUser();
-        buttonProfile.setText(currentUser.getUserID());
+        username.setText(currentUser.getUserID());
         Image profilePic;
         try {
             URL avatarURL = new URL(currentUser.getAvatarURL());
             profilePic = new Image(avatarURL.toString());
+            profilePicCircle.setFill(new ImagePattern(profilePic));
         } catch (IOException ex) {
             // trusty penguin fallback
-            profilePic = new Image(getClass().getResourceAsStream("Images\\penguin01.jpg"));
+            profilePic = new Image(getClass().getResourceAsStream("Images/penguin01.jpg"));
+            profilePicCircle.setFill(new ImagePattern(profilePic));
         }
-        profileImgViewer.setImage(profilePic);
         gridPaneCardText.toBack();
         textGameTitle.setVisible(false);
         textGameDesc.setVisible(false);
         ratingCard.setVisible(false);
         buttonPlayGame.setVisible(false);
         buttonCloseExpandedCard.setVisible(false);
-        buttonProfile.setOnMouseClicked(e -> {
-            try {
-                goToProfilePage();
-            } catch (IOException ex) {
-                Logger.getLogger(GameLibraryController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+        dropDownMenu.setVisible(false);
     } 
     
     @FXML
@@ -194,11 +176,16 @@ public class GameLibraryController implements Initializable {
         // Responds to keyboard input when scene is up
         // Currently only supports [Esc] to logout
         if (event.getCode().toString().equalsIgnoreCase("ESCAPE")) {
-            App.setRoot("LoginPage");
-            LocalUserAccount.getInstance().logout();
+            logOut();
         }
     }
-    
+
+    @FXML
+    void logOut() throws IOException {
+        App.setRoot("LoginPage");
+        LocalUserAccount.getInstance().logout();
+    }
+
     @FXML
     void launchSelectedGame(ActionEvent event) throws IOException {
         switch (selectedGame) {
@@ -313,6 +300,7 @@ public class GameLibraryController implements Initializable {
         App.setRoot("games/javastroids/mainMenu");
     }
     
+    @FXML
     private void goToProfilePage() throws IOException {
         ProfilePageController.configureUserProfile(LocalUserAccount.getInstance().getUser().getUserID());
         App.setRoot("ProfilePage");
@@ -379,10 +367,10 @@ public class GameLibraryController implements Initializable {
         scale01.setCycleCount(1);
         scaleCardTransition.getChildren().add(scale01);
         scale01.setOnFinished(e -> {
-            card.setFill(rgb(58,58,58));
+            card.setFill(rgb(32,32,32));
 //            card.setFill(rgb(16,38,58));
-            card.setArcWidth(10);
-            card.setArcHeight(15);
+            card.setArcWidth(5);
+            card.setArcHeight(5);
         });
         ScaleTransition scale02 = new ScaleTransition(Duration.seconds(0.5), card);
         scale02.setToX(4.7);
@@ -455,7 +443,14 @@ public class GameLibraryController implements Initializable {
         });
     }
 
-    
+    @FXML
+    public void clickedProfilePic() {
+        if (dropDownMenu.isVisible()) {
+            dropDownMenu.setVisible(false);
+        } else {
+            dropDownMenu.setVisible(true);
+        }
+    }
     
     public static class MoveToAbs extends MoveTo {
 
