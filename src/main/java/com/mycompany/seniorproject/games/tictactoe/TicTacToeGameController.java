@@ -16,6 +16,7 @@ import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
@@ -49,6 +50,9 @@ public class TicTacToeGameController {
 
     @FXML
     private GridPane gridBoard;
+    
+    @FXML
+    private Pane scorecardPane;
 
     @FXML
     private Pane paneBottomCenter;
@@ -73,12 +77,12 @@ public class TicTacToeGameController {
     private Circle indicatorCircle;
     @FXML
     private Rectangle indicatorRectangle;
-    
+
     @FXML
     private Circle winnerCircle;
     @FXML
     private Rectangle winnerRectangle;
-    
+
     @FXML
     private Label labelP1;
     @FXML
@@ -234,6 +238,7 @@ public class TicTacToeGameController {
      */
     @FXML
     void newGame() {
+        scorecardPane.setVisible(false);
         ParallelTransition pt = new ParallelTransition();
 
         for (Object o : gridBoard.getChildren()) {
@@ -526,10 +531,12 @@ public class TicTacToeGameController {
         }
         pt.play();
         changeActivePlayerIndicator();
+        scorecardAction(player);
     }
 
     /**
      * Calls the appropriate function to mirror opponent player actions.
+     *
      * @param gridLocation The target grid location to act upon.
      */
     private void updateGrid(int gridIndex) {
@@ -564,5 +571,67 @@ public class TicTacToeGameController {
             default:
                 break;
         }
+    }
+    
+    /**
+     * Method will make scorecard visible, and based on the winner, will
+     * show the respective shape of the player.
+     * @param player 
+     */
+    @FXML
+    private void scorecardAction(int player){
+        scorecardPane.setVisible(true);
+        
+        if (1 == player){
+            winnerRectangle.setVisible(true);
+            winnerCircle.setVisible(false);
+        }
+        else {
+            winnerRectangle.setVisible(false);
+            winnerCircle.setVisible(true);
+        }
+    }
+    
+    /**
+     * Change font of text when hovering over label.
+     * @param m 
+     */
+    @FXML
+    private void onMenuSelectionMouseEnter(MouseEvent m) {
+        Label label = (Label) m.getSource();
+        label.setStyle("-fx-font-weight: bold");
+        label.setText("▶ " + label.getText() + " ◀");
+    }
+
+    /**
+     * Change font of text when done hovering over label.
+     * @param m 
+     */
+    @FXML
+    private void onMenuSelectionMouseExit(MouseEvent m) {
+        Label label = (Label) m.getSource();
+        label.setStyle("-fx-font-weight: normal");
+        label.setText(label.getText().substring(2, label.getText().length() - 2));
+
+    }
+    
+    /**
+     * Returns to main game library page.
+     * @throws IOException 
+     */
+    @FXML
+    private void onQuitMouseClick() throws IOException {
+        App.setRoot("GameLibrary");
+
+    }
+    
+    /**
+     * Initiates a new game.
+     * @throws IOException 
+     */
+    @FXML
+    private void onReplayMouseClick() throws IOException {
+        newGame();
+
     }
 }

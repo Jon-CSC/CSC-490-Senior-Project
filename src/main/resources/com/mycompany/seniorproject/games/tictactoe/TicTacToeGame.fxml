@@ -101,19 +101,19 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="251.0">
                      <children>
-                        <Label text="Game Over!" />
+                        <Label prefHeight="36.0" prefWidth="98.0" text="Game Over!" />
                         <HBox alignment="CENTER" spacing="20.0">
                            <children>
                               <Label text="Winner:" />
                               <StackPane maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" prefHeight="60.0" prefWidth="60.0">
                                  <children>
-                                    <Rectangle fx:id="indicatorRectangle1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" stroke="BLACK" strokeType="INSIDE" width="42.0" />
-                                    <Circle fx:id="indicatorCircle1" fill="DODGERBLUE" radius="23.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+                                    <Rectangle fx:id="winnerRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="42.0" />
+                                    <Circle fx:id="winnerCircle" fill="DODGERBLUE" radius="23.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
                                  </children>
                               </StackPane>
                            </children>
                         </HBox>
-                        <Label fx:id="labelLocalMatch" alignment="CENTER" text="Restart Game">
+                        <Label fx:id="labelLocalMatch" alignment="CENTER" onMouseClicked="#onReplayMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Restart Game">
                            <padding>
                               <Insets bottom="12.5" top="12.5" />
                            </padding>
@@ -121,7 +121,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelLocalMatch1" alignment="CENTER" text="Return To Menu">
+                        <Label fx:id="labelLocalMatch1" alignment="CENTER" onMouseClicked="#onQuitMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Return To Menu">
                            <padding>
                               <Insets bottom="12.5" top="12.5" />
                            </padding>
@@ -155,13 +155,13 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="labelP1" layoutX="86.0" layoutY="106.0" text="Player 1" textFill="WHITE" />
-            <Label fx:id="labelP2" layoutX="244.0" layoutY="106.0" text="Player 2" textFill="WHITE">
+            <Label fx:id="labelP2" layoutX="244.0" layoutY="106.0" text="Player 2" textFill="WHITE" AnchorPane.rightAnchor="95.0">
                <font>
                   <Font name="Montserrat Medium" size="16.0" />
                </font>
             </Label>
             <Rectangle fx:id="indicatorRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="58.0" layoutX="14.0" layoutY="91.0" stroke="BLACK" strokeType="INSIDE" width="58.0" />
-            <Circle fx:id="indicatorCircle" fill="DODGERBLUE" layoutX="355.0" layoutY="120.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="indicatorCircle" fill="DODGERBLUE" layoutX="355.0" layoutY="120.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="14.0" />
          </children>
       </AnchorPane>
    </bottom>

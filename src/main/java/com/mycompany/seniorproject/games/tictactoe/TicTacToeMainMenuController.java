@@ -43,15 +43,15 @@ public class TicTacToeMainMenuController implements Initializable {
     public void onMenuSelectionMouseEnter(MouseEvent m) {
         Label label = (Label) m.getSource();
         label.setStyle("-fx-font-weight: bold");
-        label.setText("▶ " +label.getText() + " ◀");
+        label.setText("▶ " + label.getText() + " ◀");
     }
 
     @FXML
     public void onMenuSelectionMouseExit(MouseEvent m) {
         Label label = (Label) m.getSource();
         label.setStyle("-fx-font-weight: normal");
-        label.setText(label.getText().substring(2,label.getText().length()-2));
-        
+        label.setText(label.getText().substring(2, label.getText().length() - 2));
+
     }
 
     @FXML
