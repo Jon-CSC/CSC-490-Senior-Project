@@ -73,6 +73,12 @@ public class TicTacToeGameController {
     private Circle indicatorCircle;
     @FXML
     private Rectangle indicatorRectangle;
+    
+    @FXML
+    private Circle winnerCircle;
+    @FXML
+    private Rectangle winnerRectangle;
+    
     @FXML
     private Label labelP1;
     @FXML
