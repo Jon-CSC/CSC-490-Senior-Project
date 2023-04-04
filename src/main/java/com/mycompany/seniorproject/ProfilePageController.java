@@ -26,12 +26,11 @@ public class ProfilePageController implements Initializable {
     
     static String userID;
     final int MAX_CHARS_BIO = 150;
-    @FXML private Label username, characterCounter;
     @FXML private Rectangle profilePicRectangle, game1Rectangle, game2Rectangle, game3Rectangle, game4Rectangle;
     @FXML private Circle editButtonCircle, cancelEditCircle, profilePicEditButton;
     @FXML private TextArea bioTextArea;
-    @FXML private Label snakePlaytime, snakeHiscore, battleshipPlaytime, battleshipWins,
-                 checkersPlaytime, checkersWins, tictactoePlaytime, tictactoeWins;
+    @FXML private Label snakePlaytime, snakeHiscore, battleshipPlaytime, battleshipWins, checkersPlaytime,
+            checkersWins, tictactoePlaytime, tictactoeWins, username, characterCounter;
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {

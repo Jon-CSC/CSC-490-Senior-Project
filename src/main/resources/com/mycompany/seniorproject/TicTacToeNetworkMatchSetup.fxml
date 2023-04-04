@@ -5,178 +5,126 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.TicTacToeNetworkMatchSetUpController">
+<AnchorPane minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../../../styles/tictactoenetworkmatchsetup.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.TicTacToeNetworkMatchSetUpController">
    <children>
-      <HBox id="HBoxParent" fx:id="hboxParent" alignment="CENTER" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../styles/tictactoenetworkmatchsetup.css">
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="400.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <BorderPane>
-               <left>
-                  <VBox prefHeight="200.0" prefWidth="147.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="400.0" spacing="5.0">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/tictactoesquare.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="labelTitle" styleClass="label-title" text="Network Match">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/tictactoecircle.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <StackPane prefHeight="135.0" prefWidth="250.0">
+               <children>
+                  <VBox fx:id="pickMatchType" alignment="CENTER" fillWidth="false" minHeight="200.0" prefHeight="200.0" prefWidth="300.0" styleClass="small-vbox">
                      <children>
-                        <Label text="Host a match">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="100.0" left="25.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label text="Join a match">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="25.0" top="50.0" />
-                           </VBox.margin>
-                        </Label>
+                        <Button mnemonicParsing="false" onAction="#onHostMatchClick" prefHeight="123.0" prefWidth="334.0" styleClass="button-host" text="Host a match" />
+                        <Button mnemonicParsing="false" onAction="#onJoinMatchClick" prefHeight="123.0" prefWidth="334.0" styleClass="button-join" text="Join a match" />
                      </children>
                   </VBox>
-               </left>
-               <center>
-                  <VBox BorderPane.alignment="CENTER">
+                  <VBox fx:id="hostMatch" alignment="CENTER" fillWidth="false" prefHeight="180.0" prefWidth="250.0" spacing="15.0" styleClass="small-vbox">
                      <children>
-                        <FlowPane>
-                           <children>
-                              <Label text="Your IP:">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="labelHostIP" text="Label">
-                                 <FlowPane.margin>
-                                    <Insets left="45.0" />
-                                 </FlowPane.margin>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="50.0" />
-                           </VBox.margin>
-                        </FlowPane>
-                        <FlowPane>
-                           <children>
-                              <Label text="Port Number: ">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldPortNumHost" text="7777" />
-                              <Label fx:id="hostPortErrorMessage" text=" * Required (0 - 65536)" textFill="RED" visible="false">
-                                 <FlowPane.margin>
-                                    <Insets left="10.0" />
-                                 </FlowPane.margin>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </FlowPane>
-                        <Button fx:id="buttonHost" mnemonicParsing="false" onMouseClicked="#onHostButtonClick" text="Host">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <FlowPane>
-                           <children>
-                              <Label text="Host IP: ">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldHostIP">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <FlowPane.margin>
-                                    <Insets left="36.0" />
-                                 </FlowPane.margin>
-                              </TextField>
-                              <Label fx:id="joinHostErrorMessage" text=" * Required" textFill="RED" visible="false">
-                                 <FlowPane.margin>
-                                    <Insets left="10.0" />
-                                 </FlowPane.margin>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="100.0" />
-                           </VBox.margin>
-                        </FlowPane>
-                        <FlowPane>
-                           <children>
-                              <Label text="Port Number: ">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="textFieldPortNumClient" />
-                              <Label fx:id="joinPortErrorMessage" text=" * Required (0 - 65535)" textFill="RED" visible="false">
-                                 <FlowPane.margin>
-                                    <Insets left="10.0" />
-                                 </FlowPane.margin>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </FlowPane>
-                        <Button fx:id="buttonConnect" mnemonicParsing="false" onMouseClicked="#onConnectButtonClick" text="Connect">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </VBox>
-               </center>
-               <top>
-                  <HBox alignment="CENTER" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label text="Network Match">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="10.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-               </top>
-               <bottom>
-                  <HBox alignment="BOTTOM_RIGHT" fillHeight="false" BorderPane.alignment="CENTER">
-                     <children>
-                        <Button fx:id="buttonBack" mnemonicParsing="false" onMouseClicked="#onBackButtonClick" text="Back">
-                           <HBox.margin>
-                              <Insets bottom="20.0" />
-                           </HBox.margin>
+                        <Label styleClass="label-subtitle" text="Host a match">
                            <font>
                               <Font size="18.0" />
                            </font>
-                        </Button>
+                        </Label>
+                        <TextField fx:id="textFieldYourIP" editable="false" focusTraversable="false" promptText="Your IP" />
+                        <TextField fx:id="textFieldPortNumHost" focusTraversable="false" promptText="Port Number" />
+                        <HBox alignment="CENTER" prefHeight="11.0" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Button fx:id="backToPickMatchTypeHost" mnemonicParsing="false" onAction="#onBackToPickMatchTypeButtonClick" text="Back">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Images/back.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="buttonHost" mnemonicParsing="false" onAction="#onHostButtonClick" text="Host Match">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
-                     <BorderPane.margin>
-                        <Insets />
-                     </BorderPane.margin>
-                  </HBox>
-               </bottom>
-               <right>
-                  <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER" />
-               </right>
-            </BorderPane>
+                  </VBox>
+                  <VBox fx:id="joinMatch" alignment="CENTER" fillWidth="false" prefHeight="180.0" prefWidth="250.0" spacing="15.0" styleClass="small-vbox" visible="false">
+                     <children>
+                        <Label styleClass="label-subtitle" text="Join a match">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="textFieldHostIP" focusTraversable="false" promptText="Host IP">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                        <TextField fx:id="textFieldPortNumClient" focusTraversable="false" promptText="Port Number" />
+                        <HBox alignment="CENTER" prefHeight="11.0" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Button fx:id="backToPickMatchTypeClient" mnemonicParsing="false" onAction="#onBackToPickMatchTypeButtonClick" text="Back">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Images/back.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="buttonConnect" mnemonicParsing="false" onAction="#onConnectButtonClick" text="Join Match">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <ProgressIndicator fx:id="progressIndicatorConnecting" StackPane.alignment="CENTER" />
+               </children>
+            </StackPane>
+            <Button fx:id="buttonBack" mnemonicParsing="false" onMouseClicked="#onBackButtonClick" text="Back to Main Menu">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label fx:id="labelError" alignment="CENTER" prefHeight="16.0" prefWidth="443.0" styleClass="label-error" text="Error Messages Appear Down Here" textAlignment="CENTER" textFill="RED" wrapText="true" />
          </children>
-      </HBox>
-      <ProgressIndicator fx:id="progressIndicatorConnecting" StackPane.alignment="CENTER" />
+      </VBox>
    </children>
-</StackPane>
+</AnchorPane>

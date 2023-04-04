@@ -7,6 +7,10 @@ package com.mycompany.seniorproject.games;
 import com.mycompany.seniorproject.App;
 import com.mycompany.seniorproject.PeerToPeer;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.Initializable;
 import javafx.util.Duration;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -29,7 +33,14 @@ import javafx.scene.shape.Rectangle;
  * @version 1.0
  * @since 3/30/2023
  */
-public class TicTacToeGameController {
+public class TicTacToeGameController implements Initializable {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        App.getStage().setWidth(400);
+        App.getStage().setHeight(600);
+        App.getStage().centerOnScreen();
+    }
 
     private int[] gridArr = {-1, -1, -1, -1, -1, -1, -1, -1, -1};
 
@@ -89,7 +100,7 @@ public class TicTacToeGameController {
     @FXML
     void initialize() {
         changeActivePlayerIndicator();
-        App.getStage().setWidth(420);
+        App.getStage().setWidth(400);
         App.getStage().setHeight(600);
         paneArray = new Pane[]{paneTopLeft, paneTopCenter, paneTopRight,
             paneMiddleLeft, paneMiddleCenter, paneMiddleRight,
@@ -559,4 +570,5 @@ public class TicTacToeGameController {
                 break;
         }
     }
+
 }

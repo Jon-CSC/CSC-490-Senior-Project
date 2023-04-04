@@ -10,58 +10,52 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 
 /**
  * FXML Controller class
  *
- * @author Jonathan Espinal
+ * @author Jonathan Espinal, juan
  */
 public class TicTacToeMainMenuController implements Initializable {
 
-    @FXML
-    private Label labelLocalMatch;
-
-    @FXML
-    private Label labelNetworkMatch;
-    @FXML
-    private Label labelOptions;
-    @FXML
-    private Label labelQuit;
+    @FXML private Label labelLocalMatch, labelNetworkMatch, labelOptions, labelQuit;
+    @FXML private Rectangle ticTacToeRectangle;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        App.getStage().setWidth(400);
+        App.getStage().setHeight(600);
+        App.getStage().centerOnScreen();
+        loadImages();
     }
 
     @FXML
     public void onMenuSelectionMouseEnter(MouseEvent m) {
         Label label = (Label) m.getSource();
-        label.setStyle("-fx-font-weight: bold");
         label.setText("▶ " +label.getText() + " ◀");
     }
 
     @FXML
     public void onMenuSelectionMouseExit(MouseEvent m) {
         Label label = (Label) m.getSource();
-        label.setStyle("-fx-font-weight: normal");
         label.setText(label.getText().substring(2,label.getText().length()-2));
-        
     }
 
     @FXML
     public void onLocalMatchMouseClick() throws IOException {
         App.setRoot("TicTacToeGame");
-
     }
 
     @FXML
     public void onNetworkMatchMouseClick() throws IOException {
         App.setRoot("TicTacToeNetworkMatchSetup");
-
     }
 
     @FXML
@@ -72,6 +66,12 @@ public class TicTacToeMainMenuController implements Initializable {
     @FXML
     public void onQuitMouseClick() throws IOException {
         App.setRoot("GameLibrary");
-
     }
+
+    private void loadImages() {
+        Image ticTacToeImage;
+        ticTacToeImage = new Image(getClass().getResourceAsStream("Images/tictactoe.png"));
+        ticTacToeRectangle.setFill(new ImagePattern(ticTacToeImage));
+    }
+
 }
