@@ -28,7 +28,8 @@
                               <StackPane alignment="BOTTOM_RIGHT" prefHeight="136.0" prefWidth="136.0">
                                  <children>
                                     <Rectangle fx:id="profilePicRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="136.0" strokeType="INSIDE" strokeWidth="0.0" width="136.0" />
-                                    <Circle fx:id="profilePicEditButton" fill="#353535" radius="15.0" strokeType="INSIDE" styleClass="button-edit" />
+                                    <Circle fx:id="profilePicEditButton" fill="#353535" onMouseClicked="#editAvatar" radius="15.0" strokeType="INSIDE" styleClass="button-edit" />
+                                    <TextArea fx:id="editAvatarField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" visible="false" wrapText="true" StackPane.alignment="BOTTOM_LEFT" />
                                  </children>
                               </StackPane>
                               <VBox fillWidth="false" prefHeight="160.0" prefWidth="301.0" spacing="10.0">

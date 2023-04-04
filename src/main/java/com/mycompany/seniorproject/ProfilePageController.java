@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import javafx.scene.control.TextInputDialog;
 
 /**
  *
@@ -26,11 +27,13 @@ public class ProfilePageController implements Initializable {
     
     static String userID;
     final int MAX_CHARS_BIO = 150;
+    
+    @FXML private Label username, characterCounter;
     @FXML private Rectangle profilePicRectangle, game1Rectangle, game2Rectangle, game3Rectangle, game4Rectangle;
     @FXML private Circle editButtonCircle, cancelEditCircle, profilePicEditButton;
-    @FXML private TextArea bioTextArea;
-    @FXML private Label snakePlaytime, snakeHiscore, battleshipPlaytime, battleshipWins, checkersPlaytime,
-            checkersWins, tictactoePlaytime, tictactoeWins, username, characterCounter;
+    @FXML private TextArea bioTextArea, editAvatarField;
+    @FXML private Label snakePlaytime, snakeHiscore, battleshipPlaytime, battleshipWins,
+                 checkersPlaytime, checkersWins, tictactoePlaytime, tictactoeWins;
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -69,6 +72,7 @@ public class ProfilePageController implements Initializable {
         // if it's the local account, make the edit links visible and add their logic
         if(LocalUserAccount.getInstance().getUser().getUserID().equals(profileUser.getUserID())) {
             editButtonCircle.setVisible(true);
+            profilePicEditButton.setVisible(true);
         }
         
         // fill in their personal info
@@ -100,18 +104,20 @@ public class ProfilePageController implements Initializable {
      * Loads all the images on a user's profile page.
      */
     private void loadImages() {
-        Image game1, game2, game3, game4, editButton, cancelEditButton;
+        Image game1, game2, game3, game4, editButton, profilePicEditButtonImage, cancelEditButton;
         game1 = new Image(getClass().getResourceAsStream("Images/tictactoe.png"));
         game2 = new Image(getClass().getResourceAsStream("Images/snake.png"));
         game3 = new Image(getClass().getResourceAsStream("Images/battleship.png"));
         game4 = new Image(getClass().getResourceAsStream("Images/checkers.png"));
         editButton = new Image(getClass().getResourceAsStream("Images/edit.png"));
+        profilePicEditButtonImage = new Image(getClass().getResourceAsStream("Images/edit.png"));
         cancelEditButton = new Image(getClass().getResourceAsStream("Images/cancel.png"));
         game1Rectangle.setFill(new ImagePattern(game1));
         game2Rectangle.setFill(new ImagePattern(game2));
         game3Rectangle.setFill(new ImagePattern(game3));
         game4Rectangle.setFill(new ImagePattern(game4));
         editButtonCircle.setFill(new ImagePattern(editButton));
+        profilePicEditButton.setFill(new ImagePattern(profilePicEditButtonImage));
         cancelEditCircle.setFill(new ImagePattern(cancelEditButton));
     }
 
@@ -130,7 +136,6 @@ public class ProfilePageController implements Initializable {
             Region content = (Region) bioTextArea.lookup(".content");
             content.setStyle("-fx-background-color: #353535");
             content.setStyle("-fx-cursor: text");
-            profilePicEditButton.setVisible(true);
             cancelEditCircle.setVisible(true);
             characterCounter.setVisible(true);
             editButton = new Image(getClass().getResourceAsStream("Images/checkmark.png"));
@@ -138,7 +143,6 @@ public class ProfilePageController implements Initializable {
         } else {
             //If the user was already editing and saved their changes using the checkmark icon
             bioTextArea.setEditable(false);
-            profilePicEditButton.setVisible(false);
             cancelEditCircle.setVisible(false);
             characterCounter.setVisible(false);
             //This is to change the content of the text area
@@ -149,7 +153,44 @@ public class ProfilePageController implements Initializable {
             editButtonCircle.setFill(new ImagePattern(editButton));
 
             // code to take what's in the text area and update the user's bio in firestore
-            // code to get the updated version and update the bio label and bioTextArea
+            String newBio = bioTextArea.getText();
+            LocalUserAccount.getInstance().updateBiography(newBio);
+        }
+    }
+    
+    /**
+     * Spawns a window to edit the user's avatar.
+     */
+    @FXML
+    public void editAvatar() {
+        if(!editAvatarField.isVisible()) {
+            editAvatarField.setVisible(true);
+            editAvatarField.setText(LocalUserAccount.getInstance().getUser().getAvatarURL());
+            editAvatarField.requestFocus();
+            editAvatarField.positionCaret(editAvatarField.getText().length());
+            editAvatarField.setEditable(true);
+            
+            Image checkmark = new Image(getClass().getResourceAsStream("Images/checkmark.png"));
+            profilePicEditButton.setFill(new ImagePattern(checkmark));
+        } else {
+            editAvatarField.setEditable(false);
+            editAvatarField.setVisible(false);
+            Image editButton = new Image(getClass().getResourceAsStream("Images/edit.png"));
+            profilePicEditButton.setFill(new ImagePattern(editButton));
+            
+            // upload to firestore
+            String newAvatar = editAvatarField.getText();
+            Image profilePic;
+            try {
+                URL avatarURL = new URL(newAvatar);
+                profilePic = new Image(avatarURL.toString());
+                if(null != profilePic) {
+                    profilePicRectangle.setFill(new ImagePattern(profilePic));
+                    LocalUserAccount.getInstance().updateAvatar(avatarURL.toString());
+                }
+            } catch (IOException | IllegalArgumentException ex) {
+                
+            }
         }
     }
 
@@ -160,7 +201,6 @@ public class ProfilePageController implements Initializable {
     public void cancelEditProfile() {
         Image editButton;
         bioTextArea.setEditable(false);
-        profilePicEditButton.setVisible(false);
         cancelEditCircle.setVisible(false);
         characterCounter.setVisible(false);
         //This is to change the content of the text area
@@ -171,6 +211,7 @@ public class ProfilePageController implements Initializable {
         editButtonCircle.setFill(new ImagePattern(editButton));
 
         // cancel the changes and get the user's bio (it'll be the same bio it was before they began editing)
+        bioTextArea.setText(LocalUserAccount.getInstance().getUser().getBiography());
     }
 
     /**
