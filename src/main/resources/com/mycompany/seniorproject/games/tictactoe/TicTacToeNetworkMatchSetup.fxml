@@ -13,15 +13,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../../../styles/tictactoenetworkmatchsetup.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.TicTacToeNetworkMatchSetUpController">
+<AnchorPane minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../../../../../styles/games/tictactoenetworkmatch.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.TicTacToeNetworkMatchSetUpController">
    <children>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="400.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="400.0" spacing="20.0" stylesheets="@../../../../../styles/games/tictactoenetworkmatch.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="36.0" prefWidth="400.0" spacing="5.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Images/tictactoesquare.png" />
+                        <Image url="@../../Images/tictactoesquare.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="labelTitle" styleClass="label-title" text="Network Match">
@@ -31,7 +31,7 @@
                   </Label>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Images/tictactoecircle.png" />
+                        <Image url="@../../Images/tictactoecircle.png" />
                      </image>
                   </ImageView>
                </children>
@@ -62,7 +62,7 @@
                                  <graphic>
                                     <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@Images/back.png" />
+                                          <Image url="@../../Images/back.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -101,7 +101,7 @@
                                  <graphic>
                                     <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@Images/back.png" />
+                                          <Image url="@../../Images/back.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
