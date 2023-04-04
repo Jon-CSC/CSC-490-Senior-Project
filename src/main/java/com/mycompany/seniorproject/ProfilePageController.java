@@ -186,8 +186,10 @@ public class ProfilePageController implements Initializable {
             try {
                 URL avatarURL = new URL(newAvatar);
                 profilePic = new Image(avatarURL.toString());
-                profilePicRectangle.setFill(new ImagePattern(profilePic));
-                LocalUserAccount.getInstance().updateAvatar(avatarURL.toString());
+                if(null != profilePic) {
+                    profilePicRectangle.setFill(new ImagePattern(profilePic));
+                    LocalUserAccount.getInstance().updateAvatar(avatarURL.toString());
+                }
             } catch (IOException | IllegalArgumentException ex) {
                 
             }
