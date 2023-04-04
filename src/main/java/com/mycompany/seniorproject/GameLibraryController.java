@@ -113,9 +113,12 @@ public class GameLibraryController implements Initializable {
         try {
             URL avatarURL = new URL(currentUser.getAvatarURL());
             profilePic = new Image(avatarURL.toString());
+            if (profilePic.isError()) {
+                throw new Exception("Image URL does not contain direct image file. Cannot load!");
+            }
             profilePicCircle.setFill(new ImagePattern(profilePic));
-        } catch (IOException ex) {
-            // trusty penguin fallback
+        } catch (Exception e) {
+//             trusty penguin fallback
             profilePic = new Image(getClass().getResourceAsStream("Images/penguin01.jpg"));
             profilePicCircle.setFill(new ImagePattern(profilePic));
         }
