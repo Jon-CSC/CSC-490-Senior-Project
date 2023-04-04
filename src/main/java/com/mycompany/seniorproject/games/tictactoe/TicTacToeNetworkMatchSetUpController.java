@@ -63,7 +63,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
 
     @FXML
     public void onBackButtonClick() throws IOException {
-        App.setRoot("TicTacToeMainMenu");
+        App.setRoot("games/tictactoe/TicTacToeMainMenu");
     }
 
     @FXML
@@ -192,7 +192,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
         progressIndicatorConnecting.setVisible(true);
         Task task = new Task<Void>() {
             @Override
-            public Void call() {
+            public Void call() throws IOException {
                 connection = new PeerToPeer();
                 connection.connectToHost(ip, port);
                 Platform.runLater(() -> {
