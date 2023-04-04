@@ -21,16 +21,11 @@ public class PeerToPeer {
      *
      * @param port The port to listen on for incoming connections.
      */
-    public void startHost(int port) {
-        try {
-            hostSocket = new ServerSocket(port);
-            clientSocket = hostSocket.accept(); // process will block here waiting for client request
-            inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            outputStream = new PrintWriter(clientSocket.getOutputStream(),true);
-        } catch (IOException ex) {
-            Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+    public void startHost(int port) throws IOException {
+        hostSocket = new ServerSocket(port);
+        clientSocket = hostSocket.accept(); // process will block here waiting for client request
+        inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        outputStream = new PrintWriter(clientSocket.getOutputStream(), true);
     }
 
     /**
@@ -38,15 +33,13 @@ public class PeerToPeer {
      *
      * @param ip The host IP to connect to.
      * @param port The port to connect to on the host.
+     * @throws java.io.IOException
+     * @param
      */
-    public void connectToHost(String ip, int port) {
-        try {
-            clientSocket = new Socket(ip, port);
-            inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            outputStream = new PrintWriter(clientSocket.getOutputStream(),true);
-        } catch (IOException ex) {
-            Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void connectToHost(String ip, int port) throws IOException {
+        clientSocket = new Socket(ip, port);
+        inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        outputStream = new PrintWriter(clientSocket.getOutputStream(), true);
     }
 
     /**
@@ -59,7 +52,7 @@ public class PeerToPeer {
         String packet = "";
         try {
             // process will block here waiting for input
-            while (!packet.contains("END MESSAGE")&& (data = inputStream.readLine()) != null) {
+            while (!packet.contains("END MESSAGE") && (data = inputStream.readLine()) != null) {
                 packet += data;
             }
             return packet;
@@ -72,6 +65,7 @@ public class PeerToPeer {
     /**
      * Send a message across the connection. Message MUST contain "END MESSAGE"
      * to signal the end of the string for the read function.
+     *
      * @param message The message to send.
      */
     public void sendPacket(String message) {
@@ -100,13 +94,14 @@ public class PeerToPeer {
             Logger.getLogger(PeerToPeer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         String output = "";
-        if (hostSocket != null){
+        if (hostSocket != null) {
             output += "Host socket info: " + hostSocket.toString() + "\n";
         }
-        if (clientSocket != null){
+        if (clientSocket != null) {
             output += "Client Socket info: " + clientSocket.toString();
         }
         return output.compareTo("") == 0 ? null : output;

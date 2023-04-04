@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="480.0" prefWidth="522.0" stylesheets="@../../../../../styles/games/tictactoemenus.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.tictactoe.TicTacToeNetworkMatchSetUpController">
+<StackPane prefHeight="480.0" prefWidth="522.0" stylesheets="@../../../../../styles/games/tictactoemenus.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.tictactoe.TicTacToeNetworkMatchSetUpController">
    <children>
       <HBox id="HBoxParent" fx:id="hboxParent" alignment="CENTER" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" stylesheets="@../../../../../styles/games/tictactoemenus.css" />
       <BorderPane>
@@ -47,7 +47,7 @@
                               <Insets />
                            </VBox.margin>
                         </FlowPane>
-                        <FlowPane>
+                        <FlowPane prefHeight="28.0" prefWidth="250.0">
                            <children>
                               <Label text="Port Number: ">
                                  <font>
@@ -80,14 +80,18 @@
                               </Button>
                            </children>
                         </HBox>
-                        <Label text="Join a match">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
+                        <HBox>
                            <VBox.margin>
-                              <Insets bottom="10.0" top="30.0" />
+                              <Insets bottom="10.0" top="100.0" />
                            </VBox.margin>
-                        </Label>
+                           <children>
+                              <Label text="Join a match">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                         <FlowPane>
                            <children>
                               <Label text="Host IP: ">
@@ -190,5 +194,10 @@
          </right>
       </BorderPane>
       <ProgressIndicator fx:id="progressIndicatorConnecting" StackPane.alignment="CENTER" />
+      <Label fx:id="labelConnectionFailed" text="Connection Failed" textAlignment="CENTER" textFill="RED" visible="false">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </StackPane>

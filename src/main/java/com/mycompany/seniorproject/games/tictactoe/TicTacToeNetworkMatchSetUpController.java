@@ -18,6 +18,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -58,6 +60,9 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
     private Label labelHostIP;
 
     @FXML
+    private Label labelConnectionFailed;
+
+    @FXML
     private TextField textFieldHostIP;
 
     @FXML
@@ -81,6 +86,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
             joinHostErrorMessage.setVisible(false);
             joinPortErrorMessage.setVisible(false);
             progressIndicatorConnecting.setVisible(false);
+            connection = new PeerToPeer();
         } catch (UnknownHostException ex) {
             Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
             labelHostIP.setText("Error getting IP address");
@@ -93,7 +99,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
     }
 
     @FXML
-    public void onHostButtonClick() throws IOException {
+    public void onHostButtonClick() throws IOException, InterruptedException {
         // TODO: Start Tic-Tac-Toe game with this player as host/server
         String portString = textFieldPortNumHost.getText();
         Boolean validEntries = true;
@@ -113,9 +119,18 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
         if (validEntries) {
             // entries valid, use them to start host
             try {
+                buttonConnect.setDisable(true);
                 startHost(port);
             } catch (InterruptedException ex) {
                 Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
+                /* if connection fails, reset relevant variables
+                 */
+                progressIndicatorConnecting.setVisible(false);
+                labelConnectionFailed.setVisible(true);
+                Thread.sleep(2000);
+                labelConnectionFailed.setVisible(false);
+                connection.closeConnection();
+                buttonConnect.setDisable(false);
             }
         }
     }
@@ -131,10 +146,22 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
         progressIndicatorConnecting.setVisible(true);
         Task task = new Task<Void>() {
             @Override
-            public Void call() {
-                connection = new PeerToPeer();
-                connection.startHost(port);
-                Platform.runLater(() -> {              
+            public Void call() throws InterruptedException {
+                try {
+                    connection.startHost(port);
+                } catch (IOException ex) {
+                    Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
+                    /* if connection fails, reset relevant variables
+                     */
+                    connection.closeConnection();
+                    progressIndicatorConnecting.setVisible(false);
+                    labelConnectionFailed.setVisible(true);
+                    Thread.sleep(2000);
+                    labelConnectionFailed.setVisible(false);
+                    buttonConnect.setDisable(false);
+                    return null;
+                }
+                Platform.runLater(() -> {
                     FXMLLoader loader = new FXMLLoader(TicTacToeNetworkMatchSetUpController.this.getClass().getResource("TicTacToeGame.fxml"));
                     // Get current window
                     Stage stage = (Stage) buttonHost.getScene().getWindow();
@@ -144,7 +171,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                         Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     TicTacToeGameController controller = loader.getController();
-                    controller.initConnection(connection,true);
+                    controller.initConnection(connection, true);
                     stage.show();
                 });
                 return null;
@@ -155,7 +182,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
     }
 
     @FXML
-    public void onConnectButtonClick() throws IOException {
+    public void onConnectButtonClick() throws IOException, InterruptedException {
         // TODO: Make connection and start game with this player as client
         String hostIPString = textFieldHostIP.getText();
         String portString = textFieldPortNumClient.getText();
@@ -182,20 +209,48 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
         }
         if (validEntries) {
             try {
+                buttonHost.setDisable(true);
                 startConnection(hostIPString, port);
             } catch (InterruptedException ex) {
                 Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
+                /* if connection fails, reset relevant variables
+                 */
+                connection.closeConnection();
+                buttonHost.setDisable(false);
+                progressIndicatorConnecting.setVisible(false);
+                labelConnectionFailed.setVisible(true);
+                Thread.sleep(2000);
+                labelConnectionFailed.setVisible(false);
+                buttonConnect.setDisable(false);
+
             }
         }
     }
 
+    /**
+     * Attempts to connect to the given host.
+     * @param ip The host IP to connect to.
+     * @param port The target port on the host
+     * @throws IOException
+     * @throws InterruptedException 
+     */
     public void startConnection(String ip, int port) throws IOException, InterruptedException {
         progressIndicatorConnecting.setVisible(true);
         Task task = new Task<Void>() {
             @Override
-            public Void call() {
-                connection = new PeerToPeer();
-                connection.connectToHost(ip, port);
+            public Void call() throws InterruptedException {
+                try {
+                    connection.connectToHost(ip, port);
+                } catch (IOException ex) {
+                    Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
+                    connection.closeConnection();
+                    progressIndicatorConnecting.setVisible(false);
+                    labelConnectionFailed.setVisible(true);
+                    Thread.sleep(2000);
+                    labelConnectionFailed.setVisible(false);
+                    buttonHost.setDisable(false);
+                    return null;
+                }
                 Platform.runLater(() -> {
                     FXMLLoader loader = new FXMLLoader(TicTacToeNetworkMatchSetUpController.this.getClass().getResource("TicTacToeGame.fxml"));
                     // Get current window
@@ -206,7 +261,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                         Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     TicTacToeGameController controller = loader.getController();
-                    controller.initConnection(connection,false);
+                    controller.initConnection(connection, false);
                     stage.show();
                 });
                 return null;
@@ -224,11 +279,11 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
      * @return true if valid IP, false if not
      */
     public boolean isValidIPAddress(String ip) {
-        String ipNumRegex = 
-         "^(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1}\\.{1})"
-        + "(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1}\\.{1})"
-        + "(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1}\\.{1})"
-        + "(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1})$";
+        String ipNumRegex
+                = "^(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1}\\.{1})"
+                + "(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1}\\.{1})"
+                + "(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1}\\.{1})"
+                + "(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1})$";
 
         Pattern p = Pattern.compile(ipNumRegex);
         if (ip == null) {

@@ -40,3 +40,7 @@
 #joinHostErrorMessage{
     -fx-text-fill: red;
 }
+
+#labelConnectionFailed{
+    -fx-text-fill: red;
+}
