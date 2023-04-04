@@ -126,7 +126,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
         progressIndicatorConnecting.setVisible(true);
         Task task = new Task<Void>() {
             @Override
-            public Void call() {
+            public Void call() throws IOException {
                 connection = new PeerToPeer();
                 connection.startHost(port);
                 Platform.runLater(() -> {
