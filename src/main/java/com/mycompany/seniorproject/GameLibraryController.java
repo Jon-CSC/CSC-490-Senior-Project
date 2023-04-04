@@ -5,6 +5,7 @@
 package com.mycompany.seniorproject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -69,7 +70,7 @@ public class GameLibraryController implements Initializable {
     private Rectangle gameCard01, gameCard02, gameCard03, gameCard04, gameCard05, gameCard06;
     
     @FXML
-    private Rectangle ratingCard;
+    private Rectangle ratingStar1, ratingStar2, ratingStar3, ratingStar4, ratingStar5;
 
     @FXML
     private Circle profilePicCircle;
@@ -97,6 +98,10 @@ public class GameLibraryController implements Initializable {
 
     private Image gc01, gc02, gc03, gc04, gc05, gc06;
     
+    private Image starFilled, starHollow;
+    
+    private ImagePattern starFilledIP, starHollowIP;
+    
     private boolean cardExpanded = false;
     
     private GameType selectedGame;
@@ -109,6 +114,7 @@ public class GameLibraryController implements Initializable {
         App.getStage().centerOnScreen();
         UserAccount currentUser = LocalUserAccount.getInstance().getUser();
         username.setText(currentUser.getUserID());
+        
         Image profilePic;
         try {
             URL avatarURL = new URL(currentUser.getAvatarURL());
@@ -122,14 +128,69 @@ public class GameLibraryController implements Initializable {
             profilePic = new Image(getClass().getResourceAsStream("Images/penguin01.jpg"));
             profilePicCircle.setFill(new ImagePattern(profilePic));
         }
+        
         gridPaneCardText.toBack();
         textGameTitle.setVisible(false);
         textGameDesc.setVisible(false);
-        ratingCard.setVisible(false);
+        ratingStar1.setVisible(false);
+        ratingStar2.setVisible(false);
+        ratingStar3.setVisible(false);
+        ratingStar4.setVisible(false);
+        ratingStar5.setVisible(false);
         buttonPlayGame.setVisible(false);
         buttonCloseExpandedCard.setVisible(false);
         dropDownMenu.setVisible(false);
+        
+        // Rating star click events
+        ratingStar1.setOnMouseClicked(e -> {
+            Alert noGameAlert = new Alert(AlertType.INFORMATION);
+            noGameAlert.setContentText("You rated the game 1 star!");
+            noGameAlert.show();
+        });
+        ratingStar2.setOnMouseClicked(e -> {
+            Alert noGameAlert = new Alert(AlertType.INFORMATION);
+            noGameAlert.setContentText("You rated the game 2 stars!");
+            noGameAlert.show();
+        });
+        ratingStar3.setOnMouseClicked(e -> {
+            Alert noGameAlert = new Alert(AlertType.INFORMATION);
+            noGameAlert.setContentText("You rated the game 3 stars!");
+            noGameAlert.show();
+        });
+        ratingStar4.setOnMouseClicked(e -> {
+            Alert noGameAlert = new Alert(AlertType.INFORMATION);
+            noGameAlert.setContentText("You rated the game 4 stars!");
+            noGameAlert.show();
+        });
+        ratingStar5.setOnMouseClicked(e -> {
+            Alert noGameAlert = new Alert(AlertType.INFORMATION);
+            noGameAlert.setContentText("You rated the game 5 stars!");
+            noGameAlert.show();
+        });
+        
+        // Rating star hover events
+        ratingStar1.setOnMouseMoved(e -> { setVisibleRating(1); });
+        ratingStar2.setOnMouseMoved(e -> { setVisibleRating(2); });
+        ratingStar3.setOnMouseMoved(e -> { setVisibleRating(3); });
+        ratingStar4.setOnMouseMoved(e -> { setVisibleRating(4); });
+        ratingStar5.setOnMouseMoved(e -> { setVisibleRating(5); });
+        
+        // Reset to game's average rating when mouse moves off any star
+        ratingStar1.setOnMouseExited(e -> { setVisibleRating(5); });
+        ratingStar2.setOnMouseExited(e -> { setVisibleRating(5); });
+        ratingStar3.setOnMouseExited(e -> { setVisibleRating(5); });
+        ratingStar4.setOnMouseExited(e -> { setVisibleRating(5); });
+        ratingStar5.setOnMouseExited(e -> { setVisibleRating(5); });
+        
     } 
+    
+    private void setVisibleRating(int rating) {
+        ratingStar1.setFill((rating>=1) ? (starFilledIP) : (starHollowIP));
+        ratingStar2.setFill((rating>=2) ? (starFilledIP) : (starHollowIP));
+        ratingStar3.setFill((rating>=3) ? (starFilledIP) : (starHollowIP));
+        ratingStar4.setFill((rating>=4) ? (starFilledIP) : (starHollowIP));
+        ratingStar5.setFill((rating>=5) ? (starFilledIP) : (starHollowIP));
+    }
     
     @FXML
     void clickedGameCard01(MouseEvent event) throws IOException {
@@ -272,6 +333,15 @@ public class GameLibraryController implements Initializable {
                         + " three of your shapes in a row before your opponent can"
                         + " block you to win the game.";
                 break;
+            case JAVASTROIDS:
+                gameTitle = "JavaStroids";
+                gameDesc = "•1 Player"
+                        + "\n•Local Play"
+                        + "\n\nThe classic vector-graphics game, reimagined in Java! "
+                        + "Based on the original game 'Asteroids' for arcade systems, fight your "
+                        + "way through perilous danger as you cross an asteroid field. Shoot down "
+                        + "those rocks to survive as long as you can.";
+                break;
         }
         textGameTitle.setText(gameTitle);
         textGameDesc.setText(gameDesc);
@@ -282,7 +352,8 @@ public class GameLibraryController implements Initializable {
     }
     
     private void playBattleship() throws IOException {
-        App.setRoot("games/battleship/BattleshipGame");
+//        App.setRoot("games/battleship/BattleshipGame");
+        displayNoGameDialogBoxError();
     }
     
     private void playCheckers() throws IOException {
@@ -328,7 +399,14 @@ public class GameLibraryController implements Initializable {
             gc03 = new Image(getClass().getResourceAsStream("Images/checkers.png"));
             gc04 = new Image(getClass().getResourceAsStream("Images/chess.png"));
             gc05 = new Image(getClass().getResourceAsStream("Images/tictactoe.png"));
-            gc06 = new Image(getClass().getResourceAsStream("Images/comingsoon.png"));
+            gc06 = new Image(getClass().getResourceAsStream("Images/javastroids.png"));
+            
+            starFilled = new Image(getClass().getResourceAsStream("Images/star_yellow.png"));
+            starHollow = new Image(getClass().getResourceAsStream("Images/star_hollow.png"));
+            
+            starFilledIP = new ImagePattern(starFilled);
+            starHollowIP = new ImagePattern(starHollow);
+            
             populateCardImages();
         } catch(Exception e) {
             System.out.println("Thumbnail images were not loaded correctly. "
@@ -343,6 +421,12 @@ public class GameLibraryController implements Initializable {
         gameCard04.setFill(new ImagePattern(gc04));
         gameCard05.setFill(new ImagePattern(gc05));
         gameCard06.setFill(new ImagePattern(gc06));
+        
+        ratingStar1.setFill(starFilledIP);
+        ratingStar2.setFill(starFilledIP);
+        ratingStar3.setFill(starFilledIP);
+        ratingStar4.setFill(starFilledIP);
+        ratingStar5.setFill(starFilledIP);
     }
         
     private void cardAnimation(Rectangle card) {
@@ -411,7 +495,11 @@ public class GameLibraryController implements Initializable {
             gridPaneCardText.toFront();
             textGameTitle.setVisible(true);
             textGameDesc.setVisible(true);
-            ratingCard.setVisible(true);
+            ratingStar1.setVisible(true);
+            ratingStar2.setVisible(true);
+            ratingStar3.setVisible(true);
+            ratingStar4.setVisible(true);
+            ratingStar5.setVisible(true);
             buttonPlayGame.setVisible(true);
             buttonCloseExpandedCard.setVisible(true);
         });
@@ -439,7 +527,11 @@ public class GameLibraryController implements Initializable {
                 gridPaneCardText.toBack();
                 textGameTitle.setVisible(false);
                 textGameDesc.setVisible(false);
-                ratingCard.setVisible(false);
+                ratingStar1.setVisible(false);
+                ratingStar2.setVisible(false);
+                ratingStar3.setVisible(false);
+                ratingStar4.setVisible(false);
+                ratingStar5.setVisible(false);
                 buttonPlayGame.setVisible(false);
                 buttonCloseExpandedCard.setVisible(false);
             }

@@ -74,7 +74,7 @@ public class LoginPageController implements Initializable {
     @FXML
     public void goToGameLibraryPage() throws IOException {
         // Retrieves Loader for gameLibrary page.
-        App.setRoot("GameLibrary");
+        App.setRoot("gameLibrary");
     } // End goToGameLibraryPage.
     
     @FXML
