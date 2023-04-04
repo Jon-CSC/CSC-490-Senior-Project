@@ -28,8 +28,6 @@ public class ProfilePageController implements Initializable {
     static String userID;
     final int MAX_CHARS_BIO = 150;
     
-    private UserAccount profileUser;
-    
     @FXML private Label username, characterCounter;
     @FXML private Rectangle profilePicRectangle, game1Rectangle, game2Rectangle, game3Rectangle, game4Rectangle;
     @FXML private Circle editButtonCircle, cancelEditCircle, profilePicEditButton;
@@ -66,7 +64,7 @@ public class ProfilePageController implements Initializable {
             userID = LocalUserAccount.getInstance().getUser().getUserID();
         }
 
-        profileUser = UserAccount.downloadUser(userID, App.fstore);
+        UserAccount profileUser = UserAccount.downloadUser(userID, App.fstore);
         if(null == profileUser) {
             return; // maybe show the user an error here?
         }
@@ -203,7 +201,6 @@ public class ProfilePageController implements Initializable {
     public void cancelEditProfile() {
         Image editButton;
         bioTextArea.setEditable(false);
-        profilePicEditButton.setVisible(false);
         cancelEditCircle.setVisible(false);
         characterCounter.setVisible(false);
         //This is to change the content of the text area
@@ -214,6 +211,7 @@ public class ProfilePageController implements Initializable {
         editButtonCircle.setFill(new ImagePattern(editButton));
 
         // cancel the changes and get the user's bio (it'll be the same bio it was before they began editing)
+        bioTextArea.setText(LocalUserAccount.getInstance().getUser().getBiography());
     }
 
     /**
