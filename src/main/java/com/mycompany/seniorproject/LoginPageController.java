@@ -49,6 +49,7 @@ public class LoginPageController implements Initializable {
         App.getStage().setHeight(500);
         App.getStage().setMinWidth(500);
         App.getStage().setMinHeight(500);
+        App.getStage().centerOnScreen();
     }
 
     @FXML

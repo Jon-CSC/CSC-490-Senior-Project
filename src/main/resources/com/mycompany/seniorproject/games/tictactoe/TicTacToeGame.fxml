@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Circle?>
@@ -109,16 +110,34 @@
       <Cursor fx:constant="DEFAULT" />
    </cursor>
    <bottom>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="labelP1" layoutX="86.0" layoutY="106.0" text="Player 1" textFill="WHITE" />
-            <Label fx:id="labelP2" layoutX="244.0" layoutY="106.0" text="Player 2" textFill="WHITE">
-               <font>
-                  <Font name="Montserrat Medium" size="16.0" />
-               </font>
-            </Label>
-            <Rectangle fx:id="indicatorRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="58.0" layoutX="14.0" layoutY="91.0" stroke="BLACK" strokeType="INSIDE" width="58.0" />
-            <Circle fx:id="indicatorCircle" fill="DODGERBLUE" layoutX="355.0" layoutY="120.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
+            <HBox prefHeight="200.0" prefWidth="400.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Rectangle fx:id="indicatorRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="58.0" stroke="BLACK" strokeType="INSIDE" width="58.0" />
+                        <Label fx:id="labelP1" text="Player 1" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" fillHeight="false" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Circle fx:id="indicatorCircle" fill="DODGERBLUE" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label fx:id="labelP2" text="Player 2" textFill="WHITE">
+                           <font>
+                              <Font name="Montserrat Medium" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets right="15.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </bottom>
