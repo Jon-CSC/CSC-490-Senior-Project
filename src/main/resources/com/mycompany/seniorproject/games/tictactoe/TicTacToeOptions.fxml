@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../../../../../styles/games/tictactoemainmenu.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.TicTacToeOptionsController">
+<AnchorPane prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../../../../../styles/games/tictactoemainmenu.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.tictactoe.TicTacToeOptionsController">
     <children>
         <VBox alignment="CENTER" fillWidth="false" prefHeight="640.0" prefWidth="900.0" spacing="25.0" stylesheets="@../../../../../styles/games/tictactoemainmenu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>

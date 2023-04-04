@@ -2,11 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.mycompany.seniorproject;
+package com.mycompany.seniorproject.games.tictactoe;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.mycompany.seniorproject.App;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -33,7 +35,7 @@ public class TicTacToeMainMenuController implements Initializable {
         App.getStage().setWidth(400);
         App.getStage().setHeight(600);
         App.getStage().centerOnScreen();
-        loadImages();
+        //loadImages();
     }
 
     @FXML
