@@ -115,7 +115,15 @@
                         </HBox>
                         <VBox alignment="BOTTOM_CENTER" prefWidth="100.0" spacing="20.0" GridPane.rowIndex="2">
                            <children>
-                              <Rectangle fx:id="ratingCard" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="250.0" />
+                              <HBox alignment="CENTER" spacing="10.0">
+                                 <children>
+                                    <Rectangle fx:id="ratingStar1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="50.0" />
+                                    <Rectangle fx:id="ratingStar2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="50.0" />
+                                    <Rectangle fx:id="ratingStar3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="50.0" />
+                                    <Rectangle fx:id="ratingStar4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="50.0" />
+                                    <Rectangle fx:id="ratingStar5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="50.0" />
+                                 </children>
+                              </HBox>
                               <Button fx:id="buttonPlayGame" minHeight="40.0" minWidth="110.0" mnemonicParsing="false" onAction="#launchSelectedGame" styleClass="button-blue" text="Play Game">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />

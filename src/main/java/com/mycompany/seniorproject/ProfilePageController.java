@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.TextInputDialog;
 
 /**
@@ -43,7 +45,12 @@ public class ProfilePageController implements Initializable {
         cancelEditCircle.setVisible(false);
         characterCounter.setVisible(false);
         trackBioCharacterCount();
-        fillInProfileData();
+        try {
+            fillInProfileData();
+        } catch (Exception ex) {
+            Logger.getLogger(ProfilePageController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Could not properly load all profile data. Sorry!");
+        }
         loadImages();
     }
 
@@ -57,7 +64,7 @@ public class ProfilePageController implements Initializable {
         ProfilePageController.userID = userID;
     }
     
-    private void fillInProfileData() {
+    private void fillInProfileData() throws Exception {
         // find the right account
         if(null == userID) {
             // fall back to the local account if there's a misconfiguration
@@ -82,8 +89,12 @@ public class ProfilePageController implements Initializable {
         try {
             URL avatarURL = new URL(profileUser.getAvatarURL());
             profilePic = new Image(avatarURL.toString());
+            if (profilePic.isError()) {
+                throw new Exception("Image URL does not contain direct image file. Cannot load!");
+            }
             profilePicRectangle.setFill(new ImagePattern(profilePic));
-        } catch (IOException ex) {
+        } catch (Exception e) {
+//             trusty penguin fallback
             profilePic = new Image(getClass().getResourceAsStream("Images/penguin01.jpg"));
             profilePicRectangle.setFill(new ImagePattern(profilePic));
         }
