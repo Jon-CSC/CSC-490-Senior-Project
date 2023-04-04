@@ -35,7 +35,7 @@ public class TicTacToeMainMenuController implements Initializable {
         App.getStage().setWidth(400);
         App.getStage().setHeight(600);
         App.getStage().centerOnScreen();
-        //loadImages();
+        loadImages();
     }
 
     @FXML
@@ -72,7 +72,7 @@ public class TicTacToeMainMenuController implements Initializable {
 
     private void loadImages() {
         Image ticTacToeImage;
-        ticTacToeImage = new Image(getClass().getResourceAsStream("Images/tictactoe.png"));
+        ticTacToeImage = new Image(getClass().getResourceAsStream("../../Images/tictactoe.png"));
         ticTacToeRectangle.setFill(new ImagePattern(ticTacToeImage));
     }
 

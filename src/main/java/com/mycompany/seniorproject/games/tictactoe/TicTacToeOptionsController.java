@@ -58,7 +58,7 @@ public class TicTacToeOptionsController implements Initializable {
 
     private void loadImages() {
         Image ticTacToeImage;
-        ticTacToeImage = new Image(getClass().getResourceAsStream("Images/tictactoe.png"));
+        ticTacToeImage = new Image(getClass().getResourceAsStream("../../Images/tictactoe.png"));
         ticTacToeRectangle.setFill(new ImagePattern(ticTacToeImage));
     }
     
