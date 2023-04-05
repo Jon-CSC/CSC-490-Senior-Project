@@ -6,7 +6,6 @@ package com.mycompany.seniorproject.games.tictactoe;
  */
 import com.mycompany.seniorproject.App;
 import com.mycompany.seniorproject.PeerToPeer;
-import com.mycompany.seniorproject.games.TicTacToeGameController;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
