@@ -61,11 +61,6 @@ public class TicTacToeMainMenuController implements Initializable {
     }
 
     @FXML
-    public void onOptionsMouseClick() throws IOException {
-        App.setRoot("games/tictactoe/TicTacToeOptions");
-    }
-
-    @FXML
     public void onQuitMouseClick() throws IOException {
         App.setRoot("gameLibrary");
     }

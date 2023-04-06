@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../../../../../styles/games/tictactoenetworkmatch.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.tictactoe.TicTacToeMainMenuController">
+<AnchorPane prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@../../../../../styles/games/tictactoenetworkmatch.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.tictactoe.TicTacToeMainMenuController">
    <children>
       <VBox alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="400.0" spacing="25.0" stylesheets="@../../../../../styles/games/tictactoemainmenu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -34,7 +34,6 @@
                   <Font size="54.0" />
                </font></Label>
             <Label fx:id="labelNetworkMatch" onMouseClicked="#onNetworkMatchMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Network Match" />
-            <Label fx:id="labelOptions" onMouseClicked="#onOptionsMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Options" />
             <Label fx:id="labelQuit" onMouseClicked="#onQuitMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Quit" />
          </children>
       </VBox>
