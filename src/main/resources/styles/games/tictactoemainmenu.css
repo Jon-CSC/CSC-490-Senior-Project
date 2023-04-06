@@ -1,0 +1,16 @@
+.background
+{
+    -fx-background-color: #21252b;
+}
+
+.label
+{
+    -fx-font: 20px "Helvetica";
+    -fx-text-fill: white;
+}
+
+.label-title
+{
+    -fx-font: 30px "Helvetica";
+    -fx-text-fill: white;
+}

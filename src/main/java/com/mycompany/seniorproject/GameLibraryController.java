@@ -5,6 +5,7 @@
 package com.mycompany.seniorproject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -24,6 +25,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -34,10 +36,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import static javafx.scene.paint.Color.rgb;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -47,7 +46,8 @@ enum GameType {
     BATTLESHIP,
     CHESS,
     CHECKERS,
-    TICTACTOE;
+    TICTACTOE,
+    JAVASTROIDS;
 }
 
 /**
@@ -59,48 +59,36 @@ public class GameLibraryController implements Initializable {
 
     @FXML
     private BorderPane BorderPaneRoot;
-    
-    @FXML
-    private Button buttonProfile;
-    
+
     @FXML
     private Button buttonPlayGame;
-    
-    @FXML
-    private Button buttonCloseExpandedCard;
     
     @FXML
     private StackPane centerStackPane;
     
     @FXML
-    private Rectangle gameCard01;
-
-    @FXML
-    private Rectangle gameCard02;
-
-    @FXML
-    private Rectangle gameCard03;
-
-    @FXML
-    private Rectangle gameCard04;
-
-    @FXML
-    private Rectangle gameCard05;
-
-    @FXML
-    private Rectangle gameCard06;
+    private Rectangle gameCard01, gameCard02, gameCard03, gameCard04, gameCard05, gameCard06;
     
     @FXML
-    private Rectangle ratingCard;
-    
+    private Rectangle ratingStar1, ratingStar2, ratingStar3, ratingStar4, ratingStar5;
+
     @FXML
-    private ImageView profileImgViewer;
+    private Circle profilePicCircle;
+
+    @FXML
+    private Button username;
+
+    @FXML
+    private VBox dropDownMenu;
     
     @FXML
     private Text textGameDesc;
     
     @FXML
     private Text textGameTitle;
+
+    @FXML
+    private Label buttonCloseExpandedCard;
     
     @FXML
     private GridPane gridContainerGameCards;
@@ -109,6 +97,10 @@ public class GameLibraryController implements Initializable {
     private GridPane gridPaneCardText;
 
     private Image gc01, gc02, gc03, gc04, gc05, gc06;
+    
+    private Image starFilled, starHollow;
+    
+    private ImagePattern starFilledIP, starHollowIP;
     
     private boolean cardExpanded = false;
     
@@ -119,31 +111,86 @@ public class GameLibraryController implements Initializable {
         loadCardImages();
         App.getStage().setWidth(900);
         App.getStage().setHeight(640);
+        App.getStage().centerOnScreen();
         UserAccount currentUser = LocalUserAccount.getInstance().getUser();
-        buttonProfile.setText(currentUser.getUserID());
+        username.setText(currentUser.getUserID());
+        
         Image profilePic;
         try {
             URL avatarURL = new URL(currentUser.getAvatarURL());
             profilePic = new Image(avatarURL.toString());
-        } catch (IOException ex) {
-            // trusty penguin fallback
-            profilePic = new Image(getClass().getResourceAsStream("Images\\penguin01.jpg"));
+            if (profilePic.isError()) {
+                throw new Exception("Image URL does not contain direct image file. Cannot load!");
+            }
+            profilePicCircle.setFill(new ImagePattern(profilePic));
+        } catch (Exception e) {
+//             trusty penguin fallback
+            profilePic = new Image(getClass().getResourceAsStream("Images/penguin01.jpg"));
+            profilePicCircle.setFill(new ImagePattern(profilePic));
         }
-        profileImgViewer.setImage(profilePic);
+        
         gridPaneCardText.toBack();
         textGameTitle.setVisible(false);
         textGameDesc.setVisible(false);
-        ratingCard.setVisible(false);
+        ratingStar1.setVisible(false);
+        ratingStar2.setVisible(false);
+        ratingStar3.setVisible(false);
+        ratingStar4.setVisible(false);
+        ratingStar5.setVisible(false);
         buttonPlayGame.setVisible(false);
         buttonCloseExpandedCard.setVisible(false);
-        buttonProfile.setOnMouseClicked(e -> {
-            try {
-                goToProfilePage();
-            } catch (IOException ex) {
-                Logger.getLogger(GameLibraryController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        dropDownMenu.setVisible(false);
+        
+        // Rating star click events
+        ratingStar1.setOnMouseClicked(e -> {
+            Alert noGameAlert = new Alert(AlertType.INFORMATION);
+            noGameAlert.setContentText("You rated the game 1 star!");
+            noGameAlert.show();
         });
+        ratingStar2.setOnMouseClicked(e -> {
+            Alert noGameAlert = new Alert(AlertType.INFORMATION);
+            noGameAlert.setContentText("You rated the game 2 stars!");
+            noGameAlert.show();
+        });
+        ratingStar3.setOnMouseClicked(e -> {
+            Alert noGameAlert = new Alert(AlertType.INFORMATION);
+            noGameAlert.setContentText("You rated the game 3 stars!");
+            noGameAlert.show();
+        });
+        ratingStar4.setOnMouseClicked(e -> {
+            Alert noGameAlert = new Alert(AlertType.INFORMATION);
+            noGameAlert.setContentText("You rated the game 4 stars!");
+            noGameAlert.show();
+        });
+        ratingStar5.setOnMouseClicked(e -> {
+            Alert noGameAlert = new Alert(AlertType.INFORMATION);
+            noGameAlert.setContentText("You rated the game 5 stars!");
+            noGameAlert.show();
+        });
+        
+        // Rating star hover events
+        ratingStar1.setOnMouseMoved(e -> { setVisibleRating(1); });
+        ratingStar2.setOnMouseMoved(e -> { setVisibleRating(2); });
+        ratingStar3.setOnMouseMoved(e -> { setVisibleRating(3); });
+        ratingStar4.setOnMouseMoved(e -> { setVisibleRating(4); });
+        ratingStar5.setOnMouseMoved(e -> { setVisibleRating(5); });
+        
+        // Reset to game's average rating when mouse moves off any star
+        ratingStar1.setOnMouseExited(e -> { setVisibleRating(5); });
+        ratingStar2.setOnMouseExited(e -> { setVisibleRating(5); });
+        ratingStar3.setOnMouseExited(e -> { setVisibleRating(5); });
+        ratingStar4.setOnMouseExited(e -> { setVisibleRating(5); });
+        ratingStar5.setOnMouseExited(e -> { setVisibleRating(5); });
+        
     } 
+    
+    private void setVisibleRating(int rating) {
+        ratingStar1.setFill((rating>=1) ? (starFilledIP) : (starHollowIP));
+        ratingStar2.setFill((rating>=2) ? (starFilledIP) : (starHollowIP));
+        ratingStar3.setFill((rating>=3) ? (starFilledIP) : (starHollowIP));
+        ratingStar4.setFill((rating>=4) ? (starFilledIP) : (starHollowIP));
+        ratingStar5.setFill((rating>=5) ? (starFilledIP) : (starHollowIP));
+    }
     
     @FXML
     void clickedGameCard01(MouseEvent event) throws IOException {
@@ -183,7 +230,7 @@ public class GameLibraryController implements Initializable {
     @FXML
     void clickedGameCard06(MouseEvent event) {
         // To be filled...
-        selectedGame = GameType.NOGAME;
+        selectedGame = GameType.JAVASTROIDS;
         cardAnimation(gameCard06);
         populateCardDetails();
     }
@@ -193,11 +240,16 @@ public class GameLibraryController implements Initializable {
         // Responds to keyboard input when scene is up
         // Currently only supports [Esc] to logout
         if (event.getCode().toString().equalsIgnoreCase("ESCAPE")) {
-            App.setRoot("LoginPage");
-            LocalUserAccount.getInstance().logout();
+            logOut();
         }
     }
-    
+
+    @FXML
+    void logOut() throws IOException {
+        App.setRoot("LoginPage");
+        LocalUserAccount.getInstance().logout();
+    }
+
     @FXML
     void launchSelectedGame(ActionEvent event) throws IOException {
         switch (selectedGame) {
@@ -221,6 +273,9 @@ public class GameLibraryController implements Initializable {
                 break;
             case TICTACTOE:
                 playTicTacToe();
+                break;
+            case JAVASTROIDS:
+                playJavaStroids();
                 break;
         }
     }
@@ -278,17 +333,27 @@ public class GameLibraryController implements Initializable {
                         + " three of your shapes in a row before your opponent can"
                         + " block you to win the game.";
                 break;
+            case JAVASTROIDS:
+                gameTitle = "JavaStroids";
+                gameDesc = "•1 Player"
+                        + "\n•Local Play"
+                        + "\n\nThe classic vector-graphics game, reimagined in Java! "
+                        + "Based on the original game 'Asteroids' for arcade systems, fight your "
+                        + "way through perilous danger as you cross an asteroid field. Shoot down "
+                        + "those rocks to survive as long as you can.";
+                break;
         }
         textGameTitle.setText(gameTitle);
         textGameDesc.setText(gameDesc);
     } 
     
     private void playSnake() throws IOException {
-        App.setRoot("SnakeGame");
+        App.setRoot("games/snake/SnakeGame");
     }
     
     private void playBattleship() throws IOException {
-        App.setRoot("BattleshipGame");
+//        App.setRoot("games/battleship/BattleshipGame");
+        displayNoGameDialogBoxError();
     }
     
     private void playCheckers() throws IOException {
@@ -297,7 +362,7 @@ public class GameLibraryController implements Initializable {
     }
     
     private void playTicTacToe() throws IOException {
-        App.setRoot("TicTacToeMainMenu");
+        App.setRoot("games/tictactoe/TicTacToeMainMenu");
     }
     
     private void playChess() throws IOException {
@@ -305,13 +370,17 @@ public class GameLibraryController implements Initializable {
         displayNoGameDialogBoxError();
     }
     
+    private void playJavaStroids() throws IOException {
+        App.setRoot("games/javastroids/mainMenu");
+    }
+    
+    @FXML
     private void goToProfilePage() throws IOException {
         ProfilePageController.configureUserProfile(LocalUserAccount.getInstance().getUser().getUserID());
         App.setRoot("ProfilePage");
     }
     
-    private void playNetworkTest() {
-        //App.setRoot("NetworkTest");
+    private void playNoGame() {
         displayNoGameDialogBoxError();
     }
     
@@ -325,12 +394,19 @@ public class GameLibraryController implements Initializable {
         // Loads images from \Image\ directory in the default package for use as thumbnails
         // Spits out error if it cannot find them
         try {
-            gc01 = new Image(getClass().getResourceAsStream("\\Images\\snake.png"));
-            gc02 = new Image(getClass().getResourceAsStream("\\Images\\battleship.png"));
-            gc03 = new Image(getClass().getResourceAsStream("\\Images\\checkers.png"));
-            gc04 = new Image(getClass().getResourceAsStream("\\Images\\chess.png"));
-            gc05 = new Image(getClass().getResourceAsStream("\\Images\\tictactoe.png"));
-            gc06 = new Image(getClass().getResourceAsStream("\\Images\\comingsoon.png"));
+            gc01 = new Image(getClass().getResourceAsStream("Images/snake.png"));
+            gc02 = new Image(getClass().getResourceAsStream("Images/battleship.png"));
+            gc03 = new Image(getClass().getResourceAsStream("Images/checkers.png"));
+            gc04 = new Image(getClass().getResourceAsStream("Images/chess.png"));
+            gc05 = new Image(getClass().getResourceAsStream("Images/tictactoe.png"));
+            gc06 = new Image(getClass().getResourceAsStream("Images/javastroids.png"));
+            
+            starFilled = new Image(getClass().getResourceAsStream("Images/star_yellow.png"));
+            starHollow = new Image(getClass().getResourceAsStream("Images/star_hollow.png"));
+            
+            starFilledIP = new ImagePattern(starFilled);
+            starHollowIP = new ImagePattern(starHollow);
+            
             populateCardImages();
         } catch(Exception e) {
             System.out.println("Thumbnail images were not loaded correctly. "
@@ -345,6 +421,12 @@ public class GameLibraryController implements Initializable {
         gameCard04.setFill(new ImagePattern(gc04));
         gameCard05.setFill(new ImagePattern(gc05));
         gameCard06.setFill(new ImagePattern(gc06));
+        
+        ratingStar1.setFill(starFilledIP);
+        ratingStar2.setFill(starFilledIP);
+        ratingStar3.setFill(starFilledIP);
+        ratingStar4.setFill(starFilledIP);
+        ratingStar5.setFill(starFilledIP);
     }
         
     private void cardAnimation(Rectangle card) {
@@ -372,10 +454,10 @@ public class GameLibraryController implements Initializable {
         scale01.setCycleCount(1);
         scaleCardTransition.getChildren().add(scale01);
         scale01.setOnFinished(e -> {
-            card.setFill(rgb(58,58,58));
+            card.setFill(rgb(32,32,32));
 //            card.setFill(rgb(16,38,58));
-            card.setArcWidth(10);
-            card.setArcHeight(15);
+            card.setArcWidth(5);
+            card.setArcHeight(5);
         });
         ScaleTransition scale02 = new ScaleTransition(Duration.seconds(0.5), card);
         scale02.setToX(4.7);
@@ -397,8 +479,8 @@ public class GameLibraryController implements Initializable {
         
         SequentialTransition moveCardTransition = new SequentialTransition();
         
-        double xPosFinal = (App.getStage().getScene().getWidth() / 2.0) - cardPosX + 45;
-        double yPosFinal = (App.getStage().getScene().getHeight() / 2.0) - cardPosY + 65;
+        double xPosFinal = (App.getStage().getScene().getWidth() / 2.0) - cardPosX + 55;
+        double yPosFinal = (App.getStage().getScene().getHeight() / 2.0) - cardPosY + 80;
         
         Path path01 = new Path();
         path01.getElements().add(new MoveToAbs(card));
@@ -413,7 +495,11 @@ public class GameLibraryController implements Initializable {
             gridPaneCardText.toFront();
             textGameTitle.setVisible(true);
             textGameDesc.setVisible(true);
-            ratingCard.setVisible(true);
+            ratingStar1.setVisible(true);
+            ratingStar2.setVisible(true);
+            ratingStar3.setVisible(true);
+            ratingStar4.setVisible(true);
+            ratingStar5.setVisible(true);
             buttonPlayGame.setVisible(true);
             buttonCloseExpandedCard.setVisible(true);
         });
@@ -441,11 +527,24 @@ public class GameLibraryController implements Initializable {
                 gridPaneCardText.toBack();
                 textGameTitle.setVisible(false);
                 textGameDesc.setVisible(false);
-                ratingCard.setVisible(false);
+                ratingStar1.setVisible(false);
+                ratingStar2.setVisible(false);
+                ratingStar3.setVisible(false);
+                ratingStar4.setVisible(false);
+                ratingStar5.setVisible(false);
                 buttonPlayGame.setVisible(false);
                 buttonCloseExpandedCard.setVisible(false);
             }
         });
+    }
+
+    @FXML
+    public void clickedProfilePic() {
+        if (dropDownMenu.isVisible()) {
+            dropDownMenu.setVisible(false);
+        } else {
+            dropDownMenu.setVisible(true);
+        }
     }
     
     public static class MoveToAbs extends MoveTo {

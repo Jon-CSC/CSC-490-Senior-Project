@@ -49,6 +49,7 @@ public class LoginPageController implements Initializable {
         App.getStage().setHeight(500);
         App.getStage().setMinWidth(500);
         App.getStage().setMinHeight(500);
+        App.getStage().centerOnScreen();
     }
 
     @FXML
@@ -73,7 +74,7 @@ public class LoginPageController implements Initializable {
     @FXML
     public void goToGameLibraryPage() throws IOException {
         // Retrieves Loader for gameLibrary page.
-        App.setRoot("GameLibrary");
+        App.setRoot("gameLibrary");
     } // End goToGameLibraryPage.
     
     @FXML

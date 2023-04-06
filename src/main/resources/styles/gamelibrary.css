@@ -1,35 +1,77 @@
-/*
- * Empty Stylesheet file.
- */
+.background
+{
+    -fx-background-color: #161616;
+}
 
-.mainFxmlClass {
-
+.dropdown-menu
+{
+    -fx-background-color: #232323;
+    -fx-background-radius: 5px;
+    -fx-border-color: #535353;
+    -fx-border-radius: 5px;
 }
 
 .button
 {
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: white;
     -fx-background-radius: 20px;
-    -fx-background-color: black;
-    -fx-border-color: dodgerblue;
+    -fx-background-color: #232323;
+    -fx-border-color: #232323;
     -fx-border-radius: 20px;
+    -fx-cursor: hand;
+}
+
+.button-dropdown
+{
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-background-color: #232323;
+    -fx-border-color: #232323;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button-dropdown:hover
+{
+    -fx-background-color: #0866CC;
+    -fx-border-color: #0866CC;
+}
+
+.button-blue
+{
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-background-color: #0866CC;
+    -fx-border-color: #0866CC;
+    -fx-border-radius: 20px;
+    -fx-cursor: hand;
+}
+
+.label
+{
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: white;
+    -fx-line-spacing: 5.0;
+}
+
+.label-game-title
+{
+    -fx-font: 24px "Helvetica";
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.label-X-button
+{
+    -fx-font: 20px "Helvetica";
     -fx-text-fill: white;
     -fx-cursor: hand;
-    -fx-font: 14px "Helvetica";
 }
 
-.button:pressed
+.circle
 {
-    /* -fx-font-weight: bold; */
-    -fx-background-color: #004f8b;
-    -fx-background-radius: 22;
-    -fx-background-size: 16;
-    -fx-text-fill: white;
-    /* -fx-border-color: white;
-    -fx-border-radius: 20;
-    -fx-border-width: 3; */
-}
-
-#BorderPaneParent
-{
-    -fx-background-color: #1c1c1c;
+    -fx-cursor: hand;
 }

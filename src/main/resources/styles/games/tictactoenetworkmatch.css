@@ -1,0 +1,89 @@
+.background
+{
+    -fx-background-color: #21252b;
+}
+
+.small-vbox
+{
+    -fx-background-color: #697489;
+    -fx-background-radius: 20px;
+}
+
+.button
+{
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-background-color: #3e4b5f;
+    -fx-border-color: #3e4b5f;
+    -fx-border-radius: 20px;
+    -fx-cursor: hand;
+}
+
+.button-host
+{
+    -fx-font: 20px "Helvetica";
+        -fx-text-fill: white;
+        -fx-background-radius: 20 20 0 0;
+        -fx-background-color: #697489;
+        -fx-border-color: #697489;
+        -fx-border-radius: 20 20 0 0;
+        -fx-cursor: hand;
+}
+
+.button-host:hover
+{
+    -fx-background-color: #7cf2ff;
+    -fx-border-color: #7cf2ff;
+}
+
+.button-join
+{
+    -fx-font: 20px "Helvetica";
+    -fx-text-fill: white;
+    -fx-background-radius: 0 0 20 20;
+    -fx-background-color: #697489;
+    -fx-border-color: #697489;
+    -fx-border-radius: 0 0 20 20;
+    -fx-cursor: hand;
+}
+
+.button-join:hover
+{
+    -fx-background-color: #feb0d7;
+    -fx-border-color: #feb0d7;
+}
+
+.label
+{
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: white;
+}
+
+.label-subtitle
+{
+    -fx-font: 20px "Helvetica";
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.label-title
+{
+    -fx-font: 30px "Helvetica";
+    -fx-text-fill: white;
+}
+
+.label-error
+{
+    -fx-font: 14px "Helvetica";
+    -fx-text-fill: #ff4242;
+}
+
+.text-field
+ {
+     -fx-font: 14px "Helvetica";
+     -fx-text-fill: white;
+     -fx-background-color: #21252b;
+     -fx-background-radius: 20px;
+     -fx-border-radius: 20px;
+ }
