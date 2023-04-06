@@ -27,6 +27,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import static javafx.application.Application.launch;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 //import java.awt.event.KeyEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
@@ -73,6 +74,11 @@ public class SnakeGame {
     private int currentDirection;
     private int score = 0;
     
+    @FXML
+    void exitGame() throws IOException {
+
+        App.setRoot("games/snake/snakeMenu");
+    }
 
     public SnakeGame(Canvas c) {
         
@@ -95,7 +101,7 @@ public class SnakeGame {
                     if (currentDirection != DOWN) {
                     }
                     currentDirection = UP;
-                } else if (code == KeyCode.DOWN || code == KeyCode.C) {
+                } else if (code == KeyCode.DOWN || code == KeyCode.S) {
                     if (currentDirection != UP) {
                     }
                     currentDirection = DOWN;
