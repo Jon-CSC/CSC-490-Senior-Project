@@ -135,7 +135,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                     // Get current window
                     Stage stage = (Stage) buttonHost.getScene().getWindow();
                     try {
-                        stage.setScene(new Scene(loader.load()));
+                        App.getStage().getScene().setRoot(loader.load());
                     } catch (IOException ex) {
                         Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -197,17 +197,15 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                 connection = new PeerToPeer();
                 connection.connectToHost(ip, port);
                 Platform.runLater(() -> {
-                    FXMLLoader loader = new FXMLLoader(TicTacToeNetworkMatchSetUpController.this.getClass().getResource("TicTacToeGame.fxml"));
-                    // Get current window
-                    Stage stage = (Stage) buttonConnect.getScene().getWindow();
+                    FXMLLoader loader = new FXMLLoader(TicTacToeNetworkMatchSetUpController.this.getClass().getResource("TicTacToeGame.fxml"));   
                     try {
-                        stage.setScene(new Scene(loader.load()));
+                        App.getStage().getScene().setRoot(loader.load());
                     } catch (IOException ex) {
                         Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    
                     TicTacToeGameController controller = loader.getController();
                     controller.initConnection(connection,false);
-                    stage.show();
                 });
                 return null;
             }
