@@ -152,7 +152,7 @@
       <Cursor fx:constant="DEFAULT" />
    </cursor>
    <bottom>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="labelP1" layoutX="86.0" layoutY="106.0" text="Player 1" textFill="WHITE" />
             <Label fx:id="labelP2" layoutX="244.0" layoutY="106.0" text="Player 2" textFill="WHITE" AnchorPane.rightAnchor="95.0">

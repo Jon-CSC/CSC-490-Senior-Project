@@ -8,35 +8,35 @@ import com.mycompany.seniorproject.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.mycompany.seniorproject.App;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 
 /**
  * FXML Controller class
  *
- * @author Jonathan Espinal
+ * @author Jonathan Espinal, juan
  */
 public class TicTacToeMainMenuController implements Initializable {
 
-    @FXML
-    private Label labelLocalMatch;
-
-    @FXML
-    private Label labelNetworkMatch;
-    @FXML
-    private Label labelOptions;
-    @FXML
-    private Label labelQuit;
+    @FXML private Label labelLocalMatch, labelNetworkMatch, labelOptions, labelQuit;
+    @FXML private Rectangle ticTacToeRectangle;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        App.getStage().setWidth(420);
+        App.getStage().setWidth(400);
         App.getStage().setHeight(600);
+        App.getStage().centerOnScreen();
+        loadImages();
     }
 
     @FXML
@@ -57,23 +57,22 @@ public class TicTacToeMainMenuController implements Initializable {
     @FXML
     public void onLocalMatchMouseClick() throws IOException {
         App.setRoot("games/tictactoe/TicTacToeGame");
-
     }
 
     @FXML
     public void onNetworkMatchMouseClick() throws IOException {
         App.setRoot("games/tictactoe/TicTacToeNetworkMatchSetup");
-
-    }
-
-    @FXML
-    public void onOptionsMouseClick() throws IOException {
-        App.setRoot("games/tictactoe/TicTacToeOptions");
     }
 
     @FXML
     public void onQuitMouseClick() throws IOException {
-        App.setRoot("GameLibrary");
-
+        App.setRoot("gameLibrary");
     }
+
+    private void loadImages() {
+        Image ticTacToeImage;
+        ticTacToeImage = new Image(getClass().getResourceAsStream("../../Images/tictactoe.png"));
+        ticTacToeRectangle.setFill(new ImagePattern(ticTacToeImage));
+    }
+
 }
