@@ -1,9 +1,5 @@
 package com.mycompany.seniorproject.games.tictactoe;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 import com.mycompany.seniorproject.App;
 import com.mycompany.seniorproject.PeerToPeer;
 import java.io.IOException;
@@ -20,10 +16,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -123,7 +116,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
      * @throws IOException
      * @throws java.lang.InterruptedException
      */
-    public void startHost(int port) throws IOException, InterruptedException {
+    private void startHost(int port) throws IOException, InterruptedException {
         progressIndicatorConnecting.setVisible(true);
         Task task = new Task<Void>() {
             @Override
@@ -135,7 +128,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                     // Get current window
                     Stage stage = (Stage) buttonHost.getScene().getWindow();
                     try {
-                        stage.setScene(new Scene(loader.load()));
+                        App.getStage().getScene().setRoot(loader.load());
                     } catch (IOException ex) {
                         Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -189,7 +182,14 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
         }
     }
 
-    public void startConnection(String ip, int port) throws IOException, InterruptedException {
+    /**
+     * Attempts to start a connection with the given IP on the given port.
+     * @param ip The IP of the host
+     * @param port The target port
+     * @throws IOException
+     * @throws InterruptedException 
+     */
+    private void startConnection(String ip, int port) throws IOException, InterruptedException {
         progressIndicatorConnecting.setVisible(true);
         Task task = new Task<Void>() {
             @Override
@@ -197,17 +197,15 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                 connection = new PeerToPeer();
                 connection.connectToHost(ip, port);
                 Platform.runLater(() -> {
-                    FXMLLoader loader = new FXMLLoader(TicTacToeNetworkMatchSetUpController.this.getClass().getResource("TicTacToeGame.fxml"));
-                    // Get current window
-                    Stage stage = (Stage) buttonConnect.getScene().getWindow();
+                    FXMLLoader loader = new FXMLLoader(TicTacToeNetworkMatchSetUpController.this.getClass().getResource("TicTacToeGame.fxml"));   
                     try {
-                        stage.setScene(new Scene(loader.load()));
+                        App.getStage().getScene().setRoot(loader.load());
                     } catch (IOException ex) {
                         Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    
                     TicTacToeGameController controller = loader.getController();
                     controller.initConnection(connection,false);
-                    stage.show();
                 });
                 return null;
             }
@@ -223,7 +221,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
      * @param ip The IP to check
      * @return true if valid IP, false if not
      */
-    public boolean isValidIPAddress(String ip) {
+    private boolean isValidIPAddress(String ip) {
         String ipNumRegex =
                 "^(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1}\\.{1})"
                         + "(([2][5][0-5]|[2][0-4][0-9]|[1][0-9][0-9]|[1-9][0-9]|[0-9]){1}\\.{1})"
