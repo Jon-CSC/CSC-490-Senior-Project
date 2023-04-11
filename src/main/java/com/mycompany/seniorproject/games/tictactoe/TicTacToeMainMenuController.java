@@ -4,6 +4,7 @@
  */
 package com.mycompany.seniorproject.games.tictactoe;
 
+import com.mycompany.seniorproject.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,13 +42,16 @@ public class TicTacToeMainMenuController implements Initializable {
     @FXML
     public void onMenuSelectionMouseEnter(MouseEvent m) {
         Label label = (Label) m.getSource();
-        label.setText("▶ " +label.getText() + " ◀");
+        label.setStyle("-fx-font-weight: bold");
+        label.setText("▶ " + label.getText() + " ◀");
     }
 
     @FXML
     public void onMenuSelectionMouseExit(MouseEvent m) {
         Label label = (Label) m.getSource();
-        label.setText(label.getText().substring(2,label.getText().length()-2));
+        label.setStyle("-fx-font-weight: normal");
+        label.setText(label.getText().substring(2, label.getText().length() - 2));
+
     }
 
     @FXML
