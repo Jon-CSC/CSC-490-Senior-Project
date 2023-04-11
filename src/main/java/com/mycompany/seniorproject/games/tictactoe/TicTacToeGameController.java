@@ -652,8 +652,10 @@ public class TicTacToeGameController {
 
     }
     
+     /**
      * Method that updates the score of the winning player
-     * @param player The winning player
+     * The winning player
+     * @param player 
      */
     private void updateScore(int player){
         // If this is host and player 1 won, tally win in database for this user
