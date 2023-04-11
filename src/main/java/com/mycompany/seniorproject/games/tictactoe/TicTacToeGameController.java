@@ -4,9 +4,13 @@
  */
 package com.mycompany.seniorproject.games.tictactoe;
 
+import com.google.cloud.firestore.FieldValue;
 import com.mycompany.seniorproject.App;
+import com.mycompany.seniorproject.LocalUserAccount;
 import com.mycompany.seniorproject.PeerToPeer;
+import com.mycompany.seniorproject.UserAccount;
 import java.io.IOException;
+import java.util.HashMap;
 import javafx.util.Duration;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -289,6 +293,10 @@ public class TicTacToeGameController {
     @FXML
     void exitGame() throws IOException {
 //        System.exit(0);
+        if (connection != null) {
+            connection.closeConnection();
+            connection = null;
+        }
         App.setRoot("games/tictactoe/TicTacToeMainMenu");
     }
 
@@ -445,22 +453,30 @@ public class TicTacToeGameController {
             // Horizontal wins
             if (gridArr[0] == gridArr[1] && gridArr[1] == gridArr[2] && gridArr[2] != -1) {
                 animateWinner(gridArr[0]);
+                updateScore(gridArr[0]);
             } else if (gridArr[3] == gridArr[4] && gridArr[4] == gridArr[5] && gridArr[5] != -1) {
                 animateWinner(gridArr[3]);
+                updateScore(gridArr[3]);
             } else if (gridArr[6] == gridArr[7] && gridArr[7] == gridArr[8] && gridArr[8] != -1) {
                 animateWinner(gridArr[6]);
+                updateScore(gridArr[6]);
             } // Vertical wins
             else if (gridArr[0] == gridArr[3] && gridArr[3] == gridArr[6] && gridArr[6] != -1) {
                 animateWinner(gridArr[0]);
+                updateScore(gridArr[0]);
             } else if (gridArr[1] == gridArr[4] && gridArr[4] == gridArr[7] && gridArr[7] != -1) {
                 animateWinner(gridArr[1]);
+                updateScore(gridArr[1]);
             } else if (gridArr[2] == gridArr[5] && gridArr[5] == gridArr[8] && gridArr[8] != -1) {
                 animateWinner(gridArr[2]);
+                updateScore(gridArr[2]);
             } // Diagonal wins
             else if (gridArr[0] == gridArr[4] && gridArr[4] == gridArr[8] && gridArr[8] != -1) {
                 animateWinner(gridArr[0]);
+                updateScore(gridArr[0]);
             } else if (gridArr[2] == gridArr[4] && gridArr[4] == gridArr[6] && gridArr[6] != -1) {
                 animateWinner(gridArr[2]);
+                updateScore(gridArr[2]);
             } // Draw state (no win)
             else if (playerTurn == 10) {
                 gameOver = true;
@@ -480,9 +496,9 @@ public class TicTacToeGameController {
      */
     private void animateWinner(int player) {
         gameOver = true;
-
+        
         ParallelTransition pt = new ParallelTransition();
-
+        
         if (player == 1) { // rectangle animations
             for (Object o : gridBoard.getChildren()) {
                 Pane p = (Pane) o;
@@ -635,4 +651,20 @@ public class TicTacToeGameController {
         newGame();
 
     }
+    
+     * Method that updates the score of the winning player
+     * @param player The winning player
+     */
+    private void updateScore(int player){
+        // If this is host and player 1 won, tally win in database for this user
+        if (isHost && player == 1){
+            LocalUserAccount.getInstance().updateGameData("tictactoe_wins", FieldValue.increment(1));
+        }
+        // If this not host and player 2 won, then tally win in database for
+        // this user
+        if (!isHost && player == 2){
+            LocalUserAccount.getInstance().updateGameData("tictactoe_wins",FieldValue.increment(1));
+        }
+    }
+
 }
