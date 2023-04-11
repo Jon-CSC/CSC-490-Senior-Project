@@ -31,11 +31,11 @@ public class ProfilePageController implements Initializable {
     final int MAX_CHARS_BIO = 150;
     
     @FXML private Label username, characterCounter;
-    @FXML private Rectangle profilePicRectangle, game1Rectangle, game2Rectangle, game3Rectangle, game4Rectangle;
+    @FXML private Rectangle profilePicRectangle, tictactoeRectangle, battleshipRectangle, snakeRectangle, javastroidsRectangle;
     @FXML private Circle editButtonCircle, cancelEditCircle, profilePicEditButton;
     @FXML private TextArea bioTextArea, editAvatarField;
     @FXML private Label snakePlaytime, snakeHiscore, battleshipPlaytime, battleshipWins,
-                 checkersPlaytime, checkersWins, tictactoePlaytime, tictactoeWins;
+                 javastroidsPlaytime, javastroidsWins, tictactoePlaytime, tictactoeWins;
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -101,32 +101,32 @@ public class ProfilePageController implements Initializable {
         
         // fill in their stats
         HashMap<String, Object> gameData = profileUser.getGameData();
-        snakePlaytime.setText(gameData.getOrDefault(UserAccount.SNAKE_TIME, 0).toString());
-        snakeHiscore.setText(gameData.getOrDefault(UserAccount.SNAKE_HISCORE, 0).toString());
-        battleshipPlaytime.setText(gameData.getOrDefault(UserAccount.BATTLESHIP_TIME, 0).toString());
-        battleshipWins.setText(gameData.getOrDefault(UserAccount.BATTLESHIP_WINS, 0).toString());
-        checkersPlaytime.setText(gameData.getOrDefault(UserAccount.CHECKERS_TIME, 0).toString());
-        checkersWins.setText(gameData.getOrDefault(UserAccount.CHECKERS_WINS, 0).toString());
         tictactoePlaytime.setText(gameData.getOrDefault(UserAccount.TICTACTOE_TIME, 0).toString());
         tictactoeWins.setText(gameData.getOrDefault(UserAccount.TICTACTOE_WINS, 0).toString());
+        battleshipPlaytime.setText(gameData.getOrDefault(UserAccount.BATTLESHIP_TIME, 0).toString());
+        battleshipWins.setText(gameData.getOrDefault(UserAccount.BATTLESHIP_WINS, 0).toString());
+        snakePlaytime.setText(gameData.getOrDefault(UserAccount.SNAKE_TIME, 0).toString());
+        snakeHiscore.setText(gameData.getOrDefault(UserAccount.SNAKE_HISCORE, 0).toString());
+        javastroidsPlaytime.setText(gameData.getOrDefault(UserAccount.JAVASTROIDS_TIME, 0).toString());
+        javastroidsWins.setText(gameData.getOrDefault(UserAccount.JAVASTROIDS_WINS, 0).toString());
     }
 
     /**
      * Loads all the images on a user's profile page.
      */
     private void loadImages() {
-        Image game1, game2, game3, game4, editButton, profilePicEditButtonImage, cancelEditButton;
-        game1 = new Image(getClass().getResourceAsStream("Images/tictactoe.png"));
-        game2 = new Image(getClass().getResourceAsStream("Images/snake.png"));
-        game3 = new Image(getClass().getResourceAsStream("Images/battleship.png"));
-        game4 = new Image(getClass().getResourceAsStream("Images/checkers.png"));
+        Image tictactoePic, battleshipPic, snakePic, javastroidsPic, editButton, profilePicEditButtonImage, cancelEditButton;
+        tictactoePic = new Image(getClass().getResourceAsStream("Images/tictactoe.png"));
+        battleshipPic = new Image(getClass().getResourceAsStream("Images/battleship.png"));
+        snakePic = new Image(getClass().getResourceAsStream("Images/snake.png"));
+        javastroidsPic = new Image(getClass().getResourceAsStream("Images/javastroids.png"));
         editButton = new Image(getClass().getResourceAsStream("Images/edit.png"));
         profilePicEditButtonImage = new Image(getClass().getResourceAsStream("Images/edit.png"));
         cancelEditButton = new Image(getClass().getResourceAsStream("Images/cancel.png"));
-        game1Rectangle.setFill(new ImagePattern(game1));
-        game2Rectangle.setFill(new ImagePattern(game2));
-        game3Rectangle.setFill(new ImagePattern(game3));
-        game4Rectangle.setFill(new ImagePattern(game4));
+        tictactoeRectangle.setFill(new ImagePattern(tictactoePic));
+        battleshipRectangle.setFill(new ImagePattern(battleshipPic));
+        snakeRectangle.setFill(new ImagePattern(snakePic));
+        javastroidsRectangle.setFill(new ImagePattern(javastroidsPic));
         editButtonCircle.setFill(new ImagePattern(editButton));
         profilePicEditButton.setFill(new ImagePattern(profilePicEditButtonImage));
         cancelEditCircle.setFill(new ImagePattern(cancelEditButton));

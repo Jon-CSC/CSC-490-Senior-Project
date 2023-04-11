@@ -75,129 +75,10 @@
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                        </padding>
                                        <children>
-                                          <Rectangle fx:id="game1Rectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="57.0" strokeType="INSIDE" strokeWidth="0.0" width="57.0" />
+                                          <Rectangle fx:id="tictactoeRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="57.0" strokeType="INSIDE" strokeWidth="0.0" width="57.0" />
                                           <VBox prefHeight="13.0" prefWidth="301.0" spacing="10.0">
                                              <children>
                                                 <Label styleClass="smaller-label" text="Tic-Tac-Toe" />
-                                             </children>
-                                             <padding>
-                                                <Insets left="5.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-                                       <children>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="Play Time" />
-                                                <Label fx:id="snakePlaytime" styleClass="smaller-label" text="0" />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="Wins" />
-                                                <Label fx:id="snakeHiscore" styleClass="smaller-label" text="0" />
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                       <padding>
-                                          <Insets left="15.0" right="15.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="148.0" prefWidth="444.0" styleClass="game-vbox">
-                                 <children>
-                                    <HBox prefHeight="16.0" prefWidth="445.0">
-                                       <padding>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </padding>
-                                       <children>
-                                          <Rectangle fx:id="game2Rectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="57.0" strokeType="INSIDE" strokeWidth="0.0" width="57.0" />
-                                          <VBox prefHeight="13.0" prefWidth="301.0" spacing="10.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="Snake" />
-                                             </children>
-                                             <padding>
-                                                <Insets left="5.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-                                       <children>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="Play Time" />
-                                                <Label fx:id="battleshipPlaytime" styleClass="smaller-label" text="0" />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="High Score" />
-                                                <Label fx:id="battleshipWins" styleClass="smaller-label" text="0" />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
-                                       </children>
-                                       <padding>
-                                          <Insets left="15.0" right="15.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="148.0" prefWidth="444.0" styleClass="game-vbox">
-                                 <children>
-                                    <HBox prefHeight="16.0" prefWidth="445.0">
-                                       <padding>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </padding>
-                                       <children>
-                                          <Rectangle fx:id="game3Rectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="57.0" strokeType="INSIDE" width="57.0" />
-                                          <VBox prefHeight="13.0" prefWidth="301.0" spacing="10.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="Battleship" />
-                                             </children>
-                                             <padding>
-                                                <Insets left="5.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-                                       <children>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="Play Time" />
-                                                <Label fx:id="checkersPlaytime" styleClass="smaller-label" text="0" />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="Wins" />
-                                                <Label fx:id="checkersWins" styleClass="smaller-label" text="0" />
-                                             </children>
-                                          </VBox>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" />
-                                       </children>
-                                       <padding>
-                                          <Insets left="15.0" right="15.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="148.0" prefWidth="444.0" styleClass="game-vbox">
-                                 <children>
-                                    <HBox prefHeight="16.0" prefWidth="445.0">
-                                       <padding>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </padding>
-                                       <children>
-                                          <Rectangle fx:id="game4Rectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="57.0" strokeType="INSIDE" strokeWidth="0.0" width="57.0" />
-                                          <VBox prefHeight="13.0" prefWidth="301.0" spacing="10.0">
-                                             <children>
-                                                <Label styleClass="smaller-label" text="Checkers" />
                                              </children>
                                              <padding>
                                                 <Insets left="5.0" />
@@ -217,6 +98,125 @@
                                              <children>
                                                 <Label styleClass="smaller-label" text="Wins" />
                                                 <Label fx:id="tictactoeWins" styleClass="smaller-label" text="0" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets left="15.0" right="15.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="148.0" prefWidth="444.0" styleClass="game-vbox">
+                                 <children>
+                                    <HBox prefHeight="16.0" prefWidth="445.0">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <children>
+                                          <Rectangle fx:id="battleshipRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="57.0" strokeType="INSIDE" strokeWidth="0.0" width="57.0" />
+                                          <VBox prefHeight="13.0" prefWidth="301.0" spacing="10.0">
+                                             <children>
+                                                <Label styleClass="smaller-label" text="Battleship" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label styleClass="smaller-label" text="Play Time" />
+                                                <Label fx:id="battleshipPlaytime" styleClass="smaller-label" text="0" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label styleClass="smaller-label" text="Wins" />
+                                                <Label fx:id="battleshipWins" styleClass="smaller-label" text="0" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="15.0" right="15.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="148.0" prefWidth="444.0" styleClass="game-vbox">
+                                 <children>
+                                    <HBox prefHeight="16.0" prefWidth="445.0">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <children>
+                                          <Rectangle fx:id="snakeRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="57.0" strokeType="INSIDE" width="57.0" />
+                                          <VBox prefHeight="13.0" prefWidth="301.0" spacing="10.0">
+                                             <children>
+                                                <Label styleClass="smaller-label" text="Snake" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label styleClass="smaller-label" text="Play Time" />
+                                                <Label fx:id="snakePlaytime" styleClass="smaller-label" text="0" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label styleClass="smaller-label" text="Score" />
+                                                <Label fx:id="snakeHiscore" styleClass="smaller-label" text="0" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="15.0" right="15.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="148.0" prefWidth="444.0" styleClass="game-vbox">
+                                 <children>
+                                    <HBox prefHeight="16.0" prefWidth="445.0">
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                       <children>
+                                          <Rectangle fx:id="javastroidsRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="57.0" strokeType="INSIDE" strokeWidth="0.0" width="57.0" />
+                                          <VBox prefHeight="13.0" prefWidth="301.0" spacing="10.0">
+                                             <children>
+                                                <Label styleClass="smaller-label" text="Asteroids" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label styleClass="smaller-label" text="Play Time" />
+                                                <Label fx:id="javastroidsPlaytime" styleClass="smaller-label" text="0" />
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label styleClass="smaller-label" text="Wins" />
+                                                <Label fx:id="javastroidsWins" styleClass="smaller-label" text="0" />
                                              </children>
                                           </VBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0" />

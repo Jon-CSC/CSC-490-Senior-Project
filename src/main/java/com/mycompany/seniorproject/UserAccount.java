@@ -31,14 +31,16 @@ public class UserAccount {
     
     private HashMap<String, Object> gameData;
     public static final String GAMEDATA = "gameData";
-    public static final String SNAKE_TIME = "snake_time_mins";
+    public static final String SNAKE_TIME = "snake_time";
     public static final String SNAKE_HISCORE = "snake_hiscore";
-    public static final String BATTLESHIP_TIME = "battleship_time_mins";
+    public static final String BATTLESHIP_TIME = "battleship_time";
     public static final String BATTLESHIP_WINS = "battleship_wins";
-    public static final String CHECKERS_TIME = "checkers_time_mins";
+    public static final String CHECKERS_TIME = "checkers_time";
     public static final String CHECKERS_WINS = "checkers_wins";
-    public static final String TICTACTOE_TIME = "tictactoe_time_mins";
+    public static final String TICTACTOE_TIME = "tictactoe_time";
     public static final String TICTACTOE_WINS = "tictactoe_wins";
+    public static final String JAVASTROIDS_TIME = "asteroids_time";
+    public static final String JAVASTROIDS_WINS = "asteroids_wins";
     
     // requisite default constructor for deserializing from Firestore
     public UserAccount() {}
@@ -108,6 +110,10 @@ public class UserAccount {
         // tic tac toe
         gameData.put(UserAccount.TICTACTOE_TIME, 0);
         gameData.put(UserAccount.TICTACTOE_WINS, 0);
+        
+        // javastroids
+        gameData.put(UserAccount.JAVASTROIDS_TIME, 0);
+        gameData.put(UserAccount.JAVASTROIDS_WINS, 0);
     }
     
     /**
