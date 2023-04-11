@@ -54,7 +54,7 @@ public class TicTacToeGameController {
 
     @FXML
     private GridPane gridBoard;
-    
+
     @FXML
     private Pane scorecardPane;
 
@@ -496,9 +496,9 @@ public class TicTacToeGameController {
      */
     private void animateWinner(int player) {
         gameOver = true;
-        
+
         ParallelTransition pt = new ParallelTransition();
-        
+
         if (player == 1) { // rectangle animations
             for (Object o : gridBoard.getChildren()) {
                 Pane p = (Pane) o;
@@ -589,29 +589,30 @@ public class TicTacToeGameController {
                 break;
         }
     }
-    
+
     /**
-     * Method will make scorecard visible, and based on the winner, will
-     * show the respective shape of the player.
-     * @param player 
+     * Method will make scorecard visible, and based on the winner, will show
+     * the respective shape of the player.
+     *
+     * @param player
      */
     @FXML
-    private void scorecardAction(int player){
+    private void scorecardAction(int player) {
         scorecardPane.setVisible(true);
-        
-        if (1 == player){
+
+        if (1 == player) {
             winnerRectangle.setVisible(true);
             winnerCircle.setVisible(false);
-        }
-        else {
+        } else {
             winnerRectangle.setVisible(false);
             winnerCircle.setVisible(true);
         }
     }
-    
+
     /**
      * Change font of text when hovering over label.
-     * @param m 
+     *
+     * @param m
      */
     @FXML
     private void onMenuSelectionMouseEnter(MouseEvent m) {
@@ -622,7 +623,8 @@ public class TicTacToeGameController {
 
     /**
      * Change font of text when done hovering over label.
-     * @param m 
+     *
+     * @param m
      */
     @FXML
     private void onMenuSelectionMouseExit(MouseEvent m) {
@@ -631,39 +633,45 @@ public class TicTacToeGameController {
         label.setText(label.getText().substring(2, label.getText().length() - 2));
 
     }
-    
+
     /**
      * Returns to main game library page.
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     @FXML
     private void onQuitMouseClick() throws IOException {
         App.setRoot("GameLibrary");
 
     }
-    
+
     /**
      * Initiates a new game.
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     @FXML
     private void onReplayMouseClick() throws IOException {
         newGame();
 
     }
-    
-     * Method that updates the score of the winning player
+
+    /**
+     * Method that updates the score of the winning player in multiplayer
+     *
      * @param player The winning player
      */
-    private void updateScore(int player){
-        // If this is host and player 1 won, tally win in database for this user
-        if (isHost && player == 1){
-            LocalUserAccount.getInstance().updateGameData("tictactoe_wins", FieldValue.increment(1));
-        }
-        // If this not host and player 2 won, then tally win in database for
-        // this user
-        if (!isHost && player == 2){
-            LocalUserAccount.getInstance().updateGameData("tictactoe_wins",FieldValue.increment(1));
+    private void updateScore(int player) {
+        if (connection != null) {
+            // If this is host and player 1 won, tally win in database for this user
+            if (isHost && player == 1) {
+                LocalUserAccount.getInstance().updateGameData("tictactoe_wins", FieldValue.increment(1));
+            }
+            // If this not host and player 2 won, then tally win in database for
+            // this user
+            if (!isHost && player == 2) {
+                LocalUserAccount.getInstance().updateGameData("tictactoe_wins", FieldValue.increment(1));
+            }
         }
     }
 
