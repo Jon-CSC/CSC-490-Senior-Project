@@ -570,5 +570,4 @@ public class TicTacToeGameController implements Initializable {
                 break;
         }
     }
-
 }
