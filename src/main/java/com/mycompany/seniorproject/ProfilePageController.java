@@ -15,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -101,14 +102,20 @@ public class ProfilePageController implements Initializable {
         
         // fill in their stats
         HashMap<String, Object> gameData = profileUser.getGameData();
-        tictactoePlaytime.setText(gameData.getOrDefault(UserAccount.TICTACTOE_TIME, 0).toString());
+        tictactoePlaytime.setText(formatTime((long)gameData.getOrDefault(UserAccount.TICTACTOE_TIME, (long)0)));
         tictactoeWins.setText(gameData.getOrDefault(UserAccount.TICTACTOE_WINS, 0).toString());
-        battleshipPlaytime.setText(gameData.getOrDefault(UserAccount.BATTLESHIP_TIME, 0).toString());
+        battleshipPlaytime.setText(formatTime((long)gameData.getOrDefault(UserAccount.BATTLESHIP_TIME, (long)0)));
         battleshipWins.setText(gameData.getOrDefault(UserAccount.BATTLESHIP_WINS, 0).toString());
-        snakePlaytime.setText(gameData.getOrDefault(UserAccount.SNAKE_TIME, 0).toString());
+        snakePlaytime.setText(formatTime((long)gameData.getOrDefault(UserAccount.SNAKE_TIME, (long)0)));
         snakeHiscore.setText(gameData.getOrDefault(UserAccount.SNAKE_HISCORE, 0).toString());
-        javastroidsPlaytime.setText(gameData.getOrDefault(UserAccount.JAVASTROIDS_TIME, 0).toString());
+        javastroidsPlaytime.setText(formatTime((long)gameData.getOrDefault(UserAccount.JAVASTROIDS_TIME, (long)0)));
         javastroidsWins.setText(gameData.getOrDefault(UserAccount.JAVASTROIDS_WINS, 0).toString());
+    }
+    
+    private String formatTime(long timeInSeconds) {
+        Duration time = Duration.ofSeconds(timeInSeconds);
+        String timeString = time.toString().toLowerCase().substring(2);
+        return timeString;
     }
 
     /**
