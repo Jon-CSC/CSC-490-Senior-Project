@@ -348,29 +348,47 @@ public class GameLibraryController implements Initializable {
     } 
     
     private void playSnake() throws IOException {
+        Timer snakeTimer = new Timer(Game.SNAKE);
+        snakeTimer.start();
+        App.setTimer(snakeTimer);
         App.setRoot("games/snake/SnakeGame");
     }
     
     private void playBattleship() throws IOException {
 //        App.setRoot("games/battleship/BattleshipGame");
+//        Timer battleshipTimer = new Timer(Game.BATTLESHIP);
+//        battleshipTimer.start();
+//        App.setTimer(battleshipTimer);
         displayNoGameDialogBoxError();
     }
     
     private void playCheckers() throws IOException {
         //App.setRoot("");
+//        Timer checkersTimer = new Timer(Game.CHECKERS);
+//        checkersTimer.start();
+//        App.setTimer(checkersTimer);
         displayNoGameDialogBoxError();
     }
     
     private void playTicTacToe() throws IOException {
+        Timer tictactoeTimer = new Timer(Game.TICTACTOE);
+        tictactoeTimer.start();
+        App.setTimer(tictactoeTimer);
         App.setRoot("games/tictactoe/TicTacToeMainMenu");
     }
     
     private void playChess() throws IOException {
         //App.setRoot("");
+//        Timer chessTimer = new Timer(Game.CHESS);
+//        chessTimer.start();
+//        App.setTimer(chessTimer);
         displayNoGameDialogBoxError();
     }
     
     private void playJavaStroids() throws IOException {
+        Timer javastroidsTimer = new Timer(Game.JAVASTROIDS);
+        javastroidsTimer.start();
+        App.setTimer(javastroidsTimer);
         App.setRoot("games/javastroids/mainMenu");
     }
     
