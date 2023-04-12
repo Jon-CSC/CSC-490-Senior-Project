@@ -24,4 +24,20 @@ public enum Game {
             default: throw new IllegalArgumentException();
         }
     }
+    
+    public String getTimeField() {
+        return this.toString() + "_time";
+    }
+    
+    public String getScoreField() {
+        return this.toString() + "_hiscore";
+    }
+    
+    public String getMatchesField() {
+        return this.toString() + "_matches";
+    }
+    
+    public String getWinsField() { 
+        return this.toString() + "_wins";
+    }
 }

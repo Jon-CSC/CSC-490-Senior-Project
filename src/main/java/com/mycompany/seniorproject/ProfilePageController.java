@@ -102,14 +102,34 @@ public class ProfilePageController implements Initializable {
         
         // fill in their stats
         HashMap<String, Object> gameData = profileUser.getGameData();
-        tictactoePlaytime.setText(formatTime((long)gameData.getOrDefault(UserAccount.TICTACTOE_TIME, (long)0)));
-        tictactoeWins.setText(gameData.getOrDefault(UserAccount.TICTACTOE_WINS, 0).toString());
-        battleshipPlaytime.setText(formatTime((long)gameData.getOrDefault(UserAccount.BATTLESHIP_TIME, (long)0)));
-        battleshipWins.setText(gameData.getOrDefault(UserAccount.BATTLESHIP_WINS, 0).toString());
-        snakePlaytime.setText(formatTime((long)gameData.getOrDefault(UserAccount.SNAKE_TIME, (long)0)));
-        snakeHiscore.setText(gameData.getOrDefault(UserAccount.SNAKE_HISCORE, 0).toString());
-        javastroidsPlaytime.setText(formatTime((long)gameData.getOrDefault(UserAccount.JAVASTROIDS_TIME, (long)0)));
-        javastroidsWins.setText(gameData.getOrDefault(UserAccount.JAVASTROIDS_WINS, 0).toString());
+        long time;
+        long matches;
+        long wins;
+        long score;
+        
+        // tictactoe stats
+        time = (long)gameData.getOrDefault(Game.TICTACTOE.getTimeField(), (long)0);
+        tictactoePlaytime.setText(formatTime(time));
+        wins = (long)gameData.getOrDefault(Game.TICTACTOE.getWinsField(), (long)0);
+        tictactoeWins.setText(Long.toString(wins));
+        
+        // battleship stats
+        time =(long)gameData.getOrDefault(Game.BATTLESHIP.getTimeField(), (long)0);
+        battleshipPlaytime.setText(formatTime(time));
+        wins = (long)gameData.getOrDefault(Game.BATTLESHIP.getWinsField(), (long)0);
+        battleshipWins.setText(Long.toString(wins));
+        
+        // snake stats
+        time = (long)gameData.getOrDefault(Game.SNAKE.getTimeField(), (long)0);
+        snakePlaytime.setText(formatTime(time));
+        score = (long)gameData.getOrDefault(Game.SNAKE.getScoreField(), (long)0);
+        snakeHiscore.setText(Long.toString(score));
+        
+        // javastroids stats
+        time = (long)gameData.getOrDefault(Game.JAVASTROIDS.getTimeField(), (long)0);
+        javastroidsPlaytime.setText(formatTime(time));
+        wins = (long)gameData.getOrDefault(Game.JAVASTROIDS.getWinsField(), (long)0);
+        javastroidsWins.setText(Long.toString(wins));
     }
     
     private String formatTime(long timeInSeconds) {
