@@ -104,7 +104,7 @@ public class GameLibraryController implements Initializable {
     
     private boolean cardExpanded = false;
     
-    private GameType selectedGame;
+    private Game selectedGame;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -143,26 +143,31 @@ public class GameLibraryController implements Initializable {
         
         // Rating star click events
         ratingStar1.setOnMouseClicked(e -> {
+            boolean successful = LocalUserAccount.getInstance().recordRating(selectedGame, 1);
             Alert noGameAlert = new Alert(AlertType.INFORMATION);
             noGameAlert.setContentText("You rated the game 1 star!");
             noGameAlert.show();
         });
         ratingStar2.setOnMouseClicked(e -> {
+            boolean successful = LocalUserAccount.getInstance().recordRating(selectedGame, 2);
             Alert noGameAlert = new Alert(AlertType.INFORMATION);
             noGameAlert.setContentText("You rated the game 2 stars!");
             noGameAlert.show();
         });
         ratingStar3.setOnMouseClicked(e -> {
+            boolean successful = LocalUserAccount.getInstance().recordRating(selectedGame, 3);
             Alert noGameAlert = new Alert(AlertType.INFORMATION);
             noGameAlert.setContentText("You rated the game 3 stars!");
             noGameAlert.show();
         });
         ratingStar4.setOnMouseClicked(e -> {
+            boolean successful = LocalUserAccount.getInstance().recordRating(selectedGame, 4);
             Alert noGameAlert = new Alert(AlertType.INFORMATION);
             noGameAlert.setContentText("You rated the game 4 stars!");
             noGameAlert.show();
         });
         ratingStar5.setOnMouseClicked(e -> {
+            boolean successful = LocalUserAccount.getInstance().recordRating(selectedGame, 5);
             Alert noGameAlert = new Alert(AlertType.INFORMATION);
             noGameAlert.setContentText("You rated the game 5 stars!");
             noGameAlert.show();
@@ -194,43 +199,42 @@ public class GameLibraryController implements Initializable {
     
     @FXML
     void clickedGameCard01(MouseEvent event) throws IOException {
-        selectedGame = GameType.SNAKE;
+        selectedGame = Game.SNAKE;
         cardAnimation(gameCard01);
         populateCardDetails();
     }
 
     @FXML
     void clickedGameCard02(MouseEvent event) throws IOException {
-        selectedGame = GameType.BATTLESHIP;
+        selectedGame = Game.BATTLESHIP;
         cardAnimation(gameCard02);
         populateCardDetails();
     }
 
     @FXML
     void clickedGameCard03(MouseEvent event) {
-        selectedGame = GameType.CHECKERS;
+        selectedGame = Game.CHECKERS;
         cardAnimation(gameCard03);
         populateCardDetails();
     }
 
     @FXML
     void clickedGameCard04(MouseEvent event) {
-        selectedGame = GameType.CHESS;
+        selectedGame = Game.CHESS;
         cardAnimation(gameCard04);
         populateCardDetails();
     }
 
     @FXML
     void clickedGameCard05(MouseEvent event) throws IOException {
-        selectedGame = GameType.TICTACTOE;
+        selectedGame = Game.TICTACTOE;
         cardAnimation(gameCard05);
         populateCardDetails();
     }
 
     @FXML
     void clickedGameCard06(MouseEvent event) {
-        // To be filled...
-        selectedGame = GameType.JAVASTROIDS;
+        selectedGame = Game.JAVASTROIDS;
         cardAnimation(gameCard06);
         populateCardDetails();
     }

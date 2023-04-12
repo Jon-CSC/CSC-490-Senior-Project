@@ -134,6 +134,7 @@ public final class LocalUserAccount {
     
     /**
      * Updates the user's game stats both locally and on the Firestore.
+     * Generally not preferred; it's better to use the more specific methods like recordRating() or recordHiscore().
      * @param dataFieldName the name of the field being updated; e.g., snakeTime, tictactoeWins, etc
      * @param data the value to update the stat to. NOTE: this should be a type that Firebase likes (ints, Strings, things of that nature)
      * @return true if successful, false if not
@@ -155,6 +156,27 @@ public final class LocalUserAccount {
         // update the local data, if that worked
         HashMap<String, Object> gameData = activeUser.getGameData();
         gameData.put(dataFieldName, data);
+        return true;
+    }
+    
+    public boolean recordRating(Game game, double rating) {
+        if(!isLoggedIn() || null == game || rating < 0 || rating > 5) {
+            return false;
+        }
+        // update the remote data
+        String ratingField = game.getRatingField();
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future = userDoc.update(
+            UserAccount.GAMEDATA + "." + ratingField, rating
+        );
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            return false;
+        }
+        // update the local data, if that worked
+        HashMap<String, Object> gameData = activeUser.getGameData();
+        gameData.put(ratingField, rating);
         return true;
     }
     
