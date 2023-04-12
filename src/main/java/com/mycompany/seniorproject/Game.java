@@ -5,6 +5,7 @@ package com.mycompany.seniorproject;
  * @author ndars
  */
 public enum Game {
+    NOGAME,
     TICTACTOE,
     BATTLESHIP,
     CHECKERS,
@@ -15,6 +16,7 @@ public enum Game {
     @Override
     public String toString() {
         switch(this) {
+            case NOGAME: return "nogame";
             case TICTACTOE: return "tictactoe";
             case BATTLESHIP: return "battleship";
             case CHECKERS: return "checkers";
