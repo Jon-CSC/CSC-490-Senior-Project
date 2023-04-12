@@ -20,7 +20,7 @@
                </VBox.margin>
             </Label>
             <Button fx:id="buttonPlayGame" alignment="CENTER" onAction="#switchToGame" prefHeight="77.0" prefWidth="399.0" text="PLAY GAME" />
-            <Button fx:id="buttonHighScores" alignment="CENTER" mnemonicParsing="false" onAction="#switchToLeaderboard" prefHeight="77.0" prefWidth="408.0" text="HIGH SCORES" />
+            <Button fx:id="buttonHighScores" alignment="CENTER" mnemonicParsing="false" onAction="#switchToLeaderboard" prefHeight="77.0" prefWidth="408.0" text="EXIT" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

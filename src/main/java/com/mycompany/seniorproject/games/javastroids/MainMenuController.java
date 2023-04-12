@@ -36,9 +36,9 @@ public class MainMenuController {
         
         buttonHighScores.hoverProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                buttonHighScores.setText("> HIGH SCORES <");
+                buttonHighScores.setText("> EXIT <");
             } else {
-                buttonHighScores.setText("HIGH SCORES");
+                buttonHighScores.setText("EXIT");
             }
         });
         buttonPlayGame.hoverProperty().addListener((observable, oldValue, newValue) -> {
@@ -53,7 +53,7 @@ public class MainMenuController {
     @FXML
     private void switchToLeaderboard() throws IOException {
         System.out.println("Switching to high scores!");
-        App.setRoot("games/javastroids/leaderboard");
+        App.setRoot("gameLibrary");
     }
     
     @FXML

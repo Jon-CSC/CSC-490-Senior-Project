@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package com.mycompany.seniorproject.games.tictactoe;
+package com.mycompany.seniorproject.games;
 
-import com.google.cloud.firestore.FieldValue;
 import com.mycompany.seniorproject.App;
-import com.mycompany.seniorproject.LocalUserAccount;
 import com.mycompany.seniorproject.PeerToPeer;
-import com.mycompany.seniorproject.UserAccount;
 import java.io.IOException;
-import java.util.HashMap;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.fxml.Initializable;
 import javafx.util.Duration;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -20,7 +20,6 @@ import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
@@ -34,7 +33,14 @@ import javafx.scene.shape.Rectangle;
  * @version 1.0
  * @since 3/30/2023
  */
-public class TicTacToeGameController {
+public class TicTacToeGameController implements Initializable {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        App.getStage().setWidth(400);
+        App.getStage().setHeight(600);
+        App.getStage().centerOnScreen();
+    }
 
     private int[] gridArr = {-1, -1, -1, -1, -1, -1, -1, -1, -1};
 
@@ -54,9 +60,6 @@ public class TicTacToeGameController {
 
     @FXML
     private GridPane gridBoard;
-    
-    @FXML
-    private Pane scorecardPane;
 
     @FXML
     private Pane paneBottomCenter;
@@ -81,12 +84,6 @@ public class TicTacToeGameController {
     private Circle indicatorCircle;
     @FXML
     private Rectangle indicatorRectangle;
-
-    @FXML
-    private Circle winnerCircle;
-    @FXML
-    private Rectangle winnerRectangle;
-
     @FXML
     private Label labelP1;
     @FXML
@@ -103,8 +100,7 @@ public class TicTacToeGameController {
     @FXML
     void initialize() {
         changeActivePlayerIndicator();
-        scorecardPane.setVisible(false);
-        App.getStage().setWidth(420);
+        App.getStage().setWidth(400);
         App.getStage().setHeight(600);
         paneArray = new Pane[]{paneTopLeft, paneTopCenter, paneTopRight,
             paneMiddleLeft, paneMiddleCenter, paneMiddleRight,
@@ -243,7 +239,6 @@ public class TicTacToeGameController {
      */
     @FXML
     void newGame() {
-        scorecardPane.setVisible(false);
         ParallelTransition pt = new ParallelTransition();
 
         for (Object o : gridBoard.getChildren()) {
@@ -293,11 +288,7 @@ public class TicTacToeGameController {
     @FXML
     void exitGame() throws IOException {
 //        System.exit(0);
-        if (connection != null) {
-            connection.closeConnection();
-            connection = null;
-        }
-        App.setRoot("games/tictactoe/TicTacToeMainMenu");
+        App.setRoot("TicTacToeMainMenu");
     }
 
     /**
@@ -453,30 +444,22 @@ public class TicTacToeGameController {
             // Horizontal wins
             if (gridArr[0] == gridArr[1] && gridArr[1] == gridArr[2] && gridArr[2] != -1) {
                 animateWinner(gridArr[0]);
-                updateScore(gridArr[0]);
             } else if (gridArr[3] == gridArr[4] && gridArr[4] == gridArr[5] && gridArr[5] != -1) {
                 animateWinner(gridArr[3]);
-                updateScore(gridArr[3]);
             } else if (gridArr[6] == gridArr[7] && gridArr[7] == gridArr[8] && gridArr[8] != -1) {
                 animateWinner(gridArr[6]);
-                updateScore(gridArr[6]);
             } // Vertical wins
             else if (gridArr[0] == gridArr[3] && gridArr[3] == gridArr[6] && gridArr[6] != -1) {
                 animateWinner(gridArr[0]);
-                updateScore(gridArr[0]);
             } else if (gridArr[1] == gridArr[4] && gridArr[4] == gridArr[7] && gridArr[7] != -1) {
                 animateWinner(gridArr[1]);
-                updateScore(gridArr[1]);
             } else if (gridArr[2] == gridArr[5] && gridArr[5] == gridArr[8] && gridArr[8] != -1) {
                 animateWinner(gridArr[2]);
-                updateScore(gridArr[2]);
             } // Diagonal wins
             else if (gridArr[0] == gridArr[4] && gridArr[4] == gridArr[8] && gridArr[8] != -1) {
                 animateWinner(gridArr[0]);
-                updateScore(gridArr[0]);
             } else if (gridArr[2] == gridArr[4] && gridArr[4] == gridArr[6] && gridArr[6] != -1) {
                 animateWinner(gridArr[2]);
-                updateScore(gridArr[2]);
             } // Draw state (no win)
             else if (playerTurn == 10) {
                 gameOver = true;
@@ -496,9 +479,9 @@ public class TicTacToeGameController {
      */
     private void animateWinner(int player) {
         gameOver = true;
-        
+
         ParallelTransition pt = new ParallelTransition();
-        
+
         if (player == 1) { // rectangle animations
             for (Object o : gridBoard.getChildren()) {
                 Pane p = (Pane) o;
@@ -548,12 +531,10 @@ public class TicTacToeGameController {
         }
         pt.play();
         changeActivePlayerIndicator();
-        scorecardAction(player);
     }
 
     /**
      * Calls the appropriate function to mirror opponent player actions.
-     *
      * @param gridLocation The target grid location to act upon.
      */
     private void updateGrid(int gridIndex) {
@@ -589,84 +570,4 @@ public class TicTacToeGameController {
                 break;
         }
     }
-    
-    /**
-     * Method will make scorecard visible, and based on the winner, will
-     * show the respective shape of the player.
-     * @param player 
-     */
-    @FXML
-    private void scorecardAction(int player){
-        scorecardPane.setVisible(true);
-        
-        if (1 == player){
-            winnerRectangle.setVisible(true);
-            winnerCircle.setVisible(false);
-        }
-        else {
-            winnerRectangle.setVisible(false);
-            winnerCircle.setVisible(true);
-        }
-    }
-    
-    /**
-     * Change font of text when hovering over label.
-     * @param m 
-     */
-    @FXML
-    private void onMenuSelectionMouseEnter(MouseEvent m) {
-        Label label = (Label) m.getSource();
-        label.setStyle("-fx-font-weight: bold");
-        label.setText("▶ " + label.getText() + " ◀");
-    }
-
-    /**
-     * Change font of text when done hovering over label.
-     * @param m 
-     */
-    @FXML
-    private void onMenuSelectionMouseExit(MouseEvent m) {
-        Label label = (Label) m.getSource();
-        label.setStyle("-fx-font-weight: normal");
-        label.setText(label.getText().substring(2, label.getText().length() - 2));
-
-    }
-    
-    /**
-     * Returns to main game library page.
-     * @throws IOException 
-     */
-    @FXML
-    private void onQuitMouseClick() throws IOException {
-        exitGame();
-
-    }
-    
-    /**
-     * Initiates a new game.
-     * @throws IOException 
-     */
-    @FXML
-    private void onReplayMouseClick() throws IOException {
-        newGame();
-
-    }
-    
-     /**
-     * Method that updates the score of the winning player
-     * The winning player
-     * @param player 
-     */
-    private void updateScore(int player){
-        // If this is host and player 1 won, tally win in database for this user
-        if (isHost && player == 1){
-            LocalUserAccount.getInstance().updateGameData("tictactoe_wins", FieldValue.increment(1));
-        }
-        // If this not host and player 2 won, then tally win in database for
-        // this user
-        if (!isHost && player == 2){
-            LocalUserAccount.getInstance().updateGameData("tictactoe_wins",FieldValue.increment(1));
-        }
-    }
-
 }
