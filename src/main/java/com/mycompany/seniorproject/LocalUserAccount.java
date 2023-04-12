@@ -246,7 +246,7 @@ public final class LocalUserAccount {
         }
         // check if we need to update the high score
         String scoreField = game.getScoreField();
-        if(score <= (int)activeUser.getGameData().getOrDefault(scoreField, 0)) {
+        if(score <= (long)activeUser.getGameData().getOrDefault(scoreField, (long)0)) {
             return false;
         }
         // update the remote data
