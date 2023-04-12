@@ -17,16 +17,17 @@ import java.io.IOException;
  */
 public class App extends Application {
 
+    private static Timer timer;
     private static Scene scene;
     public static Firestore fstore;
     private static Stage currentStage;
-    private static String currentUser;
 
     @Override
     public void start(Stage stage) throws IOException {
         currentStage = stage;
         fstore = firestore();
         scene = new Scene(loadFXML("LoginPage"));
+        timer = null;
         stage.setTitle("Minigame App");
         stage.setScene(scene);
         stage.show();
@@ -72,6 +73,22 @@ public class App extends Application {
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
+    }
+    
+    /**
+     * Get the current timer.
+     * @return the current timer. Can be null if never set.
+     */
+    public Timer getTimer() {
+        return timer;
+    }
+    
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+    
+    public void clearTimer() {
+        this.timer = null;
     }
     
     /**
