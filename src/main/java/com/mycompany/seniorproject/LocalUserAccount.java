@@ -93,7 +93,9 @@ public final class LocalUserAccount {
         }
         // update the remote data
         DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
-        ApiFuture<WriteResult> future = userDoc.update(UserAccount.BIOGRAPHY, newBio);
+        ApiFuture<WriteResult> future = userDoc.update(
+            UserAccount.BIOGRAPHY, newBio
+        );
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {
@@ -116,7 +118,9 @@ public final class LocalUserAccount {
         }
         // update the remote data
         DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
-        ApiFuture<WriteResult> future = userDoc.update(UserAccount.AVATAR, newAvatarURL);
+        ApiFuture<WriteResult> future = userDoc.update(
+            UserAccount.AVATAR, newAvatarURL
+        );
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {
@@ -140,7 +144,9 @@ public final class LocalUserAccount {
         }
         // update the remote data
         DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
-        ApiFuture<WriteResult> future = userDoc.update(UserAccount.GAMEDATA + "." + dataFieldName, data);
+        ApiFuture<WriteResult> future = userDoc.update(
+            UserAccount.GAMEDATA + "." + dataFieldName, data
+        );
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {
@@ -170,9 +176,11 @@ public final class LocalUserAccount {
         Duration timeElapsed = timer.getDuration();
         long timeElapsedSeconds = timeElapsed.getSeconds();
         // increment the remote data
-        String timeFieldName = timer.getTrackedGame().toString() + "_time";
+        String timeField = timer.getTrackedGame().toString() + "_time";
         DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
-        ApiFuture<WriteResult> future = userDoc.update(UserAccount.GAMEDATA + "." + timeFieldName, FieldValue.increment(timeElapsedSeconds));
+        ApiFuture<WriteResult> future = userDoc.update(
+            UserAccount.GAMEDATA + "." + timeField, FieldValue.increment(timeElapsedSeconds)
+        );
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {
@@ -180,8 +188,80 @@ public final class LocalUserAccount {
         }
         // update the local data, if that worked
         HashMap<String, Object> gameData = activeUser.getGameData();
-        long currentTime = (long)gameData.getOrDefault(timeFieldName, (long)0);
-        gameData.put(timeFieldName, currentTime + timeElapsedSeconds);
+        long currentTime = (long)gameData.getOrDefault(timeField, (long)0);
+        gameData.put(timeField, currentTime + timeElapsedSeconds);
+        return true;
+    }
+    
+    /**
+     * Records match and win data for a match of the given game.
+     * @param game the game to record a match for
+     * @param winner whether this player was the winner or not
+     * @return true if successful, false if not
+     */
+    public boolean recordMatch(Game game, boolean winner) {
+        if(!isLoggedIn() || null == game) {
+            return false;
+        }
+        // increment the remote data
+        String matchesField = game.getMatchesField();
+        String winsField = game.getWinsField();
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future;
+        if(winner) {
+            future = userDoc.update(
+                UserAccount.GAMEDATA + "." + matchesField, FieldValue.increment(1),
+                UserAccount.GAMEDATA + "." + winsField, FieldValue.increment(1)
+            );
+        } else {
+            future = userDoc.update(
+                UserAccount.GAMEDATA + "." + matchesField, FieldValue.increment(1)
+            );
+        }
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            return false;
+        }
+        // increment the local data, if that worked
+        HashMap<String, Object> gameData = activeUser.getGameData();
+        long currentMatches = (long)gameData.getOrDefault(matchesField, (long)0);
+        gameData.put(matchesField, currentMatches + 1);
+        if(winner) {
+            long currentWins = (long)gameData.getOrDefault(winsField, (long)0);
+            gameData.put(winsField, currentWins + 1);
+        }
+        return true;
+    }
+        
+    /**
+     * Records high score data for the given game.
+     * @param game the game to record a score for
+     * @param score the new potential high score
+     * @return true if a new high score and updated, false if update failed or not a high score
+     */
+    public boolean recordHiscore(Game game, int score) {
+        if(!isLoggedIn() || null == game) {
+            return false;
+        }
+        // check if we need to update the high score
+        String scoreField = game.getScoreField();
+        if(score <= (int)activeUser.getGameData().getOrDefault(scoreField, 0)) {
+            return false;
+        }
+        // update the remote data
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future = userDoc.update(
+            UserAccount.GAMEDATA + "." + scoreField, score
+        );
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            return false;
+        }
+        // update the local data, if that worked
+        HashMap<String, Object> gameData = activeUser.getGameData();
+        gameData.put(scoreField, score);
         return true;
     }
 }
