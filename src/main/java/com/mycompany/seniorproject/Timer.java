@@ -27,7 +27,7 @@ public class Timer {
      * Starts the timer. If the timer is already running or stopped, then it resets the timer before restarting it.
      * @return the instant the timer was started.
      */
-    public Instant startTimer() {
+    public Instant start() {
         if(null != start) {
             reset();
         }
@@ -39,7 +39,7 @@ public class Timer {
      * Stops the timer.
      * @return the instant the timer was stopped at. Can be null if the timer was never started.
      */
-    public Instant stopTimer() {
+    public Instant stop() {
         if(!this.isRunning()) {
             return null;
         }

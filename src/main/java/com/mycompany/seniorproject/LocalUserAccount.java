@@ -2,7 +2,9 @@ package com.mycompany.seniorproject;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.FieldValue;
 import com.google.cloud.firestore.WriteResult;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
@@ -147,6 +149,39 @@ public final class LocalUserAccount {
         // update the local data, if that worked
         HashMap<String, Object> gameData = activeUser.getGameData();
         gameData.put(dataFieldName, data);
+        return true;
+    }
+    
+    /**
+     * Increment the playtime stat based on a Timer instance.
+     * Some notes:
+     *  - if the timer never started in the first place, it returns false
+     *  - if the timer is still running, this will stop the timer and record the time from there
+     * @param timer the timer to record the playtime from
+     * @return true if successful, false if not
+     */
+    public boolean recordTime(Timer timer) {
+        if(!isLoggedIn() || null == timer || null == timer.getStartTime()) {
+            return false;
+        } else if(timer.isRunning()) {
+            timer.stop();
+        }
+        // calculate the duration to update
+        Duration timeElapsed = timer.getDuration();
+        long timeElapsedSeconds = timeElapsed.getSeconds();
+        // increment the remote data
+        String timeFieldName = timer.getTrackedGame().toString() + "_time";
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future = userDoc.update(UserAccount.GAMEDATA + "." + timeFieldName, FieldValue.increment(timeElapsedSeconds));
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            return false;
+        }
+        // update the local data, if that worked
+        HashMap<String, Object> gameData = activeUser.getGameData();
+        long currentTime = (long)gameData.getOrDefault(timeFieldName, (long)0);
+        gameData.put(timeFieldName, currentTime + timeElapsedSeconds);
         return true;
     }
 }

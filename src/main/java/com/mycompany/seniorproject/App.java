@@ -79,16 +79,23 @@ public class App extends Application {
      * Get the current timer.
      * @return the current timer. Can be null if never set.
      */
-    public Timer getTimer() {
+    public static Timer getTimer() {
         return timer;
     }
     
-    public void setTimer(Timer timer) {
-        this.timer = timer;
+    /**
+     * Set a new global timer.
+     * @param timer the new timer
+     */
+    public static void setTimer(Timer newTimer) {
+        timer = newTimer;
     }
     
-    public void clearTimer() {
-        this.timer = null;
+    /**
+     * Delete the current timer.
+     */
+    public static void clearTimer() {
+        timer = null;
     }
     
     /**
@@ -119,5 +126,17 @@ public class App extends Application {
      */
     public static void main(String[] args) {
         launch();
+    }
+    
+    /**
+     * Performs cleanup on program stop.
+     */
+    @Override
+    public void stop() {
+        // if a timer is running and we're logged in, still make sure to record the playtime
+        if(null != timer && timer.isRunning() && LocalUserAccount.getInstance().isLoggedIn()) {
+            timer.stop();
+            LocalUserAccount.getInstance().recordTime(timer);
+        }
     }
 }
