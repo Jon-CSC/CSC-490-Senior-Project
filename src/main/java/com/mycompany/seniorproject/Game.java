@@ -40,4 +40,8 @@ public enum Game {
     public String getWinsField() { 
         return this.toString() + "_wins";
     }
+    
+    public String getRatingField() {
+        return this.toString() + "_rating";
+    }
 }
