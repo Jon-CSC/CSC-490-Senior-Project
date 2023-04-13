@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.mycompany.seniorproject.*;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Group;
@@ -75,6 +76,7 @@ public class SnakeGame {
     private int score = 0;
     private boolean firstGameOver = true;
     private boolean paused = false;
+    private Timeline gameplay;
 
     @FXML
     void exitGame() throws IOException {
@@ -118,11 +120,38 @@ public class SnakeGame {
 
         generateFood();
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(130), e -> run(gc)));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+        startGame();
     }
-    
+
+    public void startGame() {
+        gameplay = new Timeline(new KeyFrame(Duration.millis(130), e -> {
+            try {
+                run(gc);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }));
+        gameplay.setCycleCount(Animation.INDEFINITE);
+        gameplay.play();
+    }
+
+    private void pauseGame() {
+        if (paused) {
+            resumeGame();
+            return;
+        }
+        gameplay.pause();
+        gc.setFill(Color.GHOSTWHITE);
+        gc.setFont(new Font("Verdana", 30));
+        gc.fillText("Paused", WIDTH / 3.5, HEIGHT / 2);
+        paused = true;
+    }
+
+    private void resumeGame() {
+        gameplay.play();
+        paused = false;
+    }
+
     private void setGraphicsContext(Canvas c) {
         gc = c.getGraphicsContext2D();
     }
@@ -131,7 +160,7 @@ public class SnakeGame {
         return WIDTH;
     }
 
-    private void run(GraphicsContext gc) {
+    private void run(GraphicsContext gc) throws IOException {
         if (paused) {
             pauseGame();
             return;
@@ -140,10 +169,14 @@ public class SnakeGame {
             if(firstGameOver) {
                 LocalUserAccount.getInstance().recordHiscore(Game.SNAKE, score);
                 firstGameOver = false;
+                App.setRoot("games/snake/SnakeMainMenu");
+                System.out.println("swtiched");
+                return;
             }
             gc.setFill(Color.RED);
-            gc.setFont(new Font("Digital-7", 70));
-            gc.fillText("Game Over", WIDTH / 3.5, HEIGHT / 2);
+            gc.setFont(new Font("Verdana", 70));
+            gc.fillText("Game Over", WIDTH / 4, HEIGHT / 2);
+            System.out.println("game over");
             return;
         }
         drawBackground(gc);
@@ -285,17 +318,6 @@ public class SnakeGame {
         gc.setFill(Color.WHITE);
         gc.setFont(new Font ("Verdana", 35));
         gc.fillText("Score:" + score, 10, 35);
-    }
-
-    private void pauseGame() {
-        if (paused) {
-
-        }
-        gc.setFill(Color.GHOSTWHITE);
-        gc.setFont(new Font("Verdana", 30));
-        gc.fillText("Paused", WIDTH / 3.5, HEIGHT / 2);
-        paused = true;
-        return;
     }
 
 }
