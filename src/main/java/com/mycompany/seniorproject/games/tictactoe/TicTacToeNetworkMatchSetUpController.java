@@ -42,6 +42,9 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        App.getStage().setHeight(400);
+        App.getStage().setWidth(600);
+        App.getStage().centerOnScreen();
         try {
             textFieldYourIP.setText(InetAddress.getLocalHost().getHostAddress());
             labelError.setVisible(false);

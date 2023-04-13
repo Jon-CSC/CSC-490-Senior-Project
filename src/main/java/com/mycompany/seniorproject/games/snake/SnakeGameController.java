@@ -28,11 +28,11 @@ public class SnakeGameController implements Initializable {
         App.getStage().setResizable(false);
         gameCanvas.setWidth(windowSize);
         gameCanvas.setHeight(windowSize);
-    }    
+    }
     
     @FXML
     void testClick(MouseEvent event) throws IOException {
-//        System.out.println("SnakeController works!");
-//        App.setRoot("gameLibrary");
+       System.out.println("SnakeController works!");
+      App.setRoot("gameLibrary");
     }
 }

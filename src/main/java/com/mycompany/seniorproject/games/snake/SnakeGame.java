@@ -74,10 +74,10 @@ public class SnakeGame {
     private int currentDirection;
     private int score = 0;
     private boolean firstGameOver = true;
-    
+    private boolean paused = false;
+
     @FXML
     void exitGame() throws IOException {
-
         App.setRoot("games/snake/snakeMenu");
     }
 
@@ -89,7 +89,9 @@ public class SnakeGame {
             @Override
             public void handle(KeyEvent event) {
                 KeyCode code = event.getCode();
-                if (code == KeyCode.RIGHT || code == KeyCode.D) {
+                if (code == KeyCode.ESCAPE) {
+                    pauseGame();
+                } else if (code == KeyCode.RIGHT || code == KeyCode.D) {
                     if (currentDirection != LEFT) {
                         currentDirection = RIGHT;
                     }
@@ -106,12 +108,10 @@ public class SnakeGame {
                         currentDirection = DOWN;
                     }
                 }
-
             }
         });
 
         for (int i = 0; i < 3; i++) { // for generate food
-
             snakeBody.add(new Point(5, ROWS / 2));
         }
         snakeHead = snakeBody.get(0);
@@ -132,6 +132,10 @@ public class SnakeGame {
     }
 
     private void run(GraphicsContext gc) {
+        if (paused) {
+            pauseGame();
+            return;
+        }
         if (gameOver) {
             if(firstGameOver) {
                 LocalUserAccount.getInstance().recordHiscore(Game.SNAKE, score);
@@ -282,6 +286,16 @@ public class SnakeGame {
         gc.setFont(new Font ("Verdana", 35));
         gc.fillText("Score:" + score, 10, 35);
     }
-  
+
+    private void pauseGame() {
+        if (paused) {
+
+        }
+        gc.setFill(Color.GHOSTWHITE);
+        gc.setFont(new Font("Verdana", 30));
+        gc.fillText("Paused", WIDTH / 3.5, HEIGHT / 2);
+        paused = true;
+        return;
+    }
 
 }

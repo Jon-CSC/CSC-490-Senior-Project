@@ -13,6 +13,7 @@
 {
     -fx-font: 30px "Verdana";
     -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 
 .vbox
