@@ -40,16 +40,6 @@ import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-enum GameType {
-    NOGAME,
-    SNAKE,
-    BATTLESHIP,
-    CHESS,
-    CHECKERS,
-    TICTACTOE,
-    JAVASTROIDS;
-}
-
 /**
  * FXML Controller class
  *
@@ -187,6 +177,15 @@ public class GameLibraryController implements Initializable {
         ratingStar4.setOnMouseExited(e -> { setVisibleRating(5); });
         ratingStar5.setOnMouseExited(e -> { setVisibleRating(5); });
         
+        // stop any existing timers and push their results online
+        Timer timer = App.getTimer();
+        if(null != timer) {
+            if(timer.isRunning() && LocalUserAccount.getInstance().isLoggedIn()) {
+                timer.stop();
+                LocalUserAccount.getInstance().recordTime(timer);
+            }
+            App.clearTimer();
+        }
     } 
     
     private void setVisibleRating(int rating) {
