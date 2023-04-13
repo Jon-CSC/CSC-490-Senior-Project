@@ -278,12 +278,11 @@ public class SnakeGame {
     /*
     Text flowing on the board, displaying socre
     */
-    private void drawScore(){
+    private void drawScore() {
         gc.setFill(Color.WHITE);
-        gc.setFont(new Font ("Digital-7", 35));
-        gc.fillText("Score: " + score, 10, 35);
+        gc.setFont(new Font ("Verdana", 35));
+        gc.fillText("Score:" + score, 10, 35);
     }
-    
   
 
 }

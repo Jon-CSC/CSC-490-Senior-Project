@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="700.0" prefWidth="700.0" styleClass="background" stylesheets="@../../../../../styles/games/snakegame.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.snake.SnakeMainMenuController">
+   <children>
+      <Pane prefHeight="1400.0" prefWidth="700.0">
+         <children>
+            <ImageView fx:id="checkerboard" fitHeight="700.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@snake_checkerboard.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="checkerboard2" fitHeight="700.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true" y="700.0">
+               <image>
+                  <Image url="@snake_checkerboard.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="700.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="20.0" styleClass="vbox">
+               <children>
+                  <Label styleClass="label-title" text="Snake" />
+                  <Rectangle fx:id="snakeRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="200.0" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
+                  <Label onMouseClicked="#startGame" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Start Game" />
+                  <Label onMouseClicked="#exit" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Exit" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

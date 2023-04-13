@@ -355,7 +355,7 @@ public class GameLibraryController implements Initializable {
         Timer snakeTimer = new Timer(Game.SNAKE);
         snakeTimer.start();
         App.setTimer(snakeTimer);
-        App.setRoot("games/snake/SnakeGame");
+        App.setRoot("games/snake/SnakeMainMenu");
     }
     
     private void playBattleship() throws IOException {

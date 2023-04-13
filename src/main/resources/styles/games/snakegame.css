@@ -1,7 +1,31 @@
-/*
- * Empty Stylesheet file.
- */
+.background
+{
+    -fx-background-color: #b3d665;
+}
 
-.mainFxmlClass {
+.label
+{
+    -fx-font: 20px "Verdana";
+    -fx-text-fill: white;
+}
 
+.label-title
+{
+    -fx-font: 30px "Verdana";
+    -fx-text-fill: white;
+}
+
+.vbox
+{
+    -fx-background-color: #557d32;
+    -fx-background-radius: 20px;
+}
+
+.button
+{
+    -fx-font: 14px "Verdana";
+    -fx-text-fill: white;
+    -fx-background-color: green;
+    -fx-background-radius: 20px;
+    -fx-cursor: hand;
 }
