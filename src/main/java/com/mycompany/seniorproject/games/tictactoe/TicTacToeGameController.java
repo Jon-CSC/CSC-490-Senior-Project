@@ -112,7 +112,7 @@ public class TicTacToeGameController {
     }
 
     // Use data received from network setup controller
-    public void initConnection(PeerToPeer connection, boolean isHost) {
+    public void initMultiplayer(PeerToPeer connection, boolean isHost) {
         this.connection = new PeerToPeer();
         this.connection = connection;
         this.isHost = isHost;
@@ -284,7 +284,16 @@ public class TicTacToeGameController {
             paneBottomRight.getChildren().clear();
             changeActivePlayerIndicator();
         });
-
+        for (Pane paneObject : paneArray) {
+            paneObject.setDisable(false);
+        }
+        if (connection != null) {
+            if (isHost) {
+                initMultiplayer(connection, true);
+            } else {
+                initMultiplayer(connection, false);
+            }
+        }
     }
 
     /**
@@ -522,6 +531,11 @@ public class TicTacToeGameController {
                     pt.getChildren().add(st);
                 }
             }
+            /* If this is player 2 animating player 1's victory, send one final 
+            junk message to close player 1's listening thread */
+            if (connection != null && !isHost){
+                connection.sendPacket(" END MESSAGE");
+            }
         } else { // circle animations
             for (Object o : gridBoard.getChildren()) {
                 Pane p = (Pane) o;
@@ -545,10 +559,33 @@ public class TicTacToeGameController {
                     pt.getChildren().add(st);
                 }
             }
+            /* If this is player 1 animating player 2's victory, send one final 
+            junk message to close player 2's listening thread */
+            if (connection != null && isHost){
+                connection.sendPacket(" END MESSAGE");
+            }
         }
         pt.play();
         changeActivePlayerIndicator();
         scorecardAction(player);
+
+        Task<String> task = new Task<String>() {
+            @Override
+            public String call() {
+                String inboundRematchRequest = "";
+                if (connection != null) {
+                    inboundRematchRequest = connection.readPacket();
+                }
+                return inboundRematchRequest;
+            }
+        };
+        task.setOnSucceeded((WorkerStateEvent taskFinishEvent) -> {
+            String inboundRematchRequest = task.getValue();
+            if (inboundRematchRequest.contains("Rematch Requested")) {
+                System.out.println("Rematch Requested");
+            }
+        });
+        new Thread(task).start();
     }
 
     /**
@@ -652,7 +689,10 @@ public class TicTacToeGameController {
      */
     @FXML
     private void onReplayMouseClick() throws IOException {
-        newGame();
+        if (connection != null){
+            connection.sendPacket("Rematch Requested END MESSAGE");
+        }
+        //newGame();
 
     }
 
