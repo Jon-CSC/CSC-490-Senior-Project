@@ -74,7 +74,6 @@ public class SnakeGame {
     private boolean gameOver;
     private int currentDirection;
     private int score = 0;
-    private boolean firstGameOver = true;
     private boolean paused = false;
     private Timeline gameplay;
 
@@ -92,7 +91,11 @@ public class SnakeGame {
             public void handle(KeyEvent event) {
                 KeyCode code = event.getCode();
                 if (code == KeyCode.ESCAPE) {
-                    pauseGame();
+                    if (paused) {
+                        resumeGame();
+                    } else {
+                        pauseGame();
+                    }
                 } else if (code == KeyCode.RIGHT || code == KeyCode.D) {
                     if (currentDirection != LEFT) {
                         currentDirection = RIGHT;
@@ -136,14 +139,7 @@ public class SnakeGame {
     }
 
     private void pauseGame() {
-        if (paused) {
-            resumeGame();
-            return;
-        }
         gameplay.pause();
-        gc.setFill(Color.GHOSTWHITE);
-        gc.setFont(new Font("Verdana", 30));
-        gc.fillText("Paused", WIDTH / 3.5, HEIGHT / 2);
         paused = true;
     }
 
@@ -166,13 +162,10 @@ public class SnakeGame {
             return;
         }
         if (gameOver) {
-            if(firstGameOver) {
-                LocalUserAccount.getInstance().recordHiscore(Game.SNAKE, score);
-                firstGameOver = false;
-                App.setRoot("games/snake/SnakeMainMenu");
-                System.out.println("swtiched");
-                return;
-            }
+            gameplay.stop();
+            LocalUserAccount.getInstance().recordHiscore(Game.SNAKE, score);
+            App.setRoot("games/snake/SnakeMainMenu");
+            System.out.println("switched due to game over");
             gc.setFill(Color.RED);
             gc.setFont(new Font("Verdana", 70));
             gc.fillText("Game Over", WIDTH / 4, HEIGHT / 2);
