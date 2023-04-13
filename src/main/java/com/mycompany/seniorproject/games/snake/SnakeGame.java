@@ -43,7 +43,7 @@ public class SnakeGame {
     Create a board for background
     */
     
-    private static final int WIDTH = 800;
+    private static final int WIDTH = 700;
     private static final int HEIGHT = WIDTH;
     private static final int ROWS = 20;
     private static final int COLUMNS = ROWS;
@@ -177,10 +177,9 @@ public class SnakeGame {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLUMNS; j++) {
                 if ((i + j) % 2 == 0) {
-                    gc.setFill(Color.web("WHEAT"));
-
+                    gc.setFill(Color.web("#b3d665"));
                 } else {
-                    gc.setFill(Color.web("LIGHTBLUE"));
+                    gc.setFill(Color.web("#a1c456"));
                 }
                 gc.fillRect(i * SQUARE_SIZE, j * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
             }
@@ -217,7 +216,7 @@ public class SnakeGame {
     }
 
     private void drawSnake(GraphicsContext gc) {
-        gc.setFill(Color.web("NAVY"));
+        gc.setFill(Color.web("#5275e5"));
 
         gc.fillRoundRect(snakeHead.getX() * SQUARE_SIZE, snakeHead.getY() * SQUARE_SIZE - 1, SQUARE_SIZE - 1,
                 SQUARE_SIZE - 1, 35, 35);
@@ -267,7 +266,7 @@ public class SnakeGame {
         if (snakeHead.getX() == foodX && snakeHead.getY() == foodY){
             snakeBody.add(new Point (-1, -1));
             generateFood();
-            score += 5;
+            score += 1;
         }
     }
     

@@ -22,8 +22,10 @@ public class SnakeGameController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         SnakeGame gameInstance = new SnakeGame(gameCanvas);
         int windowSize = gameInstance.getWindowSquareSize();
-        App.getStage().setWidth(windowSize+20);
-        App.getStage().setHeight(windowSize+40);
+        App.getStage().setWidth(windowSize);
+        App.getStage().setHeight(windowSize+27);
+        App.getStage().centerOnScreen();
+        App.getStage().setResizable(false);
         gameCanvas.setWidth(windowSize);
         gameCanvas.setHeight(windowSize);
     }    
