@@ -641,7 +641,7 @@ public class TicTacToeGameController {
      */
     @FXML
     private void onQuitMouseClick() throws IOException {
-        App.setRoot("GameLibrary");
+        exitGame();
 
     }
 

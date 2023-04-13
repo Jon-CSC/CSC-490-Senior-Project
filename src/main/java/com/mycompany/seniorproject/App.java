@@ -17,16 +17,17 @@ import java.io.IOException;
  */
 public class App extends Application {
 
+    private static Timer timer;
     private static Scene scene;
     public static Firestore fstore;
     private static Stage currentStage;
-    private static String currentUser;
 
     @Override
     public void start(Stage stage) throws IOException {
         currentStage = stage;
         fstore = firestore();
         scene = new Scene(loadFXML("LoginPage"));
+        timer = null;
         stage.setTitle("Minigame App");
         stage.setScene(scene);
         stage.show();
@@ -75,6 +76,29 @@ public class App extends Application {
     }
     
     /**
+     * Get the current timer.
+     * @return the current timer. Can be null if never set.
+     */
+    public static Timer getTimer() {
+        return timer;
+    }
+    
+    /**
+     * Set a new global timer.
+     * @param timer the new timer
+     */
+    public static void setTimer(Timer newTimer) {
+        timer = newTimer;
+    }
+    
+    /**
+     * Delete the current timer.
+     */
+    public static void clearTimer() {
+        timer = null;
+    }
+    
+    /**
      * Search for JSON key in resources and establishes connection to Firebase.
      *
      * @return Instance of FireStore connection.
@@ -102,5 +126,17 @@ public class App extends Application {
      */
     public static void main(String[] args) {
         launch();
+    }
+    
+    /**
+     * Performs cleanup on program stop.
+     */
+    @Override
+    public void stop() {
+        // if a timer is running and we're logged in, still make sure to record the playtime
+        if(null != timer && timer.isRunning() && LocalUserAccount.getInstance().isLoggedIn()) {
+            timer.stop();
+            LocalUserAccount.getInstance().recordTime(timer);
+        }
     }
 }

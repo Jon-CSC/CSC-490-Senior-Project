@@ -15,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -31,11 +32,11 @@ public class ProfilePageController implements Initializable {
     final int MAX_CHARS_BIO = 150;
     
     @FXML private Label username, characterCounter;
-    @FXML private Rectangle profilePicRectangle, game1Rectangle, game2Rectangle, game3Rectangle, game4Rectangle;
+    @FXML private Rectangle profilePicRectangle, tictactoeRectangle, battleshipRectangle, snakeRectangle, javastroidsRectangle;
     @FXML private Circle editButtonCircle, cancelEditCircle, profilePicEditButton;
     @FXML private TextArea bioTextArea, editAvatarField;
     @FXML private Label snakePlaytime, snakeHiscore, battleshipPlaytime, battleshipWins,
-                 checkersPlaytime, checkersWins, tictactoePlaytime, tictactoeWins;
+                 javastroidsPlaytime, javastroidsWins, tictactoePlaytime, tictactoeWins;
             
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -101,32 +102,58 @@ public class ProfilePageController implements Initializable {
         
         // fill in their stats
         HashMap<String, Object> gameData = profileUser.getGameData();
-        snakePlaytime.setText(gameData.getOrDefault(UserAccount.SNAKE_TIME, 0).toString());
-        snakeHiscore.setText(gameData.getOrDefault(UserAccount.SNAKE_HISCORE, 0).toString());
-        battleshipPlaytime.setText(gameData.getOrDefault(UserAccount.BATTLESHIP_TIME, 0).toString());
-        battleshipWins.setText(gameData.getOrDefault(UserAccount.BATTLESHIP_WINS, 0).toString());
-        checkersPlaytime.setText(gameData.getOrDefault(UserAccount.CHECKERS_TIME, 0).toString());
-        checkersWins.setText(gameData.getOrDefault(UserAccount.CHECKERS_WINS, 0).toString());
-        tictactoePlaytime.setText(gameData.getOrDefault(UserAccount.TICTACTOE_TIME, 0).toString());
-        tictactoeWins.setText(gameData.getOrDefault(UserAccount.TICTACTOE_WINS, 0).toString());
+        long time;
+        long matches;
+        long wins;
+        long score;
+        
+        // tictactoe stats
+        time = (long)gameData.getOrDefault(Game.TICTACTOE.getTimeField(), (long)0);
+        tictactoePlaytime.setText(formatTime(time));
+        wins = (long)gameData.getOrDefault(Game.TICTACTOE.getWinsField(), (long)0);
+        tictactoeWins.setText(Long.toString(wins));
+        
+        // battleship stats
+        time =(long)gameData.getOrDefault(Game.BATTLESHIP.getTimeField(), (long)0);
+        battleshipPlaytime.setText(formatTime(time));
+        wins = (long)gameData.getOrDefault(Game.BATTLESHIP.getWinsField(), (long)0);
+        battleshipWins.setText(Long.toString(wins));
+        
+        // snake stats
+        time = (long)gameData.getOrDefault(Game.SNAKE.getTimeField(), (long)0);
+        snakePlaytime.setText(formatTime(time));
+        score = (long)gameData.getOrDefault(Game.SNAKE.getScoreField(), (long)0);
+        snakeHiscore.setText(Long.toString(score));
+        
+        // javastroids stats
+        time = (long)gameData.getOrDefault(Game.JAVASTROIDS.getTimeField(), (long)0);
+        javastroidsPlaytime.setText(formatTime(time));
+        wins = (long)gameData.getOrDefault(Game.JAVASTROIDS.getWinsField(), (long)0);
+        javastroidsWins.setText(Long.toString(wins));
+    }
+    
+    private String formatTime(long timeInSeconds) {
+        Duration time = Duration.ofSeconds(timeInSeconds);
+        String timeString = time.toString().toLowerCase().substring(2);
+        return timeString;
     }
 
     /**
      * Loads all the images on a user's profile page.
      */
     private void loadImages() {
-        Image game1, game2, game3, game4, editButton, profilePicEditButtonImage, cancelEditButton;
-        game1 = new Image(getClass().getResourceAsStream("Images/tictactoe.png"));
-        game2 = new Image(getClass().getResourceAsStream("Images/snake.png"));
-        game3 = new Image(getClass().getResourceAsStream("Images/battleship.png"));
-        game4 = new Image(getClass().getResourceAsStream("Images/checkers.png"));
+        Image tictactoePic, battleshipPic, snakePic, javastroidsPic, editButton, profilePicEditButtonImage, cancelEditButton;
+        tictactoePic = new Image(getClass().getResourceAsStream("Images/tictactoe.png"));
+        battleshipPic = new Image(getClass().getResourceAsStream("Images/battleship.png"));
+        snakePic = new Image(getClass().getResourceAsStream("Images/snake.png"));
+        javastroidsPic = new Image(getClass().getResourceAsStream("Images/javastroids.png"));
         editButton = new Image(getClass().getResourceAsStream("Images/edit.png"));
         profilePicEditButtonImage = new Image(getClass().getResourceAsStream("Images/edit.png"));
         cancelEditButton = new Image(getClass().getResourceAsStream("Images/cancel.png"));
-        game1Rectangle.setFill(new ImagePattern(game1));
-        game2Rectangle.setFill(new ImagePattern(game2));
-        game3Rectangle.setFill(new ImagePattern(game3));
-        game4Rectangle.setFill(new ImagePattern(game4));
+        tictactoeRectangle.setFill(new ImagePattern(tictactoePic));
+        battleshipRectangle.setFill(new ImagePattern(battleshipPic));
+        snakeRectangle.setFill(new ImagePattern(snakePic));
+        javastroidsRectangle.setFill(new ImagePattern(javastroidsPic));
         editButtonCircle.setFill(new ImagePattern(editButton));
         profilePicEditButton.setFill(new ImagePattern(profilePicEditButtonImage));
         cancelEditCircle.setFill(new ImagePattern(cancelEditButton));

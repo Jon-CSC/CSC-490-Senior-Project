@@ -31,14 +31,6 @@ public class UserAccount {
     
     private HashMap<String, Object> gameData;
     public static final String GAMEDATA = "gameData";
-    public static final String SNAKE_TIME = "snake_time_mins";
-    public static final String SNAKE_HISCORE = "snake_hiscore";
-    public static final String BATTLESHIP_TIME = "battleship_time_mins";
-    public static final String BATTLESHIP_WINS = "battleship_wins";
-    public static final String CHECKERS_TIME = "checkers_time_mins";
-    public static final String CHECKERS_WINS = "checkers_wins";
-    public static final String TICTACTOE_TIME = "tictactoe_time_mins";
-    public static final String TICTACTOE_WINS = "tictactoe_wins";
     
     // requisite default constructor for deserializing from Firestore
     public UserAccount() {}
@@ -49,7 +41,6 @@ public class UserAccount {
         this.biography = "Hello, world!";
         this.avatarURL = "https://i.imgur.com/n96r5OU.png";
         this.gameData = new HashMap<>();
-        initGameData();
     }
 
     // similarly requisite all-fields constructor
@@ -90,24 +81,6 @@ public class UserAccount {
      */
     public HashMap<String, Object> getGameData() {
         return gameData;
-    }
-    
-    private void initGameData() {
-        // snake
-        gameData.put(UserAccount.SNAKE_TIME, 0);
-        gameData.put(UserAccount.SNAKE_HISCORE, 0);
-        
-        // battleship
-        gameData.put(UserAccount.BATTLESHIP_TIME, 0);
-        gameData.put(UserAccount.BATTLESHIP_WINS, 0);
-        
-        // checkers
-        gameData.put(UserAccount.CHECKERS_TIME, 0);
-        gameData.put(UserAccount.CHECKERS_WINS, 0);
-        
-        // tic tac toe
-        gameData.put(UserAccount.TICTACTOE_TIME, 0);
-        gameData.put(UserAccount.TICTACTOE_WINS, 0);
     }
     
     /**
