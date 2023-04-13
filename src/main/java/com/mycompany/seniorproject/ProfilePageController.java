@@ -15,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -101,14 +102,40 @@ public class ProfilePageController implements Initializable {
         
         // fill in their stats
         HashMap<String, Object> gameData = profileUser.getGameData();
-        tictactoePlaytime.setText(gameData.getOrDefault(UserAccount.TICTACTOE_TIME, 0).toString());
-        tictactoeWins.setText(gameData.getOrDefault(UserAccount.TICTACTOE_WINS, 0).toString());
-        battleshipPlaytime.setText(gameData.getOrDefault(UserAccount.BATTLESHIP_TIME, 0).toString());
-        battleshipWins.setText(gameData.getOrDefault(UserAccount.BATTLESHIP_WINS, 0).toString());
-        snakePlaytime.setText(gameData.getOrDefault(UserAccount.SNAKE_TIME, 0).toString());
-        snakeHiscore.setText(gameData.getOrDefault(UserAccount.SNAKE_HISCORE, 0).toString());
-        javastroidsPlaytime.setText(gameData.getOrDefault(UserAccount.JAVASTROIDS_TIME, 0).toString());
-        javastroidsWins.setText(gameData.getOrDefault(UserAccount.JAVASTROIDS_WINS, 0).toString());
+        long time;
+        long matches;
+        long wins;
+        long score;
+        
+        // tictactoe stats
+        time = (long)gameData.getOrDefault(Game.TICTACTOE.getTimeField(), (long)0);
+        tictactoePlaytime.setText(formatTime(time));
+        wins = (long)gameData.getOrDefault(Game.TICTACTOE.getWinsField(), (long)0);
+        tictactoeWins.setText(Long.toString(wins));
+        
+        // battleship stats
+        time =(long)gameData.getOrDefault(Game.BATTLESHIP.getTimeField(), (long)0);
+        battleshipPlaytime.setText(formatTime(time));
+        wins = (long)gameData.getOrDefault(Game.BATTLESHIP.getWinsField(), (long)0);
+        battleshipWins.setText(Long.toString(wins));
+        
+        // snake stats
+        time = (long)gameData.getOrDefault(Game.SNAKE.getTimeField(), (long)0);
+        snakePlaytime.setText(formatTime(time));
+        score = (long)gameData.getOrDefault(Game.SNAKE.getScoreField(), (long)0);
+        snakeHiscore.setText(Long.toString(score));
+        
+        // javastroids stats
+        time = (long)gameData.getOrDefault(Game.JAVASTROIDS.getTimeField(), (long)0);
+        javastroidsPlaytime.setText(formatTime(time));
+        wins = (long)gameData.getOrDefault(Game.JAVASTROIDS.getWinsField(), (long)0);
+        javastroidsWins.setText(Long.toString(wins));
+    }
+    
+    private String formatTime(long timeInSeconds) {
+        Duration time = Duration.ofSeconds(timeInSeconds);
+        String timeString = time.toString().toLowerCase().substring(2);
+        return timeString;
     }
 
     /**

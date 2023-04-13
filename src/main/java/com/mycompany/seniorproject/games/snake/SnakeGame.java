@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import com.mycompany.seniorproject.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +73,7 @@ public class SnakeGame {
     private boolean gameOver;
     private int currentDirection;
     private int score = 0;
+    private boolean firstGameOver = true;
     
     @FXML
     void exitGame() throws IOException {
@@ -133,6 +134,10 @@ public class SnakeGame {
 
     private void run(GraphicsContext gc) {
         if (gameOver) {
+            if(firstGameOver) {
+                LocalUserAccount.getInstance().recordHiscore(Game.SNAKE, score);
+                firstGameOver = false;
+            }
             gc.setFill(Color.RED);
             gc.setFont(new Font("Digital-7", 70));
             gc.fillText("Game Over", WIDTH / 3.5, HEIGHT / 2);
