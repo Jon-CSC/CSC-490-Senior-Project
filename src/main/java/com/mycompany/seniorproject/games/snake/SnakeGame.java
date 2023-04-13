@@ -95,17 +95,16 @@ public class SnakeGame {
                     }
                 } else if (code == KeyCode.LEFT || code == KeyCode.A) {
                     if (currentDirection != RIGHT) {
+                        currentDirection = LEFT;
                     }
-                    currentDirection = LEFT;
-
                 } else if (code == KeyCode.UP || code == KeyCode.W) {
                     if (currentDirection != DOWN) {
+                        currentDirection = UP;
                     }
-                    currentDirection = UP;
                 } else if (code == KeyCode.DOWN || code == KeyCode.S) {
                     if (currentDirection != UP) {
+                        currentDirection = DOWN;
                     }
-                    currentDirection = DOWN;
                 }
 
             }
