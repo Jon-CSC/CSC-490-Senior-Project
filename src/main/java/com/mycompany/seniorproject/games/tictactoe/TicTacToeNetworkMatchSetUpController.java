@@ -133,7 +133,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                         Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     TicTacToeGameController controller = loader.getController();
-                    controller.initConnection(connection,true);
+                    controller.initMultiplayer(connection,true);
                     stage.show();
                 });
                 return null;
@@ -205,7 +205,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                     }
                     
                     TicTacToeGameController controller = loader.getController();
-                    controller.initConnection(connection,false);
+                    controller.initMultiplayer(connection,false);
                 });
                 return null;
             }

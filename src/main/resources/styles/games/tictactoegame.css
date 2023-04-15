@@ -23,8 +23,7 @@ BorderPane {
 }
 
 Label {
-    -fx-font-style: "Montserrat";
+    -fx-font-style:"Helvetica";
     -fx-font-size: 18;
-    -fx-font-weight: 700;
         
 }
