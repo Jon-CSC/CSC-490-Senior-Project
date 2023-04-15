@@ -11,6 +11,8 @@ import com.mycompany.seniorproject.PeerToPeer;
 import com.mycompany.seniorproject.UserAccount;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.util.Duration;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -56,7 +58,7 @@ public class TicTacToeGameController {
     private GridPane gridBoard;
 
     @FXML
-    private Pane scorecardPane;
+    private Pane scorecardPane, scorecardPaneMultiplayer, rematchPane;
 
     @FXML
     private Pane paneBottomCenter;
@@ -83,9 +85,9 @@ public class TicTacToeGameController {
     private Rectangle indicatorRectangle;
 
     @FXML
-    private Circle winnerCircle;
+    private Circle winnerCircle, winnerCircleMultiplayer, winnerCircleMultiplayerRematch;
     @FXML
-    private Rectangle winnerRectangle;
+    private Rectangle winnerRectangle, winnerRectangleMultiplayer, winnerRectangleMultiplayerRematch;
 
     @FXML
     private Label labelP1;
@@ -104,6 +106,8 @@ public class TicTacToeGameController {
     void initialize() {
         changeActivePlayerIndicator();
         scorecardPane.setVisible(false);
+        rematchPane.setVisible(false);
+        scorecardPaneMultiplayer.setVisible(false);
         App.getStage().setWidth(420);
         App.getStage().setHeight(600);
         paneArray = new Pane[]{paneTopLeft, paneTopCenter, paneTopRight,
@@ -111,12 +115,19 @@ public class TicTacToeGameController {
             paneBottomLeft, paneBottomCenter, paneBottomRight};
     }
 
-    // Use data received from network setup controller
+    /**
+     * Initializes network-enabled multiplayer matches.
+     *
+     * @param connection The connection to use
+     * @param isHost Is this player the match host?
+     */
     public void initMultiplayer(PeerToPeer connection, boolean isHost) {
         this.connection = new PeerToPeer();
         this.connection = connection;
         this.isHost = isHost;
 
+        /* Player 2 UI is blocked and forced to wait for player 1's actions 
+        on turn 1*/
         if (connection != null && !isHost) {
             // disable pane inputs
             for (Pane paneObject : paneArray) {
@@ -244,6 +255,8 @@ public class TicTacToeGameController {
     @FXML
     void newGame() {
         scorecardPane.setVisible(false);
+        scorecardPaneMultiplayer.setVisible(false);
+        rematchPane.setVisible(false);
         ParallelTransition pt = new ParallelTransition();
 
         for (Object o : gridBoard.getChildren()) {
@@ -287,6 +300,7 @@ public class TicTacToeGameController {
         for (Pane paneObject : paneArray) {
             paneObject.setDisable(false);
         }
+        // For multiplayer rematches. If multiplayer, init multiplayer match
         if (connection != null) {
             if (isHost) {
                 initMultiplayer(connection, true);
@@ -302,6 +316,7 @@ public class TicTacToeGameController {
     @FXML
     void exitGame() throws IOException {
 //        System.exit(0);
+        // If it's a multiplayer game, close connections before changing root
         if (connection != null) {
             connection.closeConnection();
             connection = null;
@@ -327,8 +342,6 @@ public class TicTacToeGameController {
                 cellState = 1;
                 playerTurn++;
                 changeActivePlayerIndicator();
-                // self note, might need to move check win condition to this line
-                // from the click functions
                 if (connection != null && isHost) {
                     // disable pane inputs
                     for (Pane paneObject : paneArray) {
@@ -363,8 +376,6 @@ public class TicTacToeGameController {
                 cellState = 2;
                 playerTurn++;
                 changeActivePlayerIndicator();
-                // self note, might need to move check win condition to this line
-                // from the click functions
                 if (connection != null && !isHost) {
                     // disable pane inputs
                     for (Pane paneObject : paneArray) {
@@ -533,7 +544,7 @@ public class TicTacToeGameController {
             }
             /* If this is player 2 animating player 1's victory, send one final 
             junk message to close player 1's listening thread */
-            if (connection != null && !isHost){
+            if (connection != null && !isHost) {
                 connection.sendPacket(" END MESSAGE");
             }
         } else { // circle animations
@@ -561,31 +572,14 @@ public class TicTacToeGameController {
             }
             /* If this is player 1 animating player 2's victory, send one final 
             junk message to close player 2's listening thread */
-            if (connection != null && isHost){
+            if (connection != null && isHost) {
                 connection.sendPacket(" END MESSAGE");
             }
         }
         pt.play();
         changeActivePlayerIndicator();
         scorecardAction(player);
-
-        Task<String> task = new Task<String>() {
-            @Override
-            public String call() {
-                String inboundRematchRequest = "";
-                if (connection != null) {
-                    inboundRematchRequest = connection.readPacket();
-                }
-                return inboundRematchRequest;
-            }
-        };
-        task.setOnSucceeded((WorkerStateEvent taskFinishEvent) -> {
-            String inboundRematchRequest = task.getValue();
-            if (inboundRematchRequest.contains("Rematch Requested")) {
-                System.out.println("Rematch Requested");
-            }
-        });
-        new Thread(task).start();
+        listenForRematch(player);
     }
 
     /**
@@ -635,15 +629,26 @@ public class TicTacToeGameController {
      */
     @FXML
     private void scorecardAction(int player) {
-        scorecardPane.setVisible(true);
-
-        if (1 == player) {
-            winnerRectangle.setVisible(true);
-            winnerCircle.setVisible(false);
+        if (connection == null) {
+            scorecardPane.setVisible(true);
+            if (1 == player) {
+                winnerRectangle.setVisible(true);
+                winnerCircle.setVisible(false);
+            } else {
+                winnerRectangle.setVisible(false);
+                winnerCircle.setVisible(true);
+            }
         } else {
-            winnerRectangle.setVisible(false);
-            winnerCircle.setVisible(true);
+            scorecardPaneMultiplayer.setVisible(true);
+            if (1 == player) {
+                winnerRectangleMultiplayer.setVisible(true);
+                winnerCircleMultiplayer.setVisible(false);
+            } else {
+                winnerRectangleMultiplayer.setVisible(false);
+                winnerCircleMultiplayer.setVisible(true);
+            }
         }
+
     }
 
     /**
@@ -683,16 +688,51 @@ public class TicTacToeGameController {
     }
 
     /**
-     * Initiates a new game.
+     * Initiates a new local game.
      *
      * @throws IOException
      */
     @FXML
     private void onReplayMouseClick() throws IOException {
-        if (connection != null){
+        newGame();
+    }
+
+    /**
+     * Starts a request for a rematch in online games.
+     *
+     * @throws IOException
+     */
+    @FXML
+    private void onRematchRequestMouseClick() throws IOException {
+        if (connection != null) {
+            // Send a rematch request
             connection.sendPacket("Rematch Requested END MESSAGE");
+            // Listen for the response
+            Task<String> task = new Task<String>() {
+                @Override
+                public String call() {
+                    String inboundRematchRequest = "";
+                    if (connection != null) {
+                        inboundRematchRequest = connection.readPacket();
+                    }
+                    return inboundRematchRequest;
+                }
+            };
+            task.setOnSucceeded((WorkerStateEvent taskFinishEvent) -> {
+                String inboundRematchRequest = task.getValue();
+                System.out.println(inboundRematchRequest);
+                if (inboundRematchRequest.contains("Rematch Accepted")) {
+                    newGame();
+                } else {
+                    try {
+                        exitGame();
+                    } catch (IOException ex) {
+                        Logger.getLogger(TicTacToeGameController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            new Thread(task).start();
         }
-        //newGame();
 
     }
 
@@ -715,4 +755,62 @@ public class TicTacToeGameController {
         }
     }
 
+    /**
+     * Sets up a thread to listen for a rematch request
+     */
+    private void listenForRematch(int player) {
+        // Detect incoming rematch request
+        Task<String> task = new Task<String>() {
+            @Override
+            public String call() {
+                String response = "";
+                if (connection != null) {
+                    response = connection.readPacket();
+                }
+                return response;
+            }
+        };
+        task.setOnSucceeded((WorkerStateEvent taskFinishEvent) -> {
+            String response = task.getValue();
+            if (response.contains("Rematch Requested")) {
+                // Switch to the rematch dialogue
+                scorecardPaneMultiplayer.setVisible(false);
+                rematchPane.setVisible(true);
+                if (1 == player) {
+                    winnerRectangleMultiplayerRematch.setVisible(true);
+                    winnerCircleMultiplayerRematch.setVisible(false);
+                } else {
+                    winnerRectangleMultiplayerRematch.setVisible(false);
+                    winnerCircleMultiplayerRematch.setVisible(true);
+                }
+            }
+        });
+        new Thread(task).start();
+    }
+
+    /**
+     * Sends a message accepting the rematch and starts a new game.
+     */
+    @FXML
+    private void onAcceptRematchClick() {
+        // Junk string to feed the rematch listening thread
+        connection.sendPacket(" END MESSAGE");
+        // actual message
+        connection.sendPacket("Rematch Accepted END MESSAGE");
+        newGame();
+    }
+
+    /**
+     * Sends a message declining the rematch and exits the match.
+     *
+     * @throws IOException
+     */
+    @FXML
+    private void onDeclineRematchClick() throws IOException {
+        // Junk string to feed the rematch listening thread
+        connection.sendPacket(" END MESSAGE");
+        // actual message
+        connection.sendPacket("Rematch Declined END MESSAGE");
+        exitGame();
+    }
 }

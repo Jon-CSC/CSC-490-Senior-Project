@@ -101,7 +101,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="251.0">
                      <children>
-                        <Label prefHeight="36.0" prefWidth="98.0" text="Game Over!" />
+                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="200.0" text="Game Over!" />
                         <HBox alignment="CENTER" spacing="20.0">
                            <children>
                               <Label text="Winner:" />
@@ -122,6 +122,78 @@
                            </font>
                         </Label>
                         <Label fx:id="labelLocalMatch1" alignment="CENTER" onMouseClicked="#onQuitMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Return To Menu">
+                           <padding>
+                              <Insets bottom="12.5" top="12.5" />
+                           </padding>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <Pane fx:id="scorecardPaneMultiplayer" maxHeight="200.0" maxWidth="250.0" minHeight="200.0" minWidth="250.0" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #697489;">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="251.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="200.0" text="Game Over!" />
+                        <HBox alignment="CENTER" spacing="20.0">
+                           <children>
+                              <Label text="Winner:" />
+                              <StackPane maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" prefHeight="60.0" prefWidth="60.0">
+                                 <children>
+                                    <Rectangle fx:id="winnerRectangleMultiplayer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="42.0" />
+                                    <Circle fx:id="winnerCircleMultiplayer" fill="DODGERBLUE" radius="23.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <Label fx:id="labelRequestRematch" alignment="CENTER" onMouseClicked="#onRematchRequestMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Request Rematch">
+                           <padding>
+                              <Insets bottom="12.5" top="12.5" />
+                           </padding>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelReturnToMenu" alignment="CENTER" onMouseClicked="#onQuitMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Return To Menu">
+                           <padding>
+                              <Insets bottom="12.5" top="12.5" />
+                           </padding>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <Pane fx:id="rematchPane" maxHeight="200.0" maxWidth="250.0" minHeight="200.0" minWidth="250.0" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #697489;">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="251.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="200.0" text="Rematch?" />
+                        <HBox alignment="CENTER" spacing="20.0">
+                           <children>
+                              <Label text="Winner:" />
+                              <StackPane maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" prefHeight="60.0" prefWidth="60.0">
+                                 <children>
+                                    <Rectangle fx:id="winnerRectangleMultiplayerRematch" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="42.0" />
+                                    <Circle fx:id="winnerCircleMultiplayerRematch" fill="DODGERBLUE" radius="23.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <Label fx:id="labelAcceptRematch" alignment="CENTER" onMouseClicked="#onAcceptRematchClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Accept">
+                           <padding>
+                              <Insets bottom="12.5" top="12.5" />
+                           </padding>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelDeclineRematch" alignment="CENTER" onMouseClicked="#onDeclineRematchClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Decline">
                            <padding>
                               <Insets bottom="12.5" top="12.5" />
                            </padding>
