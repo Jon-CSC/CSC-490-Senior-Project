@@ -8,8 +8,12 @@ package com.mycompany.seniorproject.games.snake;
 import com.mycompany.seniorproject.App;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import com.mycompany.seniorproject.*;
 import java.io.IOException;
@@ -94,6 +98,9 @@ public class SnakeGame {
                     if (paused) {
                         resumeGame();
                     } else {
+                        gc.setTextAlign(TextAlignment.CENTER);
+                        gc.setTextBaseline(VPos.CENTER);
+                        gc.fillText("Paused", Math.round(c.getWidth() / 2), Math.round(c.getHeight() / 2));
                         pauseGame();
                     }
                 } else if (code == KeyCode.RIGHT || code == KeyCode.D) {
@@ -151,10 +158,6 @@ public class SnakeGame {
     private void setGraphicsContext(Canvas c) {
         gc = c.getGraphicsContext2D();
     }
-    
-    public int getWindowSquareSize() {
-        return WIDTH;
-    }
 
     private void run(GraphicsContext gc) throws IOException {
         if (paused) {
@@ -166,10 +169,6 @@ public class SnakeGame {
             LocalUserAccount.getInstance().recordHiscore(Game.SNAKE, score);
             App.setRoot("games/snake/SnakeMainMenu");
             System.out.println("switched due to game over");
-            gc.setFill(Color.RED);
-            gc.setFont(new Font("Verdana", 70));
-            gc.fillText("Game Over", WIDTH / 4, HEIGHT / 2);
-            System.out.println("game over");
             return;
         }
         drawBackground(gc);
@@ -195,7 +194,6 @@ public class SnakeGame {
             case DOWN:
                 moveDown();
                 break;
-
         }
         gameOver();
         eatFood();
@@ -309,8 +307,10 @@ public class SnakeGame {
     */
     private void drawScore() {
         gc.setFill(Color.WHITE);
-        gc.setFont(new Font ("Verdana", 35));
-        gc.fillText("Score:" + score, 10, 35);
+        gc.setFont(Font.font("Verdana", FontWeight.BOLD, 36));
+        gc.setTextAlign(TextAlignment.LEFT);
+        gc.setTextBaseline(VPos.TOP);
+        gc.fillText("" + score, 2, -5);
     }
 
 }

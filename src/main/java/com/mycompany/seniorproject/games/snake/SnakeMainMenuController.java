@@ -28,7 +28,7 @@ public class SnakeMainMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         App.getStage().setWidth(700);
-        App.getStage().setHeight(700);
+        App.getStage().setHeight(727);
         App.getStage().centerOnScreen();
         App.getStage().setResizable(false);
         loadImages();
