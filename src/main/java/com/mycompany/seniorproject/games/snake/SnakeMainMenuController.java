@@ -22,7 +22,6 @@ import javafx.util.Duration;
  *
  * @author juan
  */
-
 public class SnakeMainMenuController implements Initializable {
 
     private int BACKGROUND_HEIGHT = 700;

@@ -11,12 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 
 public class SnakeGameController implements Initializable {
 
     @FXML
-    private Canvas gameCanvas;
+    public Canvas gameCanvas;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -28,6 +29,10 @@ public class SnakeGameController implements Initializable {
         App.getStage().centerOnScreen();
         App.getStage().setResizable(false);
 
+    }
+
+    public Canvas getCanvas() {
+        return this.gameCanvas;
     }
 
 }
