@@ -17,6 +17,12 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+/**
+ * FXML Controller Class
+ *
+ * @author juan
+ */
+
 public class SnakeMainMenuController implements Initializable {
 
     private int BACKGROUND_HEIGHT = 700;

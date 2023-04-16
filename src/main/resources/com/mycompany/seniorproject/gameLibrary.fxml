@@ -254,7 +254,7 @@
             </VBox>
          </right>
       </BorderPane>
-      <VBox fx:id="dropDownMenu" fillWidth="false" layoutX="730.0" layoutY="70.0" maxHeight="68.0" maxWidth="150.0" prefHeight="68.0" prefWidth="150.0" spacing="5.0" styleClass="dropdown-menu" stylesheets="@../../../styles/gamelibrary.css" visible="false">
+      <VBox fx:id="dropDownMenu" fillWidth="false" layoutX="730.0" layoutY="70.0" maxHeight="68.0" maxWidth="150.0" prefHeight="68.0" prefWidth="150.0" spacing="5.0" styleClass="dropdown-menu" stylesheets="@../../../styles/gamelibrary.css">
          <children>
             <VBox prefHeight="0.0" prefWidth="138.0">
                <children>
@@ -265,13 +265,15 @@
                </children>
             </VBox>
             <Line endX="36.29069519042969" endY="-1.5610456466674805E-4" startX="-100.0" startY="-1.5687942504882812E-4" stroke="#535353" />
-            <VBox prefHeight="191.0" prefWidth="138.0">
+            <VBox prefHeight="191.0" prefWidth="138.0" spacing="1.0">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToProfilePage" prefHeight="105.0" prefWidth="138.0" styleClass="button-dropdown" text="My Profile" />
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToProfilePage" prefHeight="27.0" prefWidth="174.0" styleClass="button-dropdown" text="Friends List" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefWidth="145.0" styleClass="button-dropdown" text="Settings" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#logOut" prefWidth="145.0" styleClass="button-dropdown" text="Log Out" />
                </children>
+               <padding>
+                  <Insets bottom="1.0" />
+               </padding>
             </VBox>
          </children>
          <padding>

@@ -20,18 +20,14 @@ public class SnakeGameController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        gameCanvas.setWidth(700);
+        gameCanvas.setHeight(700);
         SnakeGame gameInstance = new SnakeGame(gameCanvas);
         App.getStage().setWidth(700);
         App.getStage().setHeight(727);
         App.getStage().centerOnScreen();
         App.getStage().setResizable(false);
-        gameCanvas.setWidth(700);
-        gameCanvas.setHeight(700);
+
     }
-    
-    @FXML
-    void testClick(MouseEvent event) throws IOException {
-       System.out.println("SnakeController works!");
-      App.setRoot("gameLibrary");
-    }
+
 }

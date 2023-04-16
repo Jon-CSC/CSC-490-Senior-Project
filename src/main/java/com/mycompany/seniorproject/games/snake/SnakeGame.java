@@ -39,9 +39,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
-/**
- * JavaFX App
- */
 public class SnakeGame {
 
     /*
