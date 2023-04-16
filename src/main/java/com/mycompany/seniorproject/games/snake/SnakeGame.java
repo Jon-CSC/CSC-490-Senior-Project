@@ -30,10 +30,8 @@ import java.awt.Point;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import static javafx.application.Application.launch;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-//import java.awt.event.KeyEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
@@ -164,8 +162,8 @@ public class SnakeGame {
         if (gameOver) {
             gameplay.stop();
             LocalUserAccount.getInstance().recordHiscore(Game.SNAKE, score);
-            App.setRoot("games/snake/SnakeMainMenu");
-            System.out.println("switched due to game over");
+            LocalUserAccount.getInstance().recordLastScore(Game.SNAKE, score);
+            App.setRoot("games/snake/SnakeGameOver");
             return;
         }
         drawBackground(gc);

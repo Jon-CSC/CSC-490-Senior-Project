@@ -6,9 +6,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="700.0" prefWidth="700.0" styleClass="background" stylesheets="@../../../../../styles/games/snakegame.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.snake.SnakeMainMenuController">
+<AnchorPane prefHeight="700.0" prefWidth="700.0" styleClass="background" stylesheets="@../../../../../styles/games/snakegame.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.snake.SnakeGameOverController">
     <children>
         <Pane prefHeight="1400.0" prefWidth="700.0">
             <children>
@@ -28,9 +27,10 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="20.0" styleClass="vbox">
                     <children>
-                        <Label styleClass="label-title" text="Snake" />
-                        <Rectangle fx:id="snakeRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="200.0" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
-                        <Label onMouseClicked="#startGame" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Start Game" />
+                        <Label styleClass="label-title" text="Game Over!" />
+                  <Label fx:id="labelLastScore" text="score" />
+                  <Label fx:id="labelHighScore" text="best" />
+                        <Label onMouseClicked="#playAgain" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Play Again" />
                         <Label onMouseClicked="#exit" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Exit" />
                     </children>
                 </VBox>
