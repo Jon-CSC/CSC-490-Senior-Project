@@ -15,9 +15,11 @@
     -fx-text-fill: white;
     -fx-background-radius: 20px;
     -fx-background-color: #0866CC;
-    -fx-border-color: #0866CC;
-    -fx-border-radius: 20px;
     -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #0f6ad7;
 }
 
 .label
@@ -39,6 +41,10 @@
     -fx-cursor: hand;
 }
 
+.label-link:hover {
+    -fx-text-fill: #0f6ad7;
+}
+
 .label-title
 {
     -fx-font: 24px "Helvetica";
@@ -51,5 +57,4 @@
     -fx-text-fill: white;
     -fx-background-color: #161616;
     -fx-background-radius: 20px;
-    -fx-border-radius: 20px;
 }
