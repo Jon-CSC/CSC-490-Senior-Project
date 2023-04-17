@@ -264,13 +264,11 @@ public final class LocalUserAccount {
      */
     public boolean recordHiscore(Game game, int score) {
         if(!isLoggedIn() || null == game) {
-            System.out.println("returning 1");
             return false;
         }
         // check if we need to update the high score
         String scoreField = game.getScoreField();
         if(score <= (long)activeUser.getGameData().getOrDefault(scoreField, (long)0)) {
-            System.out.println("returning 2");
             return false;
         }
         // update the remote data
@@ -281,7 +279,6 @@ public final class LocalUserAccount {
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {
-            System.out.println("returning 3");
             return false;
         }
         if (game == Game.SNAKE) {

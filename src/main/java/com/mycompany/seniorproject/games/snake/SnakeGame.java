@@ -76,11 +76,6 @@ public class SnakeGame {
     private boolean paused = false;
     private Timeline gameplay;
 
-    @FXML
-    void exitGame() throws IOException {
-        App.setRoot("games/snake/snakeMenu");
-    }
-
     public SnakeGame(Canvas c) {
         
         setGraphicsContext(c);

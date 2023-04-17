@@ -11,22 +11,33 @@
 
 .label-title
 {
-    -fx-font: 30px "Verdana";
+    -fx-font: 45px "Verdana";
     -fx-text-fill: white;
     -fx-font-weight: bold;
+}
+
+.label-gameover
+{
+    -fx-font: 30px "Verdana";
+        -fx-text-fill: white;
+        -fx-font-weight: bold;
 }
 
 .vbox
 {
     -fx-background-color: #557d32;
-    -fx-background-radius: 20px;
+    -fx-background-radius: 10px;
 }
 
 .button
 {
     -fx-font: 14px "Verdana";
     -fx-text-fill: white;
-    -fx-background-color: green;
-    -fx-background-radius: 20px;
+    -fx-background-color: #557d32;
+    -fx-background-radius: 7px;
     -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #598334;
 }

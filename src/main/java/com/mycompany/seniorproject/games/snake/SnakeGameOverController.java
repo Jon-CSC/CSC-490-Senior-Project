@@ -32,10 +32,8 @@ public class SnakeGameOverController implements Initializable {
     private int BACKGROUND_HEIGHT = 700;
     private long lastScore, highScore;
     private ParallelTransition checkerboardScrollTransition;
-    @FXML private ImageView checkerboard;
-    @FXML private ImageView checkerboard2;
-    @FXML private Label labelLastScore;
-    @FXML private Label labelHighScore;
+    @FXML private ImageView checkerboard, checkerboard2;
+    @FXML private Label labelLastScore, labelHighScore;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

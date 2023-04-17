@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,16 +25,28 @@
             </ImageView>
          </children>
       </Pane>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="700.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="700.0" prefWidth="700.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="20.0" styleClass="vbox">
-               <children>
-                  <Label styleClass="label-title" text="Snake" />
-                  <Rectangle fx:id="snakeRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="200.0" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
-                  <Label onMouseClicked="#startGame" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Start Game" />
-                  <Label onMouseClicked="#exit" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Exit" />
-               </children>
-            </VBox>
+            <Label styleClass="label-title" text="Snake" />
+            <Rectangle fx:id="snakeRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="200.0" strokeType="INSIDE" width="200.0" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#startGame" prefHeight="35.0" prefWidth="125.0" styleClass="button-playagain" text="Play" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@snake_play.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#exit" prefHeight="35.0" prefWidth="125.0" styleClass="button-playagain" text="Exit" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </VBox>
    </children>
