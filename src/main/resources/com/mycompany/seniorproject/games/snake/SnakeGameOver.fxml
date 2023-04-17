@@ -31,7 +31,7 @@
                 <VBox alignment="CENTER" prefHeight="121.0" prefWidth="250.0" spacing="20.0" styleClass="vbox">
                     <children>
                         <Label fx:id="title" styleClass="label-gameover" text="Game Over!" />
-                  <Label fx:id="labelLastScore" alignment="CENTER" prefHeight="3.0" prefWidth="52.0" text="0">
+                  <Label fx:id="labelLastScore" alignment="CENTER" prefHeight="35.0" prefWidth="321.0" text="0">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -40,7 +40,7 @@
                         </ImageView>
                      </graphic>
                   </Label>
-                  <Label fx:id="labelHighScore" alignment="CENTER" prefWidth="52.0" text="0">
+                  <Label fx:id="labelHighScore" alignment="CENTER" prefHeight="35.0" prefWidth="418.0" text="0">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>

@@ -14,13 +14,13 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="900.0" prefHeight="900.0" prefWidth="900.0" styleClass="background" stylesheets="@../../../styles/profilepage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.ProfilePageController">
+<AnchorPane minHeight="900.0" minWidth="900.0" styleClass="background" stylesheets="@../../../styles/profilepage.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.ProfilePageController">
    <children>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" hmax="0.0" prefHeight="900.0" prefWidth="900.0" styleClass="background" vbarPolicy="NEVER" vmax="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" hmax="0.0" minHeight="900.0" minWidth="900.0" styleClass="background" vbarPolicy="NEVER" vmax="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="900.0" prefWidth="900.0" styleClass="background">
+            <VBox alignment="TOP_CENTER" fillWidth="false" minHeight="900.0" minWidth="900.0" styleClass="background">
                <children>
-                  <VBox prefHeight="2000.0" prefWidth="497.0" spacing="10.0" styleClass="background">
+                  <VBox fillWidth="false" minWidth="497.0" prefWidth="497.0" spacing="10.0" styleClass="background">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -67,10 +67,10 @@
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </padding>
                         </HBox>
-                        <VBox maxHeight="2000.0" prefHeight="1000.0" prefWidth="477.0" spacing="15.0" styleClass="foreground">
+                        <VBox minWidth="477.0" prefWidth="477.0" spacing="15.0" styleClass="foreground">
                            <children>
                               <Label styleClass="title-label" text="Game Statistics" />
-                              <VBox prefHeight="148.0" prefWidth="444.0" styleClass="game-vbox">
+                              <VBox minHeight="148.0" minWidth="447.0" prefHeight="148.0" prefWidth="447.0" styleClass="game-vbox">
                                  <children>
                                     <HBox prefHeight="16.0" prefWidth="445.0">
                                        <padding>
@@ -109,7 +109,7 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="148.0" prefWidth="444.0" styleClass="game-vbox">
+                              <VBox minHeight="148.0" minWidth="447.0" prefHeight="148.0" prefWidth="447.0" styleClass="game-vbox">
                                  <children>
                                     <HBox prefHeight="16.0" prefWidth="445.0">
                                        <padding>
@@ -149,7 +149,7 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="148.0" prefWidth="444.0" styleClass="game-vbox">
+                              <VBox minHeight="148.0" minWidth="447.0" prefHeight="148.0" prefWidth="447.0" styleClass="game-vbox">
                                  <children>
                                     <HBox prefHeight="16.0" prefWidth="445.0">
                                        <padding>
@@ -189,7 +189,7 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="148.0" prefWidth="444.0" styleClass="game-vbox">
+                              <VBox minHeight="148.0" minWidth="447.0" prefHeight="148.0" prefWidth="447.0" styleClass="game-vbox">
                                  <children>
                                     <HBox prefHeight="16.0" prefWidth="445.0">
                                        <padding>
