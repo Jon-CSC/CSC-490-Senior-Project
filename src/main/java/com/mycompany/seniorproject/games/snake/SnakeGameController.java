@@ -30,4 +30,8 @@ public class SnakeGameController implements Initializable {
         App.getStage().setResizable(false);
     }
 
+    public Canvas getCanvas() {
+        return this.gameCanvas;
+    }
+
 }
