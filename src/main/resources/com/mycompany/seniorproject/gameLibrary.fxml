@@ -115,7 +115,15 @@
                         </HBox>
                         <VBox alignment="BOTTOM_CENTER" prefWidth="100.0" spacing="20.0" GridPane.rowIndex="2">
                            <children>
-                              <Rectangle fx:id="ratingCard" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="250.0" />
+                              <HBox alignment="CENTER" spacing="10.0">
+                                 <children>
+                                    <Rectangle fx:id="ratingStar1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="50.0" />
+                                    <Rectangle fx:id="ratingStar2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="50.0" />
+                                    <Rectangle fx:id="ratingStar3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="50.0" />
+                                    <Rectangle fx:id="ratingStar4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="50.0" />
+                                    <Rectangle fx:id="ratingStar5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 0;" width="50.0" />
+                                 </children>
+                              </HBox>
                               <Button fx:id="buttonPlayGame" minHeight="40.0" minWidth="110.0" mnemonicParsing="false" onAction="#launchSelectedGame" styleClass="button-blue" text="Play Game">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
@@ -246,7 +254,7 @@
             </VBox>
          </right>
       </BorderPane>
-      <VBox fx:id="dropDownMenu" fillWidth="false" layoutX="730.0" layoutY="70.0" maxHeight="68.0" maxWidth="150.0" prefHeight="68.0" prefWidth="150.0" spacing="5.0" styleClass="dropdown-menu" stylesheets="@../../../styles/gamelibrary.css" visible="false">
+      <VBox fx:id="dropDownMenu" fillWidth="false" layoutX="730.0" layoutY="70.0" maxHeight="68.0" maxWidth="150.0" prefHeight="68.0" prefWidth="150.0" spacing="5.0" styleClass="dropdown-menu" stylesheets="@../../../styles/gamelibrary.css">
          <children>
             <VBox prefHeight="0.0" prefWidth="138.0">
                <children>
@@ -257,13 +265,15 @@
                </children>
             </VBox>
             <Line endX="36.29069519042969" endY="-1.5610456466674805E-4" startX="-100.0" startY="-1.5687942504882812E-4" stroke="#535353" />
-            <VBox prefHeight="191.0" prefWidth="138.0">
+            <VBox prefHeight="191.0" prefWidth="138.0" spacing="1.0">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToProfilePage" prefHeight="105.0" prefWidth="138.0" styleClass="button-dropdown" text="My Profile" />
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToProfilePage" prefHeight="27.0" prefWidth="174.0" styleClass="button-dropdown" text="Friends List" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefWidth="145.0" styleClass="button-dropdown" text="Settings" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#logOut" prefWidth="145.0" styleClass="button-dropdown" text="Log Out" />
                </children>
+               <padding>
+                  <Insets bottom="1.0" />
+               </padding>
             </VBox>
          </children>
          <padding>

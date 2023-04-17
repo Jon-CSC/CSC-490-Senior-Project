@@ -2,7 +2,9 @@ package com.mycompany.seniorproject;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.FieldValue;
 import com.google.cloud.firestore.WriteResult;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
@@ -91,7 +93,9 @@ public final class LocalUserAccount {
         }
         // update the remote data
         DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
-        ApiFuture<WriteResult> future = userDoc.update(UserAccount.BIOGRAPHY, newBio);
+        ApiFuture<WriteResult> future = userDoc.update(
+            UserAccount.BIOGRAPHY, newBio
+        );
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {
@@ -114,7 +118,9 @@ public final class LocalUserAccount {
         }
         // update the remote data
         DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
-        ApiFuture<WriteResult> future = userDoc.update(UserAccount.AVATAR, newAvatarURL);
+        ApiFuture<WriteResult> future = userDoc.update(
+            UserAccount.AVATAR, newAvatarURL
+        );
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {
@@ -128,6 +134,7 @@ public final class LocalUserAccount {
     
     /**
      * Updates the user's game stats both locally and on the Firestore.
+     * Generally not preferred; it's better to use the more specific methods like recordRating() or recordHiscore().
      * @param dataFieldName the name of the field being updated; e.g., snakeTime, tictactoeWins, etc
      * @param data the value to update the stat to. NOTE: this should be a type that Firebase likes (ints, Strings, things of that nature)
      * @return true if successful, false if not
@@ -138,7 +145,9 @@ public final class LocalUserAccount {
         }
         // update the remote data
         DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
-        ApiFuture<WriteResult> future = userDoc.update(UserAccount.GAMEDATA + "." + dataFieldName, data);
+        ApiFuture<WriteResult> future = userDoc.update(
+            UserAccount.GAMEDATA + "." + dataFieldName, data
+        );
         try {
             WriteResult result = future.get();
         } catch (InterruptedException | ExecutionException ex) {
@@ -149,4 +158,172 @@ public final class LocalUserAccount {
         gameData.put(dataFieldName, data);
         return true;
     }
+    
+    public boolean recordRating(Game game, double rating) {
+        if(!isLoggedIn() || null == game || rating < 0 || rating > 5) {
+            return false;
+        }
+        // update the remote data
+        String ratingField = game.getRatingField();
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future = userDoc.update(
+            UserAccount.GAMEDATA + "." + ratingField, rating
+        );
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            return false;
+        }
+        // update the local data, if that worked
+        HashMap<String, Object> gameData = activeUser.getGameData();
+        gameData.put(ratingField, rating);
+        return true;
+    }
+    
+    /**
+     * Increment the playtime stat based on a Timer instance.
+     * Some notes:
+     *  - if the timer never started in the first place, it returns false
+     *  - if the timer is still running, this will stop the timer and record the time from there
+     * @param timer the timer to record the playtime from
+     * @return true if successful, false if not
+     */
+    public boolean recordTime(Timer timer) {
+        if(!isLoggedIn() || null == timer || null == timer.getStartTime()) {
+            return false;
+        } else if(timer.isRunning()) {
+            timer.stop();
+        }
+        // calculate the duration to update
+        Duration timeElapsed = timer.getDuration();
+        long timeElapsedSeconds = timeElapsed.getSeconds();
+        // increment the remote data
+        String timeField = timer.getTrackedGame().toString() + "_time";
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future = userDoc.update(
+            UserAccount.GAMEDATA + "." + timeField, FieldValue.increment(timeElapsedSeconds)
+        );
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            return false;
+        }
+        // update the local data, if that worked
+        HashMap<String, Object> gameData = activeUser.getGameData();
+        long currentTime = (long)gameData.getOrDefault(timeField, (long)0);
+        gameData.put(timeField, currentTime + timeElapsedSeconds);
+        return true;
+    }
+    
+    /**
+     * Records match and win data for a match of the given game.
+     * @param game the game to record a match for
+     * @param winner whether this player was the winner or not
+     * @return true if successful, false if not
+     */
+    public boolean recordMatch(Game game, boolean winner) {
+        if(!isLoggedIn() || null == game) {
+            return false;
+        }
+        // increment the remote data
+        String matchesField = game.getMatchesField();
+        String winsField = game.getWinsField();
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future;
+        if(winner) {
+            future = userDoc.update(
+                UserAccount.GAMEDATA + "." + matchesField, FieldValue.increment(1),
+                UserAccount.GAMEDATA + "." + winsField, FieldValue.increment(1)
+            );
+        } else {
+            future = userDoc.update(
+                UserAccount.GAMEDATA + "." + matchesField, FieldValue.increment(1)
+            );
+        }
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            return false;
+        }
+        // increment the local data, if that worked
+        HashMap<String, Object> gameData = activeUser.getGameData();
+        long currentMatches = (long)gameData.getOrDefault(matchesField, (long)0);
+        gameData.put(matchesField, currentMatches + 1);
+        if(winner) {
+            long currentWins = (long)gameData.getOrDefault(winsField, (long)0);
+            gameData.put(winsField, currentWins + 1);
+        }
+        return true;
+    }
+        
+    /**
+     * Records high score data for the given game.
+     * @param game the game to record a score for
+     * @param score the new potential high score
+     * @return true if a new high score and updated, false if update failed or not a high score
+     */
+    public boolean recordHiscore(Game game, int score) {
+        if(!isLoggedIn() || null == game) {
+            System.out.println("returning 1");
+            return false;
+        }
+        // check if we need to update the high score
+        String scoreField = game.getScoreField();
+        if(score <= (long)activeUser.getGameData().getOrDefault(scoreField, (long)0)) {
+            System.out.println("returning 2");
+            return false;
+        }
+        // update the remote data
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future = userDoc.update(
+            UserAccount.GAMEDATA + "." + scoreField, score
+        );
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            System.out.println("returning 3");
+            return false;
+        }
+        if (game == Game.SNAKE) {
+            scoreField = "snake_lastscore";
+            ApiFuture<WriteResult> writeLastScore = userDoc.update(
+                    UserAccount.GAMEDATA + "." + scoreField, score
+            );
+            try {
+                WriteResult result = writeLastScore.get();
+            } catch (InterruptedException | ExecutionException ex) {
+                return false;
+            }
+        }
+        // update the local data, if that worked
+        HashMap<String, Object> gameData = activeUser.getGameData();
+        gameData.put(scoreField, score);
+        return true;
+    }
+
+    /**
+     * Records last score data for the given game. Used for passing score data between scenes.
+     * @param game the game to record a score for
+     * @param score the last score achieved
+     */
+    public void recordLastScore(Game game, int score) {
+        if(!isLoggedIn() || null == game) {
+            return;
+        }
+        String lastScoreField = game.getLastScoreField();
+        // update the remote data
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future = userDoc.update(
+                UserAccount.GAMEDATA + "." + lastScoreField, score
+        );
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            return;
+        }
+        // update the local data, if that worked
+        HashMap<String, Object> gameData = activeUser.getGameData();
+        gameData.put(lastScoreField, score);
+    }
+
 }
