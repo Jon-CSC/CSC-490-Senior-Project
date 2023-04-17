@@ -11,26 +11,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 
 public class SnakeGameController implements Initializable {
 
     @FXML
-    private Canvas gameCanvas;
+    public Canvas gameCanvas;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        gameCanvas.setWidth(700);
+        gameCanvas.setHeight(700);
         SnakeGame gameInstance = new SnakeGame(gameCanvas);
-        int windowSize = gameInstance.getWindowSquareSize();
-        App.getStage().setWidth(windowSize+20);
-        App.getStage().setHeight(windowSize+40);
-        gameCanvas.setWidth(windowSize);
-        gameCanvas.setHeight(windowSize);
-    }    
-    
-    @FXML
-    void testClick(MouseEvent event) throws IOException {
-//        System.out.println("SnakeController works!");
-//        App.setRoot("gameLibrary");
+        App.getStage().setWidth(700);
+        App.getStage().setHeight(727);
+        App.getStage().centerOnScreen();
+        App.getStage().setResizable(false);
     }
+
 }

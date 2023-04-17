@@ -51,7 +51,6 @@ public class TicTacToeMainMenuController implements Initializable {
         Label label = (Label) m.getSource();
         label.setStyle("-fx-font-weight: normal");
         label.setText(label.getText().substring(2, label.getText().length() - 2));
-
     }
 
     @FXML

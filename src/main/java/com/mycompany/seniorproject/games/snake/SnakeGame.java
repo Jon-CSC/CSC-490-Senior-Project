@@ -8,11 +8,16 @@ package com.mycompany.seniorproject.games.snake;
 import com.mycompany.seniorproject.App;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import com.mycompany.seniorproject.*;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.Group;
@@ -25,24 +30,20 @@ import java.awt.Point;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import static javafx.application.Application.launch;
 import javafx.event.EventHandler;
-//import java.awt.event.KeyEvent;
+import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
-/**
- * JavaFX App
- */
 public class SnakeGame {
 
     /*
     Create a board for background
     */
     
-    private static final int WIDTH = 800;
+    private static final int WIDTH = 700;
     private static final int HEIGHT = WIDTH;
     private static final int ROWS = 20;
     private static final int COLUMNS = ROWS;
@@ -72,8 +73,8 @@ public class SnakeGame {
     private boolean gameOver;
     private int currentDirection;
     private int score = 0;
-    private boolean firstGameOver = true;
-    
+    private boolean paused = false;
+    private Timeline gameplay;
 
     public SnakeGame(Canvas c) {
         
@@ -83,58 +84,81 @@ public class SnakeGame {
             @Override
             public void handle(KeyEvent event) {
                 KeyCode code = event.getCode();
-                if (code == KeyCode.RIGHT || code == KeyCode.D) {
+                if (code == KeyCode.ESCAPE) {
+                    if (paused) {
+                        resumeGame();
+                    } else {
+                        gc.setTextAlign(TextAlignment.CENTER);
+                        gc.setTextBaseline(VPos.CENTER);
+                        gc.fillText("Paused", Math.round(c.getWidth() / 2), Math.round(c.getHeight() / 2));
+                        pauseGame();
+                    }
+                } else if (code == KeyCode.RIGHT || code == KeyCode.D) {
                     if (currentDirection != LEFT) {
                         currentDirection = RIGHT;
                     }
                 } else if (code == KeyCode.LEFT || code == KeyCode.A) {
                     if (currentDirection != RIGHT) {
+                        currentDirection = LEFT;
                     }
-                    currentDirection = LEFT;
-
                 } else if (code == KeyCode.UP || code == KeyCode.W) {
                     if (currentDirection != DOWN) {
+                        currentDirection = UP;
                     }
-                    currentDirection = UP;
-                } else if (code == KeyCode.DOWN || code == KeyCode.C) {
+                } else if (code == KeyCode.DOWN || code == KeyCode.S) {
                     if (currentDirection != UP) {
+                        currentDirection = DOWN;
                     }
-                    currentDirection = DOWN;
                 }
-
             }
         });
 
         for (int i = 0; i < 3; i++) { // for generate food
-
             snakeBody.add(new Point(5, ROWS / 2));
         }
         snakeHead = snakeBody.get(0);
 
         generateFood();
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(130), e -> run(gc)));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+        startGame();
     }
-    
+
+    public void startGame() {
+        gameplay = new Timeline(new KeyFrame(Duration.millis(130), e -> {
+            try {
+                run(gc);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }));
+        gameplay.setCycleCount(Animation.INDEFINITE);
+        gameplay.play();
+    }
+
+    private void pauseGame() {
+        gameplay.pause();
+        paused = true;
+    }
+
+    private void resumeGame() {
+        gameplay.play();
+        paused = false;
+    }
+
     private void setGraphicsContext(Canvas c) {
         gc = c.getGraphicsContext2D();
     }
-    
-    public int getWindowSquareSize() {
-        return WIDTH;
-    }
 
-    private void run(GraphicsContext gc) {
+    private void run(GraphicsContext gc) throws IOException {
+        if (paused) {
+            pauseGame();
+            return;
+        }
         if (gameOver) {
-            if(firstGameOver) {
-                LocalUserAccount.getInstance().recordHiscore(Game.SNAKE, score);
-                firstGameOver = false;
-            }
-            gc.setFill(Color.RED);
-            gc.setFont(new Font("Digital-7", 70));
-            gc.fillText("Game Over", WIDTH / 3.5, HEIGHT / 2);
+            gameplay.stop();
+            LocalUserAccount.getInstance().recordHiscore(Game.SNAKE, score);
+            LocalUserAccount.getInstance().recordLastScore(Game.SNAKE, score);
+            App.setRoot("games/snake/SnakeGameOver");
             return;
         }
         drawBackground(gc);
@@ -160,7 +184,6 @@ public class SnakeGame {
             case DOWN:
                 moveDown();
                 break;
-
         }
         gameOver();
         eatFood();
@@ -176,10 +199,9 @@ public class SnakeGame {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLUMNS; j++) {
                 if ((i + j) % 2 == 0) {
-                    gc.setFill(Color.web("WHEAT"));
-
+                    gc.setFill(Color.web("#b3d665"));
                 } else {
-                    gc.setFill(Color.web("LIGHTBLUE"));
+                    gc.setFill(Color.web("#a1c456"));
                 }
                 gc.fillRect(i * SQUARE_SIZE, j * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
             }
@@ -216,7 +238,7 @@ public class SnakeGame {
     }
 
     private void drawSnake(GraphicsContext gc) {
-        gc.setFill(Color.web("NAVY"));
+        gc.setFill(Color.web("#5275e5"));
 
         gc.fillRoundRect(snakeHead.getX() * SQUARE_SIZE, snakeHead.getY() * SQUARE_SIZE - 1, SQUARE_SIZE - 1,
                 SQUARE_SIZE - 1, 35, 35);
@@ -266,19 +288,19 @@ public class SnakeGame {
         if (snakeHead.getX() == foodX && snakeHead.getY() == foodY){
             snakeBody.add(new Point (-1, -1));
             generateFood();
-            score += 5;
+            score += 1;
         }
     }
     
     /*
     Text flowing on the board, displaying socre
     */
-    private void drawScore(){
+    private void drawScore() {
         gc.setFill(Color.WHITE);
-        gc.setFont(new Font ("Digital-7", 35));
-        gc.fillText("Score: " + score, 10, 35);
+        gc.setFont(Font.font("Verdana", FontWeight.BOLD, 36));
+        gc.setTextAlign(TextAlignment.LEFT);
+        gc.setTextBaseline(VPos.TOP);
+        gc.fillText("" + score, 2, -5);
     }
-    
-  
 
 }

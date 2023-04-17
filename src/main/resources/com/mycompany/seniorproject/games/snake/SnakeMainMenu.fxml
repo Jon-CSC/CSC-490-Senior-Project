@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="700.0" prefWidth="700.0" styleClass="background" stylesheets="@../../../../../styles/games/snakegame.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.snake.SnakeMainMenuController">
+   <children>
+      <Pane prefHeight="1400.0" prefWidth="700.0">
+         <children>
+            <ImageView fx:id="checkerboard" fitHeight="700.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@snake_checkerboard.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="checkerboard2" fitHeight="700.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true" y="700.0">
+               <image>
+                  <Image url="@snake_checkerboard.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="700.0" prefWidth="700.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label styleClass="label-title" text="Snake" />
+            <Rectangle fx:id="snakeRectangle" arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="200.0" strokeType="INSIDE" width="200.0" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#startGame" prefHeight="35.0" prefWidth="125.0" styleClass="button-playagain" text="Play" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@snake_play.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#exit" prefHeight="35.0" prefWidth="125.0" styleClass="button-playagain" text="Exit" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

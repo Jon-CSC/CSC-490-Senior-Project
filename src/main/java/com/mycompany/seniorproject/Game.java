@@ -34,6 +34,10 @@ public enum Game {
     public String getScoreField() {
         return this.toString() + "_hiscore";
     }
+
+    public String getLastScoreField() {
+        return this.toString() + "_lastscore";
+    }
     
     public String getMatchesField() {
         return this.toString() + "_matches";
