@@ -17,9 +17,11 @@
     -fx-text-fill: white;
     -fx-background-radius: 20px;
     -fx-background-color: #232323;
-    -fx-border-color: #232323;
-    -fx-border-radius: 20px;
     -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #272727;
 }
 
 .button-dropdown
@@ -45,9 +47,11 @@
     -fx-text-fill: white;
     -fx-background-radius: 20px;
     -fx-background-color: #0866CC;
-    -fx-border-color: #0866CC;
-    -fx-border-radius: 20px;
     -fx-cursor: hand;
+}
+
+.button-blue:hover {
+    -fx-background-color: #0f6ad7;
 }
 
 .label
