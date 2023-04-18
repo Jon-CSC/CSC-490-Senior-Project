@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
@@ -58,7 +60,7 @@ public class TicTacToeGameController {
     private GridPane gridBoard;
 
     @FXML
-    private Pane scorecardPane, scorecardPaneMultiplayer, rematchPane;
+    private VBox scorecardPane, scorecardPaneMultiplayer, rematchPane, drawPane;
 
     @FXML
     private Pane paneBottomCenter;
@@ -104,12 +106,13 @@ public class TicTacToeGameController {
      */
     @FXML
     void initialize() {
-        App.getStage().setWidth(420);
+        App.getStage().setWidth(400);
         App.getStage().setHeight(600);
         changeActivePlayerIndicator();
         scorecardPane.setVisible(false);
         rematchPane.setVisible(false);
         scorecardPaneMultiplayer.setVisible(false);
+        drawPane.setVisible(false);
         paneArray = new Pane[]{paneTopLeft, paneTopCenter, paneTopRight,
             paneMiddleLeft, paneMiddleCenter, paneMiddleRight,
             paneBottomLeft, paneBottomCenter, paneBottomRight};
@@ -257,6 +260,7 @@ public class TicTacToeGameController {
         scorecardPane.setVisible(false);
         scorecardPaneMultiplayer.setVisible(false);
         rematchPane.setVisible(false);
+        drawPane.setVisible(false);
         ParallelTransition pt = new ParallelTransition();
 
         for (Object o : gridBoard.getChildren()) {
@@ -501,7 +505,7 @@ public class TicTacToeGameController {
             else if (playerTurn == 10) {
                 gameOver = true;
                 changeActivePlayerIndicator();
-                System.out.println("Draw!");
+                drawPane.setVisible(true);
             }
         }
     }
