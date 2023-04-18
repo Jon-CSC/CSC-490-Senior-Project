@@ -94,7 +94,7 @@ public class GameLibraryController implements Initializable {
     
     private boolean cardExpanded = false;
     
-    private float selectedGameRating = 2.7f;
+    private float selectedGameRating = 1.8f;
     
     private Game selectedGame;
     
@@ -300,7 +300,7 @@ public class GameLibraryController implements Initializable {
         // Query firestore for GameResults collection
         // Find document of currently selectedGame
         // Pull average-rating and rating-count
-        // Check 
+        // some other calculate-y stuff....
         setVisibleRating((int)Math.round(selectedGameRating));
     }
     
