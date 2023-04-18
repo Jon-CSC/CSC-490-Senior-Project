@@ -47,8 +47,7 @@ public class LoginPageController implements Initializable {
         }
         App.getStage().setWidth(500);
         App.getStage().setHeight(500);
-        App.getStage().setMinWidth(500);
-        App.getStage().setMinHeight(500);
+        App.getStage().setResizable(false);
         App.getStage().centerOnScreen();
     }
 

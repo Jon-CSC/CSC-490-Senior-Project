@@ -18,12 +18,61 @@ Pane {
     
 }
 
-BorderPane {
+AnchorPane {
     -fx-background-color: #21252B;
 }
 
 Label {
-    -fx-font-style:"Helvetica";
-    -fx-font-size: 18;
-        
+    -fx-font: 18px "Arial";
+    -fx-text-fill: white;
+}
+
+.label-title {
+    -fx-font: 20px "Arial";
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+VBox {
+    -fx-background-color: #697489;
+    -fx-background-radius: 10px;
+    -fx-border-color: #a4aec2;
+    -fx-border-radius: 10px;
+    -fx-border-width: 5px;
+}
+
+MenuBar {
+    -fx-background-color: #697489;
+    -fx-font: 16px "Arial";
+    -fx-text-fill: white;
+    -fx-padding: 0;
+}
+
+.menu-bar > .container > .menu-button
+{
+    -fx-background-color: transparent;
+}
+
+.menu-bar > .container > .menu-button > .label
+{
+    -fx-text-fill: white;
+}
+
+.menu-bar > .container > .menu-button:hover > .label,
+.menu-bar > .container > .menu-button:focused > .label,
+.menu-bar > .container > .menu-button:showing  > .label
+{
+    -fx-font-weight: bold;
+}
+
+.menu-item:hover,
+.menu-item:focused,
+.menu-item:showing
+{
+    -fx-background-color: #a4aec2;
+}
+
+.context-menu {
+    -fx-background-color: white;
+    -fx-padding: 0
 }

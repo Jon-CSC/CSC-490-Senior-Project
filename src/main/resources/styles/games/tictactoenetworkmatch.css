@@ -15,9 +15,12 @@
     -fx-text-fill: white;
     -fx-background-radius: 20px;
     -fx-background-color: #3e4b5f;
-    -fx-border-color: #3e4b5f;
-    -fx-border-radius: 20px;
     -fx-cursor: hand;
+}
+
+.button:hover
+{
+    -fx-background-color: #4a586d;
 }
 
 .button-host
