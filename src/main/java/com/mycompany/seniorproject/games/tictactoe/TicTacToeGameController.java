@@ -18,12 +18,14 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
+import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -95,6 +97,13 @@ public class TicTacToeGameController {
     private Label labelP1;
     @FXML
     private Label labelP2;
+
+    @FXML
+    private ProgressIndicator progressIndicatorRematchResponse;
+    @FXML
+    private Label labelRematchDeclined;
+    @FXML
+    private Label labelRequestRematch;
 
     // multiplayer variables
     private PeerToPeer connection;
@@ -687,7 +696,7 @@ public class TicTacToeGameController {
      */
     @FXML
     private void onQuitMouseClick() throws IOException {
-        if (connection != null){
+        if (connection != null) {
             connection.sendPacket("Rematch Declined END MESSAGE");
             connection.closeConnection();
             connection = null;
@@ -716,6 +725,8 @@ public class TicTacToeGameController {
         if (connection != null) {
             // Send a rematch request
             connection.sendPacket("Rematch Requested END MESSAGE");
+            labelRequestRematch.setVisible(false);
+            progressIndicatorRematchResponse.setVisible(true);
             // Listen for the response
             Task<String> task = new Task<String>() {
                 @Override
@@ -731,13 +742,22 @@ public class TicTacToeGameController {
                 String inboundRematchRequest = task.getValue();
                 System.out.println(inboundRematchRequest);
                 if (inboundRematchRequest.contains("Rematch Accepted")) {
+                    progressIndicatorRematchResponse.setVisible(false);
                     newGame();
                 } else {
-                    try {
-                        exitGame();
-                    } catch (IOException ex) {
-                        Logger.getLogger(TicTacToeGameController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    progressIndicatorRematchResponse.setVisible(false);
+                    // Display declined, pause for 2 seconds, exit game
+                    labelRematchDeclined.setVisible(true);
+                    PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                    pause.setOnFinished(event ->{
+                        try {
+                            labelRematchDeclined.setVisible(false);
+                            exitGame();
+                        } catch (IOException ex) {
+                            Logger.getLogger(TicTacToeGameController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    });
+                    pause.play();
                 }
             });
             new Thread(task).start();
@@ -792,7 +812,7 @@ public class TicTacToeGameController {
                     winnerRectangleMultiplayerRematch.setVisible(false);
                     winnerCircleMultiplayerRematch.setVisible(true);
                 }
-            }else if ( response.contains("Rematch Declined")){
+            } else if (response.contains("Rematch Declined")) {
                 try {
                     exitGame();
                 } catch (IOException ex) {

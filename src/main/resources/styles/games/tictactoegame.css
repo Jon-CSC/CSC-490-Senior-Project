@@ -76,3 +76,7 @@ MenuBar {
     -fx-background-color: white;
     -fx-padding: 0
 }
+
+#labelRematchDeclined{
+    -fx-text-fill: red;
+}
