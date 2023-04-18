@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -18,7 +19,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="400.0" stylesheets="@../../../../../styles/games/tictactoegame.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.tictactoe.TicTacToeGameController">
+<AnchorPane prefHeight="600.0" prefWidth="400.0" stylesheets="@../../../../../styles/games/tictactoegame.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.tictactoe.TicTacToeGameController">
    <children>
       <VBox prefHeight="600.0" prefWidth="400.0" spacing="25.0" style="-fx-background-color: transparent; -fx-border-width: 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -134,32 +135,6 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox fx:id="scorecardPaneMultiplayer" alignment="CENTER" maxHeight="200.0" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="0.0" prefWidth="200.0" styleClass="label-title" text="Game Over!" />
-                        <HBox alignment="CENTER" prefHeight="21.0" prefWidth="273.0" spacing="2.0">
-                           <children>
-                              <Label prefHeight="21.0" prefWidth="63.0" text="Winner:" />
-                              <StackPane maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" prefHeight="20.0" prefWidth="20.0">
-                                 <children>
-                                    <Rectangle fx:id="winnerRectangleMultiplayer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-stroke-width: 3;" width="22.0" />
-                                    <Circle fx:id="winnerCircleMultiplayer" fill="DODGERBLUE" radius="11.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 3;" />
-                                 </children>
-                              </StackPane>
-                           </children>
-                        </HBox>
-                        <Label fx:id="labelRequestRematch" alignment="CENTER" onMouseClicked="#onRematchRequestMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" prefHeight="0.0" prefWidth="145.0" text="Request Rematch">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="labelReturnToMenu" alignment="CENTER" onMouseClicked="#onQuitMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Return to Menu">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
                   <VBox fx:id="rematchPane" alignment="CENTER" maxHeight="200.0" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="0.0" prefWidth="200.0" styleClass="label-title" text="Rematch?" />
@@ -195,6 +170,42 @@
                            </font>
                         </Label>
                         <Label fx:id="labelLocalMatch11" alignment="CENTER" onMouseClicked="#onQuitMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Return to Menu">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="scorecardPaneMultiplayer" alignment="CENTER" maxHeight="200.0" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="0.0" prefWidth="200.0" styleClass="label-title" text="Game Over!" />
+                        <HBox alignment="CENTER" prefHeight="21.0" prefWidth="273.0" spacing="2.0">
+                           <children>
+                              <Label prefHeight="21.0" prefWidth="63.0" text="Winner:" />
+                              <StackPane maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" prefHeight="20.0" prefWidth="20.0">
+                                 <children>
+                                    <Rectangle fx:id="winnerRectangleMultiplayer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="22.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-stroke-width: 3;" width="22.0" />
+                                    <Circle fx:id="winnerCircleMultiplayer" fill="DODGERBLUE" radius="11.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 3;" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </HBox>
+                        <StackPane>
+                           <children>
+                              <Label fx:id="labelRequestRematch" alignment="CENTER" onMouseClicked="#onRematchRequestMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" prefHeight="0.0" prefWidth="145.0" text="Request Rematch">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelRematchDeclined" alignment="CENTER" text="Rematch Declined" textFill="RED" visible="false">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ProgressIndicator fx:id="progressIndicatorRematchResponse" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" visible="false" />
+                           </children>
+                        </StackPane>
+                        <Label fx:id="labelReturnToMenu" alignment="CENTER" onMouseClicked="#onQuitMouseClick" onMouseEntered="#onMenuSelectionMouseEnter" onMouseExited="#onMenuSelectionMouseExit" text="Return to Menu">
                            <font>
                               <Font size="18.0" />
                            </font>
