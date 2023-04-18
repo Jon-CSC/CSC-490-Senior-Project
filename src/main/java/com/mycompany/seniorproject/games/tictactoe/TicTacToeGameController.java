@@ -106,13 +106,13 @@ public class TicTacToeGameController {
      */
     @FXML
     void initialize() {
+        App.getStage().setWidth(400);
+        App.getStage().setHeight(600);
         changeActivePlayerIndicator();
         scorecardPane.setVisible(false);
         rematchPane.setVisible(false);
         scorecardPaneMultiplayer.setVisible(false);
         drawPane.setVisible(false);
-        App.getStage().setWidth(400);
-        App.getStage().setHeight(600);
         paneArray = new Pane[]{paneTopLeft, paneTopCenter, paneTopRight,
             paneMiddleLeft, paneMiddleCenter, paneMiddleRight,
             paneBottomLeft, paneBottomCenter, paneBottomRight};
@@ -687,6 +687,11 @@ public class TicTacToeGameController {
      */
     @FXML
     private void onQuitMouseClick() throws IOException {
+        if (connection != null){
+            connection.sendPacket("Rematch Declined END MESSAGE");
+            connection.closeConnection();
+            connection = null;
+        }
         exitGame();
 
     }
@@ -787,6 +792,12 @@ public class TicTacToeGameController {
                     winnerRectangleMultiplayerRematch.setVisible(false);
                     winnerCircleMultiplayerRematch.setVisible(true);
                 }
+            }else if ( response.contains("Rematch Declined")){
+                try {
+                    exitGame();
+                } catch (IOException ex) {
+                    Logger.getLogger(TicTacToeGameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         new Thread(task).start();
@@ -797,7 +808,7 @@ public class TicTacToeGameController {
      */
     @FXML
     private void onAcceptRematchClick() {
-        // Junk string to feed the rematch listening thread
+        // Junk string to feed the listenForRematch thread
         connection.sendPacket(" END MESSAGE");
         // actual message
         connection.sendPacket("Rematch Accepted END MESSAGE");
@@ -811,7 +822,7 @@ public class TicTacToeGameController {
      */
     @FXML
     private void onDeclineRematchClick() throws IOException {
-        // Junk string to feed the rematch listening thread
+        // Junk string to feed the listenForRematch thread
         connection.sendPacket(" END MESSAGE");
         // actual message
         connection.sendPacket("Rematch Declined END MESSAGE");

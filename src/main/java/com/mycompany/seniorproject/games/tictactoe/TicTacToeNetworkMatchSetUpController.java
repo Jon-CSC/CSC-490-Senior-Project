@@ -124,6 +124,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
         Task task = new Task<Void>() {
             @Override
             public Void call() throws IOException {
+                buttonHost.setDisable(true);
                 connection = new PeerToPeer();
                 connection.startHost(port);
                 Platform.runLater(() -> {
@@ -142,7 +143,14 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                 return null;
             }
         };
-        task.setOnSucceeded(taskFinishEvent -> System.out.println("Connected: \n" + connection.toString()));
+        task.setOnSucceeded(taskFinishEvent -> {
+                buttonHost.setDisable(false);
+                System.out.println("Connected: \n" + connection.toString());
+        });
+        task.setOnFailed(taskFinishEvent -> {
+                buttonHost.setDisable(false);
+                System.out.println("Connection failed");
+        });
         new Thread(task).start();
     }
 

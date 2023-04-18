@@ -94,6 +94,8 @@ public class GameLibraryController implements Initializable {
     
     private boolean cardExpanded = false;
     
+    private float selectedGameRating = 1.8f;
+    
     private Game selectedGame;
     
     @Override
@@ -163,19 +165,7 @@ public class GameLibraryController implements Initializable {
             noGameAlert.show();
         });
         
-        // Rating star hover events
-        ratingStar1.setOnMouseMoved(e -> { setVisibleRating(1); });
-        ratingStar2.setOnMouseMoved(e -> { setVisibleRating(2); });
-        ratingStar3.setOnMouseMoved(e -> { setVisibleRating(3); });
-        ratingStar4.setOnMouseMoved(e -> { setVisibleRating(4); });
-        ratingStar5.setOnMouseMoved(e -> { setVisibleRating(5); });
-        
-        // Reset to game's average rating when mouse moves off any star
-        ratingStar1.setOnMouseExited(e -> { setVisibleRating(5); });
-        ratingStar2.setOnMouseExited(e -> { setVisibleRating(5); });
-        ratingStar3.setOnMouseExited(e -> { setVisibleRating(5); });
-        ratingStar4.setOnMouseExited(e -> { setVisibleRating(5); });
-        ratingStar5.setOnMouseExited(e -> { setVisibleRating(5); });
+        setUpRatingStars();
         
         // stop any existing timers and push their results online
         Timer timer = App.getTimer();
@@ -187,6 +177,22 @@ public class GameLibraryController implements Initializable {
             App.clearTimer();
         }
     } 
+    
+    private void setUpRatingStars() {
+        // Rating star hover events
+        ratingStar1.setOnMouseMoved(e -> { setVisibleRating(1); });
+        ratingStar2.setOnMouseMoved(e -> { setVisibleRating(2); });
+        ratingStar3.setOnMouseMoved(e -> { setVisibleRating(3); });
+        ratingStar4.setOnMouseMoved(e -> { setVisibleRating(4); });
+        ratingStar5.setOnMouseMoved(e -> { setVisibleRating(5); });
+        
+        // Reset to game's average rating when mouse moves off any star
+        ratingStar1.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
+        ratingStar2.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
+        ratingStar3.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
+        ratingStar4.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
+        ratingStar5.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
+    }
     
     private void setVisibleRating(int rating) {
         ratingStar1.setFill((rating>=1) ? (starFilledIP) : (starHollowIP));
@@ -201,6 +207,7 @@ public class GameLibraryController implements Initializable {
         selectedGame = Game.SNAKE;
         cardAnimation(gameCard01);
         populateCardDetails();
+        initializeGameCardAverageRating();
     }
 
     @FXML
@@ -208,6 +215,7 @@ public class GameLibraryController implements Initializable {
         selectedGame = Game.BATTLESHIP;
         cardAnimation(gameCard02);
         populateCardDetails();
+        initializeGameCardAverageRating();
     }
 
     @FXML
@@ -215,6 +223,7 @@ public class GameLibraryController implements Initializable {
         selectedGame = Game.CHECKERS;
         cardAnimation(gameCard03);
         populateCardDetails();
+        initializeGameCardAverageRating();
     }
 
     @FXML
@@ -222,6 +231,7 @@ public class GameLibraryController implements Initializable {
         selectedGame = Game.CHESS;
         cardAnimation(gameCard04);
         populateCardDetails();
+        initializeGameCardAverageRating();
     }
 
     @FXML
@@ -229,6 +239,7 @@ public class GameLibraryController implements Initializable {
         selectedGame = Game.TICTACTOE;
         cardAnimation(gameCard05);
         populateCardDetails();
+        initializeGameCardAverageRating();
     }
 
     @FXML
@@ -236,6 +247,7 @@ public class GameLibraryController implements Initializable {
         selectedGame = Game.JAVASTROIDS;
         cardAnimation(gameCard06);
         populateCardDetails();
+        initializeGameCardAverageRating();
     }
     
     @FXML
@@ -252,7 +264,7 @@ public class GameLibraryController implements Initializable {
         App.setRoot("LoginPage");
         LocalUserAccount.getInstance().logout();
     }
-
+    
     @FXML
     void launchSelectedGame(ActionEvent event) throws IOException {
         switch (selectedGame) {
@@ -281,6 +293,15 @@ public class GameLibraryController implements Initializable {
                 playJavaStroids();
                 break;
         }
+    }
+    
+    private void initializeGameCardAverageRating() {
+        // ToDo:
+        // Query firestore for GameResults collection
+        // Find document of currently selectedGame
+        // Pull average-rating and rating-count
+        // some other calculate-y stuff....
+        setVisibleRating((int)Math.round(selectedGameRating));
     }
     
     private void populateCardDetails() {

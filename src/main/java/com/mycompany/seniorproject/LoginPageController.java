@@ -87,8 +87,8 @@ public class LoginPageController implements Initializable {
             //If no exception has been caught, the password is then checked
             if (verifyPassword(userDoc)) {
                 //We would put code here to switch to whatever fxml file is considered the main page/library
-                errorLabel.setText("Username and password match. We would switch to the main page now.");
-                errorLabel.setVisible(true);
+//                errorLabel.setText("Username and password match. We would switch to the main page now.");
+//                errorLabel.setVisible(true);
                 LocalUserAccount.getInstance().login(userDoc.toObject(UserAccount.class));
                 goToGameLibraryPage();
             } else if (passwordField.getText().equals("")) {
