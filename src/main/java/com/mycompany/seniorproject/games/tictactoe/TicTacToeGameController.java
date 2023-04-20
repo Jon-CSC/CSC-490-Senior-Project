@@ -114,7 +114,7 @@ public class TicTacToeGameController {
      */
     @FXML
     void initialize() {
-        App.getStage().setWidth(400);
+        App.getStage().setWidth(420);
         App.getStage().setHeight(600);
         changeActivePlayerIndicator();
         scorecardPane.setVisible(false);
