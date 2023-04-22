@@ -4,6 +4,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -171,15 +173,17 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="142.0" prefWidth="431.0" spacing="15.0">
                      <children>
-                        <Button minHeight="40.0" minWidth="130.0" mnemonicParsing="false" text="Leaderboards">
+                        <Button minHeight="40.0" minWidth="140.0" mnemonicParsing="false" onAction="#goToLeaderboard" text="Leaderboards">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
-                        </Button>
-                        <Button minHeight="40.0" minWidth="130.0" mnemonicParsing="false" text="Play History">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@games/snake/snake_highscore.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
                      <GridPane.margin>
