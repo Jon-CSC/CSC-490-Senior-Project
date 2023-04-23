@@ -226,7 +226,7 @@
          <left>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <Button minHeight="40.0" minWidth="40.0" mnemonicParsing="false" text="&lt;">
+                  <Button minHeight="40.0" minWidth="40.0" mnemonicParsing="false">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -236,6 +236,13 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/back.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </VBox>
@@ -243,7 +250,7 @@
          <right>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="525.0" prefWidth="60.0" BorderPane.alignment="TOP_CENTER">
                <children>
-                  <Button minHeight="40.0" minWidth="40.0" mnemonicParsing="false" text="&gt;">
+                  <Button minHeight="40.0" minWidth="40.0" mnemonicParsing="false">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -253,6 +260,13 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/forward.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </VBox>
