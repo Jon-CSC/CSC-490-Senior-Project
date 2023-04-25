@@ -372,7 +372,7 @@ public class GameLibraryController implements Initializable {
 //        checkersTimer.start();
 //        App.setTimer(checkersTimer);
         //displayNoGameDialogBoxError();
-        App.setRoot("games/checkers/checkers");
+        App.setRoot("games/checkers/checkersMainMenu");
     }
     
     private void playTicTacToe() throws IOException {
