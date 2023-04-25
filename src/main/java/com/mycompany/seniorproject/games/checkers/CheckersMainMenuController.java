@@ -33,7 +33,7 @@ public class CheckersMainMenuController implements Initializable {
         App.getStage().setWidth(400);
         App.getStage().setHeight(600);
         App.getStage().centerOnScreen();
-        // loadImages();
+        loadImages();
     }
     
     @FXML
