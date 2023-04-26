@@ -4,6 +4,9 @@
  */
 package com.mycompany.seniorproject.games.checkers;
 
+import com.mycompany.seniorproject.App;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,5 +18,11 @@ import javafx.stage.Stage;
  * @author justi
  */
 public class CheckersGameController {
-    
+    /**
+     * Initializes the controller class.
+     */
+    public void initialize(URL url, ResourceBundle rb) {
+        
+        Checkers.launch(null);
+    }
 }
