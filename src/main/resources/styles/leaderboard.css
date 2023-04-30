@@ -35,6 +35,11 @@
     -fx-background-color: #0866CC;
 }
 
+.button-game:focused
+{
+    -fx-background-color: #0866CC;
+}
+
 .header
 {
     -fx-background-color: #353535;
@@ -58,7 +63,7 @@
     -fx-text-fill: white;
 }
 
-.label-number
+.label-rank
 {
     -fx-font: 14px "Arial";
     -fx-text-fill: white;
