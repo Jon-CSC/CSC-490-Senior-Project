@@ -264,11 +264,6 @@ public class GameLibraryController implements Initializable {
         App.setRoot("LoginPage");
         LocalUserAccount.getInstance().logout();
     }
-
-    @FXML
-    void goToLeaderboard() throws IOException {
-        App.setRoot("Leaderboard");
-    }
     
     @FXML
     void launchSelectedGame(ActionEvent event) throws IOException {
