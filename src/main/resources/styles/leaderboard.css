@@ -32,13 +32,22 @@
 
 .button-game:hover
 {
-    -fx-background-color: #0866CC;
+    -fx-background-color: #272727;
 }
 
-.button-game:focused
+.button-blue
 {
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
     -fx-background-color: #0866CC;
+    -fx-cursor: hand;
 }
+
+.button-blue:hover {
+    -fx-background-color: #0f6ad7;
+}
+
 
 .header
 {
@@ -87,3 +96,4 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
+

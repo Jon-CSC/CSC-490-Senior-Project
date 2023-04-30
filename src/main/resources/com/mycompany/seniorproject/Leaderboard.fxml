@@ -9,6 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -87,6 +88,17 @@
                   <Insets bottom="10.0" top="10.0" />
                </padding>
             </VBox>
+            <Pane fx:id="pane" prefHeight="640.0" prefWidth="900.0" style="-fx-background-color: black; -fx-opacity: 0.40;" visible="false" />
+            <Label fx:id="noScoresSubmitted" text="No scores submitted" />
+            <VBox fx:id="info" alignment="CENTER" fillWidth="false" maxHeight="270.0" maxWidth="270.0" minHeight="0.0" minWidth="0.0" prefHeight="245.0" prefWidth="216.0" spacing="20.0" style="-fx-background-radius: 20;" styleClass="header">
+               <children>
+                  <Label alignment="CENTER" prefHeight="23.0" prefWidth="249.0" styleClass="label-title" text="For singleplayer games" wrapText="true" />
+                  <Label alignment="CENTER" prefHeight="33.0" prefWidth="210.0" text="You need at least a high score of 1 to place on the leaderboard." textAlignment="CENTER" wrapText="true" />
+                  <Label alignment="CENTER" prefHeight="23.0" prefWidth="246.0" styleClass="label-title" text="For multiplayer games" wrapText="true" />
+                  <Label alignment="CENTER" prefHeight="37.0" prefWidth="212.0" text="You need at least one win to place on the leaderboard." textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#hideInfo" styleClass="button-blue" text="OK" />
+               </children>
+            </VBox>
             <ProgressIndicator fx:id="progressIndicator" focusTraversable="false" />
          </children>
       </StackPane>
@@ -104,6 +116,22 @@
          </children>
          <padding>
             <Insets left="10.0" top="10.0" />
+         </padding>
+      </AnchorPane>
+      <AnchorPane layoutX="750.0" prefHeight="150.0" prefWidth="150.0">
+         <children>
+            <Button focusTraversable="false" layoutX="60.0" layoutY="20.0" mnemonicParsing="false" onAction="#showInfo" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/i.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <padding>
+            <Insets right="10.0" top="10.0" />
          </padding>
       </AnchorPane>
    </children>
