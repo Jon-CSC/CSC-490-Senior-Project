@@ -1,5 +1,6 @@
-package edu.farmingdale.chessgame;
+package com.mycompany.seniorproject.games.chess;
 
+import com.mycompany.seniorproject.App;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.application.Application;
@@ -21,15 +22,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
- * JavaFX App
+ * JavaFX ChessGame
  */
-public class App extends Application {
+public class ChessGame {
 
 
    // using 3 groups, one for the pieces, one for the grid,
     // and one for the highlighted square 
     // makes it easier to update the board with getChildren.clear();
-    private static Scene scene;
+//    private static Scene scene;
     private static Group gridGroup;
     private static Group pieceGroup;
     private static Group highlightGroup;
@@ -63,26 +64,28 @@ public class App extends Application {
     private static int enPassant = -1;
     
     // relative file paths for all the pieces, edited in gimp software
-    private static String whiteRookFileStr = "src/main/resources/PiecePics/whiteRook.png";
-    private static String blackRookFileStr = "src/main/resources/PiecePics/blackRook.png";
-    private static String whiteKnightFileStr = "src/main/resources/PiecePics/whiteKnight.png";
-    private static String blackKnightFileStr = "src/main/resources/PiecePics/blackKnight.png";
-    private static String whiteBishopFileStr = "src/main/resources/PiecePics/whiteBishop.png";
-    private static String blackBishopFileStr = "src/main/resources/PiecePics/blackBishop.png";
-    private static String whiteQueenFileStr = "src/main/resources/PiecePics/whiteQueen.png";
-    private static String blackQueenFileStr = "src/main/resources/PiecePics/blackQueen.png";
-    private static String whiteKingFileStr = "src/main/resources/PiecePics/whiteKing.png";
-    private static String blackKingFileStr = "src/main/resources/PiecePics/blackKing.png";
-    private static String whitePawnFileStr = "src/main/resources/PiecePics/whitePawn.png";
-    private static String blackPawnFileStr = "src/main/resources/PiecePics/blackPawn.png";
+    private static String whiteRookFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/whiteRook.png";
+    private static String blackRookFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/blackRook.png";
+    private static String whiteKnightFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/whiteKnight.png";
+    private static String blackKnightFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/blackKnight.png";
+    private static String whiteBishopFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/whiteBishop.png";
+    private static String blackBishopFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/blackBishop.png";
+    private static String whiteQueenFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/whiteQueen.png";
+    private static String blackQueenFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/blackQueen.png";
+    private static String whiteKingFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/whiteKing.png";
+    private static String blackKingFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/blackKing.png";
+    private static String whitePawnFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/whitePawn.png";
+    private static String blackPawnFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/blackPawn.png";
 
-    @Override
-    public void start(Stage stage) throws IOException {
+    public ChessGame(Pane inputPane) throws FileNotFoundException {
         // assign the groups and pane
         gridGroup = new Group();
         pieceGroup = new Group();
         highlightGroup = new Group();
-        pane = new Pane(gridGroup, pieceGroup, highlightGroup);
+        inputPane.getChildren().add(gridGroup);
+        inputPane.getChildren().add(pieceGroup);
+        inputPane.getChildren().add(highlightGroup);
+        pane = inputPane;
 
         // constructing the board
         int count = 0;
@@ -110,15 +113,6 @@ public class App extends Application {
         
         setUpPieces();
         drawBoard();
-
-        // declare the scene with after the pieces are added to the screen
-        scene = new Scene(pane, 850, 850);
-        // a scene of 850x850 fit the pieces onto the screen perfectly, not sure how to resize the images
-        stage.setScene(scene);
-        stage.setTitle("Chess");
-        stage.setResizable(true);
-        stage.show();
-        
         startGame();
     }
 
@@ -182,7 +176,7 @@ public class App extends Application {
         // assign the first turn to be white
         turn = "white";
 
-        scene.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 // getting x and y coordinates
@@ -430,19 +424,6 @@ public class App extends Application {
         res[0] = 25+100*x;
         res[1] = 25+100*y;
         return res;
-    }
-
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }
 

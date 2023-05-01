@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.farmingdale.chessgame;
+package com.mycompany.seniorproject.games.chess;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author nicolechan
  */
-public class Piece extends Location{
+public class Piece extends Location {
     
     
     /*
