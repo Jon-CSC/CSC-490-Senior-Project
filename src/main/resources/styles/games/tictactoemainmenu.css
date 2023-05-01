@@ -5,13 +5,13 @@
 
 .label
 {
-    -fx-font: 20px "Helvetica";
+    -fx-font: 20px "Arial";
     -fx-text-fill: white;
 }
 
 .label-title
 {
-    -fx-font: 30px "Helvetica";
+    -fx-font: 30px "Arial";
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }

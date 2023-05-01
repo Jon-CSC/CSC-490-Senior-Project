@@ -11,7 +11,7 @@
 
 .button
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
     -fx-background-radius: 20px;
     -fx-background-color: #3e4b5f;
@@ -25,7 +25,7 @@
 
 .button-host
 {
-    -fx-font: 20px "Helvetica";
+    -fx-font: 20px "Arial";
         -fx-text-fill: white;
         -fx-background-radius: 20 20 0 0;
         -fx-background-color: #697489;
@@ -42,7 +42,7 @@
 
 .button-join
 {
-    -fx-font: 20px "Helvetica";
+    -fx-font: 20px "Arial";
     -fx-text-fill: white;
     -fx-background-radius: 0 0 20 20;
     -fx-background-color: #697489;
@@ -59,32 +59,32 @@
 
 .label
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
 }
 
 .label-subtitle
 {
-    -fx-font: 20px "Helvetica";
+    -fx-font: 20px "Arial";
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
 .label-title
 {
-    -fx-font: 30px "Helvetica";
+    -fx-font: 30px "Arial";
     -fx-text-fill: white;
 }
 
 .label-error
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: #ff4242;
 }
 
 .text-field
  {
-     -fx-font: 14px "Helvetica";
+     -fx-font: 14px "Arial";
      -fx-text-fill: white;
      -fx-background-color: #21252b;
      -fx-background-radius: 20px;
