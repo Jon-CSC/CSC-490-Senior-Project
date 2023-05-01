@@ -1,0 +1,99 @@
+.background
+{
+    -fx-background-color: #161616;
+}
+
+.foreground
+{
+    -fx-background-color: #232323;
+    -fx-background-radius: 20 20 20 20;
+}
+
+.button
+{
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-background-color: #232323;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #272727;
+}
+
+.button-game
+{
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+    -fx-background-color: #404040;
+    -fx-background-radius: 20px;
+}
+
+.button-game:hover
+{
+    -fx-background-color: #272727;
+}
+
+.button-blue
+{
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-background-color: #0866CC;
+    -fx-cursor: hand;
+}
+
+.button-blue:hover {
+    -fx-background-color: #0f6ad7;
+}
+
+
+.header
+{
+    -fx-background-color: #353535;
+    -fx-background-radius: 20 20 0 0;
+}
+
+.sub-header
+{
+    -fx-background-color: #404040;
+}
+
+.score-card
+{
+    -fx-background-color: #353535;
+    -fx-background-radius: 10px;
+}
+
+.label
+{
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+}
+
+.label-rank
+{
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.label-title
+{
+    -fx-font: 20px "Arial";
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.scroll-pane
+{
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
