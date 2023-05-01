@@ -16,15 +16,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-/**
- * FXML Controller class
- *
- * @author chriscanenguez
- */
 public class CheckersMainMenuController implements Initializable {
 
-    @FXML private Rectangle checkersRectangle;
-    
+    @FXML
+    private Rectangle checkersRectangle;
+
     /**
      * Initializes the controller class.
      */
@@ -35,19 +31,19 @@ public class CheckersMainMenuController implements Initializable {
         App.getStage().centerOnScreen();
         loadImages();
     }
-    
+
     @FXML
     public void onLocalMatchMouseClick() throws IOException {
         App.setRoot("games/checkers/checkers");
     }
-    
+
     @FXML
     public void onMenuSelectionMouseEnter(MouseEvent m) {
         Label label = (Label) m.getSource();
         label.setStyle("-fx-font-weight: bold");
         label.setText("▶ " + label.getText() + " ◀");
     }
-    
+
     @FXML
     public void onMenuSelectionMouseExit(MouseEvent m) {
         Label label = (Label) m.getSource();
@@ -55,12 +51,12 @@ public class CheckersMainMenuController implements Initializable {
         label.setText(label.getText().substring(2, label.getText().length() - 2));
 
     }
-    
+
     @FXML
     public void onQuitMouseClick() throws IOException {
         App.setRoot("gameLibrary");
     }
-    
+
     private void loadImages() {
         Image ticTacToeImage;
         ticTacToeImage = new Image(getClass().getResourceAsStream("../../Images/checkers.png"));

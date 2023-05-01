@@ -13,10 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-/**
- *
- * @author justi
- */
 public class CheckersGameController {
     /**
      * Initializes the controller class.

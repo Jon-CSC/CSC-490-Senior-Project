@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameTreeNode {
+
     private List<GameTreeNode> children = new ArrayList<>();
     private GameTreeNode parent = null;
     private BoardLogic data = null;

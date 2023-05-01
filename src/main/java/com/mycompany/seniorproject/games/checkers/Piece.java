@@ -4,10 +4,6 @@
  */
 package com.mycompany.seniorproject.games.checkers;
 
-/**
- *
- * @author chriscanenguez
- */
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 

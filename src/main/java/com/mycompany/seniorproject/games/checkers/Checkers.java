@@ -17,25 +17,21 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-/**
- * Main class. This JavaFX application implements modified Polish/International
- * checkers game between two human players.
- * @author Mateusz
- */
 public class Checkers extends Application {
-    
+
     @FXML
     void initialize() {
-        
+
         App.getStage().setWidth(50);
         App.getStage().setHeight(500);
-        
+
         start(App.getStage());
-        
+
     }
-    
+
     /**
      * Draws a game status message.
+     *
      * @see BoardLogic#message()
      * @param gc a given GraphicsContext object
      * @param str a string
@@ -44,7 +40,7 @@ public class Checkers extends Application {
      * @param size text size, pixels
      */
     private void drawMessage(GraphicsContext gc, String str,
-                             double x, double y, double size) {
+            double x, double y, double size) {
         gc.setFont(new Font("Arial", size));
         gc.setFill(javafx.scene.paint.Color.BLACK);
         gc.fillText(str, x, y);
@@ -56,14 +52,14 @@ public class Checkers extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Checkers");
-        
+
         Group root = new Group();
         Scene primaryScene = new Scene(root);
         primaryStage.setScene(primaryScene);
-        
+
         Canvas canvas = new Canvas(500, 500);
         root.getChildren().add(canvas);
-        
+
         GraphicsContext gc = canvas.getGraphicsContext2D();
         BoardLogic board = new BoardLogic(50.0, 50.0, 400.0, 0.1, 8, 3);
         AIPlayer aiPlayer = new AIPlayer(); // not functional yet!
@@ -72,42 +68,44 @@ public class Checkers extends Application {
                 50.0, 40.0, 22.0);
 
         primaryScene.setOnMouseClicked(
-        new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent e)
-            {
-                if (!board.isOpponentSet())
+                new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent e) {
+                if (!board.isOpponentSet()) {
                     return;
-                if (board.isGameOverDelayed())
+                }
+                if (board.isGameOverDelayed()) {
                     board.reset();
+                }
 
-                if (board.turn() && aiPlayer.isActive())
+                if (board.turn() && aiPlayer.isActive()) {
                     aiPlayer.runTurn(board);
-                else if (board.someLegalPos())
+                } else if (board.someLegalPos()) {
                     board.attemptMove(board.decodeMouse(e.getX(), e.getY()));
-                else
+                } else {
                     board.highlightMoves(board.decodeMouse(e.getX(), e.getY()));
+                }
 
                 // drawing stuff
                 gc.clearRect(0, 0, gc.getCanvas().getWidth(),
                         gc.getCanvas().getHeight());
                 board.draw(gc);
-                if (board.isOpponentSet())
+                if (board.isOpponentSet()) {
                     drawMessage(gc, board.message(), 50.0, 40.0, 22.0);
-                else
+                } else {
                     drawMessage(gc, "Click C-computer or H-human player",
                             50.0, 40.0, 22.0);
+                }
             }
         });
 
         primaryScene.setOnKeyPressed(
-        new EventHandler<KeyEvent>() {
+                new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 if (!board.isOpponentSet() && event.getText().equals("h")) {
                     board.setOpponent();
                     aiPlayer.setInactive();
-                }
-                else if (!board.isOpponentSet() && event.getText().equals("c")) {
+                } else if (!board.isOpponentSet() && event.getText().equals("c")) {
                     board.setOpponent();
                     aiPlayer.setActive();
                 }
@@ -115,8 +113,9 @@ public class Checkers extends Application {
                 gc.clearRect(0, 0, gc.getCanvas().getWidth(),
                         gc.getCanvas().getHeight());
                 board.draw(gc);
-                if (board.isOpponentSet())
+                if (board.isOpponentSet()) {
                     drawMessage(gc, board.message(), 50.0, 40.0, 22.0);
+                }
             }
         });
 
