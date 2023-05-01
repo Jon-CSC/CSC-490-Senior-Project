@@ -412,7 +412,7 @@ public class GameLibraryController implements Initializable {
 //        chessTimer.start();
 //        App.setTimer(chessTimer);
 //        displayNoGameDialogBoxError();
-        App.setRoot("games/chess/ChessGame");
+        App.setRoot("games/chess/ChessMainMenu");
     }
     
     private void playJavaStroids() throws IOException {
