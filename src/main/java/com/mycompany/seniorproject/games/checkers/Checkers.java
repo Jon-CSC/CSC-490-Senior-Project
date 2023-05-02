@@ -22,7 +22,7 @@ public class Checkers extends Application {
     @FXML
     void initialize() {
 
-        App.getStage().setWidth(50);
+        App.getStage().setWidth(500);
         App.getStage().setHeight(500);
 
         start(App.getStage());
