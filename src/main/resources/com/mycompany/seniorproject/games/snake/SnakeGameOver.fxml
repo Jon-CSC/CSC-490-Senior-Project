@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="700.0" styleClass="background" stylesheets="@../../../../../styles/games/snakegame.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.games.snake.SnakeGameOverController">
+    <children>
+        <Pane prefHeight="1400.0" prefWidth="700.0">
+            <children>
+                <ImageView fx:id="checkerboard" fitHeight="700.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@snake_checkerboard.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="checkerboard2" fitHeight="700.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true" y="700.0">
+                    <image>
+                        <Image url="@snake_checkerboard.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+        <VBox alignment="CENTER" fillWidth="false" prefHeight="700.0" prefWidth="700.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="121.0" prefWidth="250.0" spacing="20.0" styleClass="vbox">
+                    <children>
+                        <Label fx:id="title" styleClass="label-gameover" text="Game Over!" />
+                  <Label fx:id="labelLastScore" alignment="CENTER" prefHeight="35.0" prefWidth="321.0" text="0">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@ic_apple.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                  <Label fx:id="labelHighScore" alignment="CENTER" prefHeight="35.0" prefWidth="418.0" text="0">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@snake_highscore.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+                    </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+                </VBox>
+            <HBox alignment="CENTER" prefHeight="35.0" prefWidth="250.0" spacing="5.0">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#playAgain" prefHeight="35.0" prefWidth="125.0" styleClass="button-playagain" text="Play Again" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@snake_play.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#exit" prefHeight="35.0" prefWidth="125.0" styleClass="button-playagain" text="Exit" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/home.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

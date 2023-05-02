@@ -42,6 +42,9 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        App.getStage().setHeight(600);
+        App.getStage().setWidth(400);
+        App.getStage().centerOnScreen();
         try {
             textFieldYourIP.setText(InetAddress.getLocalHost().getHostAddress());
             labelError.setVisible(false);
@@ -121,6 +124,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
         Task task = new Task<Void>() {
             @Override
             public Void call() throws IOException {
+                buttonHost.setDisable(true);
                 connection = new PeerToPeer();
                 connection.startHost(port);
                 Platform.runLater(() -> {
@@ -133,13 +137,20 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                         Logger.getLogger(TicTacToeNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     TicTacToeGameController controller = loader.getController();
-                    controller.initConnection(connection,true);
+                    controller.initMultiplayer(connection,true);
                     stage.show();
                 });
                 return null;
             }
         };
-        task.setOnSucceeded(taskFinishEvent -> System.out.println("Connected: \n" + connection.toString()));
+        task.setOnSucceeded(taskFinishEvent -> {
+                buttonHost.setDisable(false);
+                System.out.println("Connected: \n" + connection.toString());
+        });
+        task.setOnFailed(taskFinishEvent -> {
+                buttonHost.setDisable(false);
+                System.out.println("Connection failed");
+        });
         new Thread(task).start();
     }
 
@@ -205,7 +216,7 @@ public class TicTacToeNetworkMatchSetUpController implements Initializable {
                     }
                     
                     TicTacToeGameController controller = loader.getController();
-                    controller.initConnection(connection,false);
+                    controller.initMultiplayer(connection,false);
                 });
                 return null;
             }

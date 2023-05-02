@@ -4,6 +4,8 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -171,15 +173,17 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="142.0" prefWidth="431.0" spacing="15.0">
                      <children>
-                        <Button minHeight="40.0" minWidth="130.0" mnemonicParsing="false" text="Leaderboards">
+                        <Button minHeight="40.0" minWidth="140.0" mnemonicParsing="false" onAction="#goToLeaderboard" text="Leaderboards">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
-                        </Button>
-                        <Button minHeight="40.0" minWidth="130.0" mnemonicParsing="false" text="Play History">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@games/snake/snake_highscore.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
                      <GridPane.margin>
@@ -222,7 +226,7 @@
          <left>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <Button minHeight="40.0" minWidth="40.0" mnemonicParsing="false" text="&lt;">
+                  <Button minHeight="40.0" minWidth="40.0" mnemonicParsing="false">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -232,6 +236,13 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/back.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </VBox>
@@ -239,7 +250,7 @@
          <right>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="525.0" prefWidth="60.0" BorderPane.alignment="TOP_CENTER">
                <children>
-                  <Button minHeight="40.0" minWidth="40.0" mnemonicParsing="false" text="&gt;">
+                  <Button minHeight="40.0" minWidth="40.0" mnemonicParsing="false">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -249,12 +260,19 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/forward.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </VBox>
          </right>
       </BorderPane>
-      <VBox fx:id="dropDownMenu" fillWidth="false" layoutX="730.0" layoutY="70.0" maxHeight="68.0" maxWidth="150.0" prefHeight="68.0" prefWidth="150.0" spacing="5.0" styleClass="dropdown-menu" stylesheets="@../../../styles/gamelibrary.css" visible="false">
+      <VBox fx:id="dropDownMenu" fillWidth="false" layoutX="730.0" layoutY="70.0" maxHeight="68.0" maxWidth="150.0" prefHeight="68.0" prefWidth="150.0" spacing="5.0" styleClass="dropdown-menu" stylesheets="@../../../styles/gamelibrary.css">
          <children>
             <VBox prefHeight="0.0" prefWidth="138.0">
                <children>
@@ -265,13 +283,15 @@
                </children>
             </VBox>
             <Line endX="36.29069519042969" endY="-1.5610456466674805E-4" startX="-100.0" startY="-1.5687942504882812E-4" stroke="#535353" />
-            <VBox prefHeight="191.0" prefWidth="138.0">
+            <VBox prefHeight="191.0" prefWidth="138.0" spacing="1.0">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToProfilePage" prefHeight="105.0" prefWidth="138.0" styleClass="button-dropdown" text="My Profile" />
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToProfilePage" prefHeight="27.0" prefWidth="174.0" styleClass="button-dropdown" text="Friends List" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefWidth="145.0" styleClass="button-dropdown" text="Settings" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#logOut" prefWidth="145.0" styleClass="button-dropdown" text="Log Out" />
                </children>
+               <padding>
+                  <Insets bottom="1.0" />
+               </padding>
             </VBox>
          </children>
          <padding>

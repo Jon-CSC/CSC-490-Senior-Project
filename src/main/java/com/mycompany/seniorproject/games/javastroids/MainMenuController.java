@@ -27,8 +27,8 @@ public class MainMenuController {
      */
     @FXML
     public void initialize() {
-        App.getStage().setMinWidth(800);
-        App.getStage().setMinHeight(640);
+        App.getStage().setWidth(800);
+        App.getStage().setHeight(640);
         App.getStage().setOnHiding(e -> {
             GameLoop.stopAllThreads();
             Platform.exit();

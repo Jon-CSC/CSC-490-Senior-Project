@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import com.mycompany.seniorproject.App;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -25,7 +26,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class TicTacToeMainMenuController implements Initializable {
 
-    @FXML private Label labelLocalMatch, labelNetworkMatch, labelOptions, labelQuit;
+    @FXML private Button buttonLocalMatch, buttonNetworkMatch, buttonQuit;
     @FXML private Rectangle ticTacToeRectangle;
 
     /**
@@ -51,7 +52,6 @@ public class TicTacToeMainMenuController implements Initializable {
         Label label = (Label) m.getSource();
         label.setStyle("-fx-font-weight: normal");
         label.setText(label.getText().substring(2, label.getText().length() - 2));
-
     }
 
     @FXML

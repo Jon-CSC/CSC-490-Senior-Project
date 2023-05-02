@@ -281,9 +281,46 @@ public final class LocalUserAccount {
         } catch (InterruptedException | ExecutionException ex) {
             return false;
         }
+        if (game == Game.SNAKE) {
+            scoreField = "snake_lastscore";
+            ApiFuture<WriteResult> writeLastScore = userDoc.update(
+                    UserAccount.GAMEDATA + "." + scoreField, score
+            );
+            try {
+                WriteResult result = writeLastScore.get();
+            } catch (InterruptedException | ExecutionException ex) {
+                return false;
+            }
+        }
         // update the local data, if that worked
         HashMap<String, Object> gameData = activeUser.getGameData();
         gameData.put(scoreField, score);
         return true;
     }
+
+    /**
+     * Records last score data for the given game. Used for passing score data between scenes.
+     * @param game the game to record a score for
+     * @param score the last score achieved
+     */
+    public void recordLastScore(Game game, int score) {
+        if(!isLoggedIn() || null == game) {
+            return;
+        }
+        String lastScoreField = game.getLastScoreField();
+        // update the remote data
+        DocumentReference userDoc = App.fstore.collection(UserAccount.USER_DB_NAME).document(activeUser.getUserID());
+        ApiFuture<WriteResult> future = userDoc.update(
+                UserAccount.GAMEDATA + "." + lastScoreField, score
+        );
+        try {
+            WriteResult result = future.get();
+        } catch (InterruptedException | ExecutionException ex) {
+            return;
+        }
+        // update the local data, if that worked
+        HashMap<String, Object> gameData = activeUser.getGameData();
+        gameData.put(lastScoreField, score);
+    }
+
 }

@@ -1,9 +1,13 @@
 package com.mycompany.seniorproject.games.javastroids;
 
 import com.mycompany.seniorproject.App;
+import com.mycompany.seniorproject.Game;
+import com.mycompany.seniorproject.LocalUserAccount;
+import com.mycompany.seniorproject.UserAccount;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -42,13 +46,14 @@ public class GameLoop extends AnimationTimer {
     private final Ship playerShip;
     private int playerLifeCount;
     private volatile int totalScore;
+    private long highScore = 0L;
     private double asteroidVelocityModifier;
     private int asteroidCount;
     private boolean readyToFire;
     private boolean enableKeyboardInput;
-    private boolean initiateNameInput;
+    private boolean displayScore;
     private boolean asteroidSpawnInProgress;
-    private String nameInput;
+//    private String nameInput;
 
     private final long physicsTimeStep;
     private ScheduledFuture<?> physicsHandle;
@@ -123,7 +128,7 @@ public class GameLoop extends AnimationTimer {
         readyToFire = true;
         playerLifeCount = 4;
         enableKeyboardInput = true;
-        initiateNameInput = false;
+        displayScore = false;
         asteroidSpawnInProgress = false;
 
         // Starts ship sprite in the center of the JavaFX scene
@@ -394,12 +399,15 @@ public class GameLoop extends AnimationTimer {
         });
 
         // Score rendering
-        renderScoreAndLives();
         if (playerLifeCount == 0) {
             renderGameOver();
+        } else {
+            renderScoreAndLives();
         }
-        if (initiateNameInput) {
-            renderNameInput();
+        if (displayScore) {
+            renderNewScore();
+            renderHighestScore();
+            renderReturnToMenu();
         }
     }
 
@@ -425,13 +433,31 @@ public class GameLoop extends AnimationTimer {
     private void renderGameOver() {
         gc.setFill(Color.WHITE);
         gc.setFont(hyperspaceFont);
-        gc.fillText("GAME OVER", (gc.getCanvas().getWidth() / 2) - 86, gc.getCanvas().getHeight() / 3);
+        gc.fillText("GAME OVER", (gc.getCanvas().getWidth() / 2) - 86, (gc.getCanvas().getHeight() / 2) - 210);
     }
 
-    private void renderNameInput() {
+//    private void renderNameInput() {
+//        gc.setFill(Color.WHITE);
+//        gc.setFont(hyperspaceFont);
+//        gc.fillText("> Enter name: " + nameInput + "_", (gc.getCanvas().getWidth() / 2) - 220, gc.getCanvas().getHeight() / 2);
+//    }
+    
+    private void renderNewScore() {
         gc.setFill(Color.WHITE);
         gc.setFont(hyperspaceFont);
-        gc.fillText("> Enter name: " + nameInput + "_", (gc.getCanvas().getWidth() / 2) - 220, gc.getCanvas().getHeight() / 2);
+        gc.fillText("Your score: " + totalScore, (gc.getCanvas().getWidth() / 2) - 160, (gc.getCanvas().getHeight() / 2) - 100);
+    }
+    
+    private void renderHighestScore() {
+        gc.setFill(Color.WHITE);
+        gc.setFont(hyperspaceFont);
+        gc.fillText("High score: " + highScore, (gc.getCanvas().getWidth() / 2) - 160, (gc.getCanvas().getHeight() / 2));
+    }
+    
+    private void renderReturnToMenu() {
+        gc.setFill(Color.WHITE);
+        gc.setFont(hyperspaceFont);
+        gc.fillText("Press enter to return to menu", (gc.getCanvas().getWidth() / 2) - 310, (gc.getCanvas().getHeight() / 2) + 100);
     }
 
     private void gameOverEvent() {
@@ -442,27 +468,25 @@ public class GameLoop extends AnimationTimer {
         Runnable delayNameInputOnGameOver = new Runnable() {
             @Override
             public void run() {
-                initiateNameInput = true;
-                nameInput = new String();
+                LocalUserAccount.getInstance().recordHiscore(Game.JAVASTROIDS, totalScore);
+                LocalUserAccount.getInstance().recordLastScore(Game.JAVASTROIDS, totalScore);
+                
+                String userID = LocalUserAccount.getInstance().getUser().getUserID();
+                UserAccount profileUser = UserAccount.downloadUser(userID, App.fstore);
+                HashMap<String, Object> gameData = profileUser.getGameData();
+                highScore = (long)gameData.getOrDefault(Game.JAVASTROIDS.getScoreField(), (long)0);
+                
+                displayScore = true;
+                
                 currScene.setOnKeyPressed(e -> {
                     KeyCode currentCode = e.getCode();
-                    if (nameInput.length() < 6) {
-                        if (currentCode.isLetterKey()) {
-                            nameInput += currentCode.toString();
-                        } else if (currentCode.isDigitKey()) {
-                            nameInput += currentCode.toString().substring(5);
-                        }
-                    }
-                    if (currentCode.equals(KeyCode.ENTER) && nameInput.length() > 0) {
-                        ScoreDataManagement.addEntryToDatabase(nameInput, totalScore);
+                    if (currentCode.equals(KeyCode.ENTER)) {
                         try {
-                            App.setRoot("games/javastroids/leaderboard");
+                            App.setRoot("games/javastroids/mainMenu");
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
                         stopAllThreads();
-                    } else if (currentCode.equals(KeyCode.BACK_SPACE) && nameInput.length() != 0) {
-                        nameInput = nameInput.substring(0, nameInput.length() - 1);
                     }
                 });
             }

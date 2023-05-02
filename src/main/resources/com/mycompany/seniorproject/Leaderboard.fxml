@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="640.0" prefWidth="900.0" styleClass="background" stylesheets="@../../../styles/leaderboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.LeaderboardController">
+   <children>
+      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="640.0" prefWidth="900.0" styleClass="background">
+               <children>
+                  <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="620.0" prefWidth="526.0" styleClass="foreground">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="5.0" prefWidth="526.0" styleClass="header">
+                           <children>
+                              <Label focusTraversable="false" styleClass="label-title" text="Leaderboards">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@games/snake/snake_highscore.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets bottom="12.0" top="12.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="526.0" spacing="5.0" styleClass="sub-header">
+                           <children>
+                              <Button fx:id="snakeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSnakeButtonClicked" styleClass="button-game" text="Snake" textAlignment="CENTER" />
+                              <Button fx:id="javastroidsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onJavastroidsButtonClicked" styleClass="button-game" text="Javastroids" textAlignment="CENTER" />
+                              <Button fx:id="ticTacToeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onTicTacToeButtonClicked" styleClass="button-game" text="Tic-Tac-Toe" textAlignment="CENTER" />
+                              <Button fx:id="battleshipButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBattleshipButtonClicked" styleClass="button-game" text="Battleship" textAlignment="CENTER" />
+                              <Button fx:id="chessButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onChessButtonClicked" styleClass="button-game" text="Chess" textAlignment="CENTER" />
+                              <Button fx:id="checkersButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onCheckersButtonClicked" styleClass="button-game" text="Checkers" textAlignment="CENTER" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="0.0" prefWidth="480.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="240.0" />
+                              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="240.0">
+                                 <children>
+                                    <Label fx:id="statLabel" focusTraversable="false" text="Wins" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </HBox>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" hmax="0.0" prefHeight="536.0" prefWidth="526.0" vbarPolicy="NEVER" VBox.vgrow="NEVER">
+                           <content>
+                              <VBox fx:id="leaderboard" alignment="TOP_CENTER" fillWidth="false" prefHeight="536.0" prefWidth="526.0" spacing="5.0" styleClass="scoreboard">
+                                 <padding>
+                                    <Insets bottom="5.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <Pane fx:id="pane" prefHeight="640.0" prefWidth="900.0" style="-fx-background-color: black; -fx-opacity: 0.40;" visible="false" />
+            <Label fx:id="noScoresSubmitted" text="No scores submitted" />
+            <VBox fx:id="info" alignment="CENTER" fillWidth="false" maxHeight="270.0" maxWidth="270.0" minHeight="0.0" minWidth="0.0" prefHeight="245.0" prefWidth="216.0" spacing="20.0" style="-fx-background-radius: 20;" styleClass="header">
+               <children>
+                  <Label alignment="CENTER" prefHeight="23.0" prefWidth="249.0" styleClass="label-title" text="For singleplayer games" wrapText="true" />
+                  <Label alignment="CENTER" prefHeight="33.0" prefWidth="210.0" text="You need at least a high score of 1 to place on the leaderboard." textAlignment="CENTER" wrapText="true" />
+                  <Label alignment="CENTER" prefHeight="23.0" prefWidth="246.0" styleClass="label-title" text="For multiplayer games" wrapText="true" />
+                  <Label alignment="CENTER" prefHeight="37.0" prefWidth="212.0" text="You need at least one win to place on the leaderboard." textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#hideInfo" styleClass="button-blue" text="OK" />
+               </children>
+            </VBox>
+            <ProgressIndicator fx:id="progressIndicator" focusTraversable="false" />
+         </children>
+      </StackPane>
+      <AnchorPane prefHeight="150.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button focusTraversable="false" mnemonicParsing="false" onAction="#goToGameLibrary" prefHeight="30.0" prefWidth="70.0" text="Back" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <padding>
+            <Insets left="10.0" top="10.0" />
+         </padding>
+      </AnchorPane>
+      <AnchorPane layoutX="750.0" prefHeight="150.0" prefWidth="150.0">
+         <children>
+            <Button focusTraversable="false" layoutX="60.0" layoutY="20.0" mnemonicParsing="false" onAction="#showInfo" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Images/i.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <padding>
+            <Insets right="10.0" top="10.0" />
+         </padding>
+      </AnchorPane>
+   </children>
+</AnchorPane>
