@@ -1,13 +1,15 @@
 package com.mycompany.seniorproject.games.chess;
 
-import com.mycompany.seniorproject.games.tictactoe.*;
 import com.mycompany.seniorproject.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.mycompany.seniorproject.App;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -53,7 +56,17 @@ public class ChessMainMenuController implements Initializable {
 
     @FXML
     public void onLocalMatchMouseClick() throws IOException {
-        App.setRoot("games/chess/ChessGame");
+         FXMLLoader loader = new FXMLLoader(ChessMainMenuController.this.getClass().getResource("ChessGame.fxml"));
+                    // Get current window
+                    Stage stage = (Stage) buttonLocalMatch.getScene().getWindow();
+                    try {
+                        App.getStage().getScene().setRoot(loader.load());
+                    } catch (IOException ex) {
+                        Logger.getLogger(ChessNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    ChessGameController controller = loader.getController();
+                    controller.initLocalMatch();
+                    stage.show();
     }
 
     @FXML

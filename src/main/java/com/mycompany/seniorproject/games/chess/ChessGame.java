@@ -1,17 +1,13 @@
 package com.mycompany.seniorproject.games.chess;
 
-import com.mycompany.seniorproject.App;
+import com.mycompany.seniorproject.PeerToPeer;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
@@ -76,7 +72,10 @@ public class ChessGame {
     private static String blackKingFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/blackKing.png";
     private static String whitePawnFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/whitePawn.png";
     private static String blackPawnFileStr = "src/main/resources/com/mycompany/seniorproject/games/chess/blackPawn.png";
-
+    
+    PeerToPeer connection = null;
+    boolean isHost;
+ 
     public ChessGame(Pane inputPane) throws FileNotFoundException {
         // assign the groups and pane
         gridGroup = new Group();
@@ -179,61 +178,70 @@ public class ChessGame {
         pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                // getting x and y coordinates
-                int x = (int)event.getX();
-                int y = (int)event.getY();
-                int[] square = findSquare(x, y); // finds the 0-indexed row and column of where the user clicked
-                x = square[0];
-                y = square[1];
-                
-                highlightSquare(x, y); // highlight the chosen square
-                
-                // set the king for the setMoves methods
-                king = turn.equals("white") ? whiteKing: blackKing;
-                
-                if (!toMove) {
-                    toMove = setPiece(x, y, toMove); // satisfying one liner
-                }
-                else {
-                    for (Location location: curPiece.getMoves()) {
-                        if (location.getX() == x && location.getY() == y) {
+                if (connection != null) {
+                    System.out.println("In MP loop");
+                    if(myTurn()) {
+                        int x = (int)event.getX();
+                        int y = (int)event.getY();
+                        multiplayerMove(x,y);                      
+                    }
+                }else{
+                    // getting x and y coordinates
+                    int x = (int)event.getX();
+                    int y = (int)event.getY();
+                    int[] square = findSquare(x, y); // finds the 0-indexed row and column of where the user clicked
+                    x = square[0];
+                    y = square[1];
 
-                            // if a piece is took, remove that piece
-                            Piece occupiedPiece = p.isOccupied(pieces, new Location(x, y));
-                            if (occupiedPiece != null) {pieces.remove(occupiedPiece);}
+                    highlightSquare(x, y); // highlight the chosen square
 
-                            String type = curPiece.type; // this helps to set for castling evaluation
-                            if (type.equals("rook") || type.equals("king")) {curPiece.hasMoved = true;}
-                            
-                            // call castle and en passant funcs() to make this shorter
-                            checkCastled(x);
-                            checkEnPassant(x, y);
+                    // set the king for the setMoves methods
+                    king = turn.equals("white") ? whiteKing: blackKing;
 
-                            // move the piece to its new location
-                            curPiece.setX(x);
-                            curPiece.setY(y);
+                    if (!toMove) {
+                        toMove = setPiece(x, y, toMove); // satisfying one liner
+                    }
+                    else {
+                        for (Location location: curPiece.getMoves()) {
+                            if (location.getX() == x && location.getY() == y) {
 
-                            checkPromotion(y);
+                                // if a piece is took, remove that piece
+                                Piece occupiedPiece = p.isOccupied(pieces, new Location(x, y));
+                                if (occupiedPiece != null) {pieces.remove(occupiedPiece);}
 
-                            // clear the groups, prepare for redraw
-                            pieceGroup.getChildren().clear();
-                            highlightGroup.getChildren().clear();
+                                String type = curPiece.type; // this helps to set for castling evaluation
+                                if (type.equals("rook") || type.equals("king")) {curPiece.hasMoved = true;}
+
+                                // call castle and en passant funcs() to make this shorter
+                                checkCastled(x);
+                                checkEnPassant(x, y);
+
+                                // move the piece to its new location
+                                curPiece.setX(x);
+                                curPiece.setY(y);
+
+                                checkPromotion(y);
+
+                                // clear the groups, prepare for redraw
+                                pieceGroup.getChildren().clear();
+                                highlightGroup.getChildren().clear();
+
+                                // if turn is white, then turn is black and vice versa
+                                turn = turn.equals("white") ? "black": "white";
+                                king = turn.equals("white") ? whiteKing: blackKing;
                                 
-                            // if turn is white, then turn is black and vice versa
-                            turn = turn.equals("white") ? "black": "white";
-                            king = turn.equals("white") ? whiteKing: blackKing;
+                                king.check = king.inCheck(pieces, king); // determine if the king is in check
 
-                            king.check = king.inCheck(pieces, king); // determine if the king is in check
+                                checkConditions(pieces, turn); // this looks for stalemate or checkmate
 
-                            checkConditions(pieces, turn); // this looks for stalemate or checkmate
-                            
-                            flipBoard(); // makes the game much cooler when flipping the board
+                                flipBoard(); // makes the game much cooler when flipping the board
 
-                            try {
-                                drawBoard();
-                            } catch (FileNotFoundException e) {e.printStackTrace(); System.out.println("paths are likely wrong");}
+                                try {
+                                    drawBoard();
+                                } catch (FileNotFoundException e) {e.printStackTrace(); System.out.println("paths are likely wrong");}
+                            }
+                            toMove = setPiece(x, y, toMove); // see if user selected another piece of same color to move
                         }
-                        toMove = setPiece(x, y, toMove); // see if user selected another piece of same color to move
                     }
                 }
             }
@@ -425,8 +433,191 @@ public class ChessGame {
         res[1] = 25+100*y;
         return res;
     }
-}
+    
+    private boolean myTurn(){
+	return (isHost == true && turn.equals("white")) || (isHost == false && turn.equals("black"));
+    }
+    
+    /**
+     * The game logic for a move in multiplayer. Similar to single player, but
+     * with added packet transmissions to give the opponent your actions to be
+     * mirrored on their UI.
+     * @param x The X value of the mouse event
+     * @param y The Y value of the mouse event
+     */
+    public void multiplayerMove(int x, int y) {
+        int actualX = x;
+        int actualY = y;
+        if(isHost){
+            System.out.println("THIS IS HOST");
+        }else{
+            System.out.println("THIS IS CLIENT");
+        }
+        // getting x and y coordinates
+        int[] square = findSquare(x, y); // finds the 0-indexed row and column of where the user clicked
+        x = square[0];
+        y = square[1];
 
+        highlightSquare(x, y); // highlight the chosen square
+
+        // set the king for the setMoves methods
+        king = turn.equals("white") ? whiteKing : blackKing;
+
+        if (!toMove) {
+            toMove = setPiece(x, y, toMove); // satisfying one liner
+            connection.sendPacket(actualX + " " + actualY + " END MESSAGE");
+        } else {
+            for (Location location : curPiece.getMoves()) {
+                if (location.getX() == x && location.getY() == y) {
+
+                    // if a piece is took, remove that piece
+                    Piece occupiedPiece = p.isOccupied(pieces, new Location(x, y));
+                    if (occupiedPiece != null) {
+                        pieces.remove(occupiedPiece);
+                    }
+
+                    String type = curPiece.type; // this helps to set for castling evaluation
+                    if (type.equals("rook") || type.equals("king")) {
+                        curPiece.hasMoved = true;
+                    }
+
+                    // call castle and en passant funcs() to make this shorter
+                    checkCastled(x);
+                    checkEnPassant(x, y);
+
+                    // move the piece to its new location
+                    curPiece.setX(x);
+                    curPiece.setY(y);
+
+                    checkPromotion(y);
+
+                    // clear the groups, prepare for redraw
+                    pieceGroup.getChildren().clear();
+                    highlightGroup.getChildren().clear();
+
+                    // if turn is white, then turn is black and vice versa
+                    turn = turn.equals("white") ? "black" : "white";
+                    king = turn.equals("white") ? whiteKing : blackKing;
+
+                    king.check = king.inCheck(pieces, king); // determine if the king is in check
+
+                    checkConditions(pieces, turn); // this looks for stalemate or checkmate
+
+                    flipBoard(); // makes the game much cooler when flipping the board
+
+                    try {
+                        drawBoard();
+                        connection.sendPacket(actualX + " " + actualY + " END MESSAGE");
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        System.out.println("paths are likely wrong");
+                    }
+                    
+                }
+                toMove = setPiece(x, y, toMove); // see if user selected another piece of same color to move
+                connection.sendPacket(actualX + " " + actualY + " END MESSAGE");
+            }
+        }
+    }
+    
+    /**
+     * Mirrors opponent moves. Similar to multiplayerMove, but without sending
+     * packets.
+     * @param x The X value of the mouse event
+     * @param y The Y value of the mouse event
+     */
+    public void mirrorMultiplayerMove(int x, int y) {
+        // getting x and y coordinates
+        int[] square = findSquare(x, y); // finds the 0-indexed row and column of where the user clicked
+        x = square[0];
+        y = square[1];
+
+        highlightSquare(x, y); // highlight the chosen square
+
+        // set the king for the setMoves methods
+        king = turn.equals("white") ? whiteKing : blackKing;
+
+        if (!toMove) {
+            toMove = setPiece(x, y, toMove); // satisfying one liner
+        } else {
+            for (Location location : curPiece.getMoves()) {
+                if (location.getX() == x && location.getY() == y) {
+
+                    // if a piece is took, remove that piece
+                    Piece occupiedPiece = p.isOccupied(pieces, new Location(x, y));
+                    if (occupiedPiece != null) {
+                        pieces.remove(occupiedPiece);
+                    }
+
+                    String type = curPiece.type; // this helps to set for castling evaluation
+                    if (type.equals("rook") || type.equals("king")) {
+                        curPiece.hasMoved = true;
+                    }
+
+                    // call castle and en passant funcs() to make this shorter
+                    checkCastled(x);
+                    checkEnPassant(x, y);
+
+                    // move the piece to its new location
+                    curPiece.setX(x);
+                    curPiece.setY(y);
+
+                    checkPromotion(y);
+
+                    // clear the groups, prepare for redraw
+                    pieceGroup.getChildren().clear();
+                    highlightGroup.getChildren().clear();
+
+                    // if turn is white, then turn is black and vice versa
+                    turn = turn.equals("white") ? "black" : "white";
+                    king = turn.equals("white") ? whiteKing : blackKing;
+
+                    king.check = king.inCheck(pieces, king); // determine if the king is in check
+
+                    checkConditions(pieces, turn); // this looks for stalemate or checkmate
+
+                    flipBoard(); // makes the game much cooler when flipping the board
+
+                    try {
+                        drawBoard();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        System.out.println("paths are likely wrong");
+                    }
+                    
+                }
+                toMove = setPiece(x, y, toMove); // see if user selected another piece of same color to move
+            }
+        }
+    }
+    
+    /**
+     * Sets up a thread to listen for opponent action to mirror
+     */
+    public void runOpponentsAction() {
+        Task<String> task = new Task<String>() {
+            @Override
+            public String call() {
+                String response = connection.readPacket();
+                response = response.replaceAll(" END MESSAGE", "");
+                response = response.trim();
+                return response;
+            }
+        };
+        task.setOnSucceeded((WorkerStateEvent taskFinishEvent) -> {
+            //parse int values and mirror the move
+            String response = task.getValue();
+            try ( Scanner scan = new Scanner(response)) {
+                int x1 = scan.nextInt();
+                int y1 = scan.nextInt();
+                System.out.println("Read in: "+ x1 + " " + y1);
+                mirrorMultiplayerMove(x1, y1);
+                runOpponentsAction();
+            }
+        });
+        new Thread(task).start();
+    }
+}
 
 /* additional notes
  *

@@ -137,7 +137,7 @@ public class ChessNetworkMatchSetUpController implements Initializable {
                         Logger.getLogger(ChessNetworkMatchSetUpController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     ChessGameController controller = loader.getController();
-                   // controller.initMultiplayer(connection,true);
+                    controller.initMultiplayer(connection,true);
                     stage.show();
                 });
                 return null;
@@ -216,7 +216,7 @@ public class ChessNetworkMatchSetUpController implements Initializable {
                     }
                     
                     ChessGameController controller = loader.getController();
-                  //  controller.initMultiplayer(connection,false);
+                   controller.initMultiplayer(connection,false);
                 });
                 return null;
             }
