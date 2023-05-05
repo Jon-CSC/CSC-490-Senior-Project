@@ -1,0 +1,106 @@
+.background
+{
+    -fx-background-color: #161616;
+}
+
+.foreground
+{
+    -fx-background-color: #232323;
+    -fx-background-radius: 20px;
+}
+
+.button
+{
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-background-color: #232323;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #272727;
+}
+
+.button-info
+{
+    -fx-background-color: #353535;
+    -fx-text-fill: #9f9f9f;
+}
+
+.button-info:hover
+{
+    -fx-background-color: #303030;
+    -fx-cursor: default;
+}
+
+
+.label-dark
+{
+    -fx-font: 14px "Arial";
+    -fx-text-fill: #909090;
+}
+
+.label-title
+{
+    -fx-font: 24px "Arial";
+    -fx-text-fill: white;
+}
+
+.label-small
+{
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+}
+
+.text-area
+{
+    -fx-background-color: #232323;
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+    -fx-cursor: default;
+    -fx-padding: 0px;
+}
+
+.text-field
+{
+    -fx-background-color: #232323;
+    -fx-font: 14px "Arial";
+    -fx-text-fill: #9f9f9f;
+    -fx-padding: 0px;
+}
+
+.text-area
+{
+    -fx-text-fill: #9f9f9f;
+}
+
+.text-area .content
+{
+    -fx-background-color: #232323;
+    -fx-background-radius: 0px;
+    -fx-font: 14px "Arial";
+    -fx-text-fill: #9f9f9f;
+    -fx-cursor: default;
+    -fx-padding: 0px;
+}
+
+.text-area > .scroll-pane > .scroll-bar .thumb,
+.text-area > .scroll-pane > .scroll-bar .increment-arrow,
+.text-area > .scroll-pane > .scroll-bar .decrement-arrow
+{
+    -fx-background-color: #353535;
+}
+
+.text-area > .scroll-pane > .scroll-bar .increment-arrow:hover,
+.text-area > .scroll-pane > .scroll-bar .decrement-arrow:hover
+{
+    -fx-background-color: #999999;
+}
+
+.text-area > .scroll-pane > .scroll-bar:vertical,
+.text-area > .scroll-pane > .scroll-bar .increment-button:hover,
+.text-area > .scroll-pane > .scroll-bar .decrement-button:hover
+{
+    -fx-background-color: null;
+}
