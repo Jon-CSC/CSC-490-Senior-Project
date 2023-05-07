@@ -1,5 +1,7 @@
 package com.mycompany.seniorproject.games.chess;
 
+import com.mycompany.seniorproject.Game;
+import com.mycompany.seniorproject.LocalUserAccount;
 import com.mycompany.seniorproject.PeerToPeer;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -231,7 +233,7 @@ public class ChessGame {
                                 king = turn.equals("white") ? whiteKing: blackKing;
                                 
                                 king.check = king.inCheck(pieces, king); // determine if the king is in check
-
+       
                                 checkConditions(pieces, turn); // this looks for stalemate or checkmate
 
                                 flipBoard(); // makes the game much cooler when flipping the board
@@ -329,6 +331,7 @@ public class ChessGame {
         if (king.checkMate(pieces, turn)) {
             String otherColor = turn.equals("white") ? "black": "white";
             System.out.println("checkmate for " + otherColor);
+            updateScore(turn);
         }
         if (king.staleMate(pieces, turn)) {
             System.out.println("stalemate");
@@ -616,6 +619,32 @@ public class ChessGame {
             }
         });
         new Thread(task).start();
+    }
+    /**
+     * Method that updates the score of the winning player in multiplayer
+     *
+     * @param player The winning player
+     */
+    private void updateScore(String player) {
+        if (connection != null) {
+            // If this is host and player 1 won, tally win in database for this user
+            if (isHost) {
+                if (player.equals("white")) {
+                    LocalUserAccount.getInstance().recordMatch(Game.CHESS, true);
+                } else {
+                    LocalUserAccount.getInstance().recordMatch(Game.CHESS, false);
+                }
+            }
+            // If this not host and player 2 won, then tally win in database for
+            // this user
+            if (!isHost) {
+                if (player.equals("black")) {
+                    LocalUserAccount.getInstance().recordMatch(Game.CHESS, true);
+                } else {
+                    LocalUserAccount.getInstance().recordMatch(Game.CHESS, false);
+                }
+            }
+        }
     }
 }
 
