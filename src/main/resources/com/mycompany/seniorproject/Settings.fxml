@@ -4,26 +4,37 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="640.0" prefWidth="900.0" styleClass="background" stylesheets="@../../../styles/settings.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.SettingsController">
+<AnchorPane maxHeight="640.0" maxWidth="900.0" prefHeight="640.0" prefWidth="900.0" styleClass="background" stylesheets="@../../../styles/settings.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.SettingsController">
    <children>
-      <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="640.0" prefWidth="900.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Circle fill="WHITE" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
-            <Label styleClass="label-title" text="Username" />
-            <VBox fillWidth="false" prefHeight="180.0" prefWidth="550.0" spacing="30.0" styleClass="foreground">
+            <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="640.0" prefWidth="900.0" spacing="15.0">
                <children>
-                  <Label styleClass="label-title" text="Account settings" />
-                  <HBox fillHeight="false" prefHeight="55.0" prefWidth="510.0" spacing="50.0">
+                  <Circle fx:id="profilePictureCircle" fill="WHITE" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label alignment="CENTER" styleClass="label-title" text="Settings" textAlignment="CENTER" />
+                  <VBox fillWidth="false" prefHeight="239.0" prefWidth="340.0" spacing="15.0" styleClass="foreground">
                      <children>
+                        <Label minHeight="27.0" styleClass="label-title" text="Account info" />
+                        <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="32.0" prefWidth="125.0">
+                           <children>
+                              <Label prefHeight="26.0" prefWidth="71.0" styleClass="label-dark" text="Username" textAlignment="CENTER">
+                                 <padding>
+                                    <Insets bottom="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <TextField fx:id="usernameField" editable="false" minHeight="35.0" minWidth="300.0" prefHeight="35.0" prefWidth="300.0" styleClass="text-field-username" text="username" />
                         <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="32.0" prefWidth="125.0">
                            <children>
                               <Label prefHeight="26.0" prefWidth="96.0" styleClass="label-dark" text="Email Address" textAlignment="CENTER">
@@ -31,22 +42,9 @@
                                     <Insets bottom="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </Label>
-                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/questionmark.png" />
-                                 </image>
-                              </ImageView>
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <TextField prefHeight="25.0" prefWidth="319.0" text="example@example.com" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="70.0" prefWidth="724.0" spacing="50.0">
-                     <children>
+                        <TextField fx:id="emailField" focusTraversable="false" minHeight="35.0" minWidth="300.0" prefHeight="35.0" prefWidth="300.0" text="example@example.com" />
                         <HBox alignment="CENTER_LEFT" prefWidth="125.0">
                            <children>
                               <Label prefHeight="26.0" prefWidth="67.0" styleClass="label-dark" text="Password">
@@ -54,73 +52,36 @@
                                     <Insets bottom="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </Label>
-                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/questionmark.png" />
-                                 </image>
-                              </ImageView>
                            </children>
                         </HBox>
-                        <PasswordField promptText="******" />
+                        <PasswordField fx:id="passwordField" focusTraversable="false" minHeight="35.0" minWidth="300.0" prefHeight="35.0" prefWidth="300.0" text="*****" />
+                        <Button minHeight="35.0" minWidth="120.0" mnemonicParsing="false" onAction="#updateAccountInfo" prefHeight="35.0" styleClass="button-blue" text="Save Changes" />
                      </children>
-                  </HBox>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  <Label fx:id="errorLabel" styleClass="label-small" text="Error Messages Appear Down Here" />
                </children>
                <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </padding>
             </VBox>
-            <VBox fillWidth="false" prefHeight="121.0" prefWidth="550.0" spacing="30.0" styleClass="foreground">
+            <Pane fx:id="pane" prefHeight="640.0" prefWidth="900.0" style="-fx-background-color: black; -fx-opacity: 0.40;" visible="false" />
+            <VBox fx:id="info" alignment="CENTER" maxHeight="100.0" maxWidth="296.0" prefHeight="90.0" prefWidth="296.0" spacing="20.0" styleClass="info" visible="false">
                <children>
-                  <Label styleClass="label-title" text="Profile settings" />
-                  <HBox prefHeight="48.0" prefWidth="637.0" spacing="50.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" maxWidth="125.0" minWidth="125.0" prefWidth="125.0">
-                           <children>
-                              <Label prefHeight="26.0" prefWidth="78.0" styleClass="label-dark" text="Avatar URL">
-                                 <padding>
-                                    <Insets bottom="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </Label>
-                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/questionmark.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <TextField prefHeight="25.0" prefWidth="319.0" text="https://imageurl.com.png" />
-                     </children>
-                  </HBox>
-                  <HBox maxWidth="770.0" minHeight="26.0" prefHeight="26.0" prefWidth="510.0" spacing="50.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" maxWidth="125.0" prefWidth="125.0">
-                           <children>
-                              <Label prefHeight="26.0" prefWidth="26.0" styleClass="label-dark" text="Bio">
-                                 <padding>
-                                    <Insets bottom="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </Label>
-                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/questionmark.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <TextArea maxWidth="319.0" prefHeight="59.0" prefWidth="319.0" text="f&#10;f&#10;" wrapText="true" />
-                     </children>
-                  </HBox>
+                  <Label minHeight="16.0" minWidth="198.5" styleClass="label-small" text="Usernames cannot be changed." wrapText="true" />
+                  <Label alignment="CENTER" minHeight="33.0" minWidth="234.0" prefHeight="33.0" prefWidth="234.0" styleClass="label-small" text="Emails must be unique and follow the format email@example.com." textAlignment="CENTER" wrapText="true" />
+                  <Label minHeight="17.0" minWidth="256.0" prefHeight="17.0" prefWidth="256.0" styleClass="label-small" text="Passwords must be at least 6 characters." textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#hideInfo" styleClass="button-blue" text="OK" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </VBox>
          </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-      </VBox>
-      <AnchorPane prefHeight="150.0" prefWidth="150.0">
+      </StackPane>
+      <AnchorPane prefHeight="150.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button minHeight="30.0" minWidth="70.0" mnemonicParsing="false" onAction="#goToGameLibrary" prefHeight="30.0" prefWidth="70.0" text="Back" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <graphic>
@@ -138,7 +99,7 @@
       </AnchorPane>
       <AnchorPane layoutX="750.0" prefHeight="150.0" prefWidth="150.0">
          <children>
-            <Button focusTraversable="false" layoutX="60.0" layoutY="20.0" mnemonicParsing="false" onAction="#showInfo" prefHeight="30.0" prefWidth="30.0" visible="false" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Button focusTraversable="false" layoutX="60.0" layoutY="20.0" mnemonicParsing="false" onAction="#showInfo" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
