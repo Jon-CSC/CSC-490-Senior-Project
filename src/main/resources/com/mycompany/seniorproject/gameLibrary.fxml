@@ -286,7 +286,7 @@
             <VBox prefHeight="191.0" prefWidth="138.0" spacing="1.0">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToProfilePage" prefHeight="105.0" prefWidth="138.0" styleClass="button-dropdown" text="My Profile" />
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefWidth="145.0" styleClass="button-dropdown" text="Settings" />
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#goToSettings" prefWidth="145.0" styleClass="button-dropdown" text="Settings" />
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#logOut" prefWidth="145.0" styleClass="button-dropdown" text="Log Out" />
                </children>
                <padding>

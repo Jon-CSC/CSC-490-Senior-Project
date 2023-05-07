@@ -11,7 +11,7 @@
 
 .button
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
     -fx-background-radius: 20px;
     -fx-background-color: #232323;
@@ -35,26 +35,26 @@
 
 .username-label
 {
-    -fx-font: 20px "Helvetica";
+    -fx-font: 20px "Arial";
     -fx-text-fill: white;
 }
 
 .title-label
 {
-    -fx-font: 16px "Helvetica";
+    -fx-font: 16px "Arial";
     -fx-text-fill: white;
 }
 
 .smaller-label
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
 }
 
 .text-area
 {
     -fx-background-color: #232323;
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
     -fx-cursor: default;
     -fx-padding: 0px;
@@ -64,7 +64,7 @@
 {
     -fx-background-color: #232323;
     -fx-background-radius: 0px;
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
     -fx-cursor: default;
     -fx-padding: 0px;

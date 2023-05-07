@@ -11,7 +11,7 @@
 
 .button
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
     -fx-background-radius: 20px;
     -fx-background-color: #0866CC;
@@ -24,19 +24,19 @@
 
 .label
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
 }
 
 .label-error
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: #ff4242;
 }
 
 .label-link
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: #0866CC;
     -fx-cursor: hand;
 }
@@ -47,13 +47,13 @@
 
 .label-title
 {
-    -fx-font: 24px "Helvetica";
+    -fx-font: 24px "Arial";
     -fx-text-fill: white;
 }
 
 .text-field
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
     -fx-background-color: #161616;
     -fx-background-radius: 20px;

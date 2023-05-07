@@ -269,6 +269,11 @@ public class GameLibraryController implements Initializable {
     void goToLeaderboard() throws IOException {
         App.setRoot("Leaderboard");
     }
+
+    @FXML
+    void goToSettings() throws IOException {
+        App.setRoot("Settings");
+    }
     
     @FXML
     void launchSelectedGame(ActionEvent event) throws IOException {
