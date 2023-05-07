@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -104,7 +105,10 @@ public class SettingsController implements Initializable {
             DocumentReference docRef = App.fstore.collection("Users").document(userID);
             docRef.update("Password", passwordField.getText());
         } catch (FirebaseAuthException iae) {
-            throw new RuntimeException();
+            errorLabel.setVisible(true);
+            errorLabel.setStyle("-fx-text-fill: #ff4242");
+            errorLabel.setText("Email already in use");
+            return;
         }
         errorLabel.setVisible(true);
         errorLabel.setStyle("-fx-text-fill: #25be3e");
@@ -134,6 +138,13 @@ public class SettingsController implements Initializable {
             }
         }
         return null;
+    }
+
+    @FXML
+    public void onEnter(KeyEvent event) {
+        if (event.getCode().toString().equalsIgnoreCase("ENTER")) {
+            updateAccountInfo();
+        }
     }
 
 }
