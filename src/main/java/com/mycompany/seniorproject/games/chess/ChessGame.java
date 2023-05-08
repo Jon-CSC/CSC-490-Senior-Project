@@ -331,7 +331,7 @@ public class ChessGame {
         if (king.checkMate(pieces, turn)) {
             String otherColor = turn.equals("white") ? "black": "white";
             System.out.println("checkmate for " + otherColor);
-            updateScore(turn);
+            updateScore(otherColor);
         }
         if (king.staleMate(pieces, turn)) {
             System.out.println("stalemate");

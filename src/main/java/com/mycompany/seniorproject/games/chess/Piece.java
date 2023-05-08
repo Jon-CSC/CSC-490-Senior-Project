@@ -478,7 +478,7 @@ public class Piece extends Location {
         int counter = 0;
         for (Piece piece: pieces) {
             if (piece.color.equals(turn)) {
-                piece.setMoves(pieces, piece, this, true);
+                piece.setMoves(pieces, piece, this, true, false);
                 counter = counter + piece.getMoves().size();
             }
             
