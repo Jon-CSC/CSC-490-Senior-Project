@@ -58,7 +58,7 @@ public class GameLibraryController implements Initializable {
     private StackPane centerStackPane;
     
     @FXML
-    private Rectangle gameCard01, gameCard02, gameCard03, gameCard04, gameCard05, gameCard06;
+    private Rectangle gameCard01, gameCard02, gameCard03, gameCard04, gameCard05, gameCard06, gamePreviewImgContainer;
     
     @FXML
     private Rectangle ratingStar1, ratingStar2, ratingStar3, ratingStar4, ratingStar5;
@@ -92,7 +92,7 @@ public class GameLibraryController implements Initializable {
 
     private Image gc01, gc02, gc03, gc04, gc05, gc06;
     
-    private Image starFilled, starHollow;
+    private Image starFilled, starHollow, gamePreviewImg;
     
     private ImagePattern starFilledIP, starHollowIP;
     
@@ -126,6 +126,7 @@ public class GameLibraryController implements Initializable {
         }
         
         gridPaneCardText.toBack();
+        gamePreviewImgContainer.setVisible(false);
         textGameTitle.setVisible(false);
         textGameDesc.setVisible(false);
         ratingStar1.setVisible(false);
@@ -320,17 +321,20 @@ public class GameLibraryController implements Initializable {
     }
     
     private void populateCardDetails() {
-        String gameTitle, gameDesc;
+        String gameTitle, gameDesc, previewImgPath;
         switch (selectedGame) {
             default:
+                previewImgPath = "Images/no_preview.png";
                 gameTitle = "No Title";
                 gameDesc = "No description available.";
                 break;
             case NOGAME:
+                previewImgPath = "Images/no_preview.png";
                 gameTitle = "No Title";
                 gameDesc = "No description available.";
                 break;
             case SNAKE:
+                previewImgPath = "Images/snake_preview.png";
                 gameTitle = "Snake";
                 gameDesc = "•1 Player"
                         + "\n•Local Play"
@@ -340,6 +344,7 @@ public class GameLibraryController implements Initializable {
                         + " not collide with himself or the walls around him.";
                 break;
             case BATTLESHIP:
+                previewImgPath = "Images/battleship_preview.png";
                 gameTitle = "Battleship";
                 gameDesc = "•2 Players"
                         + "\n•Online Play"
@@ -349,6 +354,7 @@ public class GameLibraryController implements Initializable {
                         + " differently, so think before you aim!";
                 break;
             case CHECKERS:
+                previewImgPath = "Images/checkers_preview.png";
                 gameTitle = "Checkers";
                 gameDesc = "•2 Players"
                         + "\n•Local & Online Play"
@@ -356,6 +362,7 @@ public class GameLibraryController implements Initializable {
                         + " your opponent by eliminating as many of their checkers as possible.";
                 break;
             case CHESS:
+                previewImgPath = "Images/chess_preview.png";
                 gameTitle = "Chess";
                 gameDesc = "•2 Players"
                         + "\n•Local & Online Play"
@@ -365,6 +372,7 @@ public class GameLibraryController implements Initializable {
                         + " checkmate the opponent and defeat their king.";
                 break;
             case TICTACTOE:
+                previewImgPath = "Images/tictactoe_preview.png";
                 gameTitle = "Tic-Tac-Toe";
                 gameDesc = "•2 Players"
                         + "\n•Local & Online Play"
@@ -373,6 +381,7 @@ public class GameLibraryController implements Initializable {
                         + " block you to win the game.";
                 break;
             case JAVASTROIDS:
+                previewImgPath = "Images/javastroids_preview.png";
                 gameTitle = "JavaStroids";
                 gameDesc = "•1 Player"
                         + "\n•Local Play"
@@ -384,6 +393,7 @@ public class GameLibraryController implements Initializable {
         }
         textGameTitle.setText(gameTitle);
         textGameDesc.setText(gameDesc);
+        gamePreviewImgContainer.setFill(new ImagePattern(new Image(getClass().getResourceAsStream(previewImgPath))));
     } 
     
     private void playSnake() throws IOException {
@@ -550,6 +560,7 @@ public class GameLibraryController implements Initializable {
         pathTrace01.setOnFinished(e -> {
             parentTransition.pause();
             gridPaneCardText.toFront();
+            gamePreviewImgContainer.setVisible(true);
             textGameTitle.setVisible(true);
             textGameDesc.setVisible(true);
             ratingStar1.setVisible(true);
@@ -582,6 +593,7 @@ public class GameLibraryController implements Initializable {
                 cardExpanded = true;
                 parentTransition.play();
                 gridPaneCardText.toBack();
+                gamePreviewImgContainer.setVisible(false);
                 textGameTitle.setVisible(false);
                 textGameDesc.setVisible(false);
                 ratingStar1.setVisible(false);

@@ -193,6 +193,7 @@
                         <Insets bottom="10.0" left="310.0" />
                      </StackPane.margin>
                   </GridPane>
+                  <Rectangle fx:id="gamePreviewImgContainer" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="393.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 25; -fx-arc-width: 25;" translateX="-170.0" translateY="14.0" width="284.0" />
                </children>
             </StackPane>
          </center>
