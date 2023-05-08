@@ -1,0 +1,74 @@
+.background
+{
+    -fx-background-color: #161616;
+}
+
+.foreground
+{
+    -fx-background-color: #232323;
+    -fx-background-radius: 20px;
+}
+
+.info
+{
+    -fx-background-color: #353535;
+    -fx-background-radius: 20px;
+}
+
+.button
+{
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-background-color: #232323;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #272727;
+}
+
+.button-blue
+{
+    -fx-background-color: #0866CC;
+}
+
+.button-blue:hover {
+    -fx-background-color: #0f6ad7;
+}
+
+.label-dark
+{
+    -fx-font: 14px "Arial";
+    -fx-text-fill: #909090;
+}
+
+.label-title
+{
+    -fx-font: 24px "Arial";
+    -fx-text-fill: white;
+}
+
+.label-small
+{
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+}
+
+.text-field
+{
+    -fx-background-color: #161616;
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+}
+
+.password-field
+{
+    -fx-text-fill: white;
+}
+
+.text-field-username
+{
+    -fx-cursor: default;
+}

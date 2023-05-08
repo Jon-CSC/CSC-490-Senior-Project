@@ -13,7 +13,7 @@
 
 .button
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
     -fx-background-radius: 20px;
     -fx-background-color: #232323;
@@ -26,7 +26,7 @@
 
 .button-dropdown
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
     -fx-background-radius: 5px;
     -fx-background-color: #232323;
@@ -43,7 +43,7 @@
 
 .button-blue
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
     -fx-background-radius: 20px;
     -fx-background-color: #0866CC;
@@ -56,21 +56,21 @@
 
 .label
 {
-    -fx-font: 14px "Helvetica";
+    -fx-font: 14px "Arial";
     -fx-text-fill: white;
     -fx-line-spacing: 5.0;
 }
 
 .label-game-title
 {
-    -fx-font: 24px "Helvetica";
+    -fx-font: 24px "Arial";
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
 .label-X-button
 {
-    -fx-font: 20px "Helvetica";
+    -fx-font: 20px "Arial";
     -fx-text-fill: white;
     -fx-cursor: hand;
 }
