@@ -16,7 +16,7 @@
          <children>
             <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Images/settings%20(X-Small%20(Square)).png" />
+                  <Image url="@Images/nanoclip.png" />
                </image>
             </ImageView>
             <Label focusTraversable="false" styleClass="label-title" text="Log In" textFill="#327bdb" />

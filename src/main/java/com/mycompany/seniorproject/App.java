@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -28,7 +29,8 @@ public class App extends Application {
         fstore = firestore();
         scene = new Scene(loadFXML("LoginPage"));
         timer = null;
-        stage.setTitle("Minigame App");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("Images/nanoclip.png")));
+        stage.setTitle("NanoClip");
         stage.setScene(scene);
         stage.show();
     }
