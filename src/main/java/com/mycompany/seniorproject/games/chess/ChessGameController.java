@@ -11,9 +11,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -32,7 +35,19 @@ public class ChessGameController implements Initializable {
         App.getStage().setHeight(877);
         App.getStage().centerOnScreen();
         App.getStage().setResizable(true);
-        
+
+        // Sometimes the application will keep sockets bound after game window
+        // is closed. This ensures everything is released properly.
+        App.getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                if ( connection != null){
+                    connection.closeConnection();
+                }
+                Platform.exit();
+                System.exit(0);
+            }
+        });
     }
     
     public void initLocalMatch(){
