@@ -5,7 +5,9 @@
 package com.mycompany.seniorproject.games.chess;
 
 import com.mycompany.seniorproject.App;
+import com.mycompany.seniorproject.LocalUserAccount;
 import com.mycompany.seniorproject.PeerToPeer;
+import com.mycompany.seniorproject.Timer;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,8 +43,16 @@ public class ChessGameController implements Initializable {
         App.getStage().setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
-                if ( connection != null){
+                if (connection != null) {
                     connection.closeConnection();
+                }
+                Timer timer = App.getTimer();
+                if (null != timer) {
+                    if (timer.isRunning() && LocalUserAccount.getInstance().isLoggedIn()) {
+                        timer.stop();
+                        LocalUserAccount.getInstance().recordTime(timer);
+                    }
+                    App.clearTimer();
                 }
                 Platform.exit();
                 System.exit(0);
