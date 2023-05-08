@@ -32,6 +32,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import static javafx.scene.paint.Color.rgb;
@@ -61,6 +62,9 @@ public class GameLibraryController implements Initializable {
     
     @FXML
     private Rectangle ratingStar1, ratingStar2, ratingStar3, ratingStar4, ratingStar5;
+    
+    @FXML
+    private HBox starBox1, starBox2, starBox3, starBox4, starBox5;
 
     @FXML
     private Circle profilePicCircle;
@@ -165,6 +169,7 @@ public class GameLibraryController implements Initializable {
             noGameAlert.show();
         });
         
+        
         setUpRatingStars();
         
         // stop any existing timers and push their results online
@@ -180,18 +185,18 @@ public class GameLibraryController implements Initializable {
     
     private void setUpRatingStars() {
         // Rating star hover events
-        ratingStar1.setOnMouseMoved(e -> { setVisibleRating(1); });
-        ratingStar2.setOnMouseMoved(e -> { setVisibleRating(2); });
-        ratingStar3.setOnMouseMoved(e -> { setVisibleRating(3); });
-        ratingStar4.setOnMouseMoved(e -> { setVisibleRating(4); });
-        ratingStar5.setOnMouseMoved(e -> { setVisibleRating(5); });
-        
+        starBox1.setOnMouseEntered(e -> { setVisibleRating(1); });
+        starBox2.setOnMouseEntered(e -> { setVisibleRating(2); });
+        starBox3.setOnMouseEntered(e -> { setVisibleRating(3); });
+        starBox4.setOnMouseEntered(e -> { setVisibleRating(4); });
+        starBox5.setOnMouseEntered(e -> { setVisibleRating(5); });
+
         // Reset to game's average rating when mouse moves off any star
-        ratingStar1.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
-        ratingStar2.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
-        ratingStar3.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
-        ratingStar4.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
-        ratingStar5.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
+        starBox1.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
+        starBox2.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
+        starBox3.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
+        starBox4.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
+        starBox5.setOnMouseExited(e -> { setVisibleRating((int)Math.round(selectedGameRating)); });
     }
     
     private void setVisibleRating(int rating) {
