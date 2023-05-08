@@ -180,6 +180,17 @@ public final class LocalUserAccount {
         return true;
     }
     
+    // TODO
+    public double getRating(Game game) {
+        if(!isLoggedIn() || null == game) {
+            return -1;
+        }
+        
+        // Return game rating from current user and currently selected game
+        
+        return 0;
+    }
+    
     /**
      * Increment the playtime stat based on a Timer instance.
      * Some notes:
