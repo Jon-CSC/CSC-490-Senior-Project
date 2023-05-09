@@ -98,7 +98,7 @@ public class GameLibraryController implements Initializable {
     
     private boolean cardExpanded = false;
     
-    private float selectedGameRating = 1.8f;
+    private float selectedGameRating = 5.0f;
     
     private Game selectedGame;
     
@@ -344,7 +344,7 @@ public class GameLibraryController implements Initializable {
                         + " not collide with himself or the walls around him.";
                 break;
             case BATTLESHIP:
-                previewImgPath = "Images/battleship_preview.png";
+                previewImgPath = "Images/comingsoon.png";
                 gameTitle = "Battleship";
                 gameDesc = "•2 Players"
                         + "\n•Online Play"
