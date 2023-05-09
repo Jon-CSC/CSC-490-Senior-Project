@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -12,13 +14,17 @@
    <children>
       <VBox alignment="CENTER" fillWidth="false" focusTraversable="true" prefHeight="500.0" prefWidth="500.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/nanoclip.png" />
+               </image>
+            </ImageView>
             <Label focusTraversable="false" styleClass="label-title" text="Log In" textFill="#327bdb" />
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="205.0" prefWidth="210.0" spacing="20.0" styleClass="small-vbox">
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="180.0" prefWidth="210.0" spacing="20.0" styleClass="small-vbox">
                <children>
                   <TextField fx:id="usernameField" prefHeight="30.0" prefWidth="180.0" promptText="Username" styleClass="text-field" />
                   <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="text-field" />
                   <Button focusTraversable="false" mnemonicParsing="false" onAction="#logIn" prefHeight="30.0" prefWidth="180.0" text="Log In" />
-                  <Label focusTraversable="false" onMouseClicked="#goToForgotPasswordPage" styleClass="label-link" text="Forgot password?" />
                </children>
             </VBox>
             <HBox prefHeight="3.0" prefWidth="200.0">
