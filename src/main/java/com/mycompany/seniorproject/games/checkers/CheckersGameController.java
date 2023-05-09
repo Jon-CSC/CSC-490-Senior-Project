@@ -4,10 +4,21 @@
  */
 package com.mycompany.seniorproject.games.checkers;
 
-/**
- *
- * @author justi
- */
+import com.mycompany.seniorproject.App;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
 public class CheckersGameController {
-    
+    /**
+     * Initializes the controller class.
+     */
+    public void initialize(URL url, ResourceBundle rb) {
+        
+        Checkers.launch(null);
+    }
 }
