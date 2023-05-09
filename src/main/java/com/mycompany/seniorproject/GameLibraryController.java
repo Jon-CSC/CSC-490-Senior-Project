@@ -416,7 +416,8 @@ public class GameLibraryController implements Initializable {
 //        Timer checkersTimer = new Timer(Game.CHECKERS);
 //        checkersTimer.start();
 //        App.setTimer(checkersTimer);
-        displayNoGameDialogBoxError();
+        //displayNoGameDialogBoxError();
+        App.setRoot("games/checkers/checkersMainMenu");
     }
     
     private void playTicTacToe() throws IOException {
