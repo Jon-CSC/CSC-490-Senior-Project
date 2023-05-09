@@ -8,60 +8,47 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane maxHeight="640.0" maxWidth="900.0" prefHeight="640.0" prefWidth="900.0" styleClass="background" stylesheets="@../../../styles/settings.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.SettingsController">
+<AnchorPane maxHeight="640.0" maxWidth="900.0" onKeyPressed="#onEnter" prefHeight="640.0" prefWidth="900.0" styleClass="background" stylesheets="@../../../styles/settings.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.seniorproject.SettingsController">
    <children>
       <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="640.0" prefWidth="900.0" spacing="15.0">
                <children>
                   <Circle fx:id="profilePictureCircle" fill="WHITE" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Label alignment="CENTER" styleClass="label-title" text="Settings" textAlignment="CENTER" />
+                  <Label alignment="CENTER" focusTraversable="false" styleClass="label-title" text="Settings" textAlignment="CENTER" />
                   <VBox fillWidth="false" prefHeight="239.0" prefWidth="340.0" spacing="15.0" styleClass="foreground">
                      <children>
-                        <Label minHeight="27.0" styleClass="label-title" text="Account info" />
-                        <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="32.0" prefWidth="125.0">
-                           <children>
-                              <Label prefHeight="26.0" prefWidth="71.0" styleClass="label-dark" text="Username" textAlignment="CENTER">
-                                 <padding>
-                                    <Insets bottom="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </HBox>
+                        <Label focusTraversable="false" minHeight="27.0" styleClass="label-title" text="Account info" />
+                        <Label focusTraversable="false" prefHeight="26.0" prefWidth="71.0" styleClass="label-dark" text="Username" textAlignment="CENTER">
+                           <padding>
+                              <Insets bottom="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
                         <TextField fx:id="usernameField" editable="false" minHeight="35.0" minWidth="300.0" prefHeight="35.0" prefWidth="300.0" styleClass="text-field-username" text="username" />
-                        <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="32.0" prefWidth="125.0">
-                           <children>
-                              <Label prefHeight="26.0" prefWidth="96.0" styleClass="label-dark" text="Email Address" textAlignment="CENTER">
-                                 <padding>
-                                    <Insets bottom="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <TextField fx:id="emailField" focusTraversable="false" minHeight="35.0" minWidth="300.0" prefHeight="35.0" prefWidth="300.0" text="example@example.com" />
-                        <HBox alignment="CENTER_LEFT" prefWidth="125.0">
-                           <children>
-                              <Label prefHeight="26.0" prefWidth="67.0" styleClass="label-dark" text="Password">
-                                 <padding>
-                                    <Insets bottom="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <PasswordField fx:id="passwordField" focusTraversable="false" minHeight="35.0" minWidth="300.0" prefHeight="35.0" prefWidth="300.0" text="*****" />
-                        <Button minHeight="35.0" minWidth="120.0" mnemonicParsing="false" onAction="#updateAccountInfo" prefHeight="35.0" styleClass="button-blue" text="Save Changes" />
+                        <Label focusTraversable="false" prefHeight="26.0" prefWidth="96.0" styleClass="label-dark" text="Email Address" textAlignment="CENTER">
+                           <padding>
+                              <Insets bottom="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="emailField" minHeight="35.0" minWidth="300.0" prefHeight="35.0" prefWidth="300.0" text="example@example.com" />
+                        <Label focusTraversable="false" prefHeight="26.0" prefWidth="67.0" styleClass="label-dark" text="Password">
+                           <padding>
+                              <Insets bottom="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <PasswordField fx:id="passwordField" minHeight="35.0" minWidth="300.0" prefHeight="35.0" prefWidth="300.0" text="*****" />
+                        <Button focusTraversable="false" minHeight="35.0" minWidth="120.0" mnemonicParsing="false" onAction="#updateAccountInfo" prefHeight="35.0" styleClass="button-blue" text="Save Changes" />
                      </children>
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </VBox>
-                  <Label fx:id="errorLabel" styleClass="label-small" text="Error Messages Appear Down Here" />
+                  <Label fx:id="errorLabel" focusTraversable="false" styleClass="label-small" text="Error Messages Appear Down Here" />
                </children>
                <padding>
                   <Insets bottom="10.0" top="10.0" />

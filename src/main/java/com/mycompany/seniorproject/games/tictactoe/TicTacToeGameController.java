@@ -6,11 +6,10 @@ package com.mycompany.seniorproject.games.tictactoe;
 
 import com.google.cloud.firestore.FieldValue;
 import com.mycompany.seniorproject.App;
+import com.mycompany.seniorproject.Game;
 import com.mycompany.seniorproject.LocalUserAccount;
 import com.mycompany.seniorproject.PeerToPeer;
-import com.mycompany.seniorproject.UserAccount;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -749,7 +748,7 @@ public class TicTacToeGameController {
                     // Display declined, pause for 2 seconds, exit game
                     labelRematchDeclined.setVisible(true);
                     PauseTransition pause = new PauseTransition(Duration.seconds(2));
-                    pause.setOnFinished(event ->{
+                    pause.setOnFinished(event -> {
                         try {
                             labelRematchDeclined.setVisible(false);
                             exitGame();
@@ -759,6 +758,7 @@ public class TicTacToeGameController {
                     });
                     pause.play();
                 }
+                labelRequestRematch.setVisible(true);
             });
             new Thread(task).start();
         }
@@ -773,13 +773,21 @@ public class TicTacToeGameController {
     private void updateScore(int player) {
         if (connection != null) {
             // If this is host and player 1 won, tally win in database for this user
-            if (isHost && player == 1) {
-                LocalUserAccount.getInstance().updateGameData("tictactoe_wins", FieldValue.increment(1));
+            if (isHost) {
+                if (player == 1) {
+                    LocalUserAccount.getInstance().recordMatch(Game.TICTACTOE, true);
+                } else {
+                    LocalUserAccount.getInstance().recordMatch(Game.TICTACTOE, false);
+                }
             }
             // If this not host and player 2 won, then tally win in database for
             // this user
-            if (!isHost && player == 2) {
-                LocalUserAccount.getInstance().updateGameData("tictactoe_wins", FieldValue.increment(1));
+            if (!isHost) {
+                if (player == 2) {
+                    LocalUserAccount.getInstance().recordMatch(Game.TICTACTOE, true);
+                } else {
+                    LocalUserAccount.getInstance().recordMatch(Game.TICTACTOE, false);
+                }
             }
         }
     }
