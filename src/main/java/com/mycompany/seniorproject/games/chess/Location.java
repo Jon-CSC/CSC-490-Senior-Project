@@ -6,7 +6,7 @@
 package com.mycompany.seniorproject.games.chess;
 
 /**
- *
+ * https://github.com/Pewaukee/Chess
  * @author nicolechan
  */
 public class Location {
