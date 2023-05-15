@@ -584,7 +584,6 @@ public class GameLibraryController implements Initializable {
             // scaling not returning game card rectangles to original size.
             card.setScaleX(1.0);
             card.setScaleY(1.0);
-            System.out.println("FINISHED");
         });
         parentTransition.playFromStart();
         
