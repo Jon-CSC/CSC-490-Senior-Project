@@ -8,7 +8,7 @@ package com.mycompany.seniorproject.games.chess;
 import java.util.ArrayList;
 
 /**
- *
+ * From https://github.com/Pewaukee/Chess
  * @author nicolechan
  */
 public class Piece extends Location {
