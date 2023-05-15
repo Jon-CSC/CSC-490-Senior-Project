@@ -21,6 +21,8 @@ import javafx.scene.shape.Rectangle;
 
 /**
  * JavaFX ChessGame
+ * Chess UI and logic by: https://github.com/Pewaukee/Chess
+ * Multiplayer implementation by CSC 490 project team.
  */
 public class ChessGame {
 
